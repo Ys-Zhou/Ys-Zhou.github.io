@@ -179,8 +179,46 @@
 <li>Cloud optimized</li>
 <li>Cloud native architecture</li>
 </ul>
-<h1 id="Best-Practices"><a href="#Best-Practices" class="headerlink" title="Best Practices"></a>Best Practices</h1><h2 id="Design-for-Failures"><a href="#Design-for-Failures" class="headerlink" title="Design for Failures"></a>Design for Failures</h2><p>To be update…</p>
-
+<h2 id="Best-Practices"><a href="#Best-Practices" class="headerlink" title="Best Practices"></a>Best Practices</h2><h3 id="1-Design-for-Failures"><a href="#1-Design-for-Failures" class="headerlink" title="1. Design for Failures"></a>1. Design for Failures</h3><ul>
+<li>Use multi-AZ</li>
+<li>Use ELB</li>
+<li>Use EIP</li>
+<li>Do real-time monitoring with CloudWatch</li>
+<li>Use SNS for real-time alarms based on CloudWatch metrics</li>
+<li>Create database slaves across AZs</li>
+</ul>
+<h3 id="2-Build-Security-in-Every-Layer"><a href="#2-Build-Security-in-Every-Layer" class="headerlink" title="2. Build Security in Every Layer"></a>2. Build Security in Every Layer</h3><ul>
+<li>Encrypt data in transit and at rest</li>
+<li>Use KMS</li>
+<li>Least privilege with IAM</li>
+<li>Use MFA</li>
+<li>Use Security groups and NACLs</li>
+</ul>
+<h3 id="3-Leverage-Multiple-Storage-Options"><a href="#3-Leverage-Multiple-Storage-Options" class="headerlink" title="3. Leverage Multiple Storage Options"></a>3. Leverage Multiple Storage Options</h3><ul>
+<li>S3 (Large objects)</li>
+<li>Glacier (Achieve data)</li>
+<li>CloudFront (Content distribution)</li>
+<li>DynamoDB (Simple nonrelational data)</li>
+<li>EC2 Ephemeral Storage (Transient data)</li>
+<li>EBS (Persistent block storage with snapshots)</li>
+<li>RDS &amp; Aurora</li>
+<li>Redshift (Data warehouse workloads)</li>
+</ul>
+<h3 id="4-Implement-Elasticity"><a href="#4-Implement-Elasticity" class="headerlink" title="4. Implement Elasticity"></a>4. Implement Elasticity</h3><ul>
+<li>Auto scaling</li>
+<li>ELB</li>
+<li>DynamoDB (maintain the user state information)</li>
+</ul>
+<h3 id="5-Think-Parallel"><a href="#5-Think-Parallel" class="headerlink" title="5. Think Parallel"></a>5. Think Parallel</h3><ul>
+<li>Use SNS adn SQS</li>
+<li>Use multithreading and concurrent requests to the cloud</li>
+<li>Run parallel MapReduce jobs (EMR)</li>
+<li>Use ELB to distribute load</li>
+<li>Use Kinesis for concurrent processing of data</li>
+<li>Use Lambda</li>
+<li>Use multipart upload adn ranged gets to upload files in S3</li>
+</ul>
+<h3 id="6-Loosely-Couple-Your-Architecture"><a href="#6-Loosely-Couple-Your-Architecture" class="headerlink" title="6. Loosely Couple Your Architecture"></a>6. Loosely Couple Your Architecture</h3><h3 id="7-There-Are-No-Constraints-in-the-AWS-Cloud"><a href="#7-There-Are-No-Constraints-in-the-AWS-Cloud" class="headerlink" title="7. There Are No Constraints in the AWS Cloud"></a>7. There Are No Constraints in the AWS Cloud</h3>
         
       </div>
     </div>
