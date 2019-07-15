@@ -12,18 +12,18 @@
   
 </title>
 
-<meta name="description" content="Introduction Real Time - Immediate actions  Kinesis Data Streams SQS IoT   Near-real time - Reactive actions  Kinesis Data Firehose DMS   Batch - Historical Analysis  Snowball Data Pipeline    Kinesis">
+<meta name="description" content="Introduction Real Time - Immediate actions Kinesis Data Streams SQS IoT   Near-real time - Reactive actions Kinesis Data Firehose DMS   Batch - Historical Analysis Snowball Data Pipeline    Kinesis Ki">
 <meta name="keywords" content="BD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Collection: Moving data into AWS">
 <meta property="og:url" content="https://Ys-Zhou.github.io/2019/07/14/Collection-Moving-data-into-AWS/index.html">
 <meta property="og:site_name" content="Hiko Amane&#39;s blog">
-<meta property="og:description" content="Introduction Real Time - Immediate actions  Kinesis Data Streams SQS IoT   Near-real time - Reactive actions  Kinesis Data Firehose DMS   Batch - Historical Analysis  Snowball Data Pipeline    Kinesis">
+<meta property="og:description" content="Introduction Real Time - Immediate actions Kinesis Data Streams SQS IoT   Near-real time - Reactive actions Kinesis Data Firehose DMS   Batch - Historical Analysis Snowball Data Pipeline    Kinesis Ki">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-15T08:38:59.637Z">
+<meta property="og:updated_time" content="2019-07-15T12:34:59.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Collection: Moving data into AWS">
-<meta name="twitter:description" content="Introduction Real Time - Immediate actions  Kinesis Data Streams SQS IoT   Near-real time - Reactive actions  Kinesis Data Firehose DMS   Batch - Historical Analysis  Snowball Data Pipeline    Kinesis">
+<meta name="twitter:description" content="Introduction Real Time - Immediate actions Kinesis Data Streams SQS IoT   Near-real time - Reactive actions Kinesis Data Firehose DMS   Batch - Historical Analysis Snowball Data Pipeline    Kinesis Ki">
 
 
   <link rel="alternative" href="/atom.xml" title="Hiko Amane&#39;s blog" type="application/atom+xml">
@@ -169,21 +169,18 @@
   </div>
   <div class="article-entry">
     <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
-<li><p>Real Time - Immediate actions</p>
-<ul>
+<li>Real Time - Immediate actions<ul>
 <li>Kinesis Data Streams</li>
 <li>SQS</li>
 <li>IoT</li>
 </ul>
 </li>
-<li><p>Near-real time - Reactive actions</p>
-<ul>
+<li>Near-real time - Reactive actions<ul>
 <li>Kinesis Data Firehose</li>
 <li>DMS</li>
 </ul>
 </li>
-<li><p>Batch - Historical Analysis</p>
-<ul>
+<li>Batch - Historical Analysis<ul>
 <li>Snowball</li>
 <li>Data Pipeline</li>
 </ul>
@@ -236,13 +233,13 @@
 </ul>
 <h3 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h3><ul>
 <li>Producer<ul>
-<li>1MB/s or 1000 messages/s at write per <strong>shard</strong></li>
+<li>1MB/s or 1000 records/s at write per <strong>shard</strong></li>
 <li><em>ProvisionedThroughputException</em> otherwise</li>
 </ul>
 </li>
 <li>Consumer Classic<ul>
 <li>2MB/s at read per <strong>shard</strong> across <strong>all consumers</strong></li>
-<li>5 API calls per second per <strong>shard</strong> across <strong>all consumers</strong></li>
+<li>5 API calls/s per <strong>shard</strong> across <strong>all consumers</strong></li>
 </ul>
 </li>
 <li>Consumer Enhanced Fan-Out<ul>
@@ -258,6 +255,7 @@
 </ul>
 <h2 id="Kinesis-Producers"><a href="#Kinesis-Producers" class="headerlink" title="Kinesis Producers"></a>Kinesis Producers</h2><ul>
 <li>Kinesis Producer SDK</li>
+<li>Managed AWS sources</li>
 <li>Kinesis Producer Library (KPL)</li>
 <li>Kinesis Agent</li>
 <li>3rd party libraries</li>
@@ -269,15 +267,15 @@
 </ul>
 </li>
 </ul>
-<h4 id="Managed-AWS-sources"><a href="#Managed-AWS-sources" class="headerlink" title="Managed AWS sources"></a>Managed AWS sources</h4><ul>
-<li>CloudWatch Logs</li>
-<li>AWS IoT</li>
-<li>Kinesis Data Analytics</li>
-</ul>
 <h4 id="Solutions-for-ProvisionedThroughputExceeded-Exceptions"><a href="#Solutions-for-ProvisionedThroughputExceeded-Exceptions" class="headerlink" title="Solutions for ProvisionedThroughputExceeded Exceptions"></a>Solutions for <em>ProvisionedThroughputExceeded</em> Exceptions</h4><ul>
 <li>Retries with backoff</li>
 <li>Increase (scale up) shards</li>
 <li>Use highly distributed partition key</li>
+</ul>
+<h3 id="Managed-AWS-sources"><a href="#Managed-AWS-sources" class="headerlink" title="Managed AWS sources"></a>Managed AWS sources</h3><ul>
+<li>CloudWatch Logs</li>
+<li>AWS IoT</li>
+<li>Kinesis Data Analytics</li>
 </ul>
 <h3 id="Kinesis-Producer-Library-KPL"><a href="#Kinesis-Producer-Library-KPL" class="headerlink" title="Kinesis Producer Library (KPL)"></a>Kinesis Producer Library (KPL)</h3><ul>
 <li>C++ / Java library</li>
@@ -306,11 +304,57 @@
 <li>Only support Linux-based servers</li>
 <li>Can write form multiple directories and write to multiple streams</li>
 <li>Can route based on directory or log file</li>
-<li>Can pre-process data before sending to streams (single line, json…)</li>
+<li>Can pre-process data before sending to streams (single line, json, etc.)</li>
 <li>Handles file rotation, checkpointing and retry</li>
 <li>Can emit metrics to CloudWatch</li>
 </ul>
-<h2 id="Kinesis-Consumers-Classic"><a href="#Kinesis-Consumers-Classic" class="headerlink" title="Kinesis Consumers Classic"></a>Kinesis Consumers Classic</h2>
+<h2 id="Kinesis-Consumers-Classic"><a href="#Kinesis-Consumers-Classic" class="headerlink" title="Kinesis Consumers Classic"></a>Kinesis Consumers Classic</h2><ul>
+<li>Kinesis Consumer SDK</li>
+<li>Kinesis Client Library (KCL)</li>
+<li>Kinesis Connector Library</li>
+<li>3rd party libraries (Spark, etc.)</li>
+<li>Managed AWS sources<ul>
+<li>Kinesis Firehose</li>
+<li>AWS Lambda</li>
+</ul>
+</li>
+</ul>
+<h3 id="Kinesis-Consumer-SDK"><a href="#Kinesis-Consumer-SDK" class="headerlink" title="Kinesis Consumer SDK"></a>Kinesis Consumer SDK</h3><ul>
+<li>GetRecords<ul>
+<li>Returns up to 10MB of data (then throttle for 5s) or up to 10,000 records</li>
+<li><strong>Remind</strong><ul>
+<li>Maximum of 2MB/s at read per shard</li>
+<li>Maximum of 5 GetRecords API calls/s per shard (200ms latency)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Kinesis-Client-Library-KCL"><a href="#Kinesis-Client-Library-KCL" class="headerlink" title="Kinesis Client Library (KCL)"></a>Kinesis Client Library (KCL)</h3><ul>
+<li>Support Java, etc.</li>
+<li>Read records from Kinesis produced with the KPL (de-aggregation)</li>
+<li><strong>Shard discovery</strong>: share multiple shards with multiple consumers in one group</li>
+<li><strong>Checkpointing</strong>: resume progress</li>
+<li><strong>Leverages DynamoDB for coordination and checkpointing</strong><ul>
+<li>Use provisioned DynamoDB with enough WCU and RCU</li>
+<li>Use On-Demand DynamoDB</li>
+<li>Otherwise DynamoDB may slow down KCL</li>
+</ul>
+</li>
+</ul>
+<h3 id="Kinesis-Connector-Library"><a href="#Kinesis-Connector-Library" class="headerlink" title="Kinesis Connector Library"></a>Kinesis Connector Library</h3><ul>
+<li>Have been deprecated</li>
+<li>Can only be running on EC2</li>
+<li>Write data to S3, DynamoDB, Redshift, ElasticSearch</li>
+<li>Can be replaced by Kinesis Firehose or Lambda</li>
+</ul>
+<h4 id="AWS-Lambda-sourcing-from-Kinesis"><a href="#AWS-Lambda-sourcing-from-Kinesis" class="headerlink" title="AWS Lambda sourcing from Kinesis"></a>AWS Lambda sourcing from Kinesis</h4><ul>
+<li>Lambda consumer has a library to de-aggregate record from the KPL</li>
+<li>Lambda can be used to rum lightweight ETL to anywhere you want</li>
+<li>Lambda can be used to trigger notifications or send emails in real time</li>
+<li>Lambda has a configurable batch size to regulate throughput</li>
+</ul>
+
   </div>
   <footer class="article-footer">
     
