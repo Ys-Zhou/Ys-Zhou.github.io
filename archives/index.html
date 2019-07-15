@@ -77,21 +77,21 @@
             
               <li class="category-list-container">
                 <a href="javascript:;">Category</a>
-                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Cloud/">Cloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">3</span></li></ul>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">2</span></li></ul>
               </li>
             
           
             
               <li class="tag-list-container">
                 <a href="javascript:;">Tag</a>
-                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/">AWS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JetBrains/">JetBrains</a><span class="tag-list-count">3</span></li></ul>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BD/">BD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JetBrains/">JetBrains</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SA/">SA</a><span class="tag-list-count">2</span></li></ul>
               </li>
             
           
             
               <li class="archive-list-container">
                 <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">3</span></li></ul>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">2</span></li></ul>
               </li>
             
           
@@ -154,6 +154,189 @@
 
     <div class="post-list-item article">
       <h3 class="article-header">
+        <a href="/2019/07/14/Collection-Moving-data-into-AWS/">
+  Collection: Moving data into AWS
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2019/07/14/Collection-Moving-data-into-AWS/"><span class="article-date">
+  2019-07-14
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/AWS/">AWS</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BD/">BD</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li><p>Real Time - Immediate actions</p>
+<ul>
+<li>Kinesis Data Streams</li>
+<li>SQS</li>
+<li>IoT</li>
+</ul>
+</li>
+<li><p>Near-real time - Reactive actions</p>
+<ul>
+<li>Kinesis Data Firehose</li>
+<li>DMS</li>
+</ul>
+</li>
+<li><p>Batch - Historical Analysis</p>
+<ul>
+<li>Snowball</li>
+<li>Data Pipeline</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kinesis"><a href="#Kinesis" class="headerlink" title="Kinesis"></a>Kinesis</h2><ul>
+<li>Kinesis Data Streams<ul>
+<li>Low latency streaming ingest at scale</li>
+</ul>
+</li>
+<li>Kinesis Data Analytics<ul>
+<li>Perform real-time analytics on streams using SQL</li>
+</ul>
+</li>
+<li>Kinesis Data Firehose<ul>
+<li>Load streams into S3, redshift, ElasticSearch and Splunk</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kinesis-Streams"><a href="#Kinesis-Streams" class="headerlink" title="Kinesis Streams"></a>Kinesis Streams</h2><ul>
+<li>Streams are divided in ordered Shards</li>
+<li>Ability to reprocess / replay data<ul>
+<li>Multiple applications can consume the same stream</li>
+</ul>
+</li>
+<li>Real-time processing with scale of throughput</li>
+<li>Once data is inserted in Kinesis, it can’t be deleted (data in Kinesis is immutability)</li>
+</ul>
+<h3 id="Shards"><a href="#Shards" class="headerlink" title="Shards"></a>Shards</h3><ul>
+<li>The number of shards can evolve over time (reshard / merge)</li>
+<li>Records are only ordered per shard</li>
+<li>Billing is per shard provisioned</li>
+</ul>
+<h3 id="Records"><a href="#Records" class="headerlink" title="Records"></a>Records</h3><ul>
+<li>Data Blob<ul>
+<li>Data being sent, serialized as bytes</li>
+<li>Up to 1 MB</li>
+</ul>
+</li>
+<li>Record Key<ul>
+<li>Helps to group records in Shards (same key in same shard)</li>
+<li>Should use highly distributed key to avoid the <em>hot partition</em> problem</li>
+</ul>
+</li>
+<li>Sequence number<ul>
+<li>Unique ID for records put in shards</li>
+<li>Added by Kinesis after ingestion</li>
+</ul>
+</li>
+</ul>
+<h3 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h3><ul>
+<li>Producer<ul>
+<li>1MB/s or 1000 messages/s at write per <strong>shard</strong></li>
+<li><em>ProvisionedThroughputException</em> otherwise</li>
+</ul>
+</li>
+<li>Consumer Classic<ul>
+<li>2MB/s at read per <strong>shard</strong> across <strong>all consumers</strong></li>
+<li>5 API calls per second per <strong>shard</strong> across <strong>all consumers</strong></li>
+</ul>
+</li>
+<li>Consumer Enhanced Fan-Out<ul>
+<li>2MB/s at read per <strong>shard</strong> per <strong>enhanced consumer</strong></li>
+<li>No API calls needed</li>
+</ul>
+</li>
+<li>Data Retention<ul>
+<li>24 hours by default</li>
+<li>Up to 7 days</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kinesis-Producers"><a href="#Kinesis-Producers" class="headerlink" title="Kinesis Producers"></a>Kinesis Producers</h2><ul>
+<li>Kinesis Producer SDK</li>
+<li>Kinesis Producer Library (KPL)</li>
+<li>Kinesis Agent</li>
+<li>3rd party libraries</li>
+</ul>
+<h3 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h3><ul>
+<li>PutRecord</li>
+<li>PutRecords<ul>
+<li>Use batching and increases throughput</li>
+</ul>
+</li>
+</ul>
+<h4 id="Managed-AWS-sources"><a href="#Managed-AWS-sources" class="headerlink" title="Managed AWS sources"></a>Managed AWS sources</h4><ul>
+<li>CloudWatch Logs</li>
+<li>AWS IoT</li>
+<li>Kinesis Data Analytics</li>
+</ul>
+<h4 id="Solutions-for-ProvisionedThroughputExceeded-Exceptions"><a href="#Solutions-for-ProvisionedThroughputExceeded-Exceptions" class="headerlink" title="Solutions for ProvisionedThroughputExceeded Exceptions"></a>Solutions for <em>ProvisionedThroughputExceeded</em> Exceptions</h4><ul>
+<li>Retries with backoff</li>
+<li>Increase (scale up) shards</li>
+<li>Use highly distributed partition key</li>
+</ul>
+<h3 id="Kinesis-Producer-Library-KPL"><a href="#Kinesis-Producer-Library-KPL" class="headerlink" title="Kinesis Producer Library (KPL)"></a>Kinesis Producer Library (KPL)</h3><ul>
+<li>C++ / Java library</li>
+<li>high performance, long-running producers</li>
+<li>Automated and configurable <strong>retry</strong> mechanism</li>
+<li>Sync or <strong>Async</strong> (better performance) API</li>
+<li>Submits metrics to CloudWatch</li>
+<li><strong>Batching</strong> (default) - increase throughput, decrease cost<ul>
+<li><strong>Collect</strong> records and write to multiple shards in the same PutRecords API call</li>
+<li><strong>Aggregate</strong> - but increase latency<ul>
+<li>Store multiple records in one record (go over 1000 records/s limit)</li>
+<li>Increase payload size and improve throughput (maximize 1MB/s limit)</li>
+</ul>
+</li>
+<li>Configured with <em>RecordMaxBufferedTime</em> (100ms by default)</li>
+</ul>
+</li>
+<li>Limitation<ul>
+<li>Do not support auto compression</li>
+<li>KPL Records can only be decoded with KCL or special helper library</li>
+</ul>
+</li>
+</ul>
+<h3 id="Kinesis-Agent"><a href="#Kinesis-Agent" class="headerlink" title="Kinesis Agent"></a>Kinesis Agent</h3><ul>
+<li>Monitor Log files and sends them to Kinesis Data Streams</li>
+<li>Only support Linux-based servers</li>
+<li>Can write form multiple directories and write to multiple streams</li>
+<li>Can route based on directory or log file</li>
+<li>Can pre-process data before sending to streams (single line, json…)</li>
+<li>Handles file rotation, checkpointing and retry</li>
+<li>Can emit metrics to CloudWatch</li>
+</ul>
+<h2 id="Kinesis-Consumers-Classic"><a href="#Kinesis-Consumers-Classic" class="headerlink" title="Kinesis Consumers Classic"></a>Kinesis Consumers Classic</h2>
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
         <a href="/2019/06/16/Basic-AWS-Best-Practices/">
   Basic AWS Best Practices
 </a>
@@ -168,13 +351,13 @@
 </a>
         
 	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Cloud/">Cloud</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/AWS/">AWS</a></li></ul>
 	</span>
 
 
         
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SA/">SA</a></li></ul>
 	</span>
 
 
@@ -253,13 +436,13 @@
 </a>
         
 	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Cloud/">Cloud</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/AWS/">AWS</a></li></ul>
 	</span>
 
 
         
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SA/">SA</a></li></ul>
 	</span>
 
 
@@ -443,55 +626,6 @@
       <div class="article-entry">
         
           <p><a href="https://www.jetbrains.com/help/webstorm/live-editing.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/webstorm/live-editing.html</a></p>
-
-        
-      </div>
-    </div>
-
-  
-
-  
-  
-    
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2018/10/23/在IDEA上开发Servlet并部署到Tomcat/">
-  在IDEA上开发Servlet并部署到Tomcat
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2018/10/23/在IDEA上开发Servlet并部署到Tomcat/"><span class="article-date">
-  2018-10-23
-</span>
-</a>
-        
-	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Note/">Note</a></li></ul>
-	</span>
-
-
-        
-	<span class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JetBrains/">JetBrains</a></li></ul>
-	</span>
-
-
-      </div>
-      <div class="article-entry">
-        
-          <ol>
-    <li>New Project -> Java Enterprise -> 勾选Web Application -> Next。</li>
-    <li>项目创建好了之后，将通用lib文件复制到 web/WEB-INF/lib。</li>
-    <li>选择File -> Project Structure -> Libraries，将刚才的lib文件夹添加进去。</li>
-    <li>继续选择Artifacts，同样将lib文件夹添加进去。在这里可以直接点选右下角的fix快速更改。其他的保持不变，选择OK应用更改。</li>
-    <li>右上角选择服务器 -> Edit Configuration... -> Deployment，修改合适的Application context，其他的保持默认就行。</li>
-    <li>最后，运行项目或者debug进行测试。</li>
-</ol>
 
         
       </div>
