@@ -77,21 +77,21 @@
             
               <li class="category-list-container">
                 <a href="javascript:;">Category</a>
-                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">2</span></li></ul>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">3</span></li></ul>
               </li>
             
           
             
               <li class="tag-list-container">
                 <a href="javascript:;">Tag</a>
-                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BD/">BD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JetBrains/">JetBrains</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SA/">SA</a><span class="tag-list-count">2</span></li></ul>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BD/">BD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SA/">SA</a><span class="tag-list-count">2</span></li></ul>
               </li>
             
           
             
               <li class="archive-list-container">
                 <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">2</span></li></ul>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li></ul>
               </li>
             
           
@@ -359,6 +359,34 @@
 <li>Lambda can be used to trigger notifications or send emails in real time</li>
 <li>Lambda has a configurable batch size to regulate throughput</li>
 </ul>
+<h2 id="Kinesis-Enhanced-Fan-Out"><a href="#Kinesis-Enhanced-Fan-Out" class="headerlink" title="Kinesis Enhanced Fan-Out"></a>Kinesis Enhanced Fan-Out</h2><ul>
+<li>Kinesis <strong>pushes</strong> data to consumers over HTTP/2 </li>
+<li><strong>Each Consumer</strong> get 2 MB/s of providioned through per shard<ul>
+<li>No more 2MB/s limit by adding Consumers</li>
+<li>Reducy latency (~70ms)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Enhanced-Fan-Out-vs-Standard-Consumers"><a href="#Enhanced-Fan-Out-vs-Standard-Consumers" class="headerlink" title="Enhanced Fan-Out vs Standard Consumers"></a>Enhanced Fan-Out vs Standard Consumers</h3><table>
+<thead>
+<tr>
+<th>Enhanced Fan-Out</th>
+<th>Standard Consumers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Low number of consuming applications</td>
+<td>Multiple Consumer applications for the same Stream</td>
+</tr>
+<tr>
+<td>Can tolerate ~200 ms latency</td>
+<td>Low latency requirements ~70 ms</td>
+</tr>
+<tr>
+<td>Minimize cost</td>
+<td>Higher costs (Soft limit of 5 consumers using enhanced fan-out per data stream)</td>
+</tr>
+</tbody></table>
 
         
       </div>
@@ -573,93 +601,6 @@
 <li>Being aware of expenditures</li>
 <li>Optimizing over time</li>
 </ul>
-
-        
-      </div>
-    </div>
-
-  
-    </div>
-  
-
-  
-  
-    <div class="post-list">
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2018/10/31/在JetBrains IDE中为项目添加多个跟目录/">
-  在JetBrains IDE中为项目添加多个跟目录
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2018/10/31/在JetBrains IDE中为项目添加多个跟目录/"><span class="article-date">
-  2018-10-31
-</span>
-</a>
-        
-	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Note/">Note</a></li></ul>
-	</span>
-
-
-        
-	<span class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JetBrains/">JetBrains</a></li></ul>
-	</span>
-
-
-      </div>
-      <div class="article-entry">
-        
-          <p>File -> Settings -> Directories -> 右侧选择 Add Content Root</p>
-        
-      </div>
-    </div>
-
-  
-    </div>
-  
-
-  
-  
-    <div class="post-list">
-  
-
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2018/10/29/在JetBrains-IDE中启用HTML-JS实时预览/">
-  在JetBrains IDE中启用HTML/JS实时预览
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2018/10/29/在JetBrains-IDE中启用HTML-JS实时预览/"><span class="article-date">
-  2018-10-29
-</span>
-</a>
-        
-	<span class="article-category tagcloud">
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Note/">Note</a></li></ul>
-	</span>
-
-
-        
-	<span class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JetBrains/">JetBrains</a></li></ul>
-	</span>
-
-
-      </div>
-      <div class="article-entry">
-        
-          <p><a href="https://www.jetbrains.com/help/webstorm/live-editing.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/webstorm/live-editing.html</a></p>
 
         
       </div>

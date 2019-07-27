@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="Hiko Amane&#39;s blog">
 <meta property="og:description" content="Introduction Real Time - Immediate actions Kinesis Data Streams SQS IoT   Near-real time - Reactive actions Kinesis Data Firehose DMS   Batch - Historical Analysis Snowball Data Pipeline    Kinesis Ki">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-15T12:34:59.270Z">
+<meta property="og:updated_time" content="2019-07-27T01:42:59.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Collection: Moving data into AWS">
 <meta name="twitter:description" content="Introduction Real Time - Immediate actions Kinesis Data Streams SQS IoT   Near-real time - Reactive actions Kinesis Data Firehose DMS   Batch - Historical Analysis Snowball Data Pipeline    Kinesis Ki">
@@ -81,21 +81,21 @@
             
               <li class="category-list-container">
                 <a href="javascript:;">Category</a>
-                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">2</span></li></ul>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">3</span></li></ul>
               </li>
             
           
             
               <li class="tag-list-container">
                 <a href="javascript:;">Tag</a>
-                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BD/">BD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JetBrains/">JetBrains</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SA/">SA</a><span class="tag-list-count">2</span></li></ul>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BD/">BD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SA/">SA</a><span class="tag-list-count">2</span></li></ul>
               </li>
             
           
             
               <li class="archive-list-container">
                 <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">2</span></li></ul>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li></ul>
               </li>
             
           
@@ -354,6 +354,34 @@
 <li>Lambda can be used to trigger notifications or send emails in real time</li>
 <li>Lambda has a configurable batch size to regulate throughput</li>
 </ul>
+<h2 id="Kinesis-Enhanced-Fan-Out"><a href="#Kinesis-Enhanced-Fan-Out" class="headerlink" title="Kinesis Enhanced Fan-Out"></a>Kinesis Enhanced Fan-Out</h2><ul>
+<li>Kinesis <strong>pushes</strong> data to consumers over HTTP/2 </li>
+<li><strong>Each Consumer</strong> get 2 MB/s of providioned through per shard<ul>
+<li>No more 2MB/s limit by adding Consumers</li>
+<li>Reducy latency (~70ms)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Enhanced-Fan-Out-vs-Standard-Consumers"><a href="#Enhanced-Fan-Out-vs-Standard-Consumers" class="headerlink" title="Enhanced Fan-Out vs Standard Consumers"></a>Enhanced Fan-Out vs Standard Consumers</h3><table>
+<thead>
+<tr>
+<th>Enhanced Fan-Out</th>
+<th>Standard Consumers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Low number of consuming applications</td>
+<td>Multiple Consumer applications for the same Stream</td>
+</tr>
+<tr>
+<td>Can tolerate ~200 ms latency</td>
+<td>Low latency requirements ~70 ms</td>
+</tr>
+<tr>
+<td>Minimize cost</td>
+<td>Higher costs (Soft limit of 5 consumers using enhanced fan-out per data stream)</td>
+</tr>
+</tbody></table>
 
   </div>
   <footer class="article-footer">
