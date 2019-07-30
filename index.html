@@ -146,15 +146,15 @@
 
     <div class="post-list-item article">
       <h3 class="article-header">
-        <a href="/2019/07/14/Collection-Moving-data-into-AWS/">
-  Collection: Moving data into AWS
+        <a href="/2019/07/14/Collection-Moving-data-into-AWS---Kinesis/">
+  Collection: Moving data into AWS - Kinesis
 </a>
 
       </h3>
       
 
       <div class="article-info">
-        <a href="/2019/07/14/Collection-Moving-data-into-AWS/"><span class="article-date">
+        <a href="/2019/07/14/Collection-Moving-data-into-AWS---Kinesis/"><span class="article-date">
   2019-07-14
 </span>
 </a>
@@ -173,15 +173,15 @@
       </div>
       <div class="article-entry">
         
-          <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
 <li>Real Time - Immediate actions<ul>
-<li>Kinesis Data Streams</li>
+<li><strong>Kinesis Data Streams</strong></li>
 <li>SQS</li>
 <li>IoT</li>
 </ul>
 </li>
-<li>Near-real time - Reactive actions<ul>
-<li>Kinesis Data Firehose</li>
+<li>Near Real Time - Reactive actions<ul>
+<li><strong>Kinesis Data Firehose</strong></li>
 <li>DMS</li>
 </ul>
 </li>
@@ -191,8 +191,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="Kinesis"><a href="#Kinesis" class="headerlink" title="Kinesis"></a>Kinesis</h2><ul>
-<li>Kinesis Data Streams<ul>
+<h1 id="Kinesis"><a href="#Kinesis" class="headerlink" title="Kinesis"></a>Kinesis</h1><ul>
+<li><strong>Kinesis Data Streams</strong><ul>
 <li>Low latency streaming ingest at scale</li>
 </ul>
 </li>
@@ -200,12 +200,12 @@
 <li>Perform real-time analytics on streams using SQL</li>
 </ul>
 </li>
-<li>Kinesis Data Firehose<ul>
+<li><strong>Kinesis Data Firehose</strong><ul>
 <li>Load streams into S3, redshift, ElasticSearch and Splunk</li>
 </ul>
 </li>
 </ul>
-<h2 id="Kinesis-Streams"><a href="#Kinesis-Streams" class="headerlink" title="Kinesis Streams"></a>Kinesis Streams</h2><ul>
+<h1 id="Kinesis-Data-Streams"><a href="#Kinesis-Data-Streams" class="headerlink" title="Kinesis Data Streams"></a>Kinesis Data Streams</h1><ul>
 <li>Streams are divided in ordered Shards</li>
 <li>Ability to reprocess / replay data<ul>
 <li>Multiple applications can consume the same stream</li>
@@ -385,6 +385,105 @@
 <tr>
 <td>Minimize cost</td>
 <td>Higher costs (Soft limit of 5 consumers using enhanced fan-out per data stream)</td>
+</tr>
+</tbody></table>
+<h2 id="Kinesis-Scaling"><a href="#Kinesis-Scaling" class="headerlink" title="Kinesis Scaling"></a>Kinesis Scaling</h2><h3 id="Shard-Splitting"><a href="#Shard-Splitting" class="headerlink" title="Shard Splitting"></a>Shard Splitting</h3><ul>
+<li>Can be used to increase the Stream capacity (1MB/s per shard)</li>
+<li>Can be used to divided a <em>hot shard</em></li>
+<li>The old shard is closed and deleted based on data expiration</li>
+</ul>
+<h3 id="Shard-Merging"><a href="#Shard-Merging" class="headerlink" title="Shard Merging"></a>Shard Merging</h3><ul>
+<li>Decrease the Stream capacity and save costs</li>
+<li>Group two shards with low traffic</li>
+<li>Old shards are closed and deleted based on data expiration</li>
+</ul>
+<h3 id="No-Native-Auto-Scaling"><a href="#No-Native-Auto-Scaling" class="headerlink" title="No Native Auto Scaling"></a>No Native Auto Scaling</h3><ul>
+<li>Can implement Auto Scaling with AWS Lambda</li>
+<li>The API call to change the number of shards is <em>UpdateShardCount</em></li>
+</ul>
+<h3 id="Scaling-Limitations"><a href="#Scaling-Limitations" class="headerlink" title="Scaling Limitations"></a>Scaling Limitations</h3><ul>
+<li>Resharding cannot be done in parallel (have to plan capacity in advance)</li>
+<li>Can only perform one resharding at a time and it takes a few seconds<ul>
+<li>Double 1000 shards takes about 8.3 hours</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kinesis-Security"><a href="#Kinesis-Security" class="headerlink" title="Kinesis Security"></a>Kinesis Security</h2><ul>
+<li>Control access / autorization using IAM policies</li>
+<li>Encryption in transit using HTTPS endpoints</li>
+<li>Encryption at rest using KMS</li>
+<li>Client side encryption can only be implemented manually</li>
+<li>VPC Endpoints is available for Kinesis</li>
+</ul>
+<h1 id="Kinesis-Data-Firehose"><a href="#Kinesis-Data-Firehose" class="headerlink" title="Kinesis Data Firehose"></a>Kinesis Data Firehose</h1><ul>
+<li>Near Real Time (60s latency minimum for non-full batches)</li>
+<li>Read data from<ul>
+<li>SDK or KPL</li>
+<li>Kinesis Agent</li>
+<li>Kinesis Data Streams</li>
+<li>CloudWatch Logs &amp; Events</li>
+<li>IoT rules actions</li>
+</ul>
+</li>
+<li>Load data into<ul>
+<li><strong>S3</strong></li>
+<li><strong>Redshift</strong></li>
+<li><strong>ElasticSearch</strong></li>
+<li><strong>Splunk</strong></li>
+</ul>
+</li>
+<li>Spark or KCL <strong>cannot</strong> read from Firehose</li>
+<li>Auto scaling</li>
+<li>Support Data Conversions<ul>
+<li>JSON to Parquet</li>
+<li>JSON to ORC (only for S3)</li>
+</ul>
+</li>
+<li>Support Data Transformation through AWS Lambda</li>
+<li>Support Support compression (only for S3)<ul>
+<li>GZIP, ZIP, Snappy</li>
+<li>Only GZIP when data is further loaded into Redshift</li>
+</ul>
+</li>
+<li>Only pay for the amount of data going through Firehose</li>
+</ul>
+<h3 id="Delivery-Features"><a href="#Delivery-Features" class="headerlink" title="Delivery Features"></a>Delivery Features</h3><ul>
+<li>Source Records</li>
+<li>Transformation Failures</li>
+<li>Delivery Failures<br>can be stored directly into S3</li>
+</ul>
+<h3 id="Buffer-Sizing"><a href="#Buffer-Sizing" class="headerlink" title="Buffer Sizing"></a>Buffer Sizing</h3><ul>
+<li>When buffer is reached, it’s flushed<ul>
+<li>Buffer Size</li>
+<li>Buffer Time</li>
+</ul>
+</li>
+<li>Automatically increase the buffer size to increase throughput</li>
+<li>High through: more buffer size</li>
+<li>Low through: less buffer time</li>
+</ul>
+<h2 id="Kinesis-Data-Streams-vs-Firehose"><a href="#Kinesis-Data-Streams-vs-Firehose" class="headerlink" title="Kinesis Data Streams vs Firehose"></a>Kinesis Data Streams vs Firehose</h2><table>
+<thead>
+<tr>
+<th>Streams</th>
+<th>Firehose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Custom consumer code</td>
+<td>Fully managed, only send to S3, Redshift, ElasticSearch, Splunk</td>
+</tr>
+<tr>
+<td>Real time (~200ms for classic or ~70ms for enhanced fan-out)</td>
+<td>Near real time (1min~ buffer time)</td>
+</tr>
+<tr>
+<td>Manual Scaling (shard splitting / merging)</td>
+<td>Auto Scaling</td>
+</tr>
+<tr>
+<td>Data Storage for 1 to 7 days</td>
+<td>No data storage</td>
 </tr>
 </tbody></table>
 
