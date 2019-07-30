@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="Hiko Amane&#39;s blog">
 <meta property="og:description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers Kinesis Producer SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kine">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-30T11:14:56.168Z">
+<meta property="og:updated_time" content="2019-07-30T11:27:33.516Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Collection: Moving data into AWS - Kinesis">
 <meta name="twitter:description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers Kinesis Producer SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kine">
@@ -195,6 +195,24 @@
 <li><a href="#AWS-Lambda-Sourcing-from-Kinesis">AWS Lambda Sourcing from Kinesis</a></li>
 </ul>
 </li>
+<li><a href="#Kinesis-Enhanced-Fan-Out">Kinesis Enhanced Fan-Out</a><ul>
+<li><a href="#Enhanced-Fan-Out-vs-Standard-Consumers">Enhanced Fan-Out vs Standard Consumers</a></li>
+</ul>
+</li>
+<li><a href="#Kinesis-Scaling">Kinesis Scaling</a><ul>
+<li><a href="#Shard-Splitting">Shard Splitting</a></li>
+<li><a href="#Shard-Merging">Shard Merging</a></li>
+<li><a href="#No-Native-Auto-Scaling">No Native Auto Scaling</a></li>
+<li><a href="#Limitations">Limitations</a></li>
+</ul>
+</li>
+<li><a href="#Kinesis-Security">Kinesis Security</a></li>
+</ul>
+</li>
+<li><a href="#Kinesis-Data-Firehose">Kinesis Data Firehose</a><ul>
+<li><a href="#Delivery-Features">Delivery Features</a></li>
+<li><a href="#Buffer-Sizing">Buffer Sizing</a></li>
+<li><a href="#Kinesis-Data-Streams-vs-Firehose">Kinesis Data Streams vs Firehose</a></li>
 </ul>
 </li>
 </ul>
@@ -426,7 +444,7 @@
 <li>Can implement Auto Scaling with AWS Lambda</li>
 <li>The API call to change the number of shards is <em>UpdateShardCount</em></li>
 </ul>
-<h3 id="Scaling-Limitations"><a href="#Scaling-Limitations" class="headerlink" title="Scaling Limitations"></a>Scaling Limitations</h3><ul>
+<h3 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h3><ul>
 <li>Resharding cannot be done in parallel (have to plan capacity in advance)</li>
 <li>Can only perform one resharding at a time and it takes a few seconds<ul>
 <li>Double 1000 shards takes about 8.3 hours</li>
@@ -472,12 +490,13 @@
 </li>
 <li>Only pay for the amount of data going through Firehose</li>
 </ul>
-<h3 id="Delivery-Features"><a href="#Delivery-Features" class="headerlink" title="Delivery Features"></a>Delivery Features</h3><ul>
+<h2 id="Delivery-Features"><a href="#Delivery-Features" class="headerlink" title="Delivery Features"></a>Delivery Features</h2><ul>
 <li>Source Records</li>
 <li>Transformation Failures</li>
-<li>Delivery Failures<br>can be stored directly into S3</li>
+<li>Delivery Failures</li>
 </ul>
-<h3 id="Buffer-Sizing"><a href="#Buffer-Sizing" class="headerlink" title="Buffer Sizing"></a>Buffer Sizing</h3><ul>
+<p>can be stored directly into S3</p>
+<h2 id="Buffer-Sizing"><a href="#Buffer-Sizing" class="headerlink" title="Buffer Sizing"></a>Buffer Sizing</h2><ul>
 <li>When buffer is reached, it’s flushed<ul>
 <li>Buffer Size</li>
 <li>Buffer Time</li>
