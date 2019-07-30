@@ -12,18 +12,18 @@
   
 </title>
 
-<meta name="description" content="Introduction Kinesis Kinesis Data Streams  Introduction Real Time - Immediate actions Kinesis Data Streams SQS IoT   Near Real Time - Reactive actions Kinesis Data Firehose DMS   Batch - Historical A">
+<meta name="description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kinesis Producer Libr">
 <meta name="keywords" content="BD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Collection: Moving data into AWS - Kinesis">
-<meta property="og:url" content="https://Ys-Zhou.github.io/2019/07/14/Collection-Moving-data-into-AWS---Kinesis/index.html">
+<meta property="og:url" content="https://Ys-Zhou.github.io/2019/07/14/Collection-Moving-data-into-AWS-Kinesis/index.html">
 <meta property="og:site_name" content="Hiko Amane&#39;s blog">
-<meta property="og:description" content="Introduction Kinesis Kinesis Data Streams  Introduction Real Time - Immediate actions Kinesis Data Streams SQS IoT   Near Real Time - Reactive actions Kinesis Data Firehose DMS   Batch - Historical A">
+<meta property="og:description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kinesis Producer Libr">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-30T10:51:54.220Z">
+<meta property="og:updated_time" content="2019-07-30T11:07:45.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Collection: Moving data into AWS - Kinesis">
-<meta name="twitter:description" content="Introduction Kinesis Kinesis Data Streams  Introduction Real Time - Immediate actions Kinesis Data Streams SQS IoT   Near Real Time - Reactive actions Kinesis Data Firehose DMS   Batch - Historical A">
+<meta name="twitter:description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kinesis Producer Libr">
 
 
   <link rel="alternative" href="/atom.xml" title="Hiko Amane&#39;s blog" type="application/atom+xml">
@@ -141,7 +141,7 @@
       
         <div style="max-width: 1000px">
       
-          <article id="post-Collection-Moving-data-into-AWS---Kinesis" class="article article-type-post">
+          <article id="post-Collection-Moving-data-into-AWS-Kinesis" class="article article-type-post">
   
     <h1 class="article-header">
       Collection: Moving data into AWS - Kinesis
@@ -171,7 +171,25 @@
     <ul>
 <li><a href="#Introduction">Introduction</a></li>
 <li><a href="#Kinesis">Kinesis</a></li>
-<li><a href="#Kinesis-Data-Streams">Kinesis Data Streams</a></li>
+<li><a href="#Kinesis-Data-Streams">Kinesis Data Streams</a><ul>
+<li><a href="#Key-Concepts">Key Concepts</a><ul>
+<li><a href="#Shards">Shards</a></li>
+<li><a href="#Records">Records</a></li>
+<li><a href="#Limits">Limits</a></li>
+</ul>
+</li>
+<li><a href="#Kinesis-Producers">Kinesis Producers</a><ul>
+<li><a href="#SDK">SDK</a><ul>
+<li><a href="#Solutions-for-ProvisionedThroughputExceeded-Exceptions">Solutions for <em>ProvisionedThroughputExceeded</em> Exceptions</a></li>
+</ul>
+</li>
+<li><a href="#Managed-AWS-Sources">Managed AWS Sources</a></li>
+<li><a href="#Kinesis-Producer-Library-KPL">Kinesis Producer Library (KPL)</a></li>
+<li><a href="#Kinesis-Agent">Kinesis Agent</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
 <li>Real Time - Immediate actions<ul>
@@ -214,7 +232,7 @@
 <li>Real-time processing with scale of throughput</li>
 <li>Once data is inserted in Kinesis, it can’t be deleted (data in Kinesis is immutability)</li>
 </ul>
-<h3 id="Shards"><a href="#Shards" class="headerlink" title="Shards"></a>Shards</h3><ul>
+<h2 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts"></a>Key Concepts</h2><h3 id="Shards"><a href="#Shards" class="headerlink" title="Shards"></a>Shards</h3><ul>
 <li>The number of shards can evolve over time (reshard / merge)</li>
 <li>Records are only ordered per shard</li>
 <li>Billing is per shard provisioned</li>
@@ -277,7 +295,7 @@
 <li>Increase (scale up) shards</li>
 <li>Use highly distributed partition key</li>
 </ul>
-<h3 id="Managed-AWS-sources"><a href="#Managed-AWS-sources" class="headerlink" title="Managed AWS sources"></a>Managed AWS sources</h3><ul>
+<h3 id="Managed-AWS-Sources"><a href="#Managed-AWS-Sources" class="headerlink" title="Managed AWS Sources"></a>Managed AWS Sources</h3><ul>
 <li>CloudWatch Logs</li>
 <li>AWS IoT</li>
 <li>Kinesis Data Analytics</li>
