@@ -12,18 +12,18 @@
   
 </title>
 
-<meta name="description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kinesis Producer Libr">
+<meta name="description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers Kinesis Producer SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kine">
 <meta name="keywords" content="BD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Collection: Moving data into AWS - Kinesis">
 <meta property="og:url" content="https://Ys-Zhou.github.io/2019/07/14/Collection-Moving-data-into-AWS-Kinesis/index.html">
 <meta property="og:site_name" content="Hiko Amane&#39;s blog">
-<meta property="og:description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kinesis Producer Libr">
+<meta property="og:description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers Kinesis Producer SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kine">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-30T11:07:45.268Z">
+<meta property="og:updated_time" content="2019-07-30T11:14:56.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Collection: Moving data into AWS - Kinesis">
-<meta name="twitter:description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kinesis Producer Libr">
+<meta name="twitter:description" content="Introduction Kinesis Kinesis Data Streams Key Concepts Shards Records Limits   Kinesis Producers Kinesis Producer SDK Solutions for ProvisionedThroughputExceeded Exceptions   Managed AWS Sources Kine">
 
 
   <link rel="alternative" href="/atom.xml" title="Hiko Amane&#39;s blog" type="application/atom+xml">
@@ -179,13 +179,20 @@
 </ul>
 </li>
 <li><a href="#Kinesis-Producers">Kinesis Producers</a><ul>
-<li><a href="#SDK">SDK</a><ul>
+<li><a href="#Kinesis-Producer-SDK">Kinesis Producer SDK</a><ul>
 <li><a href="#Solutions-for-ProvisionedThroughputExceeded-Exceptions">Solutions for <em>ProvisionedThroughputExceeded</em> Exceptions</a></li>
 </ul>
 </li>
 <li><a href="#Managed-AWS-Sources">Managed AWS Sources</a></li>
 <li><a href="#Kinesis-Producer-Library-KPL">Kinesis Producer Library (KPL)</a></li>
 <li><a href="#Kinesis-Agent">Kinesis Agent</a></li>
+</ul>
+</li>
+<li><a href="#Kinesis-Consumers-Classic">Kinesis Consumers Classic</a><ul>
+<li><a href="#Kinesis-Consumer-SDK">Kinesis Consumer SDK</a></li>
+<li><a href="#Kinesis-Client-Library-KCL">Kinesis Client Library (KCL)</a></li>
+<li><a href="#Kinesis-Connector-Library">Kinesis Connector Library</a></li>
+<li><a href="#AWS-Lambda-Sourcing-from-Kinesis">AWS Lambda Sourcing from Kinesis</a></li>
 </ul>
 </li>
 </ul>
@@ -283,7 +290,7 @@
 <li>Kinesis Agent</li>
 <li>3rd party libraries</li>
 </ul>
-<h3 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h3><ul>
+<h3 id="Kinesis-Producer-SDK"><a href="#Kinesis-Producer-SDK" class="headerlink" title="Kinesis Producer SDK"></a>Kinesis Producer SDK</h3><ul>
 <li>PutRecord</li>
 <li>PutRecords<ul>
 <li>Use batching and increases throughput</li>
@@ -371,7 +378,7 @@
 <li>Write data to S3, DynamoDB, Redshift, ElasticSearch</li>
 <li>Can be replaced by Kinesis Firehose or Lambda</li>
 </ul>
-<h4 id="AWS-Lambda-sourcing-from-Kinesis"><a href="#AWS-Lambda-sourcing-from-Kinesis" class="headerlink" title="AWS Lambda sourcing from Kinesis"></a>AWS Lambda sourcing from Kinesis</h4><ul>
+<h3 id="AWS-Lambda-Sourcing-from-Kinesis"><a href="#AWS-Lambda-Sourcing-from-Kinesis" class="headerlink" title="AWS Lambda Sourcing from Kinesis"></a>AWS Lambda Sourcing from Kinesis</h3><ul>
 <li>Lambda consumer has a library to de-aggregate record from the KPL</li>
 <li>Lambda can be used to rum lightweight ETL to anywhere you want</li>
 <li>Lambda can be used to trigger notifications or send emails in real time</li>
