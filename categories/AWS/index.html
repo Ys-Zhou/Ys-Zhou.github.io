@@ -77,21 +77,21 @@
             
               <li class="category-list-container">
                 <a href="javascript:;">Category</a>
-                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">3</span></li></ul>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">4</span></li></ul>
               </li>
             
           
             
               <li class="tag-list-container">
                 <a href="javascript:;">Tag</a>
-                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BD/">BD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SA/">SA</a><span class="tag-list-count">2</span></li></ul>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/">Big Data</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SA/">SA</a><span class="tag-list-count">2</span></li></ul>
               </li>
             
           
             
               <li class="archive-list-container">
                 <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li></ul>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">4</span></li></ul>
               </li>
             
           
@@ -147,6 +147,149 @@
 
     <div class="post-list-item article">
       <h3 class="article-header">
+        <a href="/2019/08/04/Collection-Moving-data-into-AWS-SQS/">
+  Collection: Moving data into AWS - SQS
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2019/08/04/Collection-Moving-data-into-AWS-SQS/"><span class="article-date">
+  2019-08-04
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/AWS/">AWS</a></li></ul>
+	</span>
+
+
+        
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Big-Data/">Big Data</a></li></ul>
+	</span>
+
+
+      </div>
+      <div class="article-entry">
+        
+          <ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#AWS-SQS">AWS SQS</a><ul>
+<li><a href="#SQS-Standard-Queue">SQS - Standard Queue</a></li>
+<li><a href="#SQS-FIFO-Queue">SQS - FIFO Queue</a></li>
+<li><a href="#Producing-Messages">Producing Messages</a></li>
+<li><a href="#Consuming-Messages">Consuming Messages</a></li>
+<li><a href="#SQS-Extended-Client">SQS Extended Client</a></li>
+<li><a href="#Use-Cases">Use Cases</a></li>
+<li><a href="#Pricing">Pricing</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
+<li>Real Time - Immediate actions<ul>
+<li>Kinesis Data Streams</li>
+<li><strong>SQS</strong></li>
+<li>IoT</li>
+</ul>
+</li>
+<li>Near Real Time - Reactive actions<ul>
+<li>Kinesis Data Firehose</li>
+<li>DMS</li>
+</ul>
+</li>
+<li>Batch - Historical Analysis<ul>
+<li>Snowball</li>
+<li>Data Pipeline</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-SQS"><a href="#AWS-SQS" class="headerlink" title="AWS SQS"></a>AWS SQS</h1><h2 id="SQS-Standard-Queue"><a href="#SQS-Standard-Queue" class="headerlink" title="SQS - Standard Queue"></a>SQS - Standard Queue</h2><ul>
+<li>Auto Scales without limit</li>
+<li>Retention of messages from 1 minute to 14 days, 4 days by default</li>
+<li>the number of messages in the queue has no limit</li>
+<li>Low latency (~10 ms on publish and receive)</li>
+<li>Consumers can be scaled horizontally</li>
+<li><strong>Can have duplicate messages</strong></li>
+<li><strong>Can have out of order messages</strong></li>
+<li><strong>Limitation of 256KB per message</strong></li>
+</ul>
+<h2 id="SQS-FIFO-Queue"><a href="#SQS-FIFO-Queue" class="headerlink" title="SQS - FIFO Queue"></a>SQS - FIFO Queue</h2><ul>
+<li>Name of the queue ends in .fifo</li>
+<li>Up to 3,000 messages/s with batching or 300 messages/s without (soft limit)</li>
+<li><strong>Messages are sent only once</strong></li>
+<li><strong>Messages are processed in order</strong></li>
+</ul>
+<h2 id="Producing-Messages"><a href="#Producing-Messages" class="headerlink" title="Producing Messages"></a>Producing Messages</h2><ul>
+<li>Message body<ul>
+<li>String</li>
+<li>Up to 256KB</li>
+</ul>
+</li>
+<li>Message attributes (metadata)<ul>
+<li>Key-value pair</li>
+</ul>
+</li>
+<li>Delivery delay</li>
+<li>Return<ul>
+<li>Message ID</li>
+<li>MD% hash of the body</li>
+</ul>
+</li>
+</ul>
+<h2 id="Consuming-Messages"><a href="#Consuming-Messages" class="headerlink" title="Consuming Messages"></a>Consuming Messages</h2><ul>
+<li>Poll messages from SQS <ul>
+<li>Up to 10 messages at a time</li>
+</ul>
+</li>
+<li>Process the message within the visibility timeout</li>
+<li>Delete the message by message ID &amp; receipt handle</li>
+<li>Maximum of 120,000 messages being processed by consumers</li>
+</ul>
+<h2 id="SQS-Extended-Client"><a href="#SQS-Extended-Client" class="headerlink" title="SQS Extended Client"></a>SQS Extended Client</h2><ul>
+<li>Send messages larger than 256KB</li>
+<li>Not recommended</li>
+<li>Java Library<ul>
+<li>Send message to S3 first</li>
+<li>Only send metadata to SQS</li>
+</ul>
+</li>
+</ul>
+<h2 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h2><ul>
+<li>Decouple applications asynchronously</li>
+<li>Buffer writes</li>
+<li>Handle large loads of messages</li>
+</ul>
+<h2 id="Pricing"><a href="#Pricing" class="headerlink" title="Pricing"></a>Pricing</h2><ul>
+<li>Pay per API request</li>
+<li>Pay network usage</li>
+</ul>
+<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><ul>
+<li>HTTPS endpoints</li>
+<li>Server Side Encryption using KMS<ul>
+<li>Only encrypts the body</li>
+</ul>
+</li>
+<li>IAM</li>
+<li>SQS queue access policy</li>
+</ul>
+
+        
+      </div>
+    </div>
+
+  
+    </div>
+  
+
+  
+  
+    <div class="post-list">
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
         <a href="/2019/07/14/Collection-Moving-data-into-AWS-Kinesis/">
   Collection: Moving data into AWS - Kinesis
 </a>
@@ -167,7 +310,7 @@
 
         
 	<span class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BD/">BD</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Big-Data/">Big Data</a></li></ul>
 	</span>
 
 
