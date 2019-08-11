@@ -246,7 +246,7 @@
 <li><a href="#Greengrass">Greengrass</a></li>
 </ul>
 </li>
-<li><a href="#Database-Migration-Service-DMS">Database Migration Service (DMS)</a></li>
+<li><a href="#Database-Migration-Service-DMS">Database Migration Service (DMS)</a><br> -<a href="#Sources-and-Targets">Sources and Targets</a><br> -<a href="#Schema-Conversion-Tool-SCT">Schema Conversion Tool (SCT)</a><br> -<a href="#Different-between-DMS-and-SCT">Different between DMS and SCT</a></li>
 </ul>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
 <li>Real Time - Immediate actions<ul>
@@ -692,7 +692,47 @@
 <li>Execute AWS Lambda on the devices and operate offline</li>
 <li>Deploy functions from the cloud</li>
 </ul>
-<h1 id="Database-Migration-Service-DMS"><a href="#Database-Migration-Service-DMS" class="headerlink" title="Database Migration Service (DMS)"></a>Database Migration Service (DMS)</h1>
+<h1 id="Database-Migration-Service-DMS"><a href="#Database-Migration-Service-DMS" class="headerlink" title="Database Migration Service (DMS)"></a>Database Migration Service (DMS)</h1><ul>
+<li>Migrate databases to AWS</li>
+<li>The source database remains available during the migration</li>
+<li>Must run an EC2 instance to perform Continuous Data Replication task using Change Data Capture (CDC)</li>
+</ul>
+<h2 id="Sources-and-Targets"><a href="#Sources-and-Targets" class="headerlink" title="Sources and Targets"></a>Sources and Targets</h2><ul>
+<li>Sources<ul>
+<li>On-Premise or EC2 instances databases</li>
+<li>RDS</li>
+<li>S3</li>
+</ul>
+</li>
+<li>Targets<ul>
+<li>On-Premise or EC2 instances databases</li>
+<li>RDS, Redshift, DynamoDB</li>
+<li>S3</li>
+<li>ElasticSearch, Kinesis Data Streams, DocumentDB</li>
+</ul>
+</li>
+</ul>
+<h2 id="Schema-Conversion-Tool-SCT"><a href="#Schema-Conversion-Tool-SCT" class="headerlink" title="Schema Conversion Tool (SCT)"></a>Schema Conversion Tool (SCT)</h2><ul>
+<li>A tool to convert database schema from one to another</li>
+<li>Can use SCT to create DMS endpoints and tasks</li>
+</ul>
+<h2 id="Different-between-DMS-and-SCT"><a href="#Different-between-DMS-and-SCT" class="headerlink" title="Different between DMS and SCT"></a>Different between DMS and SCT</h2><table>
+<thead>
+<tr>
+<th>DMS</th>
+<th>SCT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Migrate smaller relational workloads (&lt;10 TB) and MongoDB</td>
+<td>Migrate large data warehouse workloads</td>
+</tr>
+<tr>
+<td>Support ongoing replication to keep the target in sync</td>
+<td>Do not support</td>
+</tr>
+</tbody></table>
+
         
       </div>
     </div>
