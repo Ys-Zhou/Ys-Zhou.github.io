@@ -77,21 +77,21 @@
             
               <li class="category-list-container">
                 <a href="javascript:;">Category</a>
-                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li></ul>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">3</span></li></ul>
               </li>
             
           
             
               <li class="tag-list-container">
                 <a href="javascript:;">Tag</a>
-                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/">Big Data</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SA/">SA</a><span class="tag-list-count">2</span></li></ul>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SA/">SA</a><span class="tag-list-count">2</span></li></ul>
               </li>
             
           
             
               <li class="archive-list-container">
                 <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">5</span></li></ul>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li></ul>
               </li>
             
           
@@ -154,15 +154,15 @@
 
     <div class="post-list-item article">
       <h3 class="article-header">
-        <a href="/2019/07/14/Collection-Moving-data-into-AWS-Kinesis/">
-  Collection: Moving data into AWS - Kinesis
+        <a href="/2019/07/14/Collection-Moving-data-into-AWS/">
+  Collection: Moving data into AWS
 </a>
 
       </h3>
       
 
       <div class="article-info">
-        <a href="/2019/07/14/Collection-Moving-data-into-AWS-Kinesis/"><span class="article-date">
+        <a href="/2019/07/14/Collection-Moving-data-into-AWS/"><span class="article-date">
   2019-07-14
 </span>
 </a>
@@ -228,16 +228,43 @@
 <li><a href="#Kinesis-Data-Streams-vs-Firehose">Kinesis Data Streams vs Firehose</a></li>
 </ul>
 </li>
+<li><a href="#AWS-SQS">AWS SQS</a><ul>
+<li><a href="#SQS-Standard-Queue">SQS - Standard Queue</a></li>
+<li><a href="#SQS-FIFO-Queue">SQS - FIFO Queue</a></li>
+<li><a href="#Producing-Messages">Producing Messages</a></li>
+<li><a href="#Consuming-Messages">Consuming Messages</a></li>
+<li><a href="#SQS-Extended-Client">SQS Extended Client</a></li>
+<li><a href="#Use-Cases">Use Cases</a></li>
+<li><a href="#Pricing">Pricing</a></li>
+<li><a href="#Security">Security</a></li>
+</ul>
+</li>
+<li><a href="#AWS-IoT">AWS IoT</a><ul>
+<li><a href="#Device-Gateway">Device Gateway</a></li>
+<li><a href="#Message-Broker">Message Broker</a><ul>
+<li><a href="#Rules-Engine">Rules Engine</a></li>
+</ul>
+</li>
+<li><a href="#Thing-Registry">Thing Registry</a><ul>
+<li><a href="#Authentication">Authentication</a></li>
+<li><a href="#Authentication-Policies">Authentication Policies</a></li>
+</ul>
+</li>
+<li><a href="#Device-Shadow">Device Shadow</a></li>
+<li><a href="#Greengrass">Greengrass</a></li>
+</ul>
+</li>
+<li><a href="#Database-Migration-Service-DMS">Database Migration Service (DMS)</a></li>
 </ul>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
 <li>Real Time - Immediate actions<ul>
-<li><strong>Kinesis Data Streams</strong></li>
+<li>Kinesis Data Streams</li>
 <li>SQS</li>
 <li>IoT</li>
 </ul>
 </li>
 <li>Near Real Time - Reactive actions<ul>
-<li><strong>Kinesis Data Firehose</strong></li>
+<li>Kinesis Data Firehose</li>
 <li>DMS</li>
 </ul>
 </li>
@@ -542,7 +569,138 @@
 <td>No data storage</td>
 </tr>
 </tbody></table>
-
+<h1 id="AWS-SQS"><a href="#AWS-SQS" class="headerlink" title="AWS SQS"></a>AWS SQS</h1><h2 id="SQS-Standard-Queue"><a href="#SQS-Standard-Queue" class="headerlink" title="SQS - Standard Queue"></a>SQS - Standard Queue</h2><ul>
+<li>Auto Scales without limit</li>
+<li>Retention of messages from 1 minute to 14 days, 4 days by default</li>
+<li>the number of messages in the queue has no limit</li>
+<li>Low latency (~10 ms on publish and receive)</li>
+<li>Consumers can be scaled horizontally</li>
+<li><strong>Can have duplicate messages</strong></li>
+<li><strong>Can have out of order messages</strong></li>
+<li><strong>Limitation of 256KB per message</strong></li>
+</ul>
+<h2 id="SQS-FIFO-Queue"><a href="#SQS-FIFO-Queue" class="headerlink" title="SQS - FIFO Queue"></a>SQS - FIFO Queue</h2><ul>
+<li>Name of the queue ends in .fifo</li>
+<li>Up to 3,000 messages/s with batching or 300 messages/s without (soft limit)</li>
+<li><strong>Messages are sent only once</strong></li>
+<li><strong>Messages are processed in order</strong></li>
+</ul>
+<h2 id="Producing-Messages"><a href="#Producing-Messages" class="headerlink" title="Producing Messages"></a>Producing Messages</h2><ul>
+<li>Message body<ul>
+<li>String</li>
+<li>Up to 256KB</li>
+</ul>
+</li>
+<li>Message attributes (metadata)<ul>
+<li>Key-value pair</li>
+</ul>
+</li>
+<li>Delivery delay</li>
+<li>Return<ul>
+<li>Message ID</li>
+<li>MD% hash of the body</li>
+</ul>
+</li>
+</ul>
+<h2 id="Consuming-Messages"><a href="#Consuming-Messages" class="headerlink" title="Consuming Messages"></a>Consuming Messages</h2><ul>
+<li>Poll messages from SQS <ul>
+<li>Up to 10 messages at a time</li>
+</ul>
+</li>
+<li>Process the message within the visibility timeout</li>
+<li>Delete the message by message ID &amp; receipt handle</li>
+<li>Maximum of 120,000 messages being processed by consumers</li>
+</ul>
+<h2 id="SQS-Extended-Client"><a href="#SQS-Extended-Client" class="headerlink" title="SQS Extended Client"></a>SQS Extended Client</h2><ul>
+<li>Send messages larger than 256KB</li>
+<li>Not recommended</li>
+<li>Java Library<ul>
+<li>Send message to S3 first</li>
+<li>Only send metadata to SQS</li>
+</ul>
+</li>
+</ul>
+<h2 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h2><ul>
+<li>Decouple applications asynchronously</li>
+<li>Buffer writes</li>
+<li>Handle large loads of messages</li>
+</ul>
+<h2 id="Pricing"><a href="#Pricing" class="headerlink" title="Pricing"></a>Pricing</h2><ul>
+<li>Pay per API request</li>
+<li>Pay network usage</li>
+</ul>
+<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><ul>
+<li>HTTPS endpoints</li>
+<li>Server Side Encryption using KMS<ul>
+<li>Only encrypts the body</li>
+</ul>
+</li>
+<li>IAM</li>
+<li>SQS queue access policy</li>
+</ul>
+<h1 id="AWS-IoT"><a href="#AWS-IoT" class="headerlink" title="AWS IoT"></a>AWS IoT</h1><h2 id="Device-Gateway"><a href="#Device-Gateway" class="headerlink" title="Device Gateway"></a>Device Gateway</h2><ul>
+<li>The entry point for IoT devices connecting to AWS IoT</li>
+<li>Supports the MQTT, WebSockets, and HTTP 1.1 protocols</li>
+</ul>
+<h2 id="Message-Broker"><a href="#Message-Broker" class="headerlink" title="Message Broker"></a>Message Broker</h2><ul>
+<li>For devices to communicate with others</li>
+<li>Pub/sub messaging pattern with low latency</li>
+<li>Supports the MQTT, WebSockets, and HTTP 1.1 protocols</li>
+</ul>
+<h3 id="Rules-Engine"><a href="#Rules-Engine" class="headerlink" title="Rules Engine"></a>Rules Engine</h3><ul>
+<li>Rules are defined on the Broker topics</li>
+<li>Rule-action pairs</li>
+<li>Used to augment or filter data received from devices</li>
+<li>Rules need IAM Roles to perform the actions</li>
+</ul>
+<h2 id="Thing-Registry"><a href="#Thing-Registry" class="headerlink" title="Thing Registry"></a>Thing Registry</h2><ul>
+<li>Represent all connected devices<ul>
+<li>A unique ID</li>
+<li>Metadata</li>
+<li>X.509 certificate</li>
+<li>IoT Groups</li>
+</ul>
+</li>
+<li>Can organizes the resources associated with each device</li>
+</ul>
+<h3 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h3><ul>
+<li>Things<ul>
+<li>X.509 certificates</li>
+<li>AWS SigV4</li>
+<li>Custom tokens with custom authorizers</li>
+</ul>
+</li>
+<li>Mobile apps<ul>
+<li>Cognito</li>
+</ul>
+</li>
+<li>Web/Desktop/CLI<ul>
+<li>IAM</li>
+<li>Federated Identities</li>
+</ul>
+</li>
+</ul>
+<h3 id="Authentication-Policies"><a href="#Authentication-Policies" class="headerlink" title="Authentication Policies"></a>Authentication Policies</h3><ul>
+<li>IoT policies<ul>
+<li>Attached to X.509 certificates or Cognito Identities</li>
+<li>Can be attached to Groups in stead of Things</li>
+</ul>
+</li>
+<li>IAM policies<ul>
+<li>Used for controlling IoT AWS APIs</li>
+</ul>
+</li>
+</ul>
+<h2 id="Device-Shadow"><a href="#Device-Shadow" class="headerlink" title="Device Shadow"></a>Device Shadow</h2><ul>
+<li>Record the state of Things and synchronize the state when Things back up online</li>
+<li>JSON document</li>
+</ul>
+<h2 id="Greengrass"><a href="#Greengrass" class="headerlink" title="Greengrass"></a>Greengrass</h2><ul>
+<li>Brings the compute layer to the devices locally</li>
+<li>Execute AWS Lambda on the devices and operate offline</li>
+<li>Deploy functions from the cloud</li>
+</ul>
+<h1 id="Database-Migration-Service-DMS"><a href="#Database-Migration-Service-DMS" class="headerlink" title="Database Migration Service (DMS)"></a>Database Migration Service (DMS)</h1>
         
       </div>
     </div>
