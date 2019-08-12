@@ -182,7 +182,6 @@
       <div class="article-entry">
         
           <ul>
-<li><a href="#Introduction">Introduction</a></li>
 <li><a href="#Kinesis">Kinesis</a></li>
 <li><a href="#Kinesis-Data-Streams">Kinesis Data Streams</a><ul>
 <li><a href="#Key-Concepts">Key Concepts</a><ul>
@@ -260,22 +259,10 @@
 <li><a href="#Different-between-DMS-and-SCT">Different between DMS and SCT</a></li>
 </ul>
 </li>
-</ul>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
-<li>Real Time - Immediate actions<ul>
-<li>Kinesis Data Streams</li>
-<li>SQS</li>
-<li>IoT</li>
-</ul>
-</li>
-<li>Near Real Time - Reactive actions<ul>
-<li>Kinesis Data Firehose</li>
-<li>DMS</li>
-</ul>
-</li>
-<li>Batch - Historical Analysis<ul>
-<li>Snowball</li>
-<li>Data Pipeline</li>
+<li><a href="#Direct-Connect">Direct Connect</a></li>
+<li><a href="#Snowball">Snowball</a><ul>
+<li><a href="#Snowball-Edge">Snowball Edge</a></li>
+<li><a href="#Snowmobile">Snowmobile</a></li>
 </ul>
 </li>
 </ul>
@@ -745,6 +732,44 @@
 <td>Do not support</td>
 </tr>
 </tbody></table>
+<h1 id="Direct-Connect"><a href="#Direct-Connect" class="headerlink" title="Direct Connect"></a>Direct Connect</h1><ul>
+<li>Provides a dedicated private connection from a remote network to your public resources or VPCs<ul>
+<li>Need a Virtual Private Gateway on your VPC</li>
+</ul>
+</li>
+<li>Can setup multiple 1 Gbps or 10 Gbps connections</li>
+<li>Connect to Direct Connect endpoint in Direct Connect location</li>
+<li>Use Cases<ul>
+<li>Increase bandwidth throughput</li>
+<li>Real-time data feeds</li>
+<li>Hybrid Environment</li>
+<li>Enhanced security using private connection</li>
+</ul>
+</li>
+<li>Use two Direct Connect as a failover</li>
+<li>Use Direct Connect Gateway if you want to connect to VPCs in different regions</li>
+</ul>
+<h1 id="Snowball"><a href="#Snowball" class="headerlink" title="Snowball"></a>Snowball</h1><ul>
+<li>Physical device to move TBs to PBs of data in or out of AWS</li>
+<li>Secure by using KMS 256 bit encryption</li>
+<li>Use Snowball if it takes more than a week to transfer over the network</li>
+</ul>
+<h2 id="Snowball-Edge"><a href="#Snowball-Edge" class="headerlink" title="Snowball Edge"></a>Snowball Edge</h2><ul>
+<li>More capacity (100 TB) with computational capability<ul>
+<li>Storage optimized</li>
+<li>Compute optimized</li>
+</ul>
+</li>
+<li>Can pre-process the data while moving<ul>
+<li>Support EC2 AMI</li>
+<li>Support Lambda functions</li>
+</ul>
+</li>
+</ul>
+<h2 id="Snowmobile"><a href="#Snowmobile" class="headerlink" title="Snowmobile"></a>Snowmobile</h2><ul>
+<li>100 PB of capacity</li>
+<li>Batter than Snowball if more than 10 PB</li>
+</ul>
 
         
       </div>
