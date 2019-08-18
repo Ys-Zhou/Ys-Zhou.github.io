@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Storage-Tiers"><span class="toc-text">Storage Tiers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lifecycle-Rules"><span class="toc-text">Lifecycle Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Versioning"><span class="toc-text">Versioning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Region-Replication"><span class="toc-text">Cross Region Replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Etag-Entity-Tag"><span class="toc-text">Etag (Entity Tag)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance"><span class="toc-text">Performance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption"><span class="toc-text">Encryption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security"><span class="toc-text">Security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-CORS-Cross-Origin-Resource-Sharing"><span class="toc-text">S3 CORS (Cross-Origin Resource Sharing)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Access-Logs"><span class="toc-text">S3 Access Logs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Policies-and-ACL"><span class="toc-text">Policies and ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Others"><span class="toc-text">Others</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glacier"><span class="toc-text">Glacier</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Storage-Tiers"><span class="toc-text">Storage Tiers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lifecycle-Rules"><span class="toc-text">Lifecycle Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Versioning"><span class="toc-text">Versioning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Region-Replication"><span class="toc-text">Cross Region Replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Etag-Entity-Tag"><span class="toc-text">Etag (Entity Tag)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance"><span class="toc-text">Performance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption"><span class="toc-text">Encryption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security"><span class="toc-text">Security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-CORS-Cross-Origin-Resource-Sharing"><span class="toc-text">S3 CORS (Cross-Origin Resource Sharing)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Access-Logs"><span class="toc-text">S3 Access Logs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Policies-and-ACL"><span class="toc-text">Policies and ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Others"><span class="toc-text">Others</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glacier"><span class="toc-text">Glacier</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Provisioned-Throughput"><span class="toc-text">Provisioned Throughput</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -260,7 +260,30 @@
 </ul>
 </li>
 </ul>
-<h1 id="DynamoDB"><a href="#DynamoDB" class="headerlink" title="DynamoDB"></a>DynamoDB</h1>
+<h1 id="DynamoDB"><a href="#DynamoDB" class="headerlink" title="DynamoDB"></a>DynamoDB</h1><ul>
+<li>Distributed NoSQL database</li>
+<li>DynamoDB<ul>
+<li>tables<ul>
+<li>primary key (Unique and diverse)<ul>
+<li>Partition key only</li>
+<li>Partition kay and sort key</li>
+</ul>
+</li>
+<li>items (Max size is 400 KB)<ul>
+<li>attributes<ul>
+<li>String, Number, Binary, Boolean, NUll</li>
+<li>String Set, Number Set, Binary Set</li>
+<li>List, Map</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Provisioned-Throughput"><a href="#Provisioned-Throughput" class="headerlink" title="Provisioned Throughput"></a>Provisioned Throughput</h2>
         
         <br>
         <div id="comment-container">
