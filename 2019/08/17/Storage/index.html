@@ -35,7 +35,7 @@
 </div>
 
 <div class="index-about">
-    <i> Notes to myself </i>
+    <i> Hiko Amane&#39;s Blog </i>
 </div>
 
 <div class="index-container">
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Storage-Tiers"><span class="toc-text">Storage Tiers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lifecycle-Rules"><span class="toc-text">Lifecycle Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Versioning"><span class="toc-text">Versioning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Region-Replication"><span class="toc-text">Cross Region Replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Etag-Entity-Tag"><span class="toc-text">Etag (Entity Tag)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance"><span class="toc-text">Performance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption"><span class="toc-text">Encryption</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Encryption-at-rest"><span class="toc-text">Encryption at rest</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Storage-Tiers"><span class="toc-text">Storage Tiers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lifecycle-Rules"><span class="toc-text">Lifecycle Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Versioning"><span class="toc-text">Versioning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Region-Replication"><span class="toc-text">Cross Region Replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Etag-Entity-Tag"><span class="toc-text">Etag (Entity Tag)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance"><span class="toc-text">Performance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption"><span class="toc-text">Encryption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security"><span class="toc-text">Security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-CORS-Cross-Origin-Resource-Sharing"><span class="toc-text">S3 CORS (Cross-Origin Resource Sharing)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Access-Logs"><span class="toc-text">S3 Access Logs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Policies-and-ACL"><span class="toc-text">Policies and ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Others"><span class="toc-text">Others</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glacier"><span class="toc-text">Glacier</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a></li></ol>
 </div>
     
 </div>
@@ -109,7 +109,7 @@
 </div>
 
         <div class="index-about-mobile">
-            <i> Notes to myself </i>
+            <i> Hiko Amane&#39;s Blog </i>
         </div>
     </div>
     
@@ -190,7 +190,7 @@
 <li>S3 Transfer Acceleration (use edge location)</li>
 <li>If using SSE-KMS, limits of KMS is 100 -1000 downloads / uploads per second</li>
 </ul>
-<h2 id="Encryption"><a href="#Encryption" class="headerlink" title="Encryption"></a>Encryption</h2><h3 id="Encryption-at-rest"><a href="#Encryption-at-rest" class="headerlink" title="Encryption at rest"></a>Encryption at rest</h3><table>
+<h2 id="Encryption"><a href="#Encryption" class="headerlink" title="Encryption"></a>Encryption</h2><table>
 <thead>
 <tr>
 <th></th>
@@ -205,17 +205,62 @@
 <td>S3</td>
 <td>KMS</td>
 <td>Customer</td>
-<td></td>
+<td>Customer</td>
 </tr>
 <tr>
 <td><em>x-amz-server-side-encryption</em> header</td>
 <td>aes256</td>
 <td>aws:kms</td>
-<td>[encryption key]</td>
-<td></td>
+<td>${encryption key}</td>
+<td>-</td>
+</tr>
+<tr>
+<td>HTTPS (SSL / TLS)</td>
+<td>Optional</td>
+<td>Optional</td>
+<td>Mandatory</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>Can be set as default encryption</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
 </tr>
 </tbody></table>
-
+<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><h3 id="S3-CORS-Cross-Origin-Resource-Sharing"><a href="#S3-CORS-Cross-Origin-Resource-Sharing" class="headerlink" title="S3 CORS (Cross-Origin Resource Sharing)"></a>S3 CORS (Cross-Origin Resource Sharing)</h3><ul>
+<li>Enable CORS if you want to request data from website in different origin</li>
+<li>Can control the websites that can request your objects in S3</li>
+</ul>
+<h3 id="S3-Access-Logs"><a href="#S3-Access-Logs" class="headerlink" title="S3 Access Logs"></a>S3 Access Logs</h3><ul>
+<li>Log all events that access to S3 bucket</li>
+</ul>
+<h3 id="Policies-and-ACL"><a href="#Policies-and-ACL" class="headerlink" title="Policies and ACL"></a>Policies and ACL</h3><ul>
+<li>IAM policies</li>
+<li>Bucket Policies</li>
+<li>Bucket ACL (Bucket Policies are better)</li>
+<li>Object ACL</li>
+</ul>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><ul>
+<li>VPC Endpoint</li>
+<li>MFA can be required in versioned buckets when delete objects</li>
+<li>Presigned URL</li>
+</ul>
+<h2 id="Glacier"><a href="#Glacier" class="headerlink" title="Glacier"></a>Glacier</h2><ul>
+<li>Retrieval options<ul>
+<li>Expedited (1 to 5 minutes)</li>
+<li>Standard (3 to 5 hours)</li>
+<li>Bulk (5 to 12 hours)</li>
+</ul>
+</li>
+<li>Vault Access Policies</li>
+<li>Vault Lock Policies<ul>
+<li>Immutable policies</li>
+</ul>
+</li>
+</ul>
+<h1 id="DynamoDB"><a href="#DynamoDB" class="headerlink" title="DynamoDB"></a>DynamoDB</h1>
         
         <br>
         <div id="comment-container">
