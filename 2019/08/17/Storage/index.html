@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Storage-Tiers"><span class="toc-text">Storage Tiers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lifecycle-Rules"><span class="toc-text">Lifecycle Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Versioning"><span class="toc-text">Versioning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Region-Replication"><span class="toc-text">Cross Region Replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Etag-Entity-Tag"><span class="toc-text">Etag (Entity Tag)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance"><span class="toc-text">Performance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption"><span class="toc-text">Encryption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security"><span class="toc-text">Security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-CORS-Cross-Origin-Resource-Sharing"><span class="toc-text">S3 CORS (Cross-Origin Resource Sharing)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Access-Logs"><span class="toc-text">S3 Access Logs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Policies-and-ACL"><span class="toc-text">Policies and ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Others"><span class="toc-text">Others</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glacier"><span class="toc-text">Glacier</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Provisioned-Throughput"><span class="toc-text">Provisioned Throughput</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Storage-Tiers"><span class="toc-text">Storage Tiers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lifecycle-Rules"><span class="toc-text">Lifecycle Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Versioning"><span class="toc-text">Versioning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Region-Replication"><span class="toc-text">Cross Region Replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Etag-Entity-Tag"><span class="toc-text">Etag (Entity Tag)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance"><span class="toc-text">Performance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption"><span class="toc-text">Encryption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security"><span class="toc-text">Security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-CORS-Cross-Origin-Resource-Sharing"><span class="toc-text">S3 CORS (Cross-Origin Resource Sharing)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Access-Logs"><span class="toc-text">S3 Access Logs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Policies-and-ACL"><span class="toc-text">Policies and ACL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Others"><span class="toc-text">Others</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glacier"><span class="toc-text">Glacier</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Provisioned-Throughput"><span class="toc-text">Provisioned Throughput</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Capacity-Units-WCU"><span class="toc-text">Write Capacity Units (WCU)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strongly-Consistent-Read-vs-Eventually-Consistent-Read"><span class="toc-text">Strongly Consistent Read vs. Eventually Consistent Read</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Read-Capacity-Units-RCU"><span class="toc-text">Read Capacity Units (RCU)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ProvisionedThroughputExceededExceptions"><span class="toc-text">ProvisionedThroughputExceededExceptions</span></a></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -283,7 +283,61 @@
 </ul>
 </li>
 </ul>
-<h2 id="Provisioned-Throughput"><a href="#Provisioned-Throughput" class="headerlink" title="Provisioned Throughput"></a>Provisioned Throughput</h2>
+<h2 id="Provisioned-Throughput"><a href="#Provisioned-Throughput" class="headerlink" title="Provisioned Throughput"></a>Provisioned Throughput</h2><ul>
+<li>Read and write capacity units must be provisioned<ul>
+<li>Option to setup auto-scaling of throughput</li>
+</ul>
+</li>
+<li>Throughput can be exceeded temporarily using <em>burst credit</em></li>
+<li>If capacity is exceeded, you will get <em>ProvisionedThroughputExceededExceptions</em><ul>
+<li>It is advised to do an exponential back-off retry</li>
+</ul>
+</li>
+</ul>
+<h3 id="Write-Capacity-Units-WCU"><a href="#Write-Capacity-Units-WCU" class="headerlink" title="Write Capacity Units (WCU)"></a>Write Capacity Units (WCU)</h3><ul>
+<li>1 WCU = 1 write per second for an item up to 1 KB</li>
+<li><strong>WCU = (number of objects per second) * ceil(max size of object / 1 KB)</strong></li>
+</ul>
+<h3 id="Strongly-Consistent-Read-vs-Eventually-Consistent-Read"><a href="#Strongly-Consistent-Read-vs-Eventually-Consistent-Read" class="headerlink" title="Strongly Consistent Read vs. Eventually Consistent Read"></a>Strongly Consistent Read vs. Eventually Consistent Read</h3><ul>
+<li>DynamoDB is distributed<ul>
+<li>Uses Eventually Consistent Read by default</li>
+</ul>
+</li>
+<li>Strongly Consistent Read<ul>
+<li>Will get correct data if read just after write</li>
+</ul>
+</li>
+<li>Eventually Consistent Read<ul>
+<li>Maybe get outdated data if read just after write because of replication</li>
+</ul>
+</li>
+</ul>
+<h3 id="Read-Capacity-Units-RCU"><a href="#Read-Capacity-Units-RCU" class="headerlink" title="Read Capacity Units (RCU)"></a>Read Capacity Units (RCU)</h3><ul>
+<li>1 RCU = 1 strongly consistent read or 2 eventually consistent reads per second for an item up to 4 KB</li>
+<li>Strongly Consistent Read<ul>
+<li><strong>RCU = (number of objects per second) * ceil(max size of object / 4 KB)</strong></li>
+</ul>
+</li>
+<li>Eventually Consistent Read<ul>
+<li><strong>RCU = (number of objects per second / 2) * ceil(max size of object / 4 KB)</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="ProvisionedThroughputExceededExceptions"><a href="#ProvisionedThroughputExceededExceptions" class="headerlink" title="ProvisionedThroughputExceededExceptions"></a><em>ProvisionedThroughputExceededExceptions</em></h3><ul>
+<li>Occurred when RCU or WCU is exceeded</li>
+<li>Reasons<ul>
+<li>Hot keys or partitions</li>
+<li>Too large items</li>
+</ul>
+</li>
+<li>Solutions<ul>
+<li>Use exponential back-off in SDK</li>
+<li>Distribute partition keys</li>
+<li>If it is RCU issue, you can use DynamoDB Accelerator (DAX)</li>
+</ul>
+</li>
+</ul>
+
         
         <br>
         <div id="comment-container">
