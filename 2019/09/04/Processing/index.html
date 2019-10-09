@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Lambda"><span class="toc-text">AWS Lambda</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Data-Streams-to-Lambda"><span class="toc-text">Kinesis Data Streams to Lambda</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Lambda"><span class="toc-text">AWS Lambda</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Data-Streams-Lambda"><span class="toc-text">Kinesis Data Streams + Lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Anti-patterns"><span class="toc-text">Anti-patterns</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Glue"><span class="toc-text">AWS Glue</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Glue-Crawler"><span class="toc-text">Glue Crawler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glue-Data-catalog"><span class="toc-text">Glue Data catalog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glue-ETL"><span class="toc-text">Glue ETL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Anti-patterns-1"><span class="toc-text">Anti-patterns</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Amazon-EMR"><span class="toc-text">Amazon EMR</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Cluster"><span class="toc-text">EMR Cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Usage"><span class="toc-text">EMR Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Integration"><span class="toc-text">AWS Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Storage"><span class="toc-text">EMR Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Promises"><span class="toc-text">EMR Promises</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop"><span class="toc-text">Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark"><span class="toc-text">Spark</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Spark-structure"><span class="toc-text">Spark structure</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spark-Components"><span class="toc-text">Spark Components</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spark-Structured-Streaming"><span class="toc-text">Spark Structured Streaming</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-Hive"><span class="toc-text">Apache Hive</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hive-Metastore"><span class="toc-text">Hive Metastore</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hive-Integration"><span class="toc-text">Hive Integration</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-Pig"><span class="toc-text">Apache Pig</span></a></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -142,7 +142,7 @@
 <li>Running little stateless code often used to glue different services<ul>
 <li>Real-time file / stream processing</li>
 <li>ETL</li>
-<li>Cron job</li>
+<li>Cron job (use time as trigger)</li>
 <li>Processing AWS events</li>
 </ul>
 </li>
@@ -158,7 +158,7 @@
 </li>
 <li>Many AWS services can trigger Lambda<ul>
 <li>S3</li>
-<li>Kinesis</li>
+<li>Kinesis (Lambda is <strong>pulling</strong> the data from Kinesis in batches)</li>
 <li>DynamoDB</li>
 <li>SNS</li>
 <li>SQS</li>
@@ -177,7 +177,7 @@
 <li>Unlimited scalability (soft limit of 1000 concurrent)</li>
 <li>Max timeout can be set is 900 seconds</li>
 </ul>
-<h2 id="Kinesis-Data-Streams-to-Lambda"><a href="#Kinesis-Data-Streams-to-Lambda" class="headerlink" title="Kinesis Data Streams to Lambda"></a>Kinesis Data Streams to Lambda</h2><ul>
+<h2 id="Kinesis-Data-Streams-Lambda"><a href="#Kinesis-Data-Streams-Lambda" class="headerlink" title="Kinesis Data Streams + Lambda"></a>Kinesis Data Streams + Lambda</h2><ul>
 <li>Lambda can receive an event with a batch of stream records<ul>
 <li>Up to 10,000 records in a batch</li>
 <li>Up to 6 MB in a function call (will be split automatically)</li>
@@ -198,7 +198,249 @@
 </ul>
 </li>
 </ul>
-
+<h2 id="Anti-patterns"><a href="#Anti-patterns" class="headerlink" title="Anti-patterns"></a>Anti-patterns</h2><ul>
+<li>Long-running applications<ul>
+<li>Max running time is 900s, use other services like Elastic Beanstalk</li>
+</ul>
+</li>
+<li>Dynamic websites<ul>
+<li>Too much queries, use servers like EC2 instead</li>
+</ul>
+</li>
+<li>Stateful applications<ul>
+<li>Lambda is stateless, use DynamoBD to store stateful data or use stateful services</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Glue"><a href="#AWS-Glue" class="headerlink" title="AWS Glue"></a>AWS Glue</h1><ul>
+<li>Discovery and definition of table definitions and schema form<ul>
+<li>Redshift</li>
+<li>S3</li>
+<li>RDS</li>
+<li>Other RDBs</li>
+</ul>
+</li>
+<li>ETL jobs by<ul>
+<li>Trigger-driven</li>
+<li>On a schedule</li>
+<li>On demand</li>
+</ul>
+</li>
+</ul>
+<h2 id="Glue-Crawler"><a href="#Glue-Crawler" class="headerlink" title="Glue Crawler"></a>Glue Crawler</h2><ul>
+<li>Scans data in S3 and populate Glue Data Catalog<ul>
+<li>Infer the schema automatically</li>
+</ul>
+</li>
+</ul>
+<h2 id="Glue-Data-catalog"><a href="#Glue-Data-catalog" class="headerlink" title="Glue Data catalog"></a>Glue Data catalog</h2><ul>
+<li>Central metadata repository<ul>
+<li>Just store the data definition and do not remove the data itself</li>
+<li>Can used by Athena, Redshift, EMR, QuickSight, ect.</li>
+</ul>
+</li>
+<li>S3 Partitions<ul>
+<li>Glue crawler will extract partitions based on how S3 data is organized</li>
+<li>Organize the data structure based on your query priority</li>
+</ul>
+</li>
+<li>EMR Hive<ul>
+<li>Glue Data Catalog can provide metadata information to Hive</li>
+<li>You import a Hive meta store into glue</li>
+</ul>
+</li>
+</ul>
+<h2 id="Glue-ETL"><a href="#Glue-ETL" class="headerlink" title="Glue ETL"></a>Glue ETL</h2><ul>
+<li>Automatic code generation<ul>
+<li>Scala or Python</li>
+</ul>
+</li>
+<li>Encryption at rest and in transit</li>
+<li>Can be event-driven</li>
+<li>Can provision additional Data Processing Units (DPU) to increase performance</li>
+<li>Monitor through CloudWatch</li>
+</ul>
+<h2 id="Anti-patterns-1"><a href="#Anti-patterns-1" class="headerlink" title="Anti-patterns"></a>Anti-patterns</h2><ul>
+<li>Streaming data<ul>
+<li>Glue is batch oriented, has minimum 5 minute intervals</li>
+<li>Use Kinesis and store data in S3 or Redshift in temporary</li>
+</ul>
+</li>
+<li>Using other ETL engines than Spark<ul>
+<li>Glue ETL is implemented in Spark</li>
+<li>Use Data Pipeline or EMR</li>
+</ul>
+</li>
+<li>NoSQL databases<ul>
+<li>Schema makes no sense for NoSQL databases</li>
+</ul>
+</li>
+</ul>
+<h1 id="Amazon-EMR"><a href="#Amazon-EMR" class="headerlink" title="Amazon EMR"></a>Amazon EMR</h1><ul>
+<li>Elastic MapReduce</li>
+<li>Managed Hadoop framework on EC2 instances</li>
+<li>Tools<ul>
+<li>Spark</li>
+<li>HBase</li>
+<li>Presto</li>
+<li>Flink</li>
+<li>Hive</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>EMR Notebooks<ul>
+<li>Query data interactively using Python</li>
+</ul>
+</li>
+<li>Integration with other AWS services</li>
+</ul>
+<h2 id="EMR-Cluster"><a href="#EMR-Cluster" class="headerlink" title="EMR Cluster"></a>EMR Cluster</h2><ul>
+<li>Master node (leader node)<ul>
+<li>One master node in a cluster</li>
+<li>Coordinate the distribution of data and tasks</li>
+</ul>
+</li>
+<li>Core node<ul>
+<li>Host HDFS data and run tasks</li>
+<li>Can be scaled up &amp; down, but may lose data<ul>
+<li>Because core nodes store data themselves</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Task node<ul>
+<li>run tasks but do not host data</li>
+<li>Good use of <strong>spot instances</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="EMR-Usage"><a href="#EMR-Usage" class="headerlink" title="EMR Usage"></a>EMR Usage</h2><ul>
+<li>Cluster types<ul>
+<li>Transient cluster</li>
+<li>Long-running cluster</li>
+</ul>
+</li>
+<li>Run jobs<ul>
+<li>Connect directly to master to run jobs</li>
+<li>Submit ordered steps via the console</li>
+</ul>
+</li>
+</ul>
+<h2 id="AWS-Integration"><a href="#AWS-Integration" class="headerlink" title="AWS Integration"></a>AWS Integration</h2><ul>
+<li>EC2 (different types)</li>
+<li>VPC</li>
+<li>S3</li>
+<li>CloudWatch</li>
+<li>IAM</li>
+<li>CloudTrail</li>
+<li>Data Pipeline (schedule and start clusters)</li>
+</ul>
+<h2 id="EMR-Storage"><a href="#EMR-Storage" class="headerlink" title="EMR Storage"></a>EMR Storage</h2><ul>
+<li>HDFS<ul>
+<li>EBS<ul>
+<li>Can only be added when launching</li>
+<li>Will be regarded as failure when detach an EBS volume at running</li>
+</ul>
+</li>
+<li>Ephemeral</li>
+<li>Resilient and durable (data are span multiple instances)</li>
+<li>Data block (chunk) size is 128 Mb</li>
+</ul>
+</li>
+<li>EMRFS<ul>
+<li>S3</li>
+<li>Store input and output data</li>
+<li>Consistency<ul>
+<li>EMRFS Consistent View</li>
+<li>Use DynamoDB to track consistency</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="EMR-Promises"><a href="#EMR-Promises" class="headerlink" title="EMR Promises"></a>EMR Promises</h2><ul>
+<li>Provisions new nodes if core nodes fail</li>
+<li>Can add and remove tasks nodes on the fly</li>
+<li>Can resize running core nodes</li>
+</ul>
+<h2 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h2><ul>
+<li>Hive</li>
+<li>MapReduce / Spark / Tez</li>
+<li>YARN</li>
+<li>HDFS</li>
+</ul>
+<h3 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h3><ul>
+<li>Distributed processing system</li>
+<li>Use in memory caching</li>
+<li>Use directed acyclic graphs to optimize query execution</li>
+<li>Example use cases<ul>
+<li>Stream processing through Spark Streaming (from Amazon Kinesis / Apache Kafka / etc.)</li>
+<li>Streaming analytics and write the results to HDFS or EMRFS (S3)</li>
+<li>Machine learning using MLLib</li>
+<li>Interactive SQL using Spark SQL</li>
+</ul>
+</li>
+<li>Can not do real time job like OLTP</li>
+</ul>
+<h4 id="Spark-structure"><a href="#Spark-structure" class="headerlink" title="Spark structure"></a>Spark structure</h4><ul>
+<li>Driver program / driver script<ul>
+<li>Spark Context</li>
+<li>Job code</li>
+</ul>
+</li>
+<li>Cluster Manager<ul>
+<li>Spark / YARN</li>
+<li>AWS EMR uses YARN</li>
+</ul>
+</li>
+<li>Executors<ul>
+<li>Cache</li>
+<li>Tasks</li>
+</ul>
+</li>
+</ul>
+<h4 id="Spark-Components"><a href="#Spark-Components" class="headerlink" title="Spark Components"></a>Spark Components</h4><ul>
+<li>Spark Streaming</li>
+<li>Spark SQL</li>
+<li>MLLib</li>
+<li>GraphX</li>
+</ul>
+<h4 id="Spark-Structured-Streaming"><a href="#Spark-Structured-Streaming" class="headerlink" title="Spark Structured Streaming"></a>Spark Structured Streaming</h4><ul>
+<li>Spark Streaming will add new streaming data to the tail of exist data</li>
+<li>Can use library built on Kinesis Client Library (KCL) to handle data from Kinesis Data Streams</li>
+<li>Can do huge ETL on Redshift using Spark</li>
+</ul>
+<h3 id="Apache-Hive"><a href="#Apache-Hive" class="headerlink" title="Apache Hive"></a>Apache Hive</h3><ul>
+<li>Run SQL code (HiveQL) on unstructured data that live in Hadoop, Yarn, or S3</li>
+<li>Easier and faster than writing MapReduce even Spark code for simple queries</li>
+<li>Highly optimized </li>
+<li>Highly extensible<ul>
+<li>External applications can communicate with hive using JDBC or ODBC</li>
+</ul>
+</li>
+</ul>
+<h4 id="Hive-Metastore"><a href="#Hive-Metastore" class="headerlink" title="Hive Metastore"></a>Hive Metastore</h4><ul>
+<li>Structure definition on the unstructured data that is stored on HDFS, EMRFS, etc.</li>
+<li>Metastore is stored in MySQL on the master node by default<ul>
+<li>Ephemeral</li>
+</ul>
+</li>
+<li>External Hive Metastore<ul>
+<li>AWS Glue Data Catalog<ul>
+<li>Can be used by Redshift, Athena, etc.</li>
+</ul>
+</li>
+<li>Amazon RDS</li>
+</ul>
+</li>
+</ul>
+<h4 id="Hive-Integration"><a href="#Hive-Integration" class="headerlink" title="Hive Integration"></a>Hive Integration</h4><ul>
+<li>Load data from S3 with table partitions</li>
+<li>Directly write data (tables) to S3</li>
+<li>Load scripts from S3</li>
+<li>Use DynamoDB as an external table</li>
+</ul>
+<h3 id="Apache-Pig"><a href="#Apache-Pig" class="headerlink" title="Apache Pig"></a>Apache Pig</h3>
         
         <br>
         <div id="comment-container">
