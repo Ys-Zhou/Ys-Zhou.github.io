@@ -11,7 +11,7 @@
 
     <title>
         
-        Hiko Amane&#39;s Blog
+        Analysis - Hiko Amane&#39;s Blog
         
     </title>
 
@@ -59,7 +59,7 @@
                     <span>HOME</span>
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
                     <span>TAGS</span>
@@ -88,6 +88,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kinesis-Analytics"><span class="toc-text">Kinesis Analytics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-cases"><span class="toc-text">Use-cases</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Schema-discovery"><span class="toc-text">Schema discovery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RANDOM-CUT-FOREST"><span class="toc-text">RANDOM_CUT_FOREST</span></a></li></ol></li></ol>
+</div>
+    
 </div>
 
 
@@ -114,110 +118,60 @@
         
 
 
-<!-- 归档列表 -->
+<div class="post-container">
+    <div class="post-title">
+        Analysis
+    </div>
 
-<div class="archives-container">
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-10-30 08:50:00</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
 
-<div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2019">
-                    <span class="tag-text">2019</span>
-                </span>
-    <ul>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>10-30</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/10/30/Analysis/">
-                        <span>
-                            Analysis
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>09-04</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/09/04/Processing/">
-                        <span>
-                            Processing
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>08-17</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/08/17/Storage/">
-                        <span>
-                            Storage
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>07-14</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/07/14/Collection/">
-                        <span>
-                            Collection
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>06-16</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/06/16/Basic-AWS-Best-Practices/">
-                        <span>
-                            Basic AWS Best Practices
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li>
-            <span>06-16</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/06/16/Key-points-about-AWS-WAF/">
-                        <span>
-                            Key points about AWS WAF
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Kinesis-Analytics"><a href="#Kinesis-Analytics" class="headerlink" title="Kinesis Analytics"></a>Kinesis Analytics</h1><ul>
+<li>Querying streams of data continuously</li>
+<li>Can receive data from and send results to<ul>
+<li>Kinesis Data Streams</li>
+<li>Kinesis Data Firehose</li>
+</ul>
+</li>
+<li>Analysis using SQL</li>
+<li>Can use reference table from S3 to help analysis</li>
+<li>Errors will be output to Error Stream</li>
+</ul>
+<h2 id="Use-cases"><a href="#Use-cases" class="headerlink" title="Use-cases"></a>Use-cases</h2><ul>
+<li>Streaming ETL</li>
+<li>Continuous metric generation</li>
+<li>Responsive analytics</li>
+</ul>
+<h2 id="Schema-discovery"><a href="#Schema-discovery" class="headerlink" title="Schema discovery"></a>Schema discovery</h2><ul>
+<li>Generate data schema automatically by feeding some stream data</li>
+</ul>
+<h2 id="RANDOM-CUT-FOREST"><a href="#RANDOM-CUT-FOREST" class="headerlink" title="RANDOM_CUT_FOREST"></a>RANDOM_CUT_FOREST</h2><ul>
+<li>A SQL function offered by Kinesis Data Analytics</li>
+<li>For anomaly detection</li>
+</ul>
 
-    </ul>
-</div>
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
 
+        <div id="lv-container">
+        </div>
+
+    </div>
 </div>
 
     </div>
@@ -276,7 +230,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
