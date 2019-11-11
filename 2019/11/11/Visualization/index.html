@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Visualization - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Amazon-QuickSight"><span class="toc-text">Amazon QuickSight</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSight-Data-Sources"><span class="toc-text">QuickSight Data Sources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPICE"><span class="toc-text">SPICE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSight-Use-Cases"><span class="toc-text">QuickSight Use Cases</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSight-Anti-Patterns"><span class="toc-text">QuickSight Anti-Patterns</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSight-Security"><span class="toc-text">QuickSight Security</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSight-User-Management"><span class="toc-text">QuickSight User Management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSight-Pricing"><span class="toc-text">QuickSight Pricing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSight-Visual-Types"><span class="toc-text">QuickSight Visual Types</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Alternative-Visualization-Tools"><span class="toc-text">Alternative Visualization Tools</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Visualization
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-11-11 08:38:00</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Amazon-QuickSight"><a href="#Amazon-QuickSight" class="headerlink" title="Amazon QuickSight"></a>Amazon QuickSight</h1><ul>
+<li>Business analytics service<ul>
+<li>Build visualization</li>
+<li>Perform ad-hoc analysis</li>
+<li>Quickly get business insights from data</li>
+<li>Multiple devices (browsers, mobile)</li>
+</ul>
+</li>
+<li>Serverless</li>
+</ul>
+<h2 id="QuickSight-Data-Sources"><a href="#QuickSight-Data-Sources" class="headerlink" title="QuickSight Data Sources"></a>QuickSight Data Sources</h2><ul>
+<li>Redshift</li>
+<li>RDS</li>
+<li>Athena</li>
+<li>On-premise databases</li>
+<li>S3 or on-premise files<ul>
+<li>Excel</li>
+<li>CSV, TSV</li>
+<li>Some log format</li>
+</ul>
+</li>
+<li>Can do simple data transformation in data preparation</li>
+</ul>
+<h2 id="SPICE"><a href="#SPICE" class="headerlink" title="SPICE"></a>SPICE</h2><ul>
+<li>Data sets are imported into SPICE<ul>
+<li>Super-fast, Parallel, In-memory, Calculation, Engine</li>
+<li>Columnar storage</li>
+</ul>
+</li>
+<li>Each user gets 10GB of SPICE</li>
+<li>Highly available and scalable</li>
+</ul>
+<h2 id="QuickSight-Use-Cases"><a href="#QuickSight-Use-Cases" class="headerlink" title="QuickSight Use Cases"></a>QuickSight Use Cases</h2><ul>
+<li>Interactive ad-hoc exploration / visualization of data</li>
+<li>Create dashboards / stories</li>
+<li>Visualize data from<ul>
+<li>AWS (RDS, Redshift, Athena, S3)</li>
+<li>On-premise databases</li>
+<li>Saas applications (Salesforce)</li>
+<li>Other JDBC / ODBC data sources</li>
+</ul>
+</li>
+</ul>
+<h2 id="QuickSight-Anti-Patterns"><a href="#QuickSight-Anti-Patterns" class="headerlink" title="QuickSight Anti-Patterns"></a>QuickSight Anti-Patterns</h2><ul>
+<li>Highly formatted reports</li>
+<li>ETL<ul>
+<li>Use Glue, Apache Spark</li>
+</ul>
+</li>
+</ul>
+<h2 id="QuickSight-Security"><a href="#QuickSight-Security" class="headerlink" title="QuickSight Security"></a>QuickSight Security</h2><ul>
+<li>MFA (Multi-Factor Authentication)</li>
+<li>VPC connectivity<ul>
+<li>Add QuickSight’s IP address range to security group to connect database</li>
+</ul>
+</li>
+<li>Private VPC access<ul>
+<li>ENI (Elastic Network Interface)</li>
+<li>AWS Direct Connect</li>
+</ul>
+</li>
+<li>RLS (Row-Level Security)</li>
+</ul>
+<h2 id="QuickSight-User-Management"><a href="#QuickSight-User-Management" class="headerlink" title="QuickSight User Management"></a>QuickSight User Management</h2><ul>
+<li>Standard Edition<ul>
+<li>IAM or email signup</li>
+</ul>
+</li>
+<li>Enterprise Edition<ul>
+<li>Microsoft Active Directory</li>
+</ul>
+</li>
+</ul>
+<h2 id="QuickSight-Pricing"><a href="#QuickSight-Pricing" class="headerlink" title="QuickSight Pricing"></a>QuickSight Pricing</h2><ul>
+<li>Annual subscription (user / month)</li>
+<li>Extra SPICE capacity (GB / month)</li>
+<li>Month to month (GB / month)</li>
+<li>Enterprise edition<ul>
+<li>Encryption at rest</li>
+<li>Microsoft Active Directory integration</li>
+</ul>
+</li>
+</ul>
+<h2 id="QuickSight-Visual-Types"><a href="#QuickSight-Visual-Types" class="headerlink" title="QuickSight Visual Types"></a>QuickSight Visual Types</h2><ul>
+<li>AutoGraph</li>
+<li>Bar Charts (histograms)<ul>
+<li>For comparison and distribution</li>
+</ul>
+</li>
+<li>Line graphs<ul>
+<li>For changes over time</li>
+</ul>
+</li>
+<li>Scatter plots, heat maps<ul>
+<li>For correlation</li>
+</ul>
+</li>
+<li>Pie graphs, tree maps<ul>
+<li>For aggregation</li>
+</ul>
+</li>
+<li>Pivot tables<ul>
+<li>For tabular data</li>
+</ul>
+</li>
+<li>Stories</li>
+</ul>
+<h1 id="Alternative-Visualization-Tools"><a href="#Alternative-Visualization-Tools" class="headerlink" title="Alternative Visualization Tools"></a>Alternative Visualization Tools</h1><ul>
+<li>Web-based<ul>
+<li>D3.js, Chart.js, Highchart.js</li>
+</ul>
+</li>
+<li>Business Intelligence Tools<ul>
+<li>Tableau, MicroStrategy</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

@@ -11,7 +11,7 @@
 
     <title>
         
-        Hiko Amane&#39;s Blog
+        Security - Hiko Amane&#39;s Blog
         
     </title>
 
@@ -53,7 +53,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li class="active">
+            <li>
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>HOME</span>
@@ -88,6 +88,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-KMS-Key-Management-Service"><span class="toc-text">AWS KMS (Key Management Service)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-KMS"><span class="toc-text">About KMS</span></a></li></ol></li></ol>
+</div>
+    
 </div>
 
 
@@ -112,173 +116,63 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-preview-container" style="min-height: 720px">
-    
-    <div class="post-preview">
-        <div class="post-time">2019-11-11</div>
-        <div class="post-info">
-            <a href="/2019/11/11/Security/">
-                <h3>
-                    Security
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+
+<div class="post-container">
+    <div class="post-title">
+        Security
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-11-11</div>
-        <div class="post-info">
-            <a href="/2019/11/11/Visualization/">
-                <h3>
-                    Visualization
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-11-11 09:33:00</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-10-30</div>
-        <div class="post-info">
-            <a href="/2019/10/30/Analysis/">
-                <h3>
-                    Analysis
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-09-04</div>
-        <div class="post-info">
-            <a href="/2019/09/04/Processing/">
-                <h3>
-                    Processing
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-08-17</div>
-        <div class="post-info">
-            <a href="/2019/08/17/Storage/">
-                <h3>
-                    Storage
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-07-14</div>
-        <div class="post-info">
-            <a href="/2019/07/14/Collection/">
-                <h3>
-                    Collection
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-06-16</div>
-        <div class="post-info">
-            <a href="/2019/06/16/Basic-AWS-Best-Practices/">
-                <h3>
-                    Basic AWS Best Practices
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-06-16</div>
-        <div class="post-info">
-            <a href="/2019/06/16/Key-points-about-AWS-WAF/">
-                <h3>
-                    Key points about AWS WAF
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-</div>
-<ul class="pager">
-    
-    
+    <div class="post-content no-indent">
+        <h1 id="AWS-KMS-Key-Management-Service"><a href="#AWS-KMS-Key-Management-Service" class="headerlink" title="AWS KMS (Key Management Service)"></a>AWS KMS (Key Management Service)</h1><ul>
+<li>Encryption for AWS services</li>
+<li>Fully integrated with IAM for authorization</li>
+<li>Integration into<ul>
+<li>EBS: encrypt volumes</li>
+<li>S3: SSE-KMS of objects</li>
+<li>Redshift / RDS: encrypt data</li>
+<li>Etc.</li>
 </ul>
+</li>
+<li>Can use KMS using CLI / SDK</li>
+</ul>
+<h2 id="About-KMS"><a href="#About-KMS" class="headerlink" title="About KMS"></a>About KMS</h2><ul>
+<li>KMS can only encrypt up to 4KB of data per call<ul>
+<li>If data &gt; 4 KB, use client-side encryption</li>
+</ul>
+</li>
+<li>To give access to KSM to a user<ul>
+<li>Key Policy allows the user</li>
+<li>IAM Policy allows the API calls</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
 
     </div>
 </div>
@@ -336,7 +230,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
