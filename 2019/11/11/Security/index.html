@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-KMS-Key-Management-Service"><span class="toc-text">AWS KMS (Key Management Service)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-KMS"><span class="toc-text">About KMS</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-KMS-Key-Management-Service"><span class="toc-text">AWS KMS (Key Management Service)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-KMS"><span class="toc-text">About KMS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KMS-Detail"><span class="toc-text">KMS Detail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption-Using-KMS"><span class="toc-text">Encryption Using KMS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CouldHSM"><span class="toc-text">CouldHSM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#KSM-vs-CloudHSM"><span class="toc-text">KSM vs. CloudHSM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-in-AWS-Services"><span class="toc-text">Security in AWS Services</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis"><span class="toc-text">Kinesis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQS"><span class="toc-text">SQS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-IoT"><span class="toc-text">AWS IoT</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -151,6 +151,7 @@
 <li>Can use KMS using CLI / SDK</li>
 </ul>
 <h2 id="About-KMS"><a href="#About-KMS" class="headerlink" title="About KMS"></a>About KMS</h2><ul>
+<li>Keys (CMK) in KMS can never be retrieved by users</li>
 <li>KMS can only encrypt up to 4KB of data per call<ul>
 <li>If data &gt; 4 KB, use client-side encryption</li>
 </ul>
@@ -158,6 +159,132 @@
 <li>To give access to KSM to a user<ul>
 <li>Key Policy allows the user</li>
 <li>IAM Policy allows the API calls</li>
+</ul>
+</li>
+</ul>
+<h2 id="KMS-Detail"><a href="#KMS-Detail" class="headerlink" title="KMS Detail"></a>KMS Detail</h2><ul>
+<li>Able to fully manage the keys and policies<ul>
+<li>Create</li>
+<li>Rotation policies</li>
+<li>Disable</li>
+<li>Enable</li>
+</ul>
+</li>
+<li>Able to audit key usage using CloudTrail</li>
+<li>Three types of Customer Master Keys (CMK)<ul>
+<li>AWS Managed Service Default CMK: free</li>
+<li>User Keys created in KMS: $1 / month</li>
+<li>User Keys imported (256-bit symmetric): $1 / month</li>
+</ul>
+</li>
+<li>Each API call to KMS: $0.03 / 10000 calls<ul>
+<li>Encrypt API</li>
+<li>Decrypt API</li>
+</ul>
+</li>
+</ul>
+<h2 id="Encryption-Using-KMS"><a href="#Encryption-Using-KMS" class="headerlink" title="Encryption Using KMS"></a>Encryption Using KMS</h2><ul>
+<li>Requires migration (Snapshot / Backup)<ul>
+<li>EBS Volumes</li>
+<li>RDS databases</li>
+<li>ElastiCache</li>
+<li>EFS file system</li>
+</ul>
+</li>
+<li>In-place encryption<ul>
+<li>S3</li>
+</ul>
+</li>
+</ul>
+<h1 id="CouldHSM"><a href="#CouldHSM" class="headerlink" title="CouldHSM"></a>CouldHSM</h1><ul>
+<li>HSM = Hardware Security Module</li>
+<li>Dedicated encryption hardware</li>
+<li>Users manage their keys (not AWS)</li>
+<li>FIPS I40-2 Level 3 compliance</li>
+<li>CloudHSM clusters are spread across multi-AZ</li>
+<li>Support both symmetric and asymmetric encryption</li>
+<li>Must use the CloudHSM Client Software</li>
+</ul>
+<h2 id="KSM-vs-CloudHSM"><a href="#KSM-vs-CloudHSM" class="headerlink" title="KSM vs. CloudHSM"></a>KSM vs. CloudHSM</h2><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>KSM</th>
+<th>CloudHSM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tenancy</td>
+<td>Multi-tenant key storage</td>
+<td>Single dedicated tenant key storage</td>
+</tr>
+<tr>
+<td>Keys</td>
+<td>Keys managed by AWS</td>
+<td>Customer managed HSM</td>
+</tr>
+<tr>
+<td>Encryption</td>
+<td>Symmetric encryption only</td>
+<td>Symmetric and asymmetric encryption</td>
+</tr>
+<tr>
+<td>Cryptographic Acceleration</td>
+<td>None</td>
+<td>SSL/TLS Acceleration &amp; Oracle TDE Acceleration</td>
+</tr>
+<tr>
+<td>Key Storage and Management</td>
+<td>Accessible from multiple regions. Centralized management from IAM</td>
+<td>Deployed and managed form a customer VPC. Accessible and can be shared across VPCs using VPC peering</td>
+</tr>
+</tbody></table>
+<h1 id="Security-in-AWS-Services"><a href="#Security-in-AWS-Services" class="headerlink" title="Security in AWS Services"></a>Security in AWS Services</h1><h2 id="Kinesis"><a href="#Kinesis" class="headerlink" title="Kinesis"></a>Kinesis</h2><ul>
+<li>Kinesis Data Streams<ul>
+<li>SSL/TLS</li>
+<li>KMS</li>
+<li>Client-side encryption can only be implemented manually</li>
+<li>IAM roles<ul>
+<li><strong>DynamoDB table when using KCL</strong></li>
+</ul>
+</li>
+<li>Support VPC Endpoints</li>
+</ul>
+</li>
+<li>Kinesis Data Firehose<ul>
+<li>Can encrypt the delivery stream with KMS</li>
+<li>IAM roles<ul>
+<li>Deliver to S3, ES, Redshift, Splunk</li>
+</ul>
+</li>
+<li>Support VPC Endpoints</li>
+</ul>
+</li>
+<li>Kinesis Data Analytics<ul>
+<li>IAM roles<ul>
+<li>Sources and destination (Kinesis Data Streams, Kinesis Data Firehose)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="SQS"><a href="#SQS" class="headerlink" title="SQS"></a>SQS</h2><ul>
+<li>SSL/TLS</li>
+<li>KMS</li>
+<li>Client-side encryption can only be implemented manually</li>
+<li>IAM roles</li>
+<li><strong>SQS queue access policy</strong></li>
+<li>Support VPC Endpoints</li>
+</ul>
+<h2 id="AWS-IoT"><a href="#AWS-IoT" class="headerlink" title="AWS IoT"></a>AWS IoT</h2><ul>
+<li>IoT policies<ul>
+<li>Attached to X.509 or Cognito Identities</li>
+<li>Can be attached to groups as well as individual Things</li>
+</ul>
+</li>
+<li>IAM<ul>
+<li>Used for controlling IoT APIs</li>
+<li>Attach roles to Rules Engine to allow their actions</li>
 </ul>
 </li>
 </ul>
