@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-KMS-Key-Management-Service"><span class="toc-text">AWS KMS (Key Management Service)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-KMS"><span class="toc-text">About KMS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KMS-Detail"><span class="toc-text">KMS Detail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption-Using-KMS"><span class="toc-text">Encryption Using KMS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CouldHSM"><span class="toc-text">CouldHSM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#KSM-vs-CloudHSM"><span class="toc-text">KSM vs. CloudHSM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-in-AWS-Services"><span class="toc-text">Security in AWS Services</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis"><span class="toc-text">Kinesis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQS"><span class="toc-text">SQS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-IoT"><span class="toc-text">AWS IoT</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-KMS-Key-Management-Service"><span class="toc-text">AWS KMS (Key Management Service)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-KMS"><span class="toc-text">About KMS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KMS-Detail"><span class="toc-text">KMS Detail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption-Using-KMS"><span class="toc-text">Encryption Using KMS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CouldHSM"><span class="toc-text">CouldHSM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#KSM-vs-CloudHSM"><span class="toc-text">KSM vs. CloudHSM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-in-AWS-Services"><span class="toc-text">Security in AWS Services</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis"><span class="toc-text">Kinesis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQS"><span class="toc-text">SQS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IoT"><span class="toc-text">IoT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDS"><span class="toc-text">RDS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda"><span class="toc-text">Lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glue"><span class="toc-text">Glue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR"><span class="toc-text">EMR</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -242,26 +242,26 @@
 <h1 id="Security-in-AWS-Services"><a href="#Security-in-AWS-Services" class="headerlink" title="Security in AWS Services"></a>Security in AWS Services</h1><h2 id="Kinesis"><a href="#Kinesis" class="headerlink" title="Kinesis"></a>Kinesis</h2><ul>
 <li>Kinesis Data Streams<ul>
 <li>SSL/TLS</li>
-<li>KMS</li>
+<li>Server-side encryption using KMS</li>
 <li>Client-side encryption can only be implemented manually</li>
-<li>IAM roles<ul>
+<li>IAM<ul>
 <li><strong>DynamoDB table when using KCL</strong></li>
 </ul>
 </li>
-<li>Support VPC Endpoints</li>
+<li>VPC Endpoints (Interface Endpoints)</li>
 </ul>
 </li>
 <li>Kinesis Data Firehose<ul>
-<li>Can encrypt the delivery stream with KMS</li>
-<li>IAM roles<ul>
+<li>Can encrypt the delivery stream using KMS</li>
+<li>IAM<ul>
 <li>Deliver to S3, ES, Redshift, Splunk</li>
 </ul>
 </li>
-<li>Support VPC Endpoints</li>
+<li>VPC Endpoints (Interface Endpoints)</li>
 </ul>
 </li>
 <li>Kinesis Data Analytics<ul>
-<li>IAM roles<ul>
+<li>IAM<ul>
 <li>Sources and destination (Kinesis Data Streams, Kinesis Data Firehose)</li>
 </ul>
 </li>
@@ -270,13 +270,13 @@
 </ul>
 <h2 id="SQS"><a href="#SQS" class="headerlink" title="SQS"></a>SQS</h2><ul>
 <li>SSL/TLS</li>
-<li>KMS</li>
+<li>Server-side encryption using KMS</li>
 <li>Client-side encryption can only be implemented manually</li>
-<li>IAM roles</li>
+<li>IAM</li>
 <li><strong>SQS queue access policy</strong></li>
-<li>Support VPC Endpoints</li>
+<li>VPC Endpoints (Interface Endpoints)</li>
 </ul>
-<h2 id="AWS-IoT"><a href="#AWS-IoT" class="headerlink" title="AWS IoT"></a>AWS IoT</h2><ul>
+<h2 id="IoT"><a href="#IoT" class="headerlink" title="IoT"></a>IoT</h2><ul>
 <li>IoT policies<ul>
 <li>Attached to X.509 or Cognito Identities</li>
 <li>Can be attached to groups as well as individual Things</li>
@@ -285,6 +285,115 @@
 <li>IAM<ul>
 <li>Used for controlling IoT APIs</li>
 <li>Attach roles to Rules Engine to allow their actions</li>
+</ul>
+</li>
+</ul>
+<h2 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h2><ul>
+<li>SSL/TLS</li>
+<li>Server-side encryption<ul>
+<li>SSE-S3, SSE-KMS, SSE-C</li>
+</ul>
+</li>
+<li>Client-side encryption<ul>
+<li>Such as S3 Encryption Client</li>
+</ul>
+</li>
+<li>IAM</li>
+<li>S3 bucket policies</li>
+<li>ACLs</li>
+<li>Versioning + MFA when deleting</li>
+<li>VPC Endpoints (Gateway Endpoints)</li>
+<li>CORS for protecting websites hosted on S3</li>
+<li>Vault lock policies to prevent deletes for Glacier</li>
+</ul>
+<h2 id="DynamoDB"><a href="#DynamoDB" class="headerlink" title="DynamoDB"></a>DynamoDB</h2><ul>
+<li>SSL/TLS</li>
+<li>KMS encryption<ul>
+<li>Setting when creating the table</li>
+<li>To enable or disable encryption, create new table and copy the data</li>
+</ul>
+</li>
+<li>IAM<ul>
+<li>Access to API / DAX</li>
+</ul>
+</li>
+<li>VPC Endpoints (Gateway Endpoints)</li>
+</ul>
+<h2 id="RDS"><a href="#RDS" class="headerlink" title="RDS"></a>RDS</h2><ul>
+<li>In VPC<ul>
+<li>Can use Security Groups</li>
+</ul>
+</li>
+<li>SSL/TLS</li>
+<li>KMS encryption</li>
+<li>IAM</li>
+<li>IAM authentication<ul>
+<li>Support Aurora, PostgreSQL and MySQL</li>
+<li>Manage user permissions within the database itself</li>
+</ul>
+</li>
+<li>Microsoft SQL Server and Oracle support TDE (Transparent Data Encryption)</li>
+</ul>
+<h2 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h2><ul>
+<li>KMS encryption for secrets<ul>
+<li>Can use AWS Systems Manager Parameter Store as well</li>
+</ul>
+</li>
+<li>IAM<ul>
+<li>Each function need roles</li>
+</ul>
+</li>
+<li>Can deploy function in VPC</li>
+</ul>
+<h2 id="Glue"><a href="#Glue" class="headerlink" title="Glue"></a>Glue</h2><ul>
+<li>IAM</li>
+<li>KMS encryption<ul>
+<li>Data Catalog, connection passwords</li>
+</ul>
+</li>
+<li>Encrypt data written by the job<ul>
+<li>To S3: SSE-S3, SSE-KMS</li>
+<li>To CloudWatch</li>
+<li>To Job bookmark</li>
+</ul>
+</li>
+<li>Can enforce SSL on JDBC</li>
+</ul>
+<h2 id="EMR"><a href="#EMR" class="headerlink" title="EMR"></a>EMR</h2><ul>
+<li>SSH using EC2 key pairs</li>
+<li>IAM</li>
+<li>EC2 Security Groups<ul>
+<li>One for master node</li>
+<li>Another for cluster nodes (core nodes and task nodes)</li>
+</ul>
+</li>
+<li>Encryption data at-rest<ul>
+<li>EMRFS in S3<ul>
+<li>SSE-S3, SSE-KMS</li>
+<li>CSE-KMS, CSE-C</li>
+<li>EMR dose not allow unencrypted data to be stored into S3</li>
+</ul>
+</li>
+<li>Local disk<ul>
+<li>Open-source HDFS encryption</li>
+<li>EBS volume encryption<ul>
+<li>EBS encryption</li>
+<li>LUKS encryption</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Encryption data in transit<ul>
+<li>SSL/TLS</li>
+</ul>
+</li>
+<li>Kerberos authentication from Active Directory</li>
+<li>Apache Ranger<ul>
+<li>Centralized Authorization</li>
+<li>Role Based Access Control</li>
+<li>Need to setup on external EC2</li>
 </ul>
 </li>
 </ul>
