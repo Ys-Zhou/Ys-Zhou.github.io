@@ -459,12 +459,15 @@
 </ul>
 <h3 id="Redshift-Copy-Grant-for-Cross-region-Snapshot-Copy"><a href="#Redshift-Copy-Grant-for-Cross-region-Snapshot-Copy" class="headerlink" title="Redshift Copy Grant for Cross-region Snapshot Copy"></a>Redshift Copy Grant for Cross-region Snapshot Copy</h3><ul>
 <li>In the destination AWS region<ul>
-<li>Create a KMS key or use an old one</li>
-<li>Specify an unique name for the copy grant</li>
-<li>Specify the KMS key ID for the copy grant<br>In the source AWS region</li>
-<li>Enable copying of snapshots to the copy grant</li>
+<li>Create a KMS key or use an old one in the destination region</li>
+<li>Specify the KMS key ID for the copy grant in the destination region</li>
+<li>Specify an unique name for the copy grant and enable cross-region snapshot in the source region</li>
 </ul>
 </li>
+</ul>
+<p>In the source AWS region</p>
+<ul>
+<li>Enable copying of snapshots to the copy grant</li>
 </ul>
 <h3 id="DBLINK"><a href="#DBLINK" class="headerlink" title="DBLINK"></a>DBLINK</h3><ul>
 <li>Connect Redshift to PostgreSQL</li>
