@@ -386,7 +386,7 @@
 </ul>
 </li>
 <li>Support Data Transformation through AWS Lambda</li>
-<li>Support Support compression (only for S3)<ul>
+<li>Support compression (only for S3)<ul>
 <li>GZIP, ZIP, Snappy</li>
 <li>Only GZIP when data is further loaded into Redshift</li>
 </ul>
@@ -406,8 +406,8 @@
 </ul>
 </li>
 <li>Automatically increase the buffer size to increase throughput</li>
-<li>High through: more buffer size</li>
-<li>Low through: less buffer time</li>
+<li>High throughput: more buffer size</li>
+<li>Low throughput: less buffer time</li>
 </ul>
 <h2 id="Kinesis-Data-Streams-vs-Firehose"><a href="#Kinesis-Data-Streams-vs-Firehose" class="headerlink" title="Kinesis Data Streams vs Firehose"></a>Kinesis Data Streams vs Firehose</h2><table>
 <thead>
@@ -462,12 +462,12 @@
 <li>Delivery delay</li>
 <li>Return<ul>
 <li>Message ID</li>
-<li>MD% hash of the body</li>
+<li>MD5 hash of the body</li>
 </ul>
 </li>
 </ul>
 <h2 id="Consuming-Messages"><a href="#Consuming-Messages" class="headerlink" title="Consuming Messages"></a>Consuming Messages</h2><ul>
-<li>Poll messages from SQS <ul>
+<li>Pull messages from SQS<ul>
 <li>Up to 10 messages at a time</li>
 </ul>
 </li>
