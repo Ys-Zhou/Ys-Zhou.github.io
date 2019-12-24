@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Organizations"><span class="toc-text">AWS Organizations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Components"><span class="toc-text">Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Features"><span class="toc-text">Features</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Billing-Management"><span class="toc-text">AWS Billing Management</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Cost-Explorer"><span class="toc-text">AWS Cost Explorer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Budgets"><span class="toc-text">AWS Budgets</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Organizations"><span class="toc-text">AWS Organizations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Components"><span class="toc-text">Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Features"><span class="toc-text">Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Feature-Sets"><span class="toc-text">Feature Sets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integration"><span class="toc-text">Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practices"><span class="toc-text">Best Practices</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Billing-Management"><span class="toc-text">AWS Billing Management</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Cost-Explorer"><span class="toc-text">AWS Cost Explorer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Budgets"><span class="toc-text">AWS Budgets</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -167,10 +167,18 @@
 <li>An account can be a member of only one AWS organization at a time</li>
 </ul>
 </li>
-<li>Policies<ul>
-<li>Policies can be applied to Root, Organizational Units, or Accounts</li>
-<li>Parent policies will flow to children</li>
-<li>To grant the permissions allowed by organizational policies, you still need use IAM</li>
+<li>Service Control Policies<ul>
+<li>SCPs can be applied to Root, Organizational Units, or Accounts</li>
+<li>Parent policies will flow to children<ul>
+<li>The root has <em>FullAWSAccess</em> policy by default</li>
+<li>Children SCPs can not override parent SCPs</li>
+</ul>
+</li>
+<li>SCPs do not grant permissions<ul>
+<li>To grant the permissions allowed by SCPs, you still need use IAM</li>
+</ul>
+</li>
+<li>SCPs have no effect on the master account</li>
 </ul>
 </li>
 </ul>
@@ -190,7 +198,120 @@
 </ul>
 </li>
 </ul>
-<h1 id="AWS-Billing-Management"><a href="#AWS-Billing-Management" class="headerlink" title="AWS Billing Management"></a>AWS Billing Management</h1><h2 id="AWS-Cost-Explorer"><a href="#AWS-Cost-Explorer" class="headerlink" title="AWS Cost Explorer"></a>AWS Cost Explorer</h2><h2 id="AWS-Budgets"><a href="#AWS-Budgets" class="headerlink" title="AWS Budgets"></a>AWS Budgets</h2>
+<h2 id="Feature-Sets"><a href="#Feature-Sets" class="headerlink" title="Feature Sets"></a>Feature Sets</h2><ul>
+<li>AWS Organizations has two modes<ul>
+<li>Consolidated billing<ul>
+<li>Default mode</li>
+<li>Only consolidated billing is enabled</li>
+</ul>
+</li>
+<li>All features<ul>
+<li>Includes all features of AWS Organizations<ul>
+<li>Full control over member accounts</li>
+<li>Apply Service Control Policies</li>
+<li>Prevent member accounts from leaving the organization</li>
+</ul>
+</li>
+<li>Can be set for a newly created organization or moved from consolidated billing mode<ul>
+<li>In case of moving from consolidated billing, member accounts must approve the invitation first</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Integration"><a href="#Integration" class="headerlink" title="Integration"></a>Integration</h2><ul>
+<li>CloudTrail<ul>
+<li>Central logging of all accounts logs in the organization</li>
+</ul>
+</li>
+<li>CloudWatch<ul>
+<li>Can enable sharing of CloudWatch events across all accounts in the organization</li>
+</ul>
+</li>
+<li>AWS Config<ul>
+<li>Obtain an organization wide view of your configurations of resources in all accounts</li>
+</ul>
+</li>
+<li>Artifact<ul>
+<li>Allows to download compliance reports such as PCI and ISO for the organization</li>
+</ul>
+</li>
+<li>AWS Firewall Manager<ul>
+<li>Centrally manage WAF configurations across all accounts in the organization</li>
+</ul>
+</li>
+<li>AWS Directory Service<ul>
+<li>Seamless directory service sharing across multiple accounts and any VPC in a region</li>
+</ul>
+</li>
+<li>AWS License Manager<ul>
+<li>Can ensure license compliance of all the resources in the organization</li>
+</ul>
+</li>
+<li>AWS Resource Access Manager (RAM)<ul>
+<li>Allows for sharing resources across accounts in the organization</li>
+</ul>
+</li>
+<li>AWS Service Catalog<ul>
+<li>Enables the sharing and management of products across accounts in the organization from catalogs of IT services approved for use on AWS</li>
+</ul>
+</li>
+<li>AWS Single Sign-On (SSO)<ul>
+<li>Allows users to use SSO to access their assigned accounts (master or member)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Best-Practices"><a href="#Best-Practices" class="headerlink" title="Best Practices"></a>Best Practices</h2><ul>
+<li>Use AWS CloudTrail to monitor and log activities in the master account</li>
+<li>Do not add resources in the master account</li>
+<li>Use the least privilege principle for SCPs</li>
+<li>Assign ACPs at Organizational Units instead of accounts for easy scaling</li>
+<li>Avoid assigning SCPs at the root level, unless absolutely necessary</li>
+<li>Test your SCPs first on an account before rolling out</li>
+<li>Use either Whitelisting or Blacklisting, not both</li>
+<li>Establish a clear strategy as to when to create a new account</li>
+</ul>
+<h1 id="AWS-Billing-Management"><a href="#AWS-Billing-Management" class="headerlink" title="AWS Billing Management"></a>AWS Billing Management</h1><h2 id="AWS-Cost-Explorer"><a href="#AWS-Cost-Explorer" class="headerlink" title="AWS Cost Explorer"></a>AWS Cost Explorer</h2><ul>
+<li>View cost data as a graph<ul>
+<li>Can filter graphs by different values</li>
+<li>Can filter by member account when using consolidated billing</li>
+</ul>
+</li>
+<li>Get forecast of future costs based on the historical cost data</li>
+</ul>
+<h2 id="AWS-Budgets"><a href="#AWS-Budgets" class="headerlink" title="AWS Budgets"></a>AWS Budgets</h2><ul>
+<li>Plan service usage, costs, and instance reservations</li>
+<li>Budgets provide:<ul>
+<li>The resources usage to date, including Reserved Instances</li>
+<li>The set budgets usage</li>
+<li>The predicted usage will incur in charges bu the end of the month</li>
+</ul>
+</li>
+<li>Can send notifications using SNS<ul>
+<li>When the usage goes over the budgeted amounts</li>
+<li>When the estimated costs exceed the configured budgets</li>
+</ul>
+</li>
+<li>Budgets information is updated up to three times a day</li>
+<li>Budget types<ul>
+<li>Cost budgets</li>
+<li>Usage budgets</li>
+<li>Reserved Instances utilization budgets<ul>
+<li>Alert when the usage of Reserved Instances falls below the threshold</li>
+</ul>
+</li>
+<li>Reserved Instances coverage budgets<ul>
+<li>Alert when the instance hours covered by Reserved Instances fall below the threshold</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AWS Budgets uses AWS Cost Explorer to visualize costs</li>
+</ul>
+<p>25? 27-31</p>
+
         
         <br>
         <div id="comment-container">
