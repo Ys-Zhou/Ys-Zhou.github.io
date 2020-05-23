@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Organizations"><span class="toc-text">AWS Organizations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Components"><span class="toc-text">Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Features"><span class="toc-text">Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Feature-Sets"><span class="toc-text">Feature Sets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integration"><span class="toc-text">Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practices"><span class="toc-text">Best Practices</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Billing-Management"><span class="toc-text">AWS Billing Management</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Cost-Explorer"><span class="toc-text">AWS Cost Explorer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Budgets"><span class="toc-text">AWS Budgets</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Organizations"><span class="toc-text">AWS Organizations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Components"><span class="toc-text">Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Features"><span class="toc-text">Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Feature-Sets"><span class="toc-text">Feature Sets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integration"><span class="toc-text">Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practices"><span class="toc-text">Best Practices</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Billing-Management"><span class="toc-text">AWS Billing Management</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Cost-Explorer"><span class="toc-text">AWS Cost Explorer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Budgets"><span class="toc-text">AWS Budgets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consolidated-Billing"><span class="toc-text">Consolidated Billing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Consolidated-Billing-vs-One-Account-with-Multiple-VPCs"><span class="toc-text">Consolidated Billing vs. One Account with Multiple VPCs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alert"><span class="toc-text">Alert</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cost-Allocation-Tags"><span class="toc-text">Cost Allocation Tags</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cost-Optimization"><span class="toc-text">Cost Optimization</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -310,7 +310,83 @@
 </li>
 <li>AWS Budgets uses AWS Cost Explorer to visualize costs</li>
 </ul>
-<p>25? 27-31</p>
+<h2 id="Consolidated-Billing"><a href="#Consolidated-Billing" class="headerlink" title="Consolidated Billing"></a>Consolidated Billing</h2><ul>
+<li>Consolidated billing is a feature of AWS Organizations</li>
+<li>Consolidate multiple member accounts under your master account</li>
+<li>Take advantage of pricing tiers (combined usage)<ul>
+<li>AWS treats all accounts in an organization as a single account</li>
+</ul>
+</li>
+<li>Share reserved instances<ul>
+<li>Enabled by default, can be disabled by master account</li>
+</ul>
+</li>
+</ul>
+<h3 id="Consolidated-Billing-vs-One-Account-with-Multiple-VPCs"><a href="#Consolidated-Billing-vs-One-Account-with-Multiple-VPCs" class="headerlink" title="Consolidated Billing vs. One Account with Multiple VPCs"></a>Consolidated Billing vs. One Account with Multiple VPCs</h3><ul>
+<li><p>Consolidated Billing</p>
+<ul>
+<li>Easier from an AWS architecture perspective</li>
+<li>Primarily relies on IAM roles and attached permissions for cross account access</li>
+<li>Complex tagging cross accounts</li>
+</ul>
+</li>
+<li><p>One Account with Multiple VPCs</p>
+<ul>
+<li>Simple billing</li>
+<li>Easier governance</li>
+<li>No need for IAM roles cross-account</li>
+<li>Easier tagging</li>
+<li>Complex setup to allow for resource level permissions</li>
+<li>Complexity in setting up the VPCs</li>
+</ul>
+</li>
+</ul>
+<h2 id="Alert"><a href="#Alert" class="headerlink" title="Alert"></a>Alert</h2><ul>
+<li>Send to<ul>
+<li>email</li>
+<li>SNS</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cost-Allocation-Tags"><a href="#Cost-Allocation-Tags" class="headerlink" title="Cost Allocation Tags"></a>Cost Allocation Tags</h2><ul>
+<li>Key-value pairs</li>
+<li>Used to organize the resource costs on the cost allocation report</li>
+<li>Tag types<ul>
+<li>AWS generated tags</li>
+<li>User defined tags</li>
+</ul>
+</li>
+<li>Member accounts in AWS Organizations cannot manage Cost Allocation Tags</li>
+<li>You cannot delete tags<ul>
+<li>Instead, you can deactivate tags</li>
+</ul>
+</li>
+<li>Resource Group<ul>
+<li>If resources share one or more tags, they are in a same Resource Group</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cost-Optimization"><a href="#Cost-Optimization" class="headerlink" title="Cost Optimization"></a>Cost Optimization</h2><ul>
+<li>EC2 instance sizing<ul>
+<li>Use benchmarking not gassing</li>
+<li>Storage solution<ul>
+<li>Volume types</li>
+<li>Use storage optimized instances</li>
+<li>S3</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Continuous monitoring and tagging<ul>
+<li>Modify resources anytime</li>
+<li>Tagging strategies on AWS<ul>
+<li>Automate by using Elastic Beanstalk or OpsWorks</li>
+<li>Use AWS Config to assess whether specific tags are applied to your resources or not</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
         
         <br>
