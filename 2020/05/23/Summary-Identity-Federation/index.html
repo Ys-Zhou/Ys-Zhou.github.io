@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IAM"><span class="toc-text">IAM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-Policies"><span class="toc-text">IAM Policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-Roles-vs-Resource-Based-Policies"><span class="toc-text">IAM Roles vs. Resource Based Policies</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STS"><span class="toc-text">STS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-STS-to-Assume-a-Role"><span class="toc-text">Using STS to Assume a Role</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Benefits"><span class="toc-text">Benefits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Assume-a-Role-to-3rd-party-AWS-Accounts"><span class="toc-text">Assume a Role to 3rd party AWS Accounts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Important-APIs"><span class="toc-text">Important APIs</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IAM"><span class="toc-text">IAM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-Policies"><span class="toc-text">IAM Policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-Roles-vs-Resource-Based-Policies"><span class="toc-text">IAM Roles vs. Resource Based Policies</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STS"><span class="toc-text">STS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-STS-to-Assume-a-Role"><span class="toc-text">Using STS to Assume a Role</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Benefits"><span class="toc-text">Benefits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Assume-a-Role-to-3rd-party-AWS-Accounts"><span class="toc-text">Assume a Role to 3rd party AWS Accounts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Important-APIs"><span class="toc-text">Important APIs</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Identity-Federation"><span class="toc-text">Identity Federation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SAML-2-0"><span class="toc-text">SAML 2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Identity-Broker"><span class="toc-text">Custom Identity Broker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Identity-Federation-without-Cognito"><span class="toc-text">Web Identity Federation without Cognito</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Identity-Federation-with-Cognito"><span class="toc-text">Web Identity Federation with Cognito</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Web-Identity-Federation-in-IAM-Policy"><span class="toc-text">Use Web Identity Federation in IAM Policy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Directory-Services"><span class="toc-text">AWS Directory Services</span></a></li></ol>
 </div>
     
 </div>
@@ -239,6 +239,60 @@
 <li><strong>GetSessionToken</strong>: for MFA, obtain user credentials</li>
 <li><strong>GetFederationToken</strong>: obtain credentials for a federated user</li>
 </ul>
+<h1 id="Identity-Federation"><a href="#Identity-Federation" class="headerlink" title="Identity Federation"></a>Identity Federation</h1><ul>
+<li>Federation lets users outside of AWS to assume temporary role for accessing AWS resources</li>
+<li>Without creating IAM users</li>
+<li>Flavors of Federations<ul>
+<li>SAML 2.0</li>
+<li>Custom Identity Broker</li>
+<li>Web Identity Federation without Cognito</li>
+<li>Web Identity Federation with Cognito</li>
+<li>SSO</li>
+<li>Non-SAML with AWS Microsoft AD</li>
+</ul>
+</li>
+</ul>
+<h2 id="SAML-2-0"><a href="#SAML-2-0" class="headerlink" title="SAML 2.0"></a>SAML 2.0</h2><ul>
+<li>Integrate SAML 2.0 compatible IdP or ADFS</li>
+<li>AWS recommends using Amazon SSO instead</li>
+<li>Setup<ul>
+<li>Setup a trust between AWS IAM and SAML (both ways)</li>
+<li>SAML 2.0 enables web-based cross domain SSO</li>
+<li>Uses STS API: AssumeRoleWithSAML</li>
+</ul>
+</li>
+</ul>
+<h2 id="Custom-Identity-Broker"><a href="#Custom-Identity-Broker" class="headerlink" title="Custom Identity Broker"></a>Custom Identity Broker</h2><ul>
+<li>Use only if Idp is not compatible with SAML 2.0</li>
+<li>The identity broker talks with STS and must determine the appropriate IAM policy</li>
+<li>Uses STS API: AssumeRole or GetFederationToken</li>
+</ul>
+<h2 id="Web-Identity-Federation-without-Cognito"><a href="#Web-Identity-Federation-without-Cognito" class="headerlink" title="Web Identity Federation without Cognito"></a>Web Identity Federation without Cognito</h2><ul>
+<li>Get credentials from Web IdP such as Amazon, Google and Facebook</li>
+<li>AWS recommends using Cognito instead</li>
+<li>Uses STS API: AssumeRoleWithWebIdentity</li>
+</ul>
+<h2 id="Web-Identity-Federation-with-Cognito"><a href="#Web-Identity-Federation-with-Cognito" class="headerlink" title="Web Identity Federation with Cognito"></a>Web Identity Federation with Cognito</h2><ul>
+<li>Create IAM Roles using Cognito with the least privilege needed</li>
+<li>Build trust between the OIDC IdP and AWS</li>
+<li>Benefits<ul>
+<li>Support for anonymous users</li>
+<li>Support for MFA</li>
+<li>Data synchronization</li>
+</ul>
+</li>
+<li>Cognito as a new service replaces Token Vending Machine (TVM)</li>
+</ul>
+<h2 id="Use-Web-Identity-Federation-in-IAM-Policy"><a href="#Use-Web-Identity-Federation-in-IAM-Policy" class="headerlink" title="Use Web Identity Federation in IAM Policy"></a>Use Web Identity Federation in IAM Policy</h2><ul>
+<li>You can identify the user with an IAM policy variable</li>
+<li>Examples<ul>
+<li>cognito-identity.amazonaws.com:sub</li>
+<li><a href="http://www.amazon.com:user_id" target="_blank" rel="noopener">www.amazon.com:user_id</a></li>
+<li>accounts.google.com:sub</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Directory-Services"><a href="#AWS-Directory-Services" class="headerlink" title="AWS Directory Services"></a>AWS Directory Services</h1><p>To be edited</p>
 
         
         <br>
