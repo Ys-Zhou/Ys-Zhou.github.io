@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudTrail"><span class="toc-text">CloudTrail</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudTrail-Trail"><span class="toc-text">CloudTrail Trail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Delivery-to-S3"><span class="toc-text">Architecture: Delivery to S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Multi-Account-Multi-Region-Logging"><span class="toc-text">Architecture: Multi-Account, Multi-Region Logging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Alert-for-API-calls"><span class="toc-text">Architecture: Alert for API calls</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delivery-Time"><span class="toc-text">Delivery Time</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudTrail"><span class="toc-text">CloudTrail</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudTrail-Trail"><span class="toc-text">CloudTrail Trail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Delivery-to-S3"><span class="toc-text">Architecture: Delivery to S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Multi-Account-Multi-Region-Logging"><span class="toc-text">Architecture: Multi-Account, Multi-Region Logging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Alert-for-API-calls"><span class="toc-text">Architecture: Alert for API calls</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delivery-Time"><span class="toc-text">Delivery Time</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-KMS"><span class="toc-text">AWS KMS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Types-of-CMK"><span class="toc-text">Types of CMK</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSM-Parameter-Store"><span class="toc-text">SSM Parameter Store</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Secrets-Manager"><span class="toc-text">Secrets Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RDS-Security"><span class="toc-text">RDS Security</span></a></li></ol>
 </div>
     
 </div>
@@ -208,6 +208,73 @@
 <li>Events are delivery every 5 minutes</li>
 </ul>
 </li>
+</ul>
+<h1 id="AWS-KMS"><a href="#AWS-KMS" class="headerlink" title="AWS KMS"></a>AWS KMS</h1><ul>
+<li>Encryption for AWS Services<ul>
+<li>EBS: encrypt volumes</li>
+<li>S3: SSE-KMS</li>
+<li>Redshift</li>
+<li>RDS</li>
+<li>SSM: Parameter Store</li>
+<li>ect.</li>
+</ul>
+</li>
+<li>Encrypt your own data<ul>
+<li>KMS APIs (Encrypt / Decrypt)</li>
+</ul>
+</li>
+<li>CMK can never be retrieved bu user</li>
+<li>CMK can be rotated for extra security</li>
+<li>KMS can only encrypt up to 4KB of data per call</li>
+<li>To access KMS<ul>
+<li>Make sure the KEY Policy allows the user</li>
+<li>Make sure the IAM Policy allows the API calls</li>
+</ul>
+</li>
+<li>CloudTrail tracks API calls made to KMS</li>
+</ul>
+<h2 id="Types-of-CMK"><a href="#Types-of-CMK" class="headerlink" title="Types of CMK"></a>Types of CMK</h2><ul>
+<li>Customer Managed CMK<ul>
+<li>Users can create, manage, use, or enable/disable the Keys</li>
+<li>Possibility of rotation policy<ul>
+<li>New key generated every year</li>
+<li>Old key will be preserved</li>
+</ul>
+</li>
+<li>Can add key policy</li>
+</ul>
+</li>
+<li>AWS Managed CMK<ul>
+<li>Used by AWS services (aws/s3, aws/ebs, aws/redshift, ect.)</li>
+</ul>
+</li>
+</ul>
+<h1 id="SSM-Parameter-Store"><a href="#SSM-Parameter-Store" class="headerlink" title="SSM Parameter Store"></a>SSM Parameter Store</h1><ul>
+<li>Secure storage for configuration and secrets</li>
+<li>Secrets can be encrypted by KMS</li>
+<li>Support version tracking</li>
+<li>Secrets are stored in path</li>
+<li>Notifications with CloudWatch Events</li>
+<li>Integration with CloudFormation</li>
+<li>Can retrieve secrets from Secrets Manager using the SSM Parameter Store API</li>
+</ul>
+<h1 id="Secrets-Manager"><a href="#Secrets-Manager" class="headerlink" title="Secrets Manager"></a>Secrets Manager</h1><ul>
+<li>A newer service for storing secrets</li>
+<li>Capability to force rotation of secrets every X days</li>
+<li>Can automatically generate secrets on rotation using Lambda</li>
+<li>Integration with <strong>RDS</strong> (MySQL, PostgreSQL, Aurora)</li>
+<li>Encrypted using KMS</li>
+</ul>
+<h1 id="RDS-Security"><a href="#RDS-Security" class="headerlink" title="RDS Security"></a>RDS Security</h1><ul>
+<li>KMS encryption at rest for underlying EBS volumes and snapshots</li>
+<li>Transparent Data Encryption (TDE) for Oracle and SQL Server</li>
+<li>SSL encryption for all kinds of DB</li>
+<li>IAM authentication for MySQL and postgreSQL<ul>
+<li>Authorization still happens within RDS</li>
+</ul>
+</li>
+<li>Can copy an un-encryption RDS snapshot into an encrypted one</li>
+<li>CloudTrail cannot be used to track queries made within RDS</li>
 </ul>
 
         
