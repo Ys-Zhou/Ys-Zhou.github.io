@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Summary: Identity &amp; Federation - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IAM"><span class="toc-text">IAM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-Policies"><span class="toc-text">IAM Policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-Roles-vs-Resource-Based-Policies"><span class="toc-text">IAM Roles vs. Resource Based Policies</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STS"><span class="toc-text">STS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-STS-to-Assume-a-Role"><span class="toc-text">Using STS to Assume a Role</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Benefits"><span class="toc-text">Benefits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Assume-a-Role-to-3rd-party-AWS-Accounts"><span class="toc-text">Assume a Role to 3rd party AWS Accounts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Important-APIs"><span class="toc-text">Important APIs</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Identity-Federation"><span class="toc-text">Identity Federation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SAML-2-0"><span class="toc-text">SAML 2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Identity-Broker"><span class="toc-text">Custom Identity Broker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Identity-Federation-without-Cognito"><span class="toc-text">Web Identity Federation without Cognito</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Identity-Federation-with-Cognito"><span class="toc-text">Web Identity Federation with Cognito</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Web-Identity-Federation-in-IAM-Policy"><span class="toc-text">Use Web Identity Federation in IAM Policy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Directory-Services"><span class="toc-text">AWS Directory Services</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Microsoft-Active-Directory-AD"><span class="toc-text">Microsoft Active Directory (AD)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Directory-Services-1"><span class="toc-text">AWS Directory Services</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Managed-Microsoft-AD"><span class="toc-text">AWS Managed Microsoft AD</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Connect-to-on-premise-AD"><span class="toc-text">Connect to on-premise AD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AD-Connector"><span class="toc-text">AD Connector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Simple-AD"><span class="toc-text">Simple AD</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Organizations"><span class="toc-text">AWS Organizations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Feature-Modes"><span class="toc-text">Feature Modes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Organizational-Units-OU"><span class="toc-text">Organizational Units (OU)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service-Control-Policies-SCP"><span class="toc-text">Service Control Policies (SCP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reserved-Instances"><span class="toc-text">Reserved Instances</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Resource-Access-Manager-RAM"><span class="toc-text">AWS Resource Access Manager (RAM)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Single-Sign-On-SSO"><span class="toc-text">AWS Single Sign-On (SSO)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSO-vs-AssumeRoleWithSAML"><span class="toc-text">SSO vs. AssumeRoleWithSAML</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Summary: Identity &amp; Federation
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-05-23 22:43:39</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="IAM"><a href="#IAM" class="headerlink" title="IAM"></a>IAM</h1><ul>
+<li>Users: long-term credentials</li>
+<li>Groups: group users</li>
+<li>Roles: short-term credentials, uses STS to assume<ul>
+<li>EC2 Instance Roles</li>
+<li>Service Roles</li>
+<li>Cross Account Roles</li>
+</ul>
+</li>
+<li>Policies:<ul>
+<li>AWS Managed</li>
+<li>Customer Managed</li>
+<li>Inline Policies</li>
+</ul>
+</li>
+</ul>
+<h2 id="IAM-Policies"><a href="#IAM-Policies" class="headerlink" title="IAM Policies"></a>IAM Policies</h2><ul>
+<li>JSON doc<ul>
+<li>Effect</li>
+<li>Action</li>
+<li>Resource</li>
+<li>Condition</li>
+<li>Policy Variables</li>
+</ul>
+</li>
+<li>Explicit <strong>Deny</strong> has precedence over <strong>Allow</strong><ul>
+<li>Use <strong>NotAction</strong> to define “not allow”</li>
+</ul>
+</li>
+<li>Best practice: use least privilege<ul>
+<li>Access Advisor: see permissions granted and when last accessed</li>
+<li>Access Analyzer: analyze resources that are shared with external entity</li>
+</ul>
+</li>
+<li>Policies Conditions<ul>
+<li>“Condition”: {“{operator}”: {“{key}”: “{value}”}}</li>
+</ul>
+</li>
+<li>Policies Variables and Tags<ul>
+<li>AWS Specific<ul>
+<li>ex. ${aws:username}</li>
+</ul>
+</li>
+<li>Service Specific<ul>
+<li>ex. ${s3:prefix}</li>
+</ul>
+</li>
+<li>Tag Based<ul>
+<li>ex. ${aws:PrincipalTag/key-name}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="IAM-Roles-vs-Resource-Based-Policies"><a href="#IAM-Roles-vs-Resource-Based-Policies" class="headerlink" title="IAM Roles vs. Resource Based Policies"></a>IAM Roles vs. Resource Based Policies</h2><ul>
+<li>Both works for cross-accounts accessing</li>
+<li>When you assume a role, you will give up original permissions, and take the permissions assigned to the role</li>
+<li>Resource based policies have no effect on your current permissions<ul>
+<li>S3 buckets</li>
+<li>SNS topics</li>
+<li>SQS queues</li>
+</ul>
+</li>
+</ul>
+<h1 id="STS"><a href="#STS" class="headerlink" title="STS"></a>STS</h1><h2 id="Using-STS-to-Assume-a-Role"><a href="#Using-STS-to-Assume-a-Role" class="headerlink" title="Using STS to Assume a Role"></a>Using STS to Assume a Role</h2><ul>
+<li>Define an IAM Role within your account or cross-account</li>
+<li>Define which principals can access the IAM Role</li>
+<li>Use STS to retrieve credentials and impersonate the IAM Role you have access to</li>
+<li>Temporary credentials can be valid between 15 minutes to 1 hour</li>
+<li>Ability to revoke active sessions and credentials for a role</li>
+</ul>
+<h2 id="Benefits"><a href="#Benefits" class="headerlink" title="Benefits"></a>Benefits</h2><ul>
+<li>You must explicitly grant your users permission to assume the role</li>
+<li>Users must actively switch to the role or assume the role</li>
+<li>You can add MFA protection to the role so that only users who sign in with MFA can assume the role</li>
+</ul>
+<h2 id="Assume-a-Role-to-3rd-party-AWS-Accounts"><a href="#Assume-a-Role-to-3rd-party-AWS-Accounts" class="headerlink" title="Assume a Role to 3rd party AWS Accounts"></a>Assume a Role to 3rd party AWS Accounts</h2><ul>
+<li>Use IAM Access Analyzer to find out which resources are exposed</li>
+<li>For granting access to a 3rd party account<ul>
+<li>The 3rd party AWS account ID</li>
+<li>An External ID<ul>
+<li>To uniquely associate with the role between your account and 3rd party account</li>
+<li>Must be provided when defining the trust and when assuming the role</li>
+<li>Must be chosen by the 3rd party</li>
+<li>In order to prevent the <em>confused deputy</em></li>
+</ul>
+</li>
+<li>Define permissions in the IAM policy</li>
+</ul>
+</li>
+</ul>
+<h2 id="Important-APIs"><a href="#Important-APIs" class="headerlink" title="Important APIs"></a>Important APIs</h2><ul>
+<li><strong>AssumeRole</strong>: access a role within your account or cross-account</li>
+<li><strong>AssumeRoleWithSAML</strong>: return credentials for users logged with SAML</li>
+<li><strong>AssumeRoleWithWebIdentity</strong>: return credentials for users logged with an Idp<ul>
+<li>AWS recommends using Cognito instead</li>
+</ul>
+</li>
+<li><strong>GetSessionToken</strong>: for MFA, obtain user credentials</li>
+<li><strong>GetFederationToken</strong>: obtain credentials for a federated user</li>
+</ul>
+<h1 id="Identity-Federation"><a href="#Identity-Federation" class="headerlink" title="Identity Federation"></a>Identity Federation</h1><ul>
+<li>Federation lets users outside of AWS to assume temporary role for accessing AWS resources</li>
+<li>Without creating IAM users</li>
+<li>Flavors of Federations<ul>
+<li>SAML 2.0</li>
+<li>Custom Identity Broker</li>
+<li>Web Identity Federation without Cognito</li>
+<li>Web Identity Federation with Cognito</li>
+<li>SSO</li>
+<li>Non-SAML with AWS Microsoft AD</li>
+</ul>
+</li>
+</ul>
+<h2 id="SAML-2-0"><a href="#SAML-2-0" class="headerlink" title="SAML 2.0"></a>SAML 2.0</h2><ul>
+<li>Integrate SAML 2.0 compatible IdP or ADFS</li>
+<li>AWS recommends using Amazon SSO instead</li>
+<li>Setup<ul>
+<li>Setup a trust between AWS IAM and SAML (both ways)</li>
+<li>SAML 2.0 enables web-based cross domain SSO</li>
+<li>Uses STS API: AssumeRoleWithSAML</li>
+</ul>
+</li>
+</ul>
+<h2 id="Custom-Identity-Broker"><a href="#Custom-Identity-Broker" class="headerlink" title="Custom Identity Broker"></a>Custom Identity Broker</h2><ul>
+<li>Use only if Idp is not compatible with SAML 2.0</li>
+<li>The identity broker talks with STS and must determine the appropriate IAM policy</li>
+<li>Uses STS API: AssumeRole or GetFederationToken</li>
+</ul>
+<h2 id="Web-Identity-Federation-without-Cognito"><a href="#Web-Identity-Federation-without-Cognito" class="headerlink" title="Web Identity Federation without Cognito"></a>Web Identity Federation without Cognito</h2><ul>
+<li>Get credentials from Web IdP such as Amazon, Google and Facebook</li>
+<li>AWS recommends using Cognito instead</li>
+<li>Uses STS API: AssumeRoleWithWebIdentity</li>
+</ul>
+<h2 id="Web-Identity-Federation-with-Cognito"><a href="#Web-Identity-Federation-with-Cognito" class="headerlink" title="Web Identity Federation with Cognito"></a>Web Identity Federation with Cognito</h2><ul>
+<li>Create IAM Roles using Cognito with the least privilege needed</li>
+<li>Build trust between the OIDC IdP and AWS</li>
+<li>Benefits<ul>
+<li>Support for anonymous users</li>
+<li>Support for MFA</li>
+<li>Data synchronization</li>
+</ul>
+</li>
+<li>Cognito as a new service replaces Token Vending Machine (TVM)</li>
+</ul>
+<h2 id="Use-Web-Identity-Federation-in-IAM-Policy"><a href="#Use-Web-Identity-Federation-in-IAM-Policy" class="headerlink" title="Use Web Identity Federation in IAM Policy"></a>Use Web Identity Federation in IAM Policy</h2><ul>
+<li>You can identify the user with an IAM policy variable</li>
+<li>Examples<ul>
+<li>cognito-identity.amazonaws.com:sub</li>
+<li><a href="http://www.amazon.com:user_id" target="_blank" rel="noopener">www.amazon.com:user_id</a></li>
+<li>accounts.google.com:sub</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Directory-Services"><a href="#AWS-Directory-Services" class="headerlink" title="AWS Directory Services"></a>AWS Directory Services</h1><h2 id="Microsoft-Active-Directory-AD"><a href="#Microsoft-Active-Directory-AD" class="headerlink" title="Microsoft Active Directory (AD)"></a>Microsoft Active Directory (AD)</h2><ul>
+<li>Microsoft Active Directory (AD)<ul>
+<li>Centralized security management, create account, assign permissions</li>
+</ul>
+</li>
+<li>Active Directory Federation Service (ADFS)<ul>
+<li>Provide SSO across applications using AD</li>
+</ul>
+</li>
+</ul>
+<h2 id="AWS-Directory-Services-1"><a href="#AWS-Directory-Services-1" class="headerlink" title="AWS Directory Services"></a>AWS Directory Services</h2><ul>
+<li>AWS Managed Microsoft AD<ul>
+<li>Create your own AD in AWS</li>
+<li>Users are managed in AWS</li>
+<li>Supports MFA</li>
+<li>Establish <em>trust</em> connections with your on-premise AD</li>
+</ul>
+</li>
+<li>AD Connector<ul>
+<li>Directory Gateway (proxy) to redirect to on-premise AD</li>
+<li>Users are managed on the on-premise AD</li>
+</ul>
+</li>
+<li>Simple AD<ul>
+<li>AD-compatible managed directory in AWS</li>
+<li>Cannot be joined with on-premise AD</li>
+</ul>
+</li>
+</ul>
+<h3 id="AWS-Managed-Microsoft-AD"><a href="#AWS-Managed-Microsoft-AD" class="headerlink" title="AWS Managed Microsoft AD"></a>AWS Managed Microsoft AD</h3><ul>
+<li>A managed AD in your AWS VPC</li>
+<li>Integrations<ul>
+<li>EC2 Windows Instance</li>
+<li>RDS for SQL Server, AWS Workspaces, Quicksight, ect.</li>
+<li>AWS SSO to provide access to 3rd party applications</li>
+</ul>
+</li>
+<li>Can be joined to on-premise AD<ul>
+<li>AD two-way forest trust</li>
+</ul>
+</li>
+<li>Multi-AZ deployment<ul>
+<li>two AZ by default</li>
+<li>Can be increased for scaling</li>
+</ul>
+</li>
+<li>Automated backups</li>
+</ul>
+<h4 id="Connect-to-on-premise-AD"><a href="#Connect-to-on-premise-AD" class="headerlink" title="Connect to on-premise AD"></a>Connect to on-premise AD</h4><ul>
+<li>Must establish a Direct Connect or VPN connection</li>
+<li>Forest trust<ul>
+<li>One-way trust<ul>
+<li>AWS -&gt; On-premise</li>
+<li>On-premise -&gt; AWS</li>
+</ul>
+</li>
+<li>Two-way trust<ul>
+<li>AWS &lt;-&gt; On-premise</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Directly replication between AWS Managed AD and On-premise AD is not supported<ul>
+<li>Solution<ul>
+<li>Replication your on-premise AD to a EC2 Windows instance managed by yourself</li>
+<li>Establish trust between the AWS Managed AD and AD in EC2</li>
+<li>For low latency, you can deploy the EC2 instance and AWS Managed AD in one VPC</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="AD-Connector"><a href="#AD-Connector" class="headerlink" title="AD Connector"></a>AD Connector</h3><ul>
+<li>A gateway to redirect requests to your on-premises AD</li>
+<li>Must establish a Direct Connect or VPN connection</li>
+<li>No caching capability</li>
+<li>Does not integrate with AWS services or joining EC2 instances</li>
+</ul>
+<h3 id="Simple-AD"><a href="#Simple-AD" class="headerlink" title="Simple AD"></a>Simple AD</h3><ul>
+<li>Lower cost, low scale</li>
+<li>Compatible with Microsoft AD</li>
+<li>Supports joining EC2 instances</li>
+<li>Does not support MFA</li>
+<li>Does not integrate with AWS services</li>
+<li>Cannot setup trust relationship</li>
+</ul>
+<h1 id="AWS-Organizations"><a href="#AWS-Organizations" class="headerlink" title="AWS Organizations"></a>AWS Organizations</h1><ul>
+<li>One master account and many child accounts<ul>
+<li>Master account can invite exists child accounts or create new child accounts</li>
+</ul>
+</li>
+<li>Master account can access child accounts<ul>
+<li>Create IAM roles in child accounts</li>
+<li>Assume the roles using the STS Cross Account capability</li>
+</ul>
+</li>
+<li>Can automatically create AWS account using API</li>
+<li>Integration with AWS SSO</li>
+</ul>
+<h2 id="Feature-Modes"><a href="#Feature-Modes" class="headerlink" title="Feature Modes"></a>Feature Modes</h2><ul>
+<li>Consolidated Billing Only<ul>
+<li>Consolidated billing across all accounts</li>
+<li>Pricing benefits from aggregated usage</li>
+</ul>
+</li>
+<li>All Features (Default)<ul>
+<li>Includes consolidated billing</li>
+<li>Able to use Service Control Policy (SCP)</li>
+<li>You can apply an SCP to prevent member accounts from leaving thr organization</li>
+<li>Invited accounts must approve enabling all features</li>
+<li>Cannot switch to Consolidated Billing Only</li>
+</ul>
+</li>
+</ul>
+<h2 id="Organizational-Units-OU"><a href="#Organizational-Units-OU" class="headerlink" title="Organizational Units (OU)"></a>Organizational Units (OU)</h2><ul>
+<li>An OU is a group of accounts and OUs</li>
+<li>Root OU</li>
+</ul>
+<h2 id="Service-Control-Policies-SCP"><a href="#Service-Control-Policies-SCP" class="headerlink" title="Service Control Policies (SCP)"></a>Service Control Policies (SCP)</h2><ul>
+<li>Applied at the OU or account level</li>
+<li>SCP does not affect service-linked roles</li>
+<li>SCP must have an explicit Allow (does not allow anything by default)</li>
+<li>Blacklist or Whitelist strategies</li>
+</ul>
+<h2 id="Reserved-Instances"><a href="#Reserved-Instances" class="headerlink" title="Reserved Instances"></a>Reserved Instances</h2><ul>
+<li>Reserved Instances are shared across all accounts</li>
+<li>The payer account (master account) can turn off RI discount and Savings Plans discount sharing for any accounts in the organization</li>
+</ul>
+<h1 id="AWS-Resource-Access-Manager-RAM"><a href="#AWS-Resource-Access-Manager-RAM" class="headerlink" title="AWS Resource Access Manager (RAM)"></a>AWS Resource Access Manager (RAM)</h1><ul>
+<li>Share AWS resources that you own with other AWS accounts</li>
+<li>You can choose to share with any account or within you Organization</li>
+<li>Share VPC Subnets<ul>
+<li>Allow different accounts to have resources launched in the same subnets</li>
+<li>Accounts must be from the same AWS Organizations</li>
+<li>Cannot share security groups and default VPC</li>
+<li>One account cannot view, modify, delete, resources that belong to other accounts</li>
+</ul>
+</li>
+<li>Can also share<ul>
+<li>Route53 Resolver Rules</li>
+<li>License Manager Configurations</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Single-Sign-On-SSO"><a href="#AWS-Single-Sign-On-SSO" class="headerlink" title="AWS Single Sign-On (SSO)"></a>AWS Single Sign-On (SSO)</h1><ul>
+<li>Centrally manage SSO to access multiple accounts and 3rd party applications</li>
+<li>Supports SAML 2.0</li>
+<li>Integration with AWS Organizations</li>
+<li>Integration with AD including on-premise AD</li>
+<li>Centralized permission management</li>
+<li>Centralized auditing with CloudTrail</li>
+</ul>
+<h2 id="SSO-vs-AssumeRoleWithSAML"><a href="#SSO-vs-AssumeRoleWithSAML" class="headerlink" title="SSO vs. AssumeRoleWithSAML"></a>SSO vs. AssumeRoleWithSAML</h2><ul>
+<li>AssumeRoleWithSAML<ul>
+<li>Use 3rd party IdP Login Portal<ul>
+<li>Return SAML credential</li>
+</ul>
+</li>
+<li>Talk with STS to assume a role</li>
+</ul>
+</li>
+<li>SSO<ul>
+<li>Talk with SSO only to assume a role<ul>
+<li>Use STS under the hook</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

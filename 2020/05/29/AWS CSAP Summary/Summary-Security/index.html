@@ -11,7 +11,7 @@
 
     <title>
         
-        Hiko Amane&#39;s Blog
+        Summary: Security - Hiko Amane&#39;s Blog
         
     </title>
 
@@ -53,7 +53,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li class="active">
+            <li>
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>HOME</span>
@@ -88,6 +88,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudTrail"><span class="toc-text">CloudTrail</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudTrail-Trail"><span class="toc-text">CloudTrail Trail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Delivery-to-S3"><span class="toc-text">Architecture: Delivery to S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Multi-Account-Multi-Region-Logging"><span class="toc-text">Architecture: Multi-Account, Multi-Region Logging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Alert-for-API-calls"><span class="toc-text">Architecture: Alert for API calls</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delivery-Time"><span class="toc-text">Delivery Time</span></a></li></ol></li></ol>
+</div>
+    
 </div>
 
 
@@ -112,57 +116,111 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-preview-container" style="min-height: 720px">
-    
-    <div class="post-preview">
-        <div class="post-time">2019-06-16</div>
-        <div class="post-info">
-            <a href="/2019/06/16/AWS CSAA/Basic-AWS-Best-Practices/">
-                <h3>
-                    Basic AWS Best Practices
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+
+<div class="post-container">
+    <div class="post-title">
+        Summary: Security
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-06-16</div>
-        <div class="post-info">
-            <a href="/2019/06/16/AWS CSAA/Key-points-about-AWS-WAF/">
-                <h3>
-                    Key points about AWS WAF
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-05-29 15:19:28</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
     </div>
-    
-</div>
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/">&larr; Newer Posts</a>
-    </li>
-    
-    
+    <div class="post-content no-indent">
+        <h1 id="CloudTrail"><a href="#CloudTrail" class="headerlink" title="CloudTrail"></a>CloudTrail</h1><ul>
+<li>Provides governance, compliance and audit for your AWS account</li>
+<li>CloudTrail is enabled by default</li>
+<li>Get a history of events / API calls made within your AWS account</li>
+<li>Can put logs from CloudTrail to CloudWatch Logs</li>
+<li>CloudTrail console only shows the past 90 days of activity</li>
+<li>The default UI only shows <em>Create</em>, <em>Modify</em>, and <em>Delete</em> events</li>
 </ul>
+<h2 id="CloudTrail-Trail"><a href="#CloudTrail-Trail" class="headerlink" title="CloudTrail Trail"></a>CloudTrail Trail</h2><ul>
+<li>Get a detailed list of all the events you choose</li>
+<li>Can include events happing at the object level in S3</li>
+<li>Ability to store these events in S3 for further analysis</li>
+<li>Can be region specific or be global</li>
+</ul>
+<h2 id="Architecture-Delivery-to-S3"><a href="#Architecture-Delivery-to-S3" class="headerlink" title="Architecture: Delivery to S3"></a>Architecture: Delivery to S3</h2><ul>
+<li>CloudTrail can send events to S3 every 5 minutes</li>
+<li>Use SSE-S3 encryption by default or SSE-KMS</li>
+<li>Notification<ul>
+<li>Use CloudTrail Delivery Notifications<ul>
+<li>Send notifications to SNS, can further send to SQS or Lambda</li>
+</ul>
+</li>
+<li>Use S3 Events<ul>
+<li>Send S3 events to SQS, SNS, or Lambda</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>All benefits of S3<ul>
+<li>Versioning</li>
+<li>MFA Delete protection</li>
+<li>Lifecycle Policy</li>
+<li>Object Lock</li>
+<li>Encryption (SSE-S3, SSE-KMS)</li>
+<li>SHA-256 for integrity validation</li>
+</ul>
+</li>
+</ul>
+<h2 id="Architecture-Multi-Account-Multi-Region-Logging"><a href="#Architecture-Multi-Account-Multi-Region-Logging" class="headerlink" title="Architecture: Multi-Account, Multi-Region Logging"></a>Architecture: Multi-Account, Multi-Region Logging</h2><ul>
+<li>Send CloudTrail events from different accounts to S3 bucket in one account</li>
+<li>S3 bucket policy is necessary for cross-account delivery</li>
+<li>Two options to access log files from other accounts<ol>
+<li>Assume cross-account role</li>
+<li>Edit bucket policy to allow cross-account access</li>
+</ol>
+</li>
+</ul>
+<h2 id="Architecture-Alert-for-API-calls"><a href="#Architecture-Alert-for-API-calls" class="headerlink" title="Architecture: Alert for API calls"></a>Architecture: Alert for API calls</h2><ul>
+<li>Stream CloudTrail events to CloudWatch Logs</li>
+<li>Create Metric Filters that trigger CloudWatch Alarm</li>
+<li>CloudWatch Alarm can send notifications to SNS</li>
+</ul>
+<h2 id="Delivery-Time"><a href="#Delivery-Time" class="headerlink" title="Delivery Time"></a>Delivery Time</h2><ul>
+<li>Overall<ul>
+<li>15 minutes</li>
+</ul>
+</li>
+<li>CloudWatch Events<ul>
+<li>Can be triggered for any API call in CloudTrail</li>
+<li>The fastest way</li>
+</ul>
+</li>
+<li>CloudTrail Delivery in CloudWatch Logs<ul>
+<li>Events are streamed</li>
+</ul>
+</li>
+<li>CloudTrail Delivery in S3<ul>
+<li>Events are delivery every 5 minutes</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
 
     </div>
 </div>
@@ -220,7 +278,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
