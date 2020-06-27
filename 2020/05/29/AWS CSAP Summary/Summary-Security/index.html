@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudTrail"><span class="toc-text">CloudTrail</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudTrail-Trail"><span class="toc-text">CloudTrail Trail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Delivery-to-S3"><span class="toc-text">Architecture: Delivery to S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Multi-Account-Multi-Region-Logging"><span class="toc-text">Architecture: Multi-Account, Multi-Region Logging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Alert-for-API-calls"><span class="toc-text">Architecture: Alert for API calls</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delivery-Time"><span class="toc-text">Delivery Time</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-KMS"><span class="toc-text">AWS KMS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Types-of-CMK"><span class="toc-text">Types of CMK</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSM-Parameter-Store"><span class="toc-text">SSM Parameter Store</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Secrets-Manager"><span class="toc-text">Secrets Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RDS-Security"><span class="toc-text">RDS Security</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudTrail"><span class="toc-text">CloudTrail</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudTrail-Trail"><span class="toc-text">CloudTrail Trail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Delivery-to-S3"><span class="toc-text">Architecture: Delivery to S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Multi-Account-Multi-Region-Logging"><span class="toc-text">Architecture: Multi-Account, Multi-Region Logging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Alert-for-API-calls"><span class="toc-text">Architecture: Alert for API calls</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delivery-Time"><span class="toc-text">Delivery Time</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#KMS"><span class="toc-text">KMS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Types-of-CMK"><span class="toc-text">Types of CMK</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Systems-Manager-SSM-Parameter-Store"><span class="toc-text">AWS Systems Manager (SSM) Parameter Store</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Secrets-Manager"><span class="toc-text">AWS Secrets Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RDS-Security"><span class="toc-text">RDS Security</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSL"><span class="toc-text">SSL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-Name-Indication-SNI"><span class="toc-text">Server Name Indication (SNI)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Protection-for-Man-in-the-middle-Attacks"><span class="toc-text">Protection for Man-in-the-middle Attacks</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Certificate-Manager-ACM"><span class="toc-text">AWS Certificate Manager (ACM)</span></a></li></ol>
 </div>
     
 </div>
@@ -148,7 +148,7 @@
 </ul>
 <h2 id="CloudTrail-Trail"><a href="#CloudTrail-Trail" class="headerlink" title="CloudTrail Trail"></a>CloudTrail Trail</h2><ul>
 <li>Get a detailed list of all the events you choose</li>
-<li>Can include events happing at the object level in S3</li>
+<li>Can include events happening at the object level in S3</li>
 <li>Ability to store these events in S3 for further analysis</li>
 <li>Can be region specific or be global</li>
 </ul>
@@ -209,7 +209,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="AWS-KMS"><a href="#AWS-KMS" class="headerlink" title="AWS KMS"></a>AWS KMS</h1><ul>
+<h1 id="KMS"><a href="#KMS" class="headerlink" title="KMS"></a>KMS</h1><ul>
 <li>Encryption for AWS Services<ul>
 <li>EBS: encrypt volumes</li>
 <li>S3: SSE-KMS</li>
@@ -249,7 +249,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="SSM-Parameter-Store"><a href="#SSM-Parameter-Store" class="headerlink" title="SSM Parameter Store"></a>SSM Parameter Store</h1><ul>
+<h1 id="AWS-Systems-Manager-SSM-Parameter-Store"><a href="#AWS-Systems-Manager-SSM-Parameter-Store" class="headerlink" title="AWS Systems Manager (SSM) Parameter Store"></a>AWS Systems Manager (SSM) Parameter Store</h1><ul>
 <li>Secure storage for configuration and secrets</li>
 <li>Secrets can be encrypted by KMS</li>
 <li>Support version tracking</li>
@@ -258,7 +258,7 @@
 <li>Integration with CloudFormation</li>
 <li>Can retrieve secrets from Secrets Manager using the SSM Parameter Store API</li>
 </ul>
-<h1 id="Secrets-Manager"><a href="#Secrets-Manager" class="headerlink" title="Secrets Manager"></a>Secrets Manager</h1><ul>
+<h1 id="AWS-Secrets-Manager"><a href="#AWS-Secrets-Manager" class="headerlink" title="AWS Secrets Manager"></a>AWS Secrets Manager</h1><ul>
 <li>A newer service for storing secrets</li>
 <li>Capability to force rotation of secrets every X days</li>
 <li>Can automatically generate secrets on rotation using Lambda</li>
@@ -275,6 +275,43 @@
 </li>
 <li>Can copy an un-encryption RDS snapshot into an encrypted one</li>
 <li>CloudTrail cannot be used to track queries made within RDS</li>
+</ul>
+<h1 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h1><h2 id="Server-Name-Indication-SNI"><a href="#Server-Name-Indication-SNI" class="headerlink" title="Server Name Indication (SNI)"></a>Server Name Indication (SNI)</h2><ul>
+<li>Use SNI to find the correct SSL certificate when you have multiple hostname pointed to one web server</li>
+<li>Only works for ALB, NLB and CloudFront</li>
+<li>Does not work for CLB</li>
+</ul>
+<h2 id="Protection-for-Man-in-the-middle-Attacks"><a href="#Protection-for-Man-in-the-middle-Attacks" class="headerlink" title="Protection for Man-in-the-middle Attacks"></a>Protection for Man-in-the-middle Attacks</h2><ul>
+<li>Always use HTTPS instead of HTTP</li>
+<li>Use DNSSEC<ul>
+<li>Route 53 support DNSSEC for domain registration</li>
+<li>Route 53 does not support DNSSEC for DNS service</li>
+<li>You must use another DNS service provider if you want to configure DNSSEC (ex. run a custom DNS server on EC2)</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Certificate-Manager-ACM"><a href="#AWS-Certificate-Manager-ACM" class="headerlink" title="AWS Certificate Manager (ACM)"></a>AWS Certificate Manager (ACM)</h1><ul>
+<li>Loads SSL certificate on the following integrations<ul>
+<li>ELB</li>
+<li>CloudFront</li>
+<li>API Gateways</li>
+</ul>
+</li>
+<li>ACM supports<ul>
+<li>Public certificates issued by a trusted certificate authority (CA)</li>
+<li>Private certificates</li>
+</ul>
+</li>
+<li>Certificate renewal<ul>
+<li>Automatically done if generated by ACM</li>
+<li>Manually re-uploaded if certificate is user-uploaded</li>
+</ul>
+</li>
+<li>ACM is a regional service<ul>
+<li>To use with a global application, you need to issue an SSL certificate in each region</li>
+<li>You cannot copy certificates across regions</li>
+</ul>
+</li>
 </ul>
 
         
