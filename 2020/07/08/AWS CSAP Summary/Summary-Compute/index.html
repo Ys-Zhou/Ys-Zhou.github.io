@@ -11,7 +11,7 @@
 
     <title>
         
-        Hiko Amane&#39;s Blog
+        Summary: Compute - Hiko Amane&#39;s Blog
         
     </title>
 
@@ -53,7 +53,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li class="active">
+            <li>
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>HOME</span>
@@ -88,6 +88,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EC2"><span class="toc-text">EC2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Instances-Types"><span class="toc-text">Instances Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Placement-Groups"><span class="toc-text">Placement Groups</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instances-Launch-Types"><span class="toc-text">Instances Launch Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metrics"><span class="toc-text">Metrics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instance-Recovery"><span class="toc-text">Instance Recovery</span></a></li></ol></li></ol>
+</div>
+    
 </div>
 
 
@@ -112,77 +116,95 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-preview-container" style="min-height: 720px">
-    
-    <div class="post-preview">
-        <div class="post-time">2019-07-14</div>
-        <div class="post-info">
-            <a href="/2019/07/14/AWS CBDS/Collection/">
-                <h3>
-                    Collection
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+
+<div class="post-container">
+    <div class="post-title">
+        Summary: Compute
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-06-16</div>
-        <div class="post-info">
-            <a href="/2019/06/16/AWS CSAA/Basic-AWS-Best-Practices/">
-                <h3>
-                    Basic AWS Best Practices
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-07-08 00:09:23</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-06-16</div>
-        <div class="post-info">
-            <a href="/2019/06/16/AWS CSAA/Key-points-about-AWS-WAF/">
-                <h3>
-                    Key points about AWS WAF
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-</div>
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/">&larr; Newer Posts</a>
-    </li>
-    
-    
+    <div class="post-content no-indent">
+        <h1 id="EC2"><a href="#EC2" class="headerlink" title="EC2"></a>EC2</h1><h2 id="Instances-Types"><a href="#Instances-Types" class="headerlink" title="Instances Types"></a>Instances Types</h2><ul>
+<li>R (RAM): in-memory caches</li>
+<li>C (CPU): compute / databases</li>
+<li>M: general purpose / web app</li>
+<li>I (I/O): databases</li>
+<li>G (GPU): video rendering / machine learning</li>
+<li>T2 / T3 (burstable instances)</li>
 </ul>
+<h2 id="Placement-Groups"><a href="#Placement-Groups" class="headerlink" title="Placement Groups"></a>Placement Groups</h2><ul>
+<li>Control EC2 instance placement strategy</li>
+<li>Group strategies:<ul>
+<li>Cluster: clusters instances into a low-latency group in a single AZ</li>
+<li>Spread: spreads instances across underlying hardware (up to 7 instances per group per AZ)</li>
+<li>Partition: spreads instances across partitions (up to 7 partitions &amp; 100s of instances per group per AZ)</li>
+</ul>
+</li>
+<li>Move an instance into or out of a placement group<ul>
+<li>Stop the instance</li>
+<li>Modify the instance placement group</li>
+<li>Start the instance</li>
+</ul>
+</li>
+</ul>
+<h2 id="Instances-Launch-Types"><a href="#Instances-Launch-Types" class="headerlink" title="Instances Launch Types"></a>Instances Launch Types</h2><ul>
+<li>On Demand Instances</li>
+<li>Spot Instances</li>
+<li>Reserved Instances<ul>
+<li>Reserved Instances</li>
+<li>Convertible Reserved Instances</li>
+<li>Scheduled Reserved Instances</li>
+</ul>
+</li>
+<li>Dedicated Instances</li>
+<li>Dedicated Hosts<ul>
+<li>Book an entire physical server</li>
+<li>Can define host affinity so that instance reboots are kept on the same host</li>
+</ul>
+</li>
+</ul>
+<h2 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h2><ul>
+<li>CPU Utilization</li>
+<li>Network In / Out</li>
+<li>Disk Read / Write for instance store</li>
+<li>Status Check<ul>
+<li>Instance status (VM)</li>
+<li>System status (underlying hardware)</li>
+</ul>
+</li>
+<li><strong>RAM is not a EC2 metric</strong>, need to push it to CloudWatch as a custom metric</li>
+</ul>
+<h2 id="Instance-Recovery"><a href="#Instance-Recovery" class="headerlink" title="Instance Recovery"></a>Instance Recovery</h2><ul>
+<li>CloudWatch Alarm can monitor EC2 instances status check</li>
+<li>If any check failed, it can auto recovery the instance</li>
+<li>Preserve same private / public / Elastic IP, metadata, placement group</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
 
     </div>
 </div>
@@ -240,7 +262,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
