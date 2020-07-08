@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EC2"><span class="toc-text">EC2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Instances-Types"><span class="toc-text">Instances Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Placement-Groups"><span class="toc-text">Placement Groups</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instances-Launch-Types"><span class="toc-text">Instances Launch Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metrics"><span class="toc-text">Metrics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instance-Recovery"><span class="toc-text">Instance Recovery</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EC2"><span class="toc-text">EC2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Instances-Types"><span class="toc-text">Instances Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Placement-Groups"><span class="toc-text">Placement Groups</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instances-Launch-Types"><span class="toc-text">Instances Launch Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spot-Instances"><span class="toc-text">Spot Instances</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metrics"><span class="toc-text">Metrics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instance-Recovery"><span class="toc-text">Instance Recovery</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Auto-Scaling"><span class="toc-text">Auto Scaling</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-Auto-Scaling"><span class="toc-text">About Auto Scaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scaling-Policies"><span class="toc-text">Scaling Policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scaling-Processes"><span class="toc-text">Scaling Processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Health-Checks"><span class="toc-text">Health Checks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Update-instances-in-ASG"><span class="toc-text">Architecture: Update instances in ASG</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -177,6 +177,17 @@
 </ul>
 </li>
 </ul>
+<h3 id="Spot-Instances"><a href="#Spot-Instances" class="headerlink" title="Spot Instances"></a>Spot Instances</h3><ul>
+<li>Define max spot price, and you will get the instance while current spot instances price are less the the price</li>
+<li>You can also buy a Spot Block, that the instances will not be interrupted during a specified time frame (1 to 6 hours)</li>
+<li>Spot Fleets<ul>
+<li>Fleets of Spot Instances and optionally On-Demand Instances</li>
+<li>Can define max price for each Spot Instance</li>
+<li>Can have a mix of instance types</li>
+<li>Support for EC2, ASG, ECS with ASG, AWS Batch</li>
+</ul>
+</li>
+</ul>
 <h2 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h2><ul>
 <li>CPU Utilization</li>
 <li>Network In / Out</li>
@@ -192,6 +203,51 @@
 <li>CloudWatch Alarm can monitor EC2 instances status check</li>
 <li>If any check failed, it can auto recovery the instance</li>
 <li>Preserve same private / public / Elastic IP, metadata, placement group</li>
+</ul>
+<h1 id="Auto-Scaling"><a href="#Auto-Scaling" class="headerlink" title="Auto Scaling"></a>Auto Scaling</h1><h2 id="About-Auto-Scaling"><a href="#About-Auto-Scaling" class="headerlink" title="About Auto Scaling"></a>About Auto Scaling</h2><ul>
+<li>Spot Fleets support</li>
+<li>Update AMI<ul>
+<li>Update launch configuration / template</li>
+<li>Terminate instances manually</li>
+<li>You can use CloudFormation to automate the steps</li>
+</ul>
+</li>
+<li>Scheduled scaling actions<ul>
+<li>Increase or decrease instances in a schedule</li>
+</ul>
+</li>
+<li>Lifecycle Hooks<ul>
+<li>Perform actions before launch or terminate a instance</li>
+</ul>
+</li>
+</ul>
+<h2 id="Scaling-Policies"><a href="#Scaling-Policies" class="headerlink" title="Scaling Policies"></a>Scaling Policies</h2><ul>
+<li>Simple Scaling (Step Scaling): increase or decrease instances based on 2 CloudWatch alarms</li>
+<li>Target Tracking: smart adjust instances to close to a metric</li>
+</ul>
+<h2 id="Scaling-Processes"><a href="#Scaling-Processes" class="headerlink" title="Scaling Processes"></a>Scaling Processes</h2><ul>
+<li>Launch</li>
+<li>Terminate</li>
+<li>HealthCheck</li>
+<li>ReplaceUnhealthy</li>
+<li>AZRebalance</li>
+<li>AlarmNotification: when accept notification from CloudWatch</li>
+<li>ScheduledActions</li>
+<li>AddToLoadBalancer</li>
+<li>You can suspend above processes</li>
+</ul>
+<h2 id="Health-Checks"><a href="#Health-Checks" class="headerlink" title="Health Checks"></a>Health Checks</h2><ul>
+<li>Check types<ul>
+<li>EC2 Status Checks</li>
+<li>ELB Health Checks (HTTP)</li>
+</ul>
+</li>
+<li>ASG will launch a new instance to replace the unhealthy one</li>
+</ul>
+<h2 id="Architecture-Update-instances-in-ASG"><a href="#Architecture-Update-instances-in-ASG" class="headerlink" title="Architecture: Update instances in ASG"></a>Architecture: Update instances in ASG</h2><ul>
+<li>Solution 1: Create new instances with the new template in the same ASG, and terminate old instances later</li>
+<li>Solution 2: Create a new ASG connected to the same load balancer, and split traffic between ASGs</li>
+<li>Solution 3: Create a new load balancer, use Route 53 CNAME weight record to split traffic (has risks because it’s based on DNS)</li>
 </ul>
 
         
