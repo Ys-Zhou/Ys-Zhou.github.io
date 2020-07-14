@@ -344,6 +344,7 @@
 </ul>
 </li>
 <li>Asynchronous Invocations<ul>
+<li>Will be used when triggered by S3 Events, SNS, CloudWatch Events</li>
 <li>Lambda attempts to retry on errors (up to 3 times)</li>
 <li>Make sure the processing is idempotent</li>
 <li>Can define a DLQ (to SNS or SQS) for failed processing</li>
