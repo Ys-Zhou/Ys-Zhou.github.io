@@ -11,7 +11,7 @@
 
     <title>
         
-        Hiko Amane&#39;s Blog
+        Summary: Storage - Hiko Amane&#39;s Blog
         
     </title>
 
@@ -53,7 +53,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li class="active">
+            <li>
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>HOME</span>
@@ -88,6 +88,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EBS-amp-EC2-Instance-Store"><span class="toc-text">EBS &amp; EC2 Instance Store</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS-Volume-Types"><span class="toc-text">EBS Volume Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS-Snapshots"><span class="toc-text">EBS Snapshots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EC2-Instance-Store"><span class="toc-text">EC2 Instance Store</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EFS"><span class="toc-text">EFS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS-Settings"><span class="toc-text">EFS Settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS-Sharing"><span class="toc-text">EFS Sharing</span></a></li></ol></li></ol>
+</div>
+    
 </div>
 
 
@@ -112,97 +116,125 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-preview-container" style="min-height: 720px">
-    
-    <div class="post-preview">
-        <div class="post-time">2019-08-17</div>
-        <div class="post-info">
-            <a href="/2019/08/17/AWS CBDS/Storage/">
-                <h3>
-                    Storage
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+
+<div class="post-container">
+    <div class="post-title">
+        Summary: Storage
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-07-14</div>
-        <div class="post-info">
-            <a href="/2019/07/14/AWS CBDS/Collection/">
-                <h3>
-                    Collection
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-07-31 15:33:26</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-06-16</div>
-        <div class="post-info">
-            <a href="/2019/06/16/AWS CSAA/Basic-AWS-Best-Practices/">
-                <h3>
-                    Basic AWS Best Practices
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-06-16</div>
-        <div class="post-info">
-            <a href="/2019/06/16/AWS CSAA/Key-points-about-AWS-WAF/">
-                <h3>
-                    Key points about AWS WAF
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-</div>
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/">&larr; Newer Posts</a>
-    </li>
-    
-    
+    <div class="post-content no-indent">
+        <h1 id="EBS-amp-EC2-Instance-Store"><a href="#EBS-amp-EC2-Instance-Store" class="headerlink" title="EBS &amp; EC2 Instance Store"></a>EBS &amp; EC2 Instance Store</h1><h2 id="EBS-Volume-Types"><a href="#EBS-Volume-Types" class="headerlink" title="EBS Volume Types"></a>EBS Volume Types</h2><ul>
+<li>gp2<ul>
+<li>General Purpose SSD</li>
+<li>3 IOPS / GB <ul>
+<li>min 100 IOPS</li>
+<li>burst to 3000 IOPS</li>
+<li>max 16000 IOPS</li>
 </ul>
+</li>
+<li>1 GB - 16 TB</li>
+</ul>
+</li>
+<li>io1<ul>
+<li>IOPS Optimized SSD</li>
+<li>Provisioned IOPS<ul>
+<li>min 100 IOPS</li>
+<li>max 64000 IOPS for Nitro instances, 32000 IOPS for others</li>
+</ul>
+</li>
+<li>4 GB - 16 TB</li>
+</ul>
+</li>
+<li>st1<ul>
+<li>Throughput Optimized HDD</li>
+<li>500 MB / s</li>
+<li>500 GB - 16 TB</li>
+</ul>
+</li>
+<li>sc1<ul>
+<li>Cold HDD</li>
+<li>250 MB / s</li>
+<li>250 GB - 16 TB</li>
+</ul>
+</li>
+</ul>
+<h2 id="EBS-Snapshots"><a href="#EBS-Snapshots" class="headerlink" title="EBS Snapshots"></a>EBS Snapshots</h2><ul>
+<li>Use incremental snapshots</li>
+<li>Snapshots will be stored in S3</li>
+<li>AWS recommend to detach volume to do snapshot but not necessary</li>
+<li>Can copy snapshots across region</li>
+<li>Can create AMI from snapshots</li>
+<li>You need to read the snapshot (use <em>fio</em> or <em>dd</em> command) before restore volume</li>
+<li>Snapshots can be automated using Amazon Data Lifecycle Manager</li>
+</ul>
+<h2 id="EC2-Instance-Store"><a href="#EC2-Instance-Store" class="headerlink" title="EC2 Instance Store"></a>EC2 Instance Store</h2><ul>
+<li>Physical disk attached to the EC2 physical server</li>
+<li>Very high IOPS</li>
+<li>Cannot resize</li>
+<li>Ephemeral (on stop or termination)</li>
+</ul>
+<h1 id="EFS"><a href="#EFS" class="headerlink" title="EFS"></a>EFS</h1><ul>
+<li>Only compatible with Linux instances</li>
+<li>Use security group to control access to EFS</li>
+<li>Encryption at rest using KMS</li>
+<li>Can only attach to one VPC, create one ENI per AZ</li>
+<li>1000s of concurrent NFS clients, over 10 GB / s throughput</li>
+</ul>
+<h2 id="EFS-Settings"><a href="#EFS-Settings" class="headerlink" title="EFS Settings"></a>EFS Settings</h2><ul>
+<li>Performance Mode<ul>
+<li>General purpose (default)</li>
+<li>Max I/O (higher latency, higher throughput)</li>
+</ul>
+</li>
+<li>Throughput Mode<ul>
+<li>Bursting mode (more FS size more burst throughput)</li>
+<li>Provisioned IO mode (expensive)</li>
+</ul>
+</li>
+<li>Storage Tiers<ul>
+<li>Standard</li>
+<li>Infrequent access (higher cost to retrieve files, lower to store files)</li>
+</ul>
+</li>
+</ul>
+<h2 id="EFS-Sharing"><a href="#EFS-Sharing" class="headerlink" title="EFS Sharing"></a>EFS Sharing</h2><ul>
+<li>From VPC<ul>
+<li>VPC peering</li>
+</ul>
+</li>
+<li>From On-Premise<ul>
+<li>Direct Connect</li>
+<li>VPN</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
 
     </div>
 </div>
@@ -260,7 +292,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
