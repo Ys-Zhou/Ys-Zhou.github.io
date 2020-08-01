@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EBS-amp-EC2-Instance-Store"><span class="toc-text">EBS &amp; EC2 Instance Store</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS-Volume-Types"><span class="toc-text">EBS Volume Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS-Snapshots"><span class="toc-text">EBS Snapshots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EC2-Instance-Store"><span class="toc-text">EC2 Instance Store</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EFS"><span class="toc-text">EFS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS-Settings"><span class="toc-text">EFS Settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS-Sharing"><span class="toc-text">EFS Sharing</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EBS-amp-EC2-Instance-Store"><span class="toc-text">EBS &amp; EC2 Instance Store</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS-Volume-Types"><span class="toc-text">EBS Volume Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS-Snapshots"><span class="toc-text">EBS Snapshots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EC2-Instance-Store"><span class="toc-text">EC2 Instance Store</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EFS"><span class="toc-text">EFS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS-Settings"><span class="toc-text">EFS Settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS-Sharing"><span class="toc-text">EFS Sharing</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Replication"><span class="toc-text">S3 Replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Events"><span class="toc-text">S3 Events</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-CloudWatch-Events"><span class="toc-text">S3 CloudWatch Events</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Performance"><span class="toc-text">S3 Performance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Multi-Part-Upload"><span class="toc-text">S3 Multi-Part Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Transfer-Acceleration"><span class="toc-text">S3 Transfer Acceleration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Byte-Range-Fetches"><span class="toc-text">Byte-Range Fetches</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-amp-Glacier-Select"><span class="toc-text">S3 &amp; Glacier Select</span></a></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -222,6 +222,47 @@
 <li>VPN</li>
 </ul>
 </li>
+</ul>
+<h1 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h1><h2 id="S3-Replication"><a href="#S3-Replication" class="headerlink" title="S3 Replication"></a>S3 Replication</h2><ul>
+<li>Cross-Region Replication &amp; Same Region Replication</li>
+<li>Combine with Lifecycle Policies</li>
+<li>S3 bucket versioning must be enabled</li>
+</ul>
+<h2 id="S3-Events"><a href="#S3-Events" class="headerlink" title="S3 Events"></a>S3 Events</h2><ul>
+<li>Send events to SNS, SQS, Lambda when objects changed</li>
+<li>Events typically will be delivered in secondes, but sometimes takes minutes</li>
+<li>If two writes are made to a non-versioning object, it is possible that only one event will be sent<ul>
+<li>Enable versioning if you want to send every time</li>
+</ul>
+</li>
+</ul>
+<h2 id="S3-CloudWatch-Events"><a href="#S3-CloudWatch-Events" class="headerlink" title="S3 CloudWatch Events"></a>S3 CloudWatch Events</h2><ul>
+<li>By default, CloudTrail records bucket-level API calls</li>
+<li>You can enable CloudTrail logs for object-level API calls</li>
+<li>CloudTrail can trigger CloudWatch events</li>
+</ul>
+<h2 id="S3-Performance"><a href="#S3-Performance" class="headerlink" title="S3 Performance"></a>S3 Performance</h2><ul>
+<li>100 - 200 ms latency</li>
+<li>3500 PUT/COPY/POST/DELETE and 5500 GET/HEAD requests per second per prefix<ul>
+<li>Spread prefix to reach higher requests per second</li>
+</ul>
+</li>
+</ul>
+<h3 id="S3-Multi-Part-Upload"><a href="#S3-Multi-Part-Upload" class="headerlink" title="S3 Multi-Part Upload"></a>S3 Multi-Part Upload</h3><ul>
+<li>Recommended for files &gt; 100 MB, must be used for files &gt; 5 GB</li>
+<li>Speed up transfers</li>
+</ul>
+<h3 id="S3-Transfer-Acceleration"><a href="#S3-Transfer-Acceleration" class="headerlink" title="S3 Transfer Acceleration"></a>S3 Transfer Acceleration</h3><ul>
+<li>Increase transfer speed by uploading files to an AWS edge location, and then forward the data to S3 buckets</li>
+<li>Compatible with Multi-Part Upload</li>
+</ul>
+<h3 id="Byte-Range-Fetches"><a href="#Byte-Range-Fetches" class="headerlink" title="Byte-Range Fetches"></a>Byte-Range Fetches</h3><ul>
+<li>Parallelize GETs by requesting specific byte ranges</li>
+<li>Can be used to retrieve only partial data</li>
+</ul>
+<h3 id="S3-amp-Glacier-Select"><a href="#S3-amp-Glacier-Select" class="headerlink" title="S3 &amp; Glacier Select"></a>S3 &amp; Glacier Select</h3><ul>
+<li>Retrieve less data using SQL by performing server side filtering</li>
+<li>Filter by rows or columns</li>
 </ul>
 
         
