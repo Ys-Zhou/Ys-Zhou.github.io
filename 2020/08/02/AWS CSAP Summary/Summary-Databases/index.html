@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Primary-Keys"><span class="toc-text">DynamoDB Primary Keys</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Index"><span class="toc-text">DynamoDB Index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Streams"><span class="toc-text">DynamoDB Streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Global-Tables"><span class="toc-text">DynamoDB Global Tables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAX"><span class="toc-text">DAX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DAX-vs-ElastiCache"><span class="toc-text">DAX vs. ElastiCache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-Architecture-Indexing-S3-objects-in-DynamoDB"><span class="toc-text">Solution Architecture: Indexing S3 objects in DynamoDB</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ElasticSearch-ES"><span class="toc-text">ElasticSearch (ES)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Elastic-Stack"><span class="toc-text">Elastic Stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch-Integrations"><span class="toc-text">ElasticSearch Integrations</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Primary-Keys"><span class="toc-text">DynamoDB Primary Keys</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Index"><span class="toc-text">DynamoDB Index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Streams"><span class="toc-text">DynamoDB Streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Global-Tables"><span class="toc-text">DynamoDB Global Tables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAX"><span class="toc-text">DAX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DAX-vs-ElastiCache"><span class="toc-text">DAX vs. ElastiCache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-Architecture-Indexing-S3-objects-in-DynamoDB"><span class="toc-text">Solution Architecture: Indexing S3 objects in DynamoDB</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ElasticSearch-ES"><span class="toc-text">ElasticSearch (ES)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Elastic-Stack"><span class="toc-text">Elastic Stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch-Integrations"><span class="toc-text">ElasticSearch Integrations</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RDS"><span class="toc-text">RDS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RDS-Multi-AZ-vs-Read-Replicas"><span class="toc-text">RDS Multi-AZ vs. Read Replicas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDS-Security"><span class="toc-text">RDS Security</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Aurora"><span class="toc-text">Aurora</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Aurora-Serverless"><span class="toc-text">Aurora Serverless</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Global-Aurora"><span class="toc-text">Global Aurora</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Aurora-Multi-Master"><span class="toc-text">Aurora Multi-Master</span></a></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -226,6 +226,82 @@
 <li>Use Lambda function or Kinesis Firehose to write logs into ES</li>
 </ul>
 </li>
+</ul>
+<h1 id="RDS"><a href="#RDS" class="headerlink" title="RDS"></a>RDS</h1><ul>
+<li>Engines<ul>
+<li>PostgreSQL</li>
+<li>MySQL</li>
+<li>MariaDB</li>
+<li>Oracle</li>
+<li>Microsoft SQL Server</li>
+</ul>
+</li>
+<li>Launched within a VPC</li>
+<li>Storage by EBS<ul>
+<li>Can use auto-auto-scaling</li>
+</ul>
+</li>
+<li>Automated with point-in-time recovery</li>
+<li>Manual snapshots</li>
+<li>RDS Events</li>
+</ul>
+<h2 id="RDS-Multi-AZ-vs-Read-Replicas"><a href="#RDS-Multi-AZ-vs-Read-Replicas" class="headerlink" title="RDS Multi-AZ vs. Read Replicas"></a>RDS Multi-AZ vs. Read Replicas</h2><ul>
+<li>Multi-AZ (Failover)<ul>
+<li>Read from and write to master database</li>
+<li>Sync replication</li>
+<li>In one region</li>
+</ul>
+</li>
+<li>Read Replicas<ul>
+<li>Can read from Read Replicas</li>
+<li>Async replication</li>
+<li>Can be cross-region</li>
+</ul>
+</li>
+</ul>
+<h2 id="RDS-Security"><a href="#RDS-Security" class="headerlink" title="RDS Security"></a>RDS Security</h2><ul>
+<li>EBS volumes and snapshots are encrypted by KMS</li>
+<li>Transparent Data Encryption is available for Oracle and Microsoft SQL Server</li>
+<li>SSL</li>
+<li>IAM authentication is available for MySQL and PostgreSQL<ul>
+<li>Authorization still happens within RDS</li>
+</ul>
+</li>
+<li>Can copy an un-encrypted RDS snapshot into an encrypted one</li>
+<li>CloudTrail cannot track RDS queries</li>
+</ul>
+<h2 id="Aurora"><a href="#Aurora" class="headerlink" title="Aurora"></a>Aurora</h2><ul>
+<li>PostgreSQL-compatible and MySQL-compatible DB engine</li>
+<li>Automatically grow up to 64 TB</li>
+<li>Six copies of data in 3 AZ<ul>
+<li>Automated failover for master in less than 30 seconds</li>
+</ul>
+</li>
+<li>Up to 15 read replicas (support cross-region read replicas)</li>
+<li>Can load / offload data directly from / to S3</li>
+</ul>
+<h3 id="Aurora-Serverless"><a href="#Aurora-Serverless" class="headerlink" title="Aurora Serverless"></a>Aurora Serverless</h3><ul>
+<li>Automated database instantiation and auto-scaling based on actual usage</li>
+<li>Good for infrequent, intermittent or unpredictable workloads</li>
+<li>No capacity planning needed</li>
+<li>Pay per second</li>
+</ul>
+<h3 id="Global-Aurora"><a href="#Global-Aurora" class="headerlink" title="Global Aurora"></a>Global Aurora</h3><ul>
+<li>Cross-Region Read Replicas<ul>
+<li>Up to 15 read replicas</li>
+</ul>
+</li>
+<li>Global Aurora (recommended)<ul>
+<li>One primary region (read / write)</li>
+<li>Up to 5 secondary regions (read), lag is less than 1 second</li>
+<li>Up to 16 read replicas each secondary region</li>
+<li>Promoting another region has a RTO that less than 1 minute</li>
+</ul>
+</li>
+</ul>
+<h3 id="Aurora-Multi-Master"><a href="#Aurora-Multi-Master" class="headerlink" title="Aurora Multi-Master"></a>Aurora Multi-Master</h3><ul>
+<li>Immediate failover</li>
+<li>Every node does Read / Write</li>
 </ul>
 
         
