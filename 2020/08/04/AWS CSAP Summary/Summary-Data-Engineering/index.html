@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kinesis"><span class="toc-text">Kinesis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Streams"><span class="toc-text">Kinesis Streams</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Streams-Shards"><span class="toc-text">Kinesis Streams Shards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Producers"><span class="toc-text">Kinesis Producers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Consumers"><span class="toc-text">Kinesis Consumers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Streams-Limits"><span class="toc-text">Kinesis Streams Limits</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Firehose"><span class="toc-text">Kinesis Firehose</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Firehose-Buffer-Sizing"><span class="toc-text">Firehose Buffer Sizing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Analytics"><span class="toc-text">Kinesis Analytics</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kinesis"><span class="toc-text">Kinesis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Streams"><span class="toc-text">Kinesis Streams</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Streams-Shards"><span class="toc-text">Kinesis Streams Shards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Producers"><span class="toc-text">Kinesis Producers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Consumers"><span class="toc-text">Kinesis Consumers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Streams-Limits"><span class="toc-text">Kinesis Streams Limits</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Firehose"><span class="toc-text">Kinesis Firehose</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Firehose-Buffer-Sizing"><span class="toc-text">Firehose Buffer Sizing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Analytics"><span class="toc-text">Kinesis Analytics</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Batch"><span class="toc-text">AWS Batch</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Batch-Compute-Environments"><span class="toc-text">Batch Compute Environments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Batch-Multi-Node-Mode"><span class="toc-text">Batch Multi-Node Mode</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EMR"><span class="toc-text">EMR</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Storage"><span class="toc-text">EMR Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Node-Types"><span class="toc-text">EMR Node Types</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -213,6 +213,74 @@
 <li>Streaming ETL</li>
 <li>Continuous metric generation</li>
 <li>Responsive analytics</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Batch"><a href="#AWS-Batch" class="headerlink" title="AWS Batch"></a>AWS Batch</h1><ul>
+<li>Run batch jobs as Docker images</li>
+<li>Serverless<ul>
+<li>Batch -&gt; ECS -&gt; EC2 in VPC<ul>
+<li>Make sure that EC2 instances have access to ECS</li>
+<li>If EC2 instances are in private subnet, ether use a NAT gateway / instances or use VPC endpoints for ECS </li>
+</ul>
+</li>
+<li>Batch is free, you just pay for underlying EC2 instances</li>
+</ul>
+</li>
+<li>Integration<ul>
+<li>Schedule Batch jobs using CloudWatch Events</li>
+<li>Orchestrate Batch jobs using Step Function</li>
+</ul>
+</li>
+</ul>
+<h2 id="Batch-Compute-Environments"><a href="#Batch-Compute-Environments" class="headerlink" title="Batch Compute Environments"></a>Batch Compute Environments</h2><ul>
+<li>Managed Compute Environment<ul>
+<li>Batch manage the capacity and instance types</li>
+<li>You can choose On-Demand or Spot instances<ul>
+<li>You can set a maximum price for spot instances</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Unmanaged Compute Environment<ul>
+<li>You control and manage instance configuration, provisioning, scaling</li>
+</ul>
+</li>
+</ul>
+<h2 id="Batch-Multi-Node-Mode"><a href="#Batch-Multi-Node-Mode" class="headerlink" title="Batch Multi-Node Mode"></a>Batch Multi-Node Mode</h2><ul>
+<li>Leverage multiple EC2 instances</li>
+<li>One main node, multiple child nodes</li>
+<li>Cannot use Spot instances</li>
+<li>Have better performance if EC2 instances lunch in a placement group</li>
+</ul>
+<h1 id="EMR"><a href="#EMR" class="headerlink" title="EMR"></a>EMR</h1><ul>
+<li>AWS managed Hadoop clusters</li>
+<li>EMR takes care of provisioning and configuration of EC2</li>
+<li>Auto-scaling with CloudWatch</li>
+</ul>
+<h2 id="EMR-Storage"><a href="#EMR-Storage" class="headerlink" title="EMR Storage"></a>EMR Storage</h2><ul>
+<li>HDFS<ul>
+<li>EBS</li>
+<li>Temporary</li>
+<li>Single AZ (because a cluster is in a single AZ)</li>
+</ul>
+</li>
+<li>EMRFS<ul>
+<li>S3</li>
+<li>Permanent</li>
+<li>Multi-AZ</li>
+</ul>
+</li>
+<li>Hive can read from DynamoDB</li>
+</ul>
+<h2 id="EMR-Node-Types"><a href="#EMR-Node-Types" class="headerlink" title="EMR Node Types"></a>EMR Node Types</h2><ul>
+<li>Master Node: manage cluster</li>
+<li>Core Node: run tasks and store data</li>
+<li>Task node: only run tasks</li>
+<li>Any type of node can use a configuration of EC2<ul>
+<li>On-demand instances</li>
+<li>Reserved instances</li>
+<li>Spot instances</li>
 </ul>
 </li>
 </ul>
