@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Services: Service Communication - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Step-Function"><span class="toc-text">AWS Step Function</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Step-Function-Tasks"><span class="toc-text">Step Function Tasks</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SWF"><span class="toc-text">SWF</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQS"><span class="toc-text">SQS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-Event-Source-Mapping"><span class="toc-text">Lambda Event Source Mapping</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Amazon-MQ"><span class="toc-text">Amazon MQ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SNS"><span class="toc-text">SNS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SNS-SQS-Send-Messages-to-Many-Targets"><span class="toc-text">SNS + SQS: Send Messages to Many Targets</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Services: Service Communication
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-08-03 22:03:05</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Services)" title="AWS - Solutions Architect (Services)">AWS - Solutions Architect (Services)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="AWS-Step-Function"><a href="#AWS-Step-Function" class="headerlink" title="AWS Step Function"></a>AWS Step Function</h1><ul>
+<li>Serverless visual workflow</li>
+<li>Represent flow as a JSON state machine</li>
+<li>Integrate with Lambda, EC2, API Gateway, CLI/SDK</li>
+<li>One year maximum execution time</li>
+<li>Possible to implement human approval feature</li>
+</ul>
+<h1 id="Step-Function-Tasks"><a href="#Step-Function-Tasks" class="headerlink" title="Step Function Tasks"></a>Step Function Tasks</h1><ul>
+<li>Activity Tasks<ul>
+<li>Activity worker (HTTP)</li>
+<li>Workers pull the step functions</li>
+</ul>
+</li>
+<li>Service Tasks<ul>
+<li>Lambda function, ECS task, Fargate, DynamoDB, Batch job, SNS topic, SQS queue</li>
+</ul>
+</li>
+<li>Wait Tasks<ul>
+<li>Wait for a duration or until a timestamp</li>
+</ul>
+</li>
+</ul>
+<h1 id="SWF"><a href="#SWF" class="headerlink" title="SWF"></a>SWF</h1><ul>
+<li>Runs on EC2 (not serverless)</li>
+<li>One year maximum runtime</li>
+<li>Step Function is recommended to use, except<ul>
+<li>Need external signals to intervene in the processes</li>
+<li>Need child processes that return values to parent process</li>
+<li>Need to use Amazon Mechanical Turk</li>
+</ul>
+</li>
+</ul>
+<h1 id="SQS"><a href="#SQS" class="headerlink" title="SQS"></a>SQS</h1><ul>
+<li>Max message size is 256 KB, use S3 for large messages</li>
+<li>Can be read from EC2, Lambda, etc.</li>
+<li>SQS FIFO<ul>
+<li>300 messages/s without batching</li>
+<li>3000 messages/s with batching</li>
+</ul>
+</li>
+<li>Messages can be processed more than once by consumer<ul>
+<li>Consumer has to be idempotent</li>
+</ul>
+</li>
+<li>Use DLQ or Destination for failures</li>
+</ul>
+<h2 id="Lambda-Event-Source-Mapping"><a href="#Lambda-Event-Source-Mapping" class="headerlink" title="Lambda Event Source Mapping"></a>Lambda Event Source Mapping</h2><ul>
+<li>Event Source Mapping will pull messages from SQS</li>
+<li>Batch size is 1-10</li>
+<li>It is recommended to set the queue visibility timeout of your Lambda function</li>
+</ul>
+<h1 id="Amazon-MQ"><a href="#Amazon-MQ" class="headerlink" title="Amazon MQ"></a>Amazon MQ</h1><ul>
+<li>Managed Apache ActiveMQ</li>
+<li>Amazon MQ runs on a dedicated machine</li>
+<li>Supported Protocols<ul>
+<li>MQTT, AMQP, STOMP, Openwire, WSS</li>
+</ul>
+</li>
+<li>IBM MQ, TIBCO EMS, Rabbit MQ, and Apache ActiveMQ can be migrated to Amazon MQ</li>
+<li>If you do not want to change your application to use SQS or SNS, you can use Amazon MQ</li>
+</ul>
+<h1 id="SNS"><a href="#SNS" class="headerlink" title="SNS"></a>SNS</h1><ul>
+<li>Pub / sub</li>
+<li>Subscribers can be<ul>
+<li>SQS, HTTP(S), Lambda, Emails, SMS, Mobile Notifications</li>
+</ul>
+</li>
+</ul>
+<h2 id="SNS-SQS-Send-Messages-to-Many-Targets"><a href="#SNS-SQS-Send-Messages-to-Many-Targets" class="headerlink" title="SNS + SQS: Send Messages to Many Targets"></a>SNS + SQS: Send Messages to Many Targets</h2><ul>
+<li>Push one message in SNS, receive in many SQS queues</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

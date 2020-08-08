@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Services: Data Engineering - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kinesis"><span class="toc-text">Kinesis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Streams"><span class="toc-text">Kinesis Streams</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Streams-Shards"><span class="toc-text">Kinesis Streams Shards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Producers"><span class="toc-text">Kinesis Producers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Consumers"><span class="toc-text">Kinesis Consumers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Streams-Limits"><span class="toc-text">Kinesis Streams Limits</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Firehose"><span class="toc-text">Kinesis Firehose</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Firehose-Buffer-Sizing"><span class="toc-text">Firehose Buffer Sizing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Analytics"><span class="toc-text">Kinesis Analytics</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Batch"><span class="toc-text">AWS Batch</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Batch-Compute-Environments"><span class="toc-text">Batch Compute Environments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Batch-Multi-Node-Mode"><span class="toc-text">Batch Multi-Node Mode</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EMR"><span class="toc-text">EMR</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Storage"><span class="toc-text">EMR Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Node-Types"><span class="toc-text">EMR Node Types</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redshift"><span class="toc-text">Redshift</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redshift-Nodes"><span class="toc-text">Redshift Nodes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redshift-Snapshots"><span class="toc-text">Redshift Snapshots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redshift-Spectrum"><span class="toc-text">Redshift Spectrum</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Athena"><span class="toc-text">Athena</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Quicksight"><span class="toc-text">Quicksight</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Services: Data Engineering
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-08-04 12:17:00</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Services)" title="AWS - Solutions Architect (Services)">AWS - Solutions Architect (Services)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Kinesis"><a href="#Kinesis" class="headerlink" title="Kinesis"></a>Kinesis</h1><ul>
+<li>Kinesis Streams: low latency streaming ingest at scale</li>
+<li>Kinesis Analytics: real-time analytics on streams using SQL</li>
+<li>Kinesis Firehose: load streams into S3, Redshift, ElasticSearch, Splunk</li>
+</ul>
+<h2 id="Kinesis-Streams"><a href="#Kinesis-Streams" class="headerlink" title="Kinesis Streams"></a>Kinesis Streams</h2><ul>
+<li>Can reprocess data from streams</li>
+<li>Multiple applications can consume a same stream</li>
+<li>Easy to scale</li>
+<li>Data cannot be deleted from Kinesis</li>
+</ul>
+<h3 id="Kinesis-Streams-Shards"><a href="#Kinesis-Streams-Shards" class="headerlink" title="Kinesis Streams Shards"></a>Kinesis Streams Shards</h3><ul>
+<li>Streams are divided in Shards</li>
+<li>Can send or retrieve data in batch</li>
+<li>Can reshard or merge shards</li>
+<li>Records are ordered in a shard, shards are not in order</li>
+</ul>
+<h3 id="Kinesis-Producers"><a href="#Kinesis-Producers" class="headerlink" title="Kinesis Producers"></a>Kinesis Producers</h3><ul>
+<li>AWS SDK</li>
+<li>KPL<ul>
+<li>With batch, compression, retries</li>
+</ul>
+</li>
+<li>Kinesis Agent</li>
+</ul>
+<h3 id="Kinesis-Consumers"><a href="#Kinesis-Consumers" class="headerlink" title="Kinesis Consumers"></a>Kinesis Consumers</h3><ul>
+<li>AWS SDK</li>
+<li>Lambda through Event Source Mapping</li>
+<li>KCL<ul>
+<li>With checkpointing</li>
+</ul>
+</li>
+</ul>
+<h3 id="Kinesis-Streams-Limits"><a href="#Kinesis-Streams-Limits" class="headerlink" title="Kinesis Streams Limits"></a>Kinesis Streams Limits</h3><ul>
+<li>Producer<ul>
+<li>1 MB/s or 1000 messages/s per Shard</li>
+</ul>
+</li>
+<li>Consumer Classic<ul>
+<li>2 MB/s per Shard across all consumers</li>
+<li>5 API calls per second per shard across all consumers</li>
+</ul>
+</li>
+<li>Consumer Enhanced Fan-Out<ul>
+<li>2 MB/s per Shard per consumer</li>
+<li>No API call needed</li>
+</ul>
+</li>
+<li>Data Retention<ul>
+<li>24 hours by default, up to 7 days</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kinesis-Firehose"><a href="#Kinesis-Firehose" class="headerlink" title="Kinesis Firehose"></a>Kinesis Firehose</h2><ul>
+<li>Managed service with auto-scaling, serverless</li>
+<li>Near real time (60 seconds latency at least)</li>
+<li>Load data into S3, Redshift, ElasticSearch, Splunk</li>
+<li>Integrate with Lambda to transform data</li>
+</ul>
+<h3 id="Firehose-Buffer-Sizing"><a href="#Firehose-Buffer-Sizing" class="headerlink" title="Firehose Buffer Sizing"></a>Firehose Buffer Sizing</h3><ul>
+<li>The buffer is flushed based on size and time rules</li>
+<li>Buffer size<ul>
+<li>Firehose can automatically increase the buffer size to increase throughput</li>
+</ul>
+</li>
+<li>Buffer time</li>
+</ul>
+<h2 id="Kinesis-Analytics"><a href="#Kinesis-Analytics" class="headerlink" title="Kinesis Analytics"></a>Kinesis Analytics</h2><ul>
+<li>Managed service with auto-scaling, serverless</li>
+<li>Use SQL or Flink</li>
+<li>Lambda can be used for pre processing</li>
+<li>Use cases<ul>
+<li>Streaming ETL</li>
+<li>Continuous metric generation</li>
+<li>Responsive analytics</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Batch"><a href="#AWS-Batch" class="headerlink" title="AWS Batch"></a>AWS Batch</h1><ul>
+<li>Run batch jobs as Docker images</li>
+<li>Serverless<ul>
+<li>Batch -&gt; ECS -&gt; EC2 in VPC<ul>
+<li>Make sure that EC2 instances have access to ECS</li>
+<li>If EC2 instances are in private subnet, ether use a NAT gateway / instances or use VPC endpoints for ECS </li>
+</ul>
+</li>
+<li>Batch is free, you just pay for underlying EC2 instances</li>
+</ul>
+</li>
+<li>Integration<ul>
+<li>Schedule Batch jobs using CloudWatch Events</li>
+<li>Orchestrate Batch jobs using Step Function</li>
+</ul>
+</li>
+</ul>
+<h2 id="Batch-Compute-Environments"><a href="#Batch-Compute-Environments" class="headerlink" title="Batch Compute Environments"></a>Batch Compute Environments</h2><ul>
+<li>Managed Compute Environment<ul>
+<li>Batch manage the capacity and instance types</li>
+<li>You can choose On-Demand or Spot instances<ul>
+<li>You can set a maximum price for spot instances</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Unmanaged Compute Environment<ul>
+<li>You control and manage instance configuration, provisioning, scaling</li>
+</ul>
+</li>
+</ul>
+<h2 id="Batch-Multi-Node-Mode"><a href="#Batch-Multi-Node-Mode" class="headerlink" title="Batch Multi-Node Mode"></a>Batch Multi-Node Mode</h2><ul>
+<li>Leverage multiple EC2 instances</li>
+<li>One main node, multiple child nodes</li>
+<li>Cannot use Spot instances</li>
+<li>Have better performance if EC2 instances lunch in a placement group</li>
+</ul>
+<h1 id="EMR"><a href="#EMR" class="headerlink" title="EMR"></a>EMR</h1><ul>
+<li>AWS managed Hadoop clusters</li>
+<li>EMR takes care of provisioning and configuration of EC2</li>
+<li>Auto-scaling with CloudWatch</li>
+</ul>
+<h2 id="EMR-Storage"><a href="#EMR-Storage" class="headerlink" title="EMR Storage"></a>EMR Storage</h2><ul>
+<li>HDFS<ul>
+<li>EBS</li>
+<li>Temporary</li>
+<li>Single AZ (because a cluster is in a single AZ)</li>
+</ul>
+</li>
+<li>EMRFS<ul>
+<li>S3</li>
+<li>Permanent</li>
+<li>Multi-AZ</li>
+</ul>
+</li>
+<li>Hive can read from DynamoDB</li>
+</ul>
+<h2 id="EMR-Node-Types"><a href="#EMR-Node-Types" class="headerlink" title="EMR Node Types"></a>EMR Node Types</h2><ul>
+<li>Master Node: manage cluster</li>
+<li>Core Node: run tasks and store data</li>
+<li>Task node: only run tasks</li>
+<li>Any type of node can use a configuration of EC2<ul>
+<li>On-demand instances</li>
+<li>Reserved instances</li>
+<li>Spot instances</li>
+</ul>
+</li>
+</ul>
+<h1 id="Redshift"><a href="#Redshift" class="headerlink" title="Redshift"></a>Redshift</h1><ul>
+<li>Data warehouse</li>
+<li>Columnar storage</li>
+<li>Not serverless, need provisioning instances</li>
+<li>Run queries by SQL</li>
+<li>Quicksight and Tableau integration</li>
+<li>Load data from D3, Kinesis Firehose, DynamoDB, DMS, etc.</li>
+<li>Enhanced VPC Routing: run COPY / UNLOAD commands through VPC</li>
+</ul>
+<h2 id="Redshift-Nodes"><a href="#Redshift-Nodes" class="headerlink" title="Redshift Nodes"></a>Redshift Nodes</h2><ul>
+<li>Up to 128 nodes per cluster</li>
+<li>Up to 160 GB per node</li>
+<li>All nodes (cluster) are in a single AZ</li>
+<li>Leader node: planning queries, aggregating results</li>
+<li>Compute nodes: performing queries</li>
+</ul>
+<h2 id="Redshift-Snapshots"><a href="#Redshift-Snapshots" class="headerlink" title="Redshift Snapshots"></a>Redshift Snapshots</h2><ul>
+<li>Snapshots are stored internally in S3</li>
+<li>Snapshots are incremental</li>
+<li>Snapshots can be restored into a new cluster</li>
+<li>Automated snapshots<ul>
+<li>Every 8 hours or 5 GB</li>
+<li>Can set a schedule and retention</li>
+</ul>
+</li>
+<li>Manual snapshots<ul>
+<li>Also need to be deleted manually</li>
+</ul>
+</li>
+<li>Can configure Redshift to automatically copy snapshots to another Region</li>
+</ul>
+<h2 id="Redshift-Spectrum"><a href="#Redshift-Spectrum" class="headerlink" title="Redshift Spectrum"></a>Redshift Spectrum</h2><ul>
+<li>Query data in S3 without loading it using Redshift</li>
+<li>Must have a Redshift cluster to start queries</li>
+<li>Queries will run in AWS managed Redshift Spectrum nodes</li>
+</ul>
+<h1 id="Athena"><a href="#Athena" class="headerlink" title="Athena"></a>Athena</h1><ul>
+<li>Queries data in S3 using SQL</li>
+<li>Supports CSV, JSON, Parquet, ORC</li>
+<li>Queries are logged in CloudTrail</li>
+</ul>
+<h1 id="Quicksight"><a href="#Quicksight" class="headerlink" title="Quicksight"></a>Quicksight</h1><ul>
+<li>BI tool for data visualization, creating dashboards</li>
+<li>Integrates with Athena, Redshift, EMR, RDS</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
