@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Services: Databases - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Primary-Keys"><span class="toc-text">DynamoDB Primary Keys</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Index"><span class="toc-text">DynamoDB Index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Streams"><span class="toc-text">DynamoDB Streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB-Global-Tables"><span class="toc-text">DynamoDB Global Tables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAX"><span class="toc-text">DAX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DAX-vs-ElastiCache"><span class="toc-text">DAX vs. ElastiCache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-Architecture-Indexing-S3-objects-in-DynamoDB"><span class="toc-text">Solution Architecture: Indexing S3 objects in DynamoDB</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ElasticSearch-ES"><span class="toc-text">ElasticSearch (ES)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Elastic-Stack"><span class="toc-text">Elastic Stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch-Integrations"><span class="toc-text">ElasticSearch Integrations</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RDS"><span class="toc-text">RDS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RDS-Multi-AZ-vs-Read-Replicas"><span class="toc-text">RDS Multi-AZ vs. Read Replicas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDS-Security"><span class="toc-text">RDS Security</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Aurora"><span class="toc-text">Aurora</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Aurora-Serverless"><span class="toc-text">Aurora Serverless</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Global-Aurora"><span class="toc-text">Global Aurora</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Aurora-Multi-Master"><span class="toc-text">Aurora Multi-Master</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Services: Databases
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-08-02 22:00:38</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Services)" title="AWS - Solutions Architect (Services)">AWS - Solutions Architect (Services)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="DynamoDB"><a href="#DynamoDB" class="headerlink" title="DynamoDB"></a>DynamoDB</h1><ul>
+<li>Object size is up to 400 KB</li>
+<li>Can provision, auto or on-demand scale WCU and RCU</li>
+<li>Can configure eventually or strong consistent reads</li>
+<li>Support ACID</li>
+<li>Support backups and point in time recovery</li>
+<li>Data types<ul>
+<li>String, Number, Binary, Boolean, Null</li>
+<li>List, Map</li>
+<li>Set</li>
+</ul>
+</li>
+</ul>
+<h2 id="DynamoDB-Primary-Keys"><a href="#DynamoDB-Primary-Keys" class="headerlink" title="DynamoDB Primary Keys"></a>DynamoDB Primary Keys</h2><ul>
+<li>Partition key only</li>
+<li>Partition key + Sort key</li>
+</ul>
+<h2 id="DynamoDB-Index"><a href="#DynamoDB-Index" class="headerlink" title="DynamoDB Index"></a>DynamoDB Index</h2><ul>
+<li>LSI<ul>
+<li>Another sort key + the same partition</li>
+<li>Must be defined at table creation time</li>
+</ul>
+</li>
+<li>GSI<ul>
+<li>Another partition key + optional sort key</li>
+<li>Can be defined after the table is created</li>
+</ul>
+</li>
+<li>Tables can only be queried by primary key and indexes</li>
+</ul>
+<h2 id="DynamoDB-Streams"><a href="#DynamoDB-Streams" class="headerlink" title="DynamoDB Streams"></a>DynamoDB Streams</h2><ul>
+<li>React to changes in DynamoDB tables in real time</li>
+<li>Can be read by Lambda, EC2, etc.</li>
+<li>24 hors retention of data in stream</li>
+</ul>
+<h2 id="DynamoDB-Global-Tables"><a href="#DynamoDB-Global-Tables" class="headerlink" title="DynamoDB Global Tables"></a>DynamoDB Global Tables</h2><ul>
+<li>Active-active replication across regions</li>
+<li>Must enable DynamoDB Streams</li>
+</ul>
+<h2 id="DAX"><a href="#DAX" class="headerlink" title="DAX"></a>DAX</h2><ul>
+<li>Cache for DynamoDB</li>
+<li>Reads and writes go through DAX to DynamoDB</li>
+<li>5 minutes TTL by default</li>
+<li>Up to 10 nodes in the cluster</li>
+<li>Multi-AZ</li>
+</ul>
+<h3 id="DAX-vs-ElastiCache"><a href="#DAX-vs-ElastiCache" class="headerlink" title="DAX vs. ElastiCache"></a>DAX vs. ElastiCache</h3><ul>
+<li>DAX can only cache DynamoDB query results</li>
+<li>ElastiCache can cache any data</li>
+</ul>
+<h2 id="Solution-Architecture-Indexing-S3-objects-in-DynamoDB"><a href="#Solution-Architecture-Indexing-S3-objects-in-DynamoDB" class="headerlink" title="Solution Architecture: Indexing S3 objects in DynamoDB"></a>Solution Architecture: Indexing S3 objects in DynamoDB</h2><ul>
+<li>Use S3 Event to trigger Lambda function to write metadata into DynamoDB</li>
+<li>You can use metadata in DynamoDB to search objects</li>
+</ul>
+<h1 id="ElasticSearch-ES"><a href="#ElasticSearch-ES" class="headerlink" title="ElasticSearch (ES)"></a>ElasticSearch (ES)</h1><ul>
+<li>AWS managed ElasticSearch</li>
+<li>Based on EC2, not serverless</li>
+<li>Use cases<ul>
+<li>Log analytics</li>
+<li>Application monitoring</li>
+<li>Text search</li>
+<li>Indexing</li>
+</ul>
+</li>
+</ul>
+<h2 id="Elastic-Stack"><a href="#Elastic-Stack" class="headerlink" title="Elastic Stack"></a>Elastic Stack</h2><ul>
+<li>ElasticSearch<ul>
+<li>Provide search and indexing capability</li>
+</ul>
+</li>
+<li>Kibana<ul>
+<li>Provide real-time dashboards on top on the data in ES</li>
+</ul>
+</li>
+<li>Logstash<ul>
+<li>Provide log ingestion</li>
+</ul>
+</li>
+</ul>
+<h2 id="ElasticSearch-Integrations"><a href="#ElasticSearch-Integrations" class="headerlink" title="ElasticSearch Integrations"></a>ElasticSearch Integrations</h2><ul>
+<li>DynamoDB<ul>
+<li>Use DynamoDB streams to trigger Lambda function to write items into ES for search</li>
+</ul>
+</li>
+<li>CloudWatch Logs<ul>
+<li>Use Lambda function or Kinesis Firehose to write logs into ES</li>
+</ul>
+</li>
+</ul>
+<h1 id="RDS"><a href="#RDS" class="headerlink" title="RDS"></a>RDS</h1><ul>
+<li>Engines<ul>
+<li>PostgreSQL</li>
+<li>MySQL</li>
+<li>MariaDB</li>
+<li>Oracle</li>
+<li>Microsoft SQL Server</li>
+</ul>
+</li>
+<li>Launched within a VPC</li>
+<li>Storage by EBS<ul>
+<li>Can use auto-auto-scaling</li>
+</ul>
+</li>
+<li>Automated with point-in-time recovery</li>
+<li>Manual snapshots</li>
+<li>RDS Events</li>
+</ul>
+<h2 id="RDS-Multi-AZ-vs-Read-Replicas"><a href="#RDS-Multi-AZ-vs-Read-Replicas" class="headerlink" title="RDS Multi-AZ vs. Read Replicas"></a>RDS Multi-AZ vs. Read Replicas</h2><ul>
+<li>Multi-AZ (Failover)<ul>
+<li>Read from and write to master database</li>
+<li>Sync replication</li>
+<li>In one region</li>
+</ul>
+</li>
+<li>Read Replicas<ul>
+<li>Can read from Read Replicas</li>
+<li>Async replication</li>
+<li>Can be cross-region</li>
+</ul>
+</li>
+</ul>
+<h2 id="RDS-Security"><a href="#RDS-Security" class="headerlink" title="RDS Security"></a>RDS Security</h2><ul>
+<li>EBS volumes and snapshots are encrypted by KMS</li>
+<li>Transparent Data Encryption is available for Oracle and Microsoft SQL Server</li>
+<li>SSL</li>
+<li>IAM authentication is available for MySQL and PostgreSQL<ul>
+<li>Authorization still happens within RDS</li>
+</ul>
+</li>
+<li>Can copy an un-encrypted RDS snapshot into an encrypted one</li>
+<li>CloudTrail cannot track RDS queries</li>
+</ul>
+<h2 id="Aurora"><a href="#Aurora" class="headerlink" title="Aurora"></a>Aurora</h2><ul>
+<li>PostgreSQL-compatible and MySQL-compatible DB engine</li>
+<li>Automatically grow up to 64 TB</li>
+<li>Six copies of data in 3 AZ<ul>
+<li>Automated failover for master in less than 30 seconds</li>
+</ul>
+</li>
+<li>Up to 15 read replicas (support cross-region read replicas)</li>
+<li>Can load / offload data directly from / to S3</li>
+</ul>
+<h3 id="Aurora-Serverless"><a href="#Aurora-Serverless" class="headerlink" title="Aurora Serverless"></a>Aurora Serverless</h3><ul>
+<li>Automated database instantiation and auto-scaling based on actual usage</li>
+<li>Good for infrequent, intermittent or unpredictable workloads</li>
+<li>No capacity planning needed</li>
+<li>Pay per second</li>
+</ul>
+<h3 id="Global-Aurora"><a href="#Global-Aurora" class="headerlink" title="Global Aurora"></a>Global Aurora</h3><ul>
+<li>Cross-Region Read Replicas<ul>
+<li>Up to 15 read replicas</li>
+</ul>
+</li>
+<li>Global Aurora (recommended)<ul>
+<li>One primary region (read / write)</li>
+<li>Up to 5 secondary regions (read), lag is less than 1 second</li>
+<li>Up to 16 read replicas each secondary region</li>
+<li>Promoting another region has a RTO that less than 1 minute</li>
+</ul>
+</li>
+</ul>
+<h3 id="Aurora-Multi-Master"><a href="#Aurora-Multi-Master" class="headerlink" title="Aurora Multi-Master"></a>Aurora Multi-Master</h3><ul>
+<li>Immediate failover</li>
+<li>Every node does Read / Write</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
