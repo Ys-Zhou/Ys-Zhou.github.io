@@ -11,7 +11,7 @@
 
     <title>
         
-        Hiko Amane&#39;s Blog
+        Services: VPC - Hiko Amane&#39;s Blog
         
     </title>
 
@@ -53,7 +53,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li class="active">
+            <li>
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>HOME</span>
@@ -88,6 +88,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VPC-Peering"><span class="toc-text">VPC Peering</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Transit-Gateway"><span class="toc-text">Transit Gateway</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VPC-Endpoints"><span class="toc-text">VPC Endpoints</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#VPC-Endpoints-Gateway"><span class="toc-text">VPC Endpoints Gateway</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPC-Endpoints-Interface"><span class="toc-text">VPC Endpoints Interface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VPC-Endpoints-Policies"><span class="toc-text">VPC Endpoints Policies</span></a></li></ol></li></ol>
+</div>
+    
 </div>
 
 
@@ -112,77 +116,75 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-preview-container" style="min-height: 720px">
-    
-    <div class="post-preview">
-        <div class="post-time">2019-07-14</div>
-        <div class="post-info">
-            <a href="/2019/07/14/AWS CBDS/Collection/">
-                <h3>
-                    Collection
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+
+<div class="post-container">
+    <div class="post-title">
+        Services: VPC
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-06-16</div>
-        <div class="post-info">
-            <a href="/2019/06/16/AWS CSAA/Basic-AWS-Best-Practices/">
-                <h3>
-                    Basic AWS Best Practices
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-08-23 17:53:48</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Services)" title="AWS - Solutions Architect (Services)">AWS - Solutions Architect (Services)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2019-06-16</div>
-        <div class="post-info">
-            <a href="/2019/06/16/AWS CSAA/Key-points-about-AWS-WAF/">
-                <h3>
-                    Key points about AWS WAF
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#AWS - Solutions Architect" title="AWS - Solutions Architect">AWS - Solutions Architect</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
-    
-</div>
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/page/2/">&larr; Newer Posts</a>
-    </li>
-    
-    
+    <div class="post-content no-indent">
+        <h1 id="VPC-Peering"><a href="#VPC-Peering" class="headerlink" title="VPC Peering"></a>VPC Peering</h1><ul>
+<li>Two VPCs must not have overlapping CIDR</li>
+<li>You have update route tables in each subnets to ensure instance can communicate</li>
+<li>You can do VPC peering with another AWS account</li>
+<li>VPC Peering cannot cross regions</li>
+<li>VPC Peering is not transitive<ul>
+<li>Use VPN or Transit Gateway</li>
 </ul>
+</li>
+</ul>
+<h1 id="Transit-Gateway"><a href="#Transit-Gateway" class="headerlink" title="Transit Gateway"></a>Transit Gateway</h1><ul>
+<li>Transit Gateway is a hub-and-spoke connection, networks connected to Transit Gateway can communicate with others</li>
+<li>Transit Gateway can share cross-region</li>
+<li>Transit Gateway can share cross-account using Resource Access Manager (RAM)</li>
+<li>Supports IP Multicast</li>
+</ul>
+<h1 id="VPC-Endpoints"><a href="#VPC-Endpoints" class="headerlink" title="VPC Endpoints"></a>VPC Endpoints</h1><ul>
+<li>Connect to AWS services through private network</li>
+<li>VPC Endpoints Gateway (S3 and DynamoDB)</li>
+<li>VPC Endpoints Interface (others)</li>
+</ul>
+<h2 id="VPC-Endpoints-Gateway"><a href="#VPC-Endpoints-Gateway" class="headerlink" title="VPC Endpoints Gateway"></a>VPC Endpoints Gateway</h2><ul>
+<li>One Gateway per VPC</li>
+<li>Must update route tables</li>
+<li>Enable Private DNS to resolve public hostname to endpoints</li>
+</ul>
+<h2 id="VPC-Endpoints-Interface"><a href="#VPC-Endpoints-Interface" class="headerlink" title="VPC Endpoints Interface"></a>VPC Endpoints Interface</h2><ul>
+<li>Create a Endpoint Network Interface in a subnet with a hostname and a private IP</li>
+<li>Leverage Security Groups</li>
+<li>Enable Private DNS to resolve public hostname to endpoints</li>
+</ul>
+<h2 id="VPC-Endpoints-Policies"><a href="#VPC-Endpoints-Policies" class="headerlink" title="VPC Endpoints Policies"></a>VPC Endpoints Policies</h2><ul>
+<li>JSON documents to control access to services</li>
+<li>Does not replace IAM policies or service-specific policies, they works together</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
 
     </div>
 </div>
@@ -240,7 +242,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
