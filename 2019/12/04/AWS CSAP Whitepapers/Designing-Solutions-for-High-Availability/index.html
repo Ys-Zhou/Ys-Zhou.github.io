@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Designing Solutions for High Availability - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Building-Fault-Tolerance-Applications"><span class="toc-text">Building Fault Tolerance Applications</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AMI"><span class="toc-text">AMI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS"><span class="toc-text">EBS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Auto-Scaling"><span class="toc-text">Auto Scaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ELB"><span class="toc-text">ELB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Regions-and-AZs"><span class="toc-text">Regions and AZs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multi-AZ-Architecture"><span class="toc-text">Multi-AZ Architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Route53"><span class="toc-text">Route53</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDS"><span class="toc-text">RDS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Using-AWS-for-Disaster-Recovery"><span class="toc-text">Using AWS for Disaster Recovery</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RTO-and-RPO"><span class="toc-text">RTO and RPO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Disaster-Recovery-Features"><span class="toc-text">Disaster Recovery Features</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AMI-for-EC2"><span class="toc-text">AMI for EC2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Storage-Gateway"><span class="toc-text">Storage Gateway</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Import-Export"><span class="toc-text">AWS Import/Export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VM-Import-Export"><span class="toc-text">VM Import/Export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VPC"><span class="toc-text">VPC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RDS-1"><span class="toc-text">RDS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redshift"><span class="toc-text">Redshift</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Other-services"><span class="toc-text">Other services</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Disaster-Recovery-Approaches"><span class="toc-text">Disaster Recovery Approaches</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Backup-amp-Restore"><span class="toc-text">Backup &amp; Restore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pilot-Light"><span class="toc-text">Pilot Light</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Warn-Standby"><span class="toc-text">Warn Standby</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multi-Site"><span class="toc-text">Multi Site</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Replication-of-Data"><span class="toc-text">Replication of Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Self-Healing"><span class="toc-text">Self Healing</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Designing Solutions for High Availability
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-12-04 08:52:00</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Whitepapers)" title="AWS - Solutions Architect (Whitepapers)">AWS - Solutions Architect (Whitepapers)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Building-Fault-Tolerance-Applications"><a href="#Building-Fault-Tolerance-Applications" class="headerlink" title="Building Fault Tolerance Applications"></a>Building Fault Tolerance Applications</h1><h2 id="AMI"><a href="#AMI" class="headerlink" title="AMI"></a>AMI</h2><ul>
+<li>Being able to quickly launch replacement instances based on AMI is a critical first step towards fault tolerance</li>
+<li>AMI can able you to quickly recover from failures<ul>
+<li>If an instance fails, you can simply launch another one based on the same template</li>
+</ul>
+</li>
+<li>To minimize downtime, your might event always keep a spare instance based on the same AMI<ul>
+<li>This can be down efficiently using EIP</li>
+<li>You can easily replacement instance by remapping your EIP to the new instance</li>
+</ul>
+</li>
+</ul>
+<h2 id="EBS"><a href="#EBS" class="headerlink" title="EBS"></a>EBS</h2><ul>
+<li><p>Use <strong>snapshots</strong> to backup EBS volumes</p>
+<ul>
+<li>Snapshots can be used to create new EBS volumes at the time the snapshot was taken</li>
+<li>Snapshots only represent the on-disk state of the application, you must pause I/O and flush in-memory data to disk before initiating a snapshot</li>
+</ul>
+</li>
+<li><p>Fault tolerance of EBS</p>
+<ul>
+<li>EBS volumes store data redundantly, making them more durable than a typical hard drive</li>
+<li>A backup strategy includes an interval, a retention period, and a recovery plan<ul>
+<li>Interval: time between backups</li>
+<li>Retention period: time to keep the snapshots</li>
+<li>Recovery plan: procedures to restore the snapshots</li>
+</ul>
+</li>
+<li>Snapshots are stored in S3</li>
+<li>EBS snapshots can be copied into other regions to create EBS volumes</li>
+</ul>
+</li>
+</ul>
+<h2 id="Auto-Scaling"><a href="#Auto-Scaling" class="headerlink" title="Auto Scaling"></a>Auto Scaling</h2><ul>
+<li>Use Auto Scaling with CloudWatch to control termination and launching new EC2 instances</li>
+<li>Auto Scaling will automatically detect failures through health check and launch replacement instances</li>
+<li>It is recommended to using Auto Scaling to regularly turn your instances over<ul>
+<li>In order to avoid any possible memory leaks or degradation</li>
+<li>Set expiry dates on your instances to ensure they remain fresh</li>
+</ul>
+</li>
+</ul>
+<h2 id="ELB"><a href="#ELB" class="headerlink" title="ELB"></a>ELB</h2><ul>
+<li>Any requests sent to ELB DNS host name are delegated to a pool of EC2 instances</li>
+<li>ELB is bound to a region</li>
+<li>ELB detects unhealthy instances within its pool and automatically reroutes traffic to healthy instances, until the unhealthy have benn restored</li>
+</ul>
+<h2 id="Regions-and-AZs"><a href="#Regions-and-AZs" class="headerlink" title="Regions and AZs"></a>Regions and AZs</h2><ul>
+<li>Distributing your application geographically is a key element to achieving better fault tolerance</li>
+<li>Regions consist of several AZs, are geographically dispersed</li>
+<li>AZs are distinct locations in a Region<ul>
+<li>Provide low latency network connectivity to other AZs in the same Region</li>
+</ul>
+</li>
+<li>EC2 SLA is 99.95% availability for each Region</li>
+</ul>
+<h2 id="Multi-AZ-Architecture"><a href="#Multi-AZ-Architecture" class="headerlink" title="Multi-AZ Architecture"></a>Multi-AZ Architecture</h2><ul>
+<li>Use redundant instances for each tier of an application</li>
+<li>Use ELB to reduce manual intervention</li>
+<li>Auto Scaling can work across multiple AZs in a Region</li>
+</ul>
+<h2 id="Route53"><a href="#Route53" class="headerlink" title="Route53"></a>Route53</h2><ul>
+<li>Can also use Route53 to build applications across Regions for higher availability</li>
+</ul>
+<h2 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h2><ul>
+<li>S3 redundantly on multiple AZs in a Region</li>
+<li>S3 Versioning and deletion MFA protect against accidental deletions</li>
+<li>By using S3, you can delegate the responsibility of fault tolerance of data storage</li>
+</ul>
+<h2 id="RDS"><a href="#RDS" class="headerlink" title="RDS"></a>RDS</h2><ul>
+<li><p>Automated backups</p>
+<ul>
+<li>Enable point-in-time recovery for your database instance</li>
+<li>RDS will back up your database and <strong>5-minutes-interval transaction logs</strong> and store both for a user-specified retention period by default</li>
+</ul>
+</li>
+<li><p>Manual Snapshots</p>
+<ul>
+<li>You can create a new instances from a Snapshot</li>
+<li>Help you to recover from higher-level faults such as unintentional data modification</li>
+</ul>
+</li>
+<li><p>Multi-AZ deployment</p>
+<ul>
+<li>Provision a synchronous standby replica of your database in a different AZ</li>
+<li>In case of failover scenario, the standby will be promoted to be the primary<ul>
+<li><strong>Standby replica is different from read replica</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Using-AWS-for-Disaster-Recovery"><a href="#Using-AWS-for-Disaster-Recovery" class="headerlink" title="Using AWS for Disaster Recovery"></a>Using AWS for Disaster Recovery</h1><h2 id="RTO-and-RPO"><a href="#RTO-and-RPO" class="headerlink" title="RTO and RPO"></a>RTO and RPO</h2><ul>
+<li>Recovery Time Objective (RTO)<ul>
+<li>The time it takes after a disruption to back to its service level</li>
+</ul>
+</li>
+<li>Recovery Point Objective (RPO)<ul>
+<li>The acceptable amount of data loss measured in time</li>
+</ul>
+</li>
+</ul>
+<h2 id="Disaster-Recovery-Features"><a href="#Disaster-Recovery-Features" class="headerlink" title="Disaster Recovery Features"></a>Disaster Recovery Features</h2><h3 id="AMI-for-EC2"><a href="#AMI-for-EC2" class="headerlink" title="AMI for EC2"></a>AMI for EC2</h3><ul>
+<li>Configure and identify your own AMIs</li>
+<li>You can copy your AIMs to other regions for disaster recovery</li>
+</ul>
+<h3 id="Storage-Gateway"><a href="#Storage-Gateway" class="headerlink" title="Storage Gateway"></a>Storage Gateway</h3><ul>
+<li>File gateway<ul>
+<li>Store your file in S3</li>
+</ul>
+</li>
+<li>Volume gateway<ul>
+<li>Cached Mode and Stored Mode</li>
+<li>Data on the volumes is stored in S3</li>
+</ul>
+</li>
+<li>Tape gateway<ul>
+<li>Use Virtual Tape Library to backup your data to S3 or Glacier (Virtual Tape Shelf, VTS)</li>
+</ul>
+</li>
+</ul>
+<h3 id="AWS-Import-Export"><a href="#AWS-Import-Export" class="headerlink" title="AWS Import/Export"></a>AWS Import/Export</h3><ul>
+<li>Use Snowball to migrate your data into S3, Glacier, or EBS snapshots</li>
+</ul>
+<h3 id="VM-Import-Export"><a href="#VM-Import-Export" class="headerlink" title="VM Import/Export"></a>VM Import/Export</h3><ul>
+<li>Import virtual machine images from your existing environment to EC2 instances or vice versa</li>
+<li>No charge</li>
+</ul>
+<h3 id="VPC"><a href="#VPC" class="headerlink" title="VPC"></a>VPC</h3><ul>
+<li>Use VPC to extend your existing network<ul>
+<li>Through VPN</li>
+<li>Direct Connect</li>
+</ul>
+</li>
+</ul>
+<h3 id="RDS-1"><a href="#RDS-1" class="headerlink" title="RDS"></a>RDS</h3><ul>
+<li>RDS gives you the ability to snapshot data form one region to another</li>
+<li>RDS can run a read replica in another region</li>
+</ul>
+<h3 id="DynamoDB"><a href="#DynamoDB" class="headerlink" title="DynamoDB"></a>DynamoDB</h3><ul>
+<li>DynamoDB allows you to copy data to DynamoDB in another region or to S3</li>
+</ul>
+<h3 id="Redshift"><a href="#Redshift" class="headerlink" title="Redshift"></a>Redshift</h3><ul>
+<li>You can snapshot your Redshift to S3 within the same region or copy to another region </li>
+</ul>
+<h3 id="Other-services"><a href="#Other-services" class="headerlink" title="Other services"></a>Other services</h3><ul>
+<li>S3</li>
+<li>EBS</li>
+<li>Route53</li>
+<li>ELB</li>
+</ul>
+<h2 id="Disaster-Recovery-Approaches"><a href="#Disaster-Recovery-Approaches" class="headerlink" title="Disaster Recovery Approaches"></a>Disaster Recovery Approaches</h2><ul>
+<li>Cost (low -&gt; high) &amp; recovery speed (slow -&gt; fast)<ul>
+<li>Backup &amp; Restore</li>
+<li>Pilot Light<ul>
+<li>A minimal version of an environment is always running in the cloud</li>
+</ul>
+</li>
+<li>Warm standby</li>
+<li>Multi Site</li>
+</ul>
+</li>
+</ul>
+<h3 id="Backup-amp-Restore"><a href="#Backup-amp-Restore" class="headerlink" title="Backup &amp; Restore"></a>Backup &amp; Restore</h3><ul>
+<li><p>S3 &amp; Glacier</p>
+<ul>
+<li>An ideal destination for backup data</li>
+<li>Transferring data to/from S3<ul>
+<li>Internet</li>
+<li>Direct Connect</li>
+<li>AWS Import/Export (Snowball)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Storage Gateway</p>
+<ul>
+<li>Volume Gateway<ul>
+<li>Stored mode (Gateway Stored)<ul>
+<li>Enables snapshots of your on-premises data volumes to be transparently copied into S3 for backup</li>
+</ul>
+</li>
+<li>Cached mode (Gateway Cached)<ul>
+<li>Allows you to store your data in S3, and keep your frequently accessed data local</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tape Gateway<ul>
+<li>Can be set as a backup target for your existing backup management software</li>
+<li>Can be used as a replacement for traditional tape backup</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Key steps for backup and restore</p>
+<ul>
+<li>Select an appropriate tool or method to back up your data into AWS</li>
+<li>Ensure that your have an appropriate retention policy for the data</li>
+<li>Ensure that appropriate security measures (encryption and access policies) are in place for the data</li>
+<li>Regularly test the recovery of the data and the restoration of your system</li>
+</ul>
+</li>
+</ul>
+<h3 id="Pilot-Light"><a href="#Pilot-Light" class="headerlink" title="Pilot Light"></a>Pilot Light</h3><ul>
+<li><p>Only run the most critical core elements of your systems in AWS</p>
+<ul>
+<li>You can rapidly provision a full-scale production environment around the critical core</li>
+<li>The critical core elements typically include database servers, which would be replicated to EC2 or RDS</li>
+</ul>
+</li>
+<li><p>Main options for provisioning for recovery</p>
+<ul>
+<li>Use EIP</li>
+<li>Use ELB</li>
+</ul>
+</li>
+<li><p>Key steps for preparation</p>
+<ul>
+<li>Set up EC2 instances to replicate</li>
+<li>Ensure that all custom software packages are available in AWS</li>
+<li>Create and maintain AMIs of key servers</li>
+<li>Regularly run these servers, test them and apply updates</li>
+<li>Consider automating the provisioning of AWS resources</li>
+</ul>
+</li>
+<li><p>Key steps for recovery</p>
+<ul>
+<li>Start your application EC2 instances from your custom AMIs</li>
+<li>Resize database/data store instances according to the increased traffic</li>
+<li>Add additional database/data store instances to ensure the resilience in the data tier<ul>
+<li>If using RDS, turn on Multi-AZ</li>
+</ul>
+</li>
+<li>Change DNS to point at the EC2 servers<ul>
+<li>Either EIP or ELB</li>
+</ul>
+</li>
+<li>Install and configure any non-AMI based systems, ideally in an automated way</li>
+</ul>
+</li>
+</ul>
+<h3 id="Warn-Standby"><a href="#Warn-Standby" class="headerlink" title="Warn Standby"></a>Warn Standby</h3><ul>
+<li><p>A scaled-down version of the fully functional environment is always running in the cloud</p>
+</li>
+<li><p>These servers can be running on a minimum-sized fleet of EC2 instances on the smallest sizes</p>
+</li>
+<li><p>Key steps for preparation</p>
+<ul>
+<li>Set up EC2 instances to replicate</li>
+<li>Create and maintain AMIs</li>
+<li>Run your application using a minimal footprint of EC2 instances</li>
+<li>Patch and update software and configuration files in line with your live environment</li>
+</ul>
+</li>
+<li><p>Key steps for recovery</p>
+<ul>
+<li>Increase the number of EC2 fleets in service with ELB (horizontal scaling)</li>
+<li>Start applications on larger EC2 instance types (vertical scaling)</li>
+<li>Either manually change the DNS, or use Route53 automated health checks so that all traffic is routed to the AWS environment</li>
+<li>Consider using Auto Scaling to right-size the fleet or accommodate the increased load</li>
+<li>Add resilience or scale up your database</li>
+</ul>
+</li>
+</ul>
+<h3 id="Multi-Site"><a href="#Multi-Site" class="headerlink" title="Multi Site"></a>Multi Site</h3><ul>
+<li><p>A multi-size solution runs in AWS as well as on your existing on-site infrastructure, in an active-active configuration</p>
+</li>
+<li><p>You can replicate your data in synchronous or asynchronous methods</p>
+</li>
+<li><p>You can use Route53 to support weighted routing</p>
+</li>
+<li><p>Key steps for preparation</p>
+<ul>
+<li>Set up your AWS environment ro duplicate your production environment</li>
+<li>Set up DNS such as Route53 to distribute incoming requests to both sites</li>
+<li>Configure automated failover to re-route traffic away from the affected site</li>
+</ul>
+</li>
+<li><p>Key steps for recovery</p>
+<ul>
+<li>Either manually or by using DNS failover, change the DNS weighting so that all requests are sent to the AWS site</li>
+<li>Have application logic for failover to use the AWS database servers for all queries</li>
+<li>Consider using Auto Scaling to automatically right-size the AWS fleet</li>
+</ul>
+</li>
+</ul>
+<h2 id="Replication-of-Data"><a href="#Replication-of-Data" class="headerlink" title="Replication of Data"></a>Replication of Data</h2><ul>
+<li>Distance between the sites</li>
+<li>Available bandwidth</li>
+<li>Data rate required by your application</li>
+<li>Replication technology (like using parallel)</li>
+</ul>
+<h2 id="Self-Healing"><a href="#Self-Healing" class="headerlink" title="Self Healing"></a>Self Healing</h2><ul>
+<li>SQS to decouple</li>
+<li>CloudWatch and Auto Scaling to terminate unhealthy instances<ul>
+<li>Auto Scaling to create replacement instances to replace terminated instances</li>
+</ul>
+</li>
+<li>S3 and Glacier performs regular, systematic data integrity checks and is built to be automatically self-healing</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
