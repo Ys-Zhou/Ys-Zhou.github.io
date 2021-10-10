@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Services and Strategies for Deployment, Operations and Monitoring - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudFormation"><span class="toc-text">CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Benefits"><span class="toc-text">Benefits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Components"><span class="toc-text">Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Policies"><span class="toc-text">Policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-features"><span class="toc-text">Other features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StackSets"><span class="toc-text">StackSets</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OpsWorks"><span class="toc-text">OpsWorks</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Stacks"><span class="toc-text">Stacks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Layers"><span class="toc-text">Layers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Life-Cycle-Events"><span class="toc-text">Life Cycle Events</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instances"><span class="toc-text">Instances</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integration-with-IAM"><span class="toc-text">Integration with IAM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Allocating-IPs"><span class="toc-text">Allocating IPs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integration-with-ELB-CLB"><span class="toc-text">Integration with ELB (CLB)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Monitoring-and-Logging"><span class="toc-text">Monitoring and Logging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UnrecognizedClientException"><span class="toc-text">UnrecognizedClientException</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Elastic-Beanstalk"><span class="toc-text">Elastic Beanstalk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Application"><span class="toc-text">Application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integration"><span class="toc-text">Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Patterns-and-Anti-patterns"><span class="toc-text">Patterns and Anti-patterns</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudWatch"><span class="toc-text">CloudWatch</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Namespaces"><span class="toc-text">Namespaces</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metrics"><span class="toc-text">Metrics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Metrics-Retention"><span class="toc-text">Metrics Retention</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Alarms"><span class="toc-text">CloudWatch Alarms</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Alarm-Actions"><span class="toc-text">Alarm Actions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Logs"><span class="toc-text">CloudWatch Logs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Log-data-sources"><span class="toc-text">Log data sources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Logs"><span class="toc-text">Logs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Encryption"><span class="toc-text">Encryption</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Services and Strategies for Deployment, Operations and Monitoring
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2021-06-12 10:59:46</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Whitepapers)" title="AWS - Solutions Architect (Whitepapers)">AWS - Solutions Architect (Whitepapers)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="CloudFormation"><a href="#CloudFormation" class="headerlink" title="CloudFormation"></a>CloudFormation</h1><h2 id="Benefits"><a href="#Benefits" class="headerlink" title="Benefits"></a>Benefits</h2><ul>
+<li>Simplify infrastructure management</li>
+<li>Quickly replicate your infrastructure</li>
+<li>Easily control and track changes to your infrastructure</li>
+</ul>
+<h2 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h2><ul>
+<li>AWSTemplateFormatVersion</li>
+<li>Description</li>
+<li>Metadata</li>
+<li>Parameters: provide key-value pairs in run-time</li>
+<li>Mappings: provide map data structures</li>
+<li>Conditions: use condition intrinsic functions to control resources creation</li>
+<li>Transform</li>
+<li>Resources (required)</li>
+<li>Outputs: output values that can be imported into other stacks</li>
+</ul>
+<h2 id="Policies"><a href="#Policies" class="headerlink" title="Policies"></a>Policies</h2><ul>
+<li>Creation Policies<ul>
+<li>Wait on some conditions</li>
+<li>Supports: AutoScaling::AutoScalingGroup, EC2::Instance, CloudFormation::WaitCondition</li>
+</ul>
+</li>
+<li>Deletion policies<ul>
+<li>You can preserve or backup a resource when the stack is deleted</li>
+<li>Attributes<ul>
+<li>Delete<ul>
+<li>Default attribute except RDS</li>
+<li>For S3 buckets, the buckets must be empty or the deletion will be failed</li>
+</ul>
+</li>
+<li>Retain</li>
+<li>Snapshot<ul>
+<li>Supports: EBS, Elasticache, RDS (default), Redshift</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Other-features"><a href="#Other-features" class="headerlink" title="Other features"></a>Other features</h2><ul>
+<li>Stacks can be nested</li>
+<li>Use output section and import function to perform cross-stack reference</li>
+<li>CloudFormation integrates with CloudTrail</li>
+</ul>
+<h2 id="StackSets"><a href="#StackSets" class="headerlink" title="StackSets"></a>StackSets</h2><ul>
+<li>CloudFormation StackSets allows you to create, update, delete stacks across multiple accounts and regions</li>
+<li>StackSets use user’s IAM permissions or stack service role</li>
+</ul>
+<h1 id="OpsWorks"><a href="#OpsWorks" class="headerlink" title="OpsWorks"></a>OpsWorks</h1><h2 id="Stacks"><a href="#Stacks" class="headerlink" title="Stacks"></a>Stacks</h2><ul>
+<li>OpsWork stack is basically a container for resources - EC2 instances, RDS, DynamoDB, ELB (CLB only), on-premise instances</li>
+<li>Stacks help to manage these resources as a group</li>
+<li>A stack defines some default configuration, such as instances’ operating system, AWS region</li>
+</ul>
+<h2 id="Layers"><a href="#Layers" class="headerlink" title="Layers"></a>Layers</h2><ul>
+<li>A stack has one or more layers</li>
+<li>A Layer represents a set of resources that serve a particular purpose</li>
+<li>Layers give complete control over which packages are installed, how they are configured, how applications are deployed, and more</li>
+<li>Layers depend on Chef recipes to handle tasks such as<ul>
+<li>Installing packages on instances</li>
+<li>Deploying apps</li>
+<li>Running scripts</li>
+</ul>
+</li>
+<li>You package your recipes and related files in one or more cookbooks and store the cookbooks in a repository (S3 or Git)</li>
+<li>After you create a layer, some properties (such as AWS region) are immutable, but you can change most of the layer configuration at any time</li>
+</ul>
+<h2 id="Life-Cycle-Events"><a href="#Life-Cycle-Events" class="headerlink" title="Life Cycle Events"></a>Life Cycle Events</h2><ul>
+<li>You can run your recipes manually, you can also automate the process in LifeCycle Events<ul>
+<li>Setup: after instance successfully boots</li>
+<li>Deploy: when you deploy an app</li>
+<li>Configure: when one of the instances enters or leaves the online state</li>
+<li>Undeploy: when you delete an app</li>
+<li>Shutdown: when you stop an app</li>
+</ul>
+</li>
+</ul>
+<h2 id="Instances"><a href="#Instances" class="headerlink" title="Instances"></a>Instances</h2><ul>
+<li>OpsWorks Instances represent a single computing resources, such as EC2 instances</li>
+<li>After EC2 instance has finished booting, OpsWorks will install an agent that handles communication and run recipes</li>
+<li>An instance can belong to multiple layers (not recommended)</li>
+<li>Instances types<ul>
+<li>All-time instances</li>
+<li>Time-based instances</li>
+<li>Load-based instances<ul>
+<li>Only support Linux-based stacks</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Auto healing<ul>
+<li>If an agent stops communicating, OpsWorks will automatically restart the instance</li>
+</ul>
+</li>
+</ul>
+<h2 id="Integration-with-IAM"><a href="#Integration-with-IAM" class="headerlink" title="Integration with IAM"></a>Integration with IAM</h2><ul>
+<li>Control access<ul>
+<li>Between users and stacks or resources in the stacks</li>
+<li>Service control between stacks and resources</li>
+<li>Service control between apps in stacks and other AWS services</li>
+</ul>
+</li>
+</ul>
+<h2 id="Allocating-IPs"><a href="#Allocating-IPs" class="headerlink" title="Allocating IPs"></a>Allocating IPs</h2><ul>
+<li>OpsWorks will try to assign an Elastic IP first</li>
+<li>If not, OpsWork will try to assign a public IP</li>
+<li>If not as well, the instance will only has a private IP<ul>
+<li>In this case, you may need an NAT to ensure the instance can communicate with Internat</li>
+</ul>
+</li>
+</ul>
+<h2 id="Integration-with-ELB-CLB"><a href="#Integration-with-ELB-CLB" class="headerlink" title="Integration with ELB (CLB)"></a>Integration with ELB (CLB)</h2><ul>
+<li>OpsWorks only support CLB (not ALB)</li>
+<li>Attach a CLB:<ul>
+<li>De-registers any currently registered instances</li>
+<li>Registers the layer’s instances</li>
+<li>Registers new instances as they come online</li>
+<li>De-registers instances when they become offline</li>
+<li>Automatically activates and deactivates the instances’ AZ</li>
+</ul>
+</li>
+<li>Relationship between CLB and OpsWorks Layer is 1:1</li>
+</ul>
+<h2 id="Monitoring-and-Logging"><a href="#Monitoring-and-Logging" class="headerlink" title="Monitoring and Logging"></a>Monitoring and Logging</h2><ul>
+<li>CloudWatch<ul>
+<li>Custom CloudWatch metrics for Linux stacks</li>
+<li>Standard CloudWatch metrics for Windows stacks</li>
+</ul>
+</li>
+<li>CloudTrail<ul>
+<li>Record API calls made by OpsWorks</li>
+</ul>
+</li>
+<li>OpsWorks event logs<ul>
+<li>Lists all events in your stack</li>
+</ul>
+</li>
+<li>Chef logs<ul>
+<li>Lifecycle events on each instance</li>
+</ul>
+</li>
+</ul>
+<h2 id="UnrecognizedClientException"><a href="#UnrecognizedClientException" class="headerlink" title="UnrecognizedClientException"></a>UnrecognizedClientException</h2><ul>
+<li>Occurs if a resource outside OpsWorks on which the instance depends was edited or deleted<ul>
+<li>The IAM user or role associated with the instance has been deleted</li>
+<li>Instance volume or storage configurations are edited while the instance is offline</li>
+<li>Adding an EIP to EC2 instances manually</li>
+</ul>
+</li>
+</ul>
+<h1 id="Elastic-Beanstalk"><a href="#Elastic-Beanstalk" class="headerlink" title="Elastic Beanstalk"></a>Elastic Beanstalk</h1><ul>
+<li>Elastic Beanstalk is a PaaS for deploying Web applications<ul>
+<li>Programming languages: Java, .NET, PHP, Node.js, Python, Ruby, Go</li>
+<li>Servers and containers: Apache, Nginx, Passenger, Puma, Docker, Tomcat, IIS</li>
+<li>Users can custom their own platforms</li>
+</ul>
+</li>
+<li>Users upload their code, and Elastic Beanstalk handles the details of capacity provisioning, load balancing, scaling, and application health monitoring</li>
+<li>Elastic Beanstalk has no persistent local storage<ul>
+<li>Use S3, EFS, DynamoDB, RDS</li>
+</ul>
+</li>
+<li>Elastic Beanstalk will be unusable if you modify the underlying AWS resources</li>
+<li>You can rebuild the environment within 6 weeks after you terminate the environment or the environment became unusable</li>
+</ul>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><ul>
+<li><p>An Elastic Beanstalk application is a logical collection of Elastic Beanstalk components, including environments, versions, and environment configurations</p>
+</li>
+<li><p>Deleting an application will delete all components above</p>
+</li>
+<li><p>Environments</p>
+<ul>
+<li>Web server environment</li>
+<li>Worker environment: pulls tasks from SQS</li>
+</ul>
+</li>
+<li><p>For Docker applications</p>
+<ul>
+<li>Elastic Beanstalk use EC2 instances for single container configuration, ECS for multi-container configuration</li>
+<li>Elastic Beanstalk has some pre-configured Docker configurations if it matches the software used by your application, but you can customize your own Dockerfile</li>
+</ul>
+</li>
+</ul>
+<h2 id="Integration"><a href="#Integration" class="headerlink" title="Integration"></a>Integration</h2><ul>
+<li>S3<ul>
+<li>Elastic Beanstalk creates an S3 bucket for each region in which you create environments</li>
+<li>Application versions, custom platform related data, source bundles are saved in the S3 bucket</li>
+<li>Elastic Beanstalk can monitor your environment app’s logs and publish them to S3</li>
+</ul>
+</li>
+<li>EFS<ul>
+<li>You can use EFS as local storage</li>
+</ul>
+</li>
+<li>RDS<ul>
+<li>You can include RDS instances in test or dev Elastic Beanstalk environments, but it’s not recommended</li>
+<li>It is recommended to use RDS instances outside your Elastic Beanstalk environments</li>
+</ul>
+</li>
+<li>DynamoDB<ul>
+<li>You can use configuration files to create DynamoDB tables outside your Application</li>
+</ul>
+</li>
+<li>CloudWatch<ul>
+<li>Instance logs (use CloudWatch Agent)</li>
+<li>If you enable enhanced health, you can stream health information (software, ELB, ASG,…) to CloudWatch Logs (use health agent preinstalled in AMI for each platform configuration that supports enhanced health)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Patterns-and-Anti-patterns"><a href="#Patterns-and-Anti-patterns" class="headerlink" title="Patterns and Anti-patterns"></a>Patterns and Anti-patterns</h2><ul>
+<li>Patterns<ul>
+<li>Quickly deploy an application</li>
+<li>Minimal knowledge about AWS infrastructure</li>
+<li>Migrating Web application from on-premise servers to AWS</li>
+<li>Docker application</li>
+</ul>
+</li>
+<li>Anti-patterns<ul>
+<li>If users want to control the AWS resources</li>
+</ul>
+</li>
+</ul>
+<h1 id="CloudWatch"><a href="#CloudWatch" class="headerlink" title="CloudWatch"></a>CloudWatch</h1><h2 id="Namespaces"><a href="#Namespaces" class="headerlink" title="Namespaces"></a>Namespaces</h2><ul>
+<li>Namespaces are containers for CloudWatch metrics</li>
+<li>Metrics in different namespaces are isolated form each other</li>
+<li>AWS namespaces are AWS/service</li>
+<li>Create a custom metrics need to specify a namespace for each data point</li>
+</ul>
+<h2 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h2><ul>
+<li>AWS services send metrics to CloudWatch, and users can create custom metrics</li>
+<li>Metrics is not cross-region<ul>
+<li>You can create CloudWatch Dashboard from metrics in multiple region</li>
+</ul>
+</li>
+<li>Metrics are uniquely defined by name, namespace, and optional dimensions</li>
+<li>The timestamps of metrics can be up to 2 weeks in the past or 2 hours into the future</li>
+</ul>
+<h3 id="Metrics-Retention"><a href="#Metrics-Retention" class="headerlink" title="Metrics Retention"></a>Metrics Retention</h3><ul>
+<li>Metrics cannot be deleted</li>
+<li>CloudWatch retains metric as follows:<ul>
+<li>Data points with a period of less than 60 seconds (called high-resolution metrics) are available for 3 hours</li>
+<li>60 seconds (1 minute) are available for 15 days</li>
+<li>300 seconds (5 minutes) are available for 62 days</li>
+<li>3600 seconds (1 hour) are available for 455 days (15 months)</li>
+</ul>
+</li>
+<li>Shorter period are aggregated to longer period<ul>
+<li>60 -&gt; 300 -&gt; 3600</li>
+</ul>
+</li>
+<li>After 15 months, metrics expire on a rolling basis</li>
+<li>Metrics expire after 15 months if no new data is published to them</li>
+</ul>
+<h2 id="CloudWatch-Alarms"><a href="#CloudWatch-Alarms" class="headerlink" title="CloudWatch Alarms"></a>CloudWatch Alarms</h2><ul>
+<li>An alarm can be created based on:<ul>
+<li>one metric</li>
+<li>the result of a math expression based on metrics</li>
+<li>CloudWatch Logs metric filters</li>
+</ul>
+</li>
+<li>The alarm can perform one or more actions based on the threshold</li>
+<li>The possible alarm states:<ul>
+<li>OK</li>
+<li>ALARM (Alarm is triggered)</li>
+<li>INSUFFICIENT_DATA (The alarm has just started or the metrics are not available)</li>
+</ul>
+</li>
+<li>ALarms can be added to CloudWatch dashboards</li>
+<li>Alarm settings:<ul>
+<li>Period in seconds</li>
+<li>The number of period to evaluate</li>
+<li>The number of period to alarm</li>
+</ul>
+</li>
+</ul>
+<h3 id="Alarm-Actions"><a href="#Alarm-Actions" class="headerlink" title="Alarm Actions"></a>Alarm Actions</h3><ul>
+<li>EC2 actions</li>
+<li>Auto Scaling actions</li>
+<li>Sending notifications to a SNS topic </li>
+<li>CloudWatch Alarms can only perform 3 types of action above, other actions can be performed by CloudWatch Events</li>
+</ul>
+<h2 id="CloudWatch-Logs"><a href="#CloudWatch-Logs" class="headerlink" title="CloudWatch Logs"></a>CloudWatch Logs</h2><ul>
+<li>CloudWatch Logs is a service can be used to store and monitor logs from many AWS and Non-AWS sources</li>
+<li>You can:<ul>
+<li>View the logs as time series</li>
+<li>Query the logs</li>
+<li>Filter the logs based on specific fields</li>
+<li>Archive the logs securely for future analysis</li>
+</ul>
+</li>
+<li>You can also:<ul>
+<li>Create powerful queries using CloudWatch Insights</li>
+<li>Visualize the log data in CloudWatch Dashboards</li>
+</ul>
+</li>
+</ul>
+<h3 id="Log-data-sources"><a href="#Log-data-sources" class="headerlink" title="Log data sources"></a>Log data sources</h3><ul>
+<li>EC2 instances (Requires CloudWatch Agents)<ul>
+<li>Or any services that use EC2 instances</li>
+</ul>
+</li>
+<li>CloudTrail</li>
+<li>Route 53 DNS query logs</li>
+<li>RDS (Aurora, MySQL, MariaDB)</li>
+<li>Amazon Neptune</li>
+<li>VPC Flow Logs</li>
+<li>API Gateway Execution logging</li>
+<li>Lambda function logs</li>
+<li>On-premise instances (Requires CloudWatch Agents)</li>
+</ul>
+<h3 id="Logs"><a href="#Logs" class="headerlink" title="Logs"></a>Logs</h3><ul>
+<li>Log Events<ul>
+<li>Event timestamp</li>
+<li>Event message</li>
+</ul>
+</li>
+<li>Log Streams<ul>
+<li>A sequence of log events from the same source</li>
+<li>Each log stream has to belong to a log group</li>
+</ul>
+</li>
+<li>Log Group<ul>
+<li>Groups of log streams that share the same settings</li>
+<li>There is no limit on the number of log streams that can belong to a log group</li>
+</ul>
+</li>
+<li>Log Retention<ul>
+<li>By default, logs never expire (Log data storage is charged)</li>
+<li>Users can set the retention policy for each Log Group</li>
+</ul>
+</li>
+<li>Metric Filters<ul>
+<li>You can use filters to configure custom CloudWatch metrics form CloudWatch logs</li>
+<li>Metric filters are assigned to log groups</li>
+<li>CloudWatch Logs sends metrics to CloudWatch every minute</li>
+</ul>
+</li>
+</ul>
+<h3 id="Encryption"><a href="#Encryption" class="headerlink" title="Encryption"></a>Encryption</h3><ul>
+<li>Encryption in Transit<ul>
+<li>CloudWatch Logs manages the encryption keys</li>
+</ul>
+</li>
+<li>Encryption at Rest<ul>
+<li>CloudWatch Logs manages the server-side encryption keys</li>
+<li>You can also manage the keys using AWS KMS CMK</li>
+<li>Encryption is enabled at the log group level</li>
+<li>You can also encrypt logs when you create the log group or after it exists</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
