@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EBS-amp-EC2-Instance-Store"><span class="toc-text">EBS &amp; EC2 Instance Store</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS-Volume-Types"><span class="toc-text">EBS Volume Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS-Snapshots"><span class="toc-text">EBS Snapshots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EC2-Instance-Store"><span class="toc-text">EC2 Instance Store</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EFS"><span class="toc-text">EFS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS-Settings"><span class="toc-text">EFS Settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS-Sharing"><span class="toc-text">EFS Sharing</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Replication"><span class="toc-text">S3 Replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Events"><span class="toc-text">S3 Events</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-CloudWatch-Events"><span class="toc-text">S3 CloudWatch Events</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Performance"><span class="toc-text">S3 Performance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Multi-Part-Upload"><span class="toc-text">S3 Multi-Part Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Transfer-Acceleration"><span class="toc-text">S3 Transfer Acceleration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Byte-Range-Fetches"><span class="toc-text">Byte-Range Fetches</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-amp-Glacier-Select"><span class="toc-text">S3 &amp; Glacier Select</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EBS-amp-EC2-Instance-Store"><span class="toc-text">EBS &amp; EC2 Instance Store</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS-Volume-Types"><span class="toc-text">EBS Volume Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RAID-Configurations"><span class="toc-text">RAID Configurations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EBS-Snapshots"><span class="toc-text">EBS Snapshots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EC2-Instance-Store"><span class="toc-text">EC2 Instance Store</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EFS"><span class="toc-text">EFS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS-Settings"><span class="toc-text">EFS Settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS-Sharing"><span class="toc-text">EFS Sharing</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Replication"><span class="toc-text">S3 Replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Events"><span class="toc-text">S3 Events</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-CloudWatch-Events"><span class="toc-text">S3 CloudWatch Events</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Performance"><span class="toc-text">S3 Performance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Multi-Part-Upload"><span class="toc-text">S3 Multi-Part Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Transfer-Acceleration"><span class="toc-text">S3 Transfer Acceleration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Byte-Range-Fetches"><span class="toc-text">Byte-Range Fetches</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-amp-Glacier-Select"><span class="toc-text">S3 &amp; Glacier Select</span></a></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -143,8 +143,8 @@
 <li>General Purpose SSD</li>
 <li>3 IOPS / GB <ul>
 <li>min 100 IOPS</li>
-<li>burst to 3000 IOPS</li>
 <li>max 16000 IOPS</li>
+<li>can burst to 3000 IOPS if the volume IOPS &lt; 3000 (storage &lt; 1 TB)</li>
 </ul>
 </li>
 <li>1 GB - 16 TB</li>
@@ -172,6 +172,10 @@
 <li>250 GB - 16 TB</li>
 </ul>
 </li>
+</ul>
+<h2 id="RAID-Configurations"><a href="#RAID-Configurations" class="headerlink" title="RAID Configurations"></a>RAID Configurations</h2><ul>
+<li>RAID 0</li>
+<li>RAID 1</li>
 </ul>
 <h2 id="EBS-Snapshots"><a href="#EBS-Snapshots" class="headerlink" title="EBS Snapshots"></a>EBS Snapshots</h2><ul>
 <li>Use incremental snapshots</li>
