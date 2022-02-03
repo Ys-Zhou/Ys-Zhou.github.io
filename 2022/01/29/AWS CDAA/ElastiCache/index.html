@@ -11,7 +11,7 @@
 
     <title>
         
-        ElastiCache - Hiko Amane&#39;s Blog
+        Something New &amp; Important - Hiko Amane&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RDS"><span class="toc-text">RDS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Replica-limitations"><span class="toc-text">Replica limitations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL"><span class="toc-text">SSL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ElastiCache"><span class="toc-text">ElastiCache</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Precondition-of-Data-caching"><span class="toc-text">Precondition of Data caching</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElastiCache-Strategies"><span class="toc-text">ElastiCache Strategies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lazy-Loading-Cache-aside-Lazy-Population"><span class="toc-text">Lazy Loading / Cache-aside / Lazy Population</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Through"><span class="toc-text">Write Through</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-Evictions-and-TTL"><span class="toc-text">Cache Evictions and TTL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strategies-Consideration"><span class="toc-text">Strategies Consideration</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElastiCache-for-Redis-Replication"><span class="toc-text">ElastiCache for Redis Replication</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IAM"><span class="toc-text">IAM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-Types"><span class="toc-text">Policy Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-Structure"><span class="toc-text">Policy Structure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security-Tools"><span class="toc-text">Security Tools</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EBS-Volume-Types"><span class="toc-text">EBS Volume Types</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-key-points"><span class="toc-text">Other key points</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ELB"><span class="toc-text">ELB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CLB"><span class="toc-text">CLB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ALB"><span class="toc-text">ALB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NLB"><span class="toc-text">NLB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gateway-Load-Balancer"><span class="toc-text">Gateway Load Balancer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RDS"><span class="toc-text">RDS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Backups"><span class="toc-text">Backups</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Snapshots"><span class="toc-text">Snapshots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDS-Storage-Auto-Scaling"><span class="toc-text">RDS Storage Auto Scaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Read-Replicas"><span class="toc-text">Read Replicas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enforce-SSL"><span class="toc-text">Enforce SSL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Aurora"><span class="toc-text">Aurora</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ElastiCache"><span class="toc-text">ElastiCache</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Precondition-of-Data-caching"><span class="toc-text">Precondition of Data caching</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElastiCache-Strategies"><span class="toc-text">ElastiCache Strategies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lazy-Loading-Cache-aside-Lazy-Population"><span class="toc-text">Lazy Loading / Cache-aside / Lazy Population</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Through"><span class="toc-text">Write Through</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-Evictions-and-TTL"><span class="toc-text">Cache Evictions and TTL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strategies-Consideration"><span class="toc-text">Strategies Consideration</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElastiCache-for-Redis-Replication"><span class="toc-text">ElastiCache for Redis Replication</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Route-53"><span class="toc-text">Route 53</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CNAME-amp-Alias"><span class="toc-text">CNAME &amp; Alias</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Health-Checks"><span class="toc-text">Health Checks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Traffic-Flow"><span class="toc-text">Traffic Flow</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -120,7 +120,7 @@
 
 <div class="post-container">
     <div class="post-title">
-        ElastiCache
+        Something New &amp; Important
     </div>
 
     <div class="post-meta">
@@ -138,12 +138,154 @@
 
     </div>
     <div class="post-content no-indent">
-        <h1 id="RDS"><a href="#RDS" class="headerlink" title="RDS"></a>RDS</h1><h2 id="Replica-limitations"><a href="#Replica-limitations" class="headerlink" title="Replica limitations"></a>Replica limitations</h2><ul>
-<li>Up to 5 Read Replicas for a RDS instance</li>
-<li>Up to 15 Read Replicas in a single Aurora Cluster</li>
+        <h1 id="IAM"><a href="#IAM" class="headerlink" title="IAM"></a>IAM</h1><h2 id="Policy-Types"><a href="#Policy-Types" class="headerlink" title="Policy Types"></a>Policy Types</h2><ul>
+<li>AWS Managed Policies</li>
+<li>Customer Managed Policies</li>
+<li>Inline Policies</li>
 </ul>
-<h2 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h2><ul>
-<li>Run <code>REQUIRE SSL</code> SQL to all your DB users to enable SSL on a RDS instance</li>
+<h2 id="Policy-Structure"><a href="#Policy-Structure" class="headerlink" title="Policy Structure"></a>Policy Structure</h2><ul>
+<li>Version: string</li>
+<li>Id: string</li>
+<li>Statement: array<ul>
+<li>Sid: string</li>
+<li>Effect: “Allow” | “Deny”</li>
+<li>Principal: object</li>
+<li>Action: string | array</li>
+<li>Resource: string | array</li>
+<li>Condition: object</li>
+</ul>
+</li>
+</ul>
+<h2 id="Security-Tools"><a href="#Security-Tools" class="headerlink" title="Security Tools"></a>Security Tools</h2><ul>
+<li>IAM Credentials Reports<ul>
+<li>Account-level report</li>
+<li>All users in an account and their credentials</li>
+</ul>
+</li>
+<li>IAM Access Advisor<ul>
+<li>User-level report</li>
+<li>All service permissions and when they are used</li>
+<li>Use this tool to review user privileges (least privilege principle)</li>
+</ul>
+</li>
+</ul>
+<h1 id="EBS-Volume-Types"><a href="#EBS-Volume-Types" class="headerlink" title="EBS Volume Types"></a>EBS Volume Types</h1><ul>
+<li>gp2: General purpose SSD<ul>
+<li>1 GiB ~ 16 TiB</li>
+<li>Can burst to 3000 IOPS for small size volumes</li>
+<li>3 IOPS per GB, up to 16000 IOPS</li>
+</ul>
+</li>
+<li>gp3: General purpose SSD<ul>
+<li>1 GiB ~ 16 TiB</li>
+<li>Baseline of 3000 IOPS and throughput of 125 MiB/s</li>
+<li>Up to 16000 IOPS and 1000 MiB/s</li>
+<li>Provisioned IOPS and throughput</li>
+</ul>
+</li>
+<li>io1 / io2: High-performance SSD<ul>
+<li>4 GiB ~ 16 TiB</li>
+<li>Up to 64000 Provisioned IOPS for Nitro EC2 instances</li>
+<li>Up to 32000 Provisioned IOPS for other EC2 instances</li>
+<li>io2 have more durability and more IOPS per GiB at the same price as io1 (io2 is always better than io1)</li>
+</ul>
+</li>
+<li>io2 Block Express<ul>
+<li>4 GiB ~ 64 TiB</li>
+<li>Up to 256000 Provisioned IOPS</li>
+<li>Sub-millisecond latency</li>
+</ul>
+</li>
+<li>st1: Throughput optimized HDD<ul>
+<li>125 MiB ~ 16 TiB</li>
+<li>Up to 500 IOPS and 500 MiB/s throughput</li>
+</ul>
+</li>
+<li>sc1: Cold HDD<ul>
+<li>125 MiB ~ 16 TiB</li>
+<li>Up to 250 IOPS and 250 MiB/s throughput</li>
+</ul>
+</li>
+</ul>
+<h2 id="Other-key-points"><a href="#Other-key-points" class="headerlink" title="Other key points"></a>Other key points</h2><ul>
+<li>Only gp2/3 and io1/2 (only SSD) can be used as boot volumes</li>
+<li>Only io1/2 supports EBS multi-attach</li>
+</ul>
+<h1 id="ELB"><a href="#ELB" class="headerlink" title="ELB"></a>ELB</h1><h2 id="CLB"><a href="#CLB" class="headerlink" title="CLB"></a>CLB</h2><ul>
+<li>Fixed hostname</li>
+</ul>
+<h2 id="ALB"><a href="#ALB" class="headerlink" title="ALB"></a>ALB</h2><ul>
+<li>Support HTTP(S), HTTP/2, WebSocket</li>
+<li>Support redirects (Ex. from HTTP to HTTPS)</li>
+<li>Support routing to different target groups based on path, hostname, query string, headers</li>
+<li>Supported target groups:<ul>
+<li>EC2 instances</li>
+<li>ECS tasks</li>
+<li>Lambda functions</li>
+<li>Private IP addresses</li>
+</ul>
+</li>
+<li>Fixed hostname</li>
+<li>Client info in headers<ul>
+<li>IP: X-Forwarded-For</li>
+<li>Port: X-Forwarded-Port</li>
+<li>Protocol: X-Forwarded-Proto</li>
+</ul>
+</li>
+</ul>
+<h2 id="NLB"><a href="#NLB" class="headerlink" title="NLB"></a>NLB</h2><ul>
+<li>Supported target groups:<ul>
+<li>EC2 instances</li>
+<li>Private IP addresses</li>
+<li>ALB</li>
+</ul>
+</li>
+<li>One static IP per AZ (fixed IPs)</li>
+</ul>
+<h2 id="Gateway-Load-Balancer"><a href="#Gateway-Load-Balancer" class="headerlink" title="Gateway Load Balancer"></a>Gateway Load Balancer</h2><ul>
+<li>Layer 3 (Network Layer) - IP Packets load balancer</li>
+<li>Combines:<ul>
+<li>Transparent Network Gateway</li>
+<li>Load Balancer</li>
+</ul>
+</li>
+<li>Uses GENEVE protocol on port 6081</li>
+<li>Target groups<ul>
+<li>EC2 instances</li>
+<li>Private IP addresses</li>
+</ul>
+</li>
+</ul>
+<h1 id="RDS"><a href="#RDS" class="headerlink" title="RDS"></a>RDS</h1><h2 id="Backups"><a href="#Backups" class="headerlink" title="Backups"></a>Backups</h2><ul>
+<li>Automatically enabled</li>
+<li>Daily full backup of the database</li>
+<li>Transaction logs every 5 minutes</li>
+<li>7 days retention by default, up to 35 days</li>
+</ul>
+<h2 id="Snapshots"><a href="#Snapshots" class="headerlink" title="Snapshots"></a>Snapshots</h2><ul>
+<li>Manually triggered by uses</li>
+</ul>
+<h2 id="RDS-Storage-Auto-Scaling"><a href="#RDS-Storage-Auto-Scaling" class="headerlink" title="RDS Storage Auto Scaling"></a>RDS Storage Auto Scaling</h2><ul>
+<li>Automatically scaling the database storage</li>
+<li>Users need set maximum storage threshold and scaling policies</li>
+<li>Support all database engines</li>
+</ul>
+<h2 id="Read-Replicas"><a href="#Read-Replicas" class="headerlink" title="Read Replicas"></a>Read Replicas</h2><ul>
+<li>Up to 5 Read Replicas for a RDS instance</li>
+<li>Network cost<ul>
+<li><strong>Free</strong> for cross-<strong>AZ</strong> replication</li>
+<li><strong>Charged</strong> for cross-<strong>region</strong> replication</li>
+</ul>
+</li>
+</ul>
+<h2 id="Enforce-SSL"><a href="#Enforce-SSL" class="headerlink" title="Enforce SSL"></a>Enforce SSL</h2><ul>
+<li>PostgreSQL: Set <code>rds.force_ssl=1</code> in RDS Parameter Groups</li>
+<li>MySQL: Run <code>GRANT USAGE ON *.* TO &#39;mysqluser&#39;@&#39;%&#39; REQUIRE SSL;</code> SQL</li>
+</ul>
+<h1 id="Aurora"><a href="#Aurora" class="headerlink" title="Aurora"></a>Aurora</h1><ul>
+<li>Storage automatically grows in increments of 10 GB, up to 64 TB</li>
+<li>Writer Endpoint &amp; Reader Endpoint</li>
+<li>Up to 15 Read Replicas with auto-scaling feature</li>
 </ul>
 <h1 id="ElastiCache"><a href="#ElastiCache" class="headerlink" title="ElastiCache"></a>ElastiCache</h1><h2 id="Precondition-of-Data-caching"><a href="#Precondition-of-Data-caching" class="headerlink" title="Precondition of Data caching"></a>Precondition of Data caching</h2><ul>
 <li>Data is safe to be cached<ul>
@@ -229,6 +371,44 @@
 <li>Data is partitioned across shards</li>
 <li>Each shard has one primary node and 0~5 replica nodes</li>
 <li>Up to 500 nodes per cluster</li>
+</ul>
+</li>
+</ul>
+<h1 id="Route-53"><a href="#Route-53" class="headerlink" title="Route 53"></a>Route 53</h1><ul>
+<li>Authoritative DNS Service &amp; Domain Registrar<ul>
+<li>Authoritative: customers can update the DNS records</li>
+</ul>
+</li>
+</ul>
+<h2 id="CNAME-amp-Alias"><a href="#CNAME-amp-Alias" class="headerlink" title="CNAME &amp; Alias"></a>CNAME &amp; Alias</h2><ul>
+<li>CNAME<ul>
+<li>hostname -&gt; hostname</li>
+<li>Can not be used for root domain (Zone Apex)</li>
+</ul>
+</li>
+<li>Alias<ul>
+<li>hostname -&gt; AWS resource hostname (amazonaws.com)</li>
+<li>free</li>
+<li>Native health check</li>
+<li>Records Targets: ELB, CloudFront Distributions, API Gateway, Elastic Beanstalk environments, S3 Websites, VPC Interface Endpoints, Global Accelerator accelerators, Route 53 records in the same hosted zone<ul>
+<li><strong>Not include EC2 DNS name</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Health-Checks"><a href="#Health-Checks" class="headerlink" title="Health Checks"></a>Health Checks</h2><ul>
+<li>Health Checks are only for public resources<ul>
+<li>Public endpoint</li>
+<li>Other health checks (calculated health checks)</li>
+<li>CloudWatch Alarms</li>
+</ul>
+</li>
+</ul>
+<h2 id="Traffic-Flow"><a href="#Traffic-Flow" class="headerlink" title="Traffic Flow"></a>Traffic Flow</h2><ul>
+<li>A visual tool to create complex route policies</li>
+<li>Use this tool to create Geoproximity Policy<ul>
+<li>Set bias</li>
 </ul>
 </li>
 </ul>
