@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DVA - Elastic Beanstalk - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Deployment-Options"><span class="toc-text">Deployment Options</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lifecycle-Policy"><span class="toc-text">Lifecycle Policy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Extensions"><span class="toc-text">Extensions</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cloning"><span class="toc-text">Cloning</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Migrations"><span class="toc-text">Migrations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Change-the-ELB-Type-in-an-environment"><span class="toc-text">Change the ELB Type in an environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Decouple-RDS-from-an-environment"><span class="toc-text">Decouple RDS from an environment</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Use-Docker"><span class="toc-text">Use Docker</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTPS"><span class="toc-text">HTTPS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Custom-Platform"><span class="toc-text">Custom Platform</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DVA - Elastic Beanstalk
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-02-09 16:26:50</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Developer" title="AWS - Developer">AWS - Developer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Deployment-Options"><a href="#Deployment-Options" class="headerlink" title="Deployment Options"></a>Deployment Options</h1><ul>
+<li>Deployment policy<ul>
+<li>All at once</li>
+<li>Rolling</li>
+<li>Rolling with additional batch</li>
+<li>Immutable</li>
+<li>Traffic splitting</li>
+</ul>
+</li>
+<li>Blue/Green deployment<ul>
+<li>Swap environment URLs after Immutable deployment</li>
+</ul>
+</li>
+</ul>
+<h1 id="Lifecycle-Policy"><a href="#Lifecycle-Policy" class="headerlink" title="Lifecycle Policy"></a>Lifecycle Policy</h1><ul>
+<li>Policies<ul>
+<li>Based on time (remove old versions)</li>
+<li>Based on space</li>
+</ul>
+</li>
+<li>Current version won’t be deleted</li>
+<li>Option not to delete the source bundle in S3</li>
+</ul>
+<h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><ul>
+<li>All the parameters set in the UI can be configured using these files</li>
+<li>Setting<ul>
+<li>Files are in <code>root/.ebextensions/</code> with extensions of <code>.config</code></li>
+<li>Format can be YAML or JSON</li>
+<li>Modify some default settings using <code>option_settings</code> property</li>
+<li>Able to add resources such as RDS, ElastiCache, DynamoDB, …</li>
+</ul>
+</li>
+<li>Resources managed by extensions will be deleted if the environment is deleted</li>
+</ul>
+<h1 id="Cloning"><a href="#Cloning" class="headerlink" title="Cloning"></a>Cloning</h1><ul>
+<li>Create an environment with the exact same configuration</li>
+</ul>
+<h1 id="Migrations"><a href="#Migrations" class="headerlink" title="Migrations"></a>Migrations</h1><h2 id="Change-the-ELB-Type-in-an-environment"><a href="#Change-the-ELB-Type-in-an-environment" class="headerlink" title="Change the ELB Type in an environment"></a>Change the ELB Type in an environment</h2><ol>
+<li>Create a new environment with the same configuration except ELB (do not clone)</li>
+<li>Deploy your application onto the new environment</li>
+<li>Swap CNAMEs or update Route 53 records</li>
+</ol>
+<h2 id="Decouple-RDS-from-an-environment"><a href="#Decouple-RDS-from-an-environment" class="headerlink" title="Decouple RDS from an environment"></a>Decouple RDS from an environment</h2><ol>
+<li>For save, create a snapshot of the RDS instance</li>
+<li>Protect the RDS instance from deletion from RDS console</li>
+<li>Create a new environment without RDS and point to the existing RDS instance</li>
+<li>Swap CNAMEs or update Route 53 records</li>
+<li>Terminate the old environment</li>
+<li>Delete CloudFormation stack (will be failed but it’s OK)</li>
+</ol>
+<h1 id="Use-Docker"><a href="#Use-Docker" class="headerlink" title="Use Docker"></a>Use Docker</h1><ul>
+<li>Single-container Docker<ul>
+<li>Provide a Dockerfile or <code>Dockerrun.aws.json</code> (v1) file at your code root</li>
+<li>Use EC2 with Docker, not ECS</li>
+</ul>
+</li>
+<li>Multi-container Docker<ul>
+<li>Provide a <code>Dockerrun.aws.json</code> (v2) file at your code root</li>
+<li>Use ECS (task definition is in <code>Dockerrun.aws.json</code> file)</li>
+</ul>
+</li>
+</ul>
+<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><ul>
+<li>Load the SSL certificate onto the ELB<ul>
+<li>Execute form the Console</li>
+<li>Define in .ebextensions/securelistener-alb.config</li>
+</ul>
+</li>
+<li>Redirect HTTP to HTTPS<ul>
+<li>Configure your instances to redirect HTTP to HTTPS</li>
+<li>Configure the ALB rule (only for ALB)</li>
+<li>Make sure health checks are not redirected</li>
+</ul>
+</li>
+</ul>
+<h1 id="Custom-Platform"><a href="#Custom-Platform" class="headerlink" title="Custom Platform"></a>Custom Platform</h1><ul>
+<li>Use custom platform only if your applications are incompatible with provided platforms and Docker<ul>
+<li>You can create a custom AMI to tweak the current platform rather than create a entire custom platform</li>
+</ul>
+</li>
+<li>Build custom platform using Packer software (defined in <code>Platform.yaml</code> file)</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

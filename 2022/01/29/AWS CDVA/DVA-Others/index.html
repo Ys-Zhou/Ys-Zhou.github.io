@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DVA - Others - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IAM"><span class="toc-text">IAM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-Types"><span class="toc-text">Policy Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-Structure"><span class="toc-text">Policy Structure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security-Tools"><span class="toc-text">Security Tools</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EBS-Volume-Types"><span class="toc-text">EBS Volume Types</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-key-points"><span class="toc-text">Other key points</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ELB"><span class="toc-text">ELB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CLB"><span class="toc-text">CLB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ALB"><span class="toc-text">ALB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NLB"><span class="toc-text">NLB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gateway-Load-Balancer"><span class="toc-text">Gateway Load Balancer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RDS"><span class="toc-text">RDS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Backups"><span class="toc-text">Backups</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Snapshots"><span class="toc-text">Snapshots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDS-Storage-Auto-Scaling"><span class="toc-text">RDS Storage Auto Scaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Read-Replicas"><span class="toc-text">Read Replicas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enforce-SSL"><span class="toc-text">Enforce SSL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Aurora"><span class="toc-text">Aurora</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Route-53"><span class="toc-text">Route 53</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CNAME-amp-Alias"><span class="toc-text">CNAME &amp; Alias</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Health-Checks"><span class="toc-text">Health Checks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Traffic-Flow"><span class="toc-text">Traffic Flow</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-CLI-amp-SDK"><span class="toc-text">AWS CLI &amp; SDK</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DVA - Others
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-01-29 23:37:30</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Developer" title="AWS - Developer">AWS - Developer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="IAM"><a href="#IAM" class="headerlink" title="IAM"></a>IAM</h1><h2 id="Policy-Types"><a href="#Policy-Types" class="headerlink" title="Policy Types"></a>Policy Types</h2><ul>
+<li>AWS Managed Policies</li>
+<li>Customer Managed Policies</li>
+<li>Inline Policies</li>
+</ul>
+<h2 id="Policy-Structure"><a href="#Policy-Structure" class="headerlink" title="Policy Structure"></a>Policy Structure</h2><ul>
+<li>Version: string</li>
+<li>Id: string</li>
+<li>Statement: array<ul>
+<li>Sid: string</li>
+<li>Effect: “Allow” | “Deny”</li>
+<li>Principal: object</li>
+<li>Action: string | array</li>
+<li>Resource: string | array</li>
+<li>Condition: object</li>
+</ul>
+</li>
+</ul>
+<h2 id="Security-Tools"><a href="#Security-Tools" class="headerlink" title="Security Tools"></a>Security Tools</h2><ul>
+<li>IAM Credentials Reports<ul>
+<li>Account-level report</li>
+<li>All users in an account and their credentials</li>
+</ul>
+</li>
+<li>IAM Access Advisor<ul>
+<li>User-level report</li>
+<li>All service permissions and when they are used</li>
+<li>Use this tool to review user privileges (least privilege principle)</li>
+</ul>
+</li>
+</ul>
+<h1 id="EBS-Volume-Types"><a href="#EBS-Volume-Types" class="headerlink" title="EBS Volume Types"></a>EBS Volume Types</h1><ul>
+<li>gp2: General purpose SSD<ul>
+<li>1 GiB ~ 16 TiB</li>
+<li>Can burst to 3000 IOPS for small size volumes</li>
+<li>3 IOPS per GB, up to 16000 IOPS</li>
+</ul>
+</li>
+<li>gp3: General purpose SSD<ul>
+<li>1 GiB ~ 16 TiB</li>
+<li>Baseline of 3000 IOPS and throughput of 125 MiB/s</li>
+<li>Up to 16000 IOPS and 1000 MiB/s</li>
+<li>Provisioned IOPS and throughput</li>
+</ul>
+</li>
+<li>io1 / io2: High-performance SSD<ul>
+<li>4 GiB ~ 16 TiB</li>
+<li>Up to 64000 Provisioned IOPS for Nitro EC2 instances</li>
+<li>Up to 32000 Provisioned IOPS for other EC2 instances</li>
+<li>io2 have more durability and more IOPS per GiB at the same price as io1 (io2 is always better than io1)</li>
+</ul>
+</li>
+<li>io2 Block Express<ul>
+<li>4 GiB ~ 64 TiB</li>
+<li>Up to 256000 Provisioned IOPS</li>
+<li>Sub-millisecond latency</li>
+</ul>
+</li>
+<li>st1: Throughput optimized HDD<ul>
+<li>125 MiB ~ 16 TiB</li>
+<li>Up to 500 IOPS and 500 MiB/s throughput</li>
+</ul>
+</li>
+<li>sc1: Cold HDD<ul>
+<li>125 MiB ~ 16 TiB</li>
+<li>Up to 250 IOPS and 250 MiB/s throughput</li>
+</ul>
+</li>
+</ul>
+<h2 id="Other-key-points"><a href="#Other-key-points" class="headerlink" title="Other key points"></a>Other key points</h2><ul>
+<li>Only gp2/3 and io1/2 (only SSD) can be used as boot volumes</li>
+<li>Only io1/2 supports EBS multi-attach</li>
+</ul>
+<h1 id="ELB"><a href="#ELB" class="headerlink" title="ELB"></a>ELB</h1><h2 id="CLB"><a href="#CLB" class="headerlink" title="CLB"></a>CLB</h2><ul>
+<li>Fixed hostname</li>
+</ul>
+<h2 id="ALB"><a href="#ALB" class="headerlink" title="ALB"></a>ALB</h2><ul>
+<li>Support HTTP(S), HTTP/2, WebSocket</li>
+<li>Support redirects (Ex. from HTTP to HTTPS)</li>
+<li>Support routing to different target groups based on path, hostname, query string, headers</li>
+<li>Supported target groups:<ul>
+<li>EC2 instances</li>
+<li>ECS tasks</li>
+<li>Lambda functions</li>
+<li>Private IP addresses</li>
+</ul>
+</li>
+<li>Fixed hostname</li>
+<li>Client info in headers<ul>
+<li>IP: X-Forwarded-For</li>
+<li>Port: X-Forwarded-Port</li>
+<li>Protocol: X-Forwarded-Proto</li>
+</ul>
+</li>
+</ul>
+<h2 id="NLB"><a href="#NLB" class="headerlink" title="NLB"></a>NLB</h2><ul>
+<li>Supported target groups:<ul>
+<li>EC2 instances</li>
+<li>Private IP addresses</li>
+<li>ALB</li>
+</ul>
+</li>
+<li>One static IP per AZ (fixed IPs)</li>
+</ul>
+<h2 id="Gateway-Load-Balancer"><a href="#Gateway-Load-Balancer" class="headerlink" title="Gateway Load Balancer"></a>Gateway Load Balancer</h2><ul>
+<li>Layer 3 (Network Layer) - IP Packets load balancer</li>
+<li>Combines:<ul>
+<li>Transparent Network Gateway</li>
+<li>Load Balancer</li>
+</ul>
+</li>
+<li>Uses GENEVE protocol on port 6081</li>
+<li>Target groups<ul>
+<li>EC2 instances</li>
+<li>Private IP addresses</li>
+</ul>
+</li>
+</ul>
+<h1 id="RDS"><a href="#RDS" class="headerlink" title="RDS"></a>RDS</h1><h2 id="Backups"><a href="#Backups" class="headerlink" title="Backups"></a>Backups</h2><ul>
+<li>Automatically enabled</li>
+<li>Daily full backup of the database</li>
+<li>Transaction logs every 5 minutes</li>
+<li>7 days retention by default, up to 35 days</li>
+</ul>
+<h2 id="Snapshots"><a href="#Snapshots" class="headerlink" title="Snapshots"></a>Snapshots</h2><ul>
+<li>Manually triggered by uses</li>
+</ul>
+<h2 id="RDS-Storage-Auto-Scaling"><a href="#RDS-Storage-Auto-Scaling" class="headerlink" title="RDS Storage Auto Scaling"></a>RDS Storage Auto Scaling</h2><ul>
+<li>Automatically scaling the database storage</li>
+<li>Users need set maximum storage threshold and scaling policies</li>
+<li>Support all database engines</li>
+</ul>
+<h2 id="Read-Replicas"><a href="#Read-Replicas" class="headerlink" title="Read Replicas"></a>Read Replicas</h2><ul>
+<li>Up to 5 Read Replicas for a RDS instance</li>
+<li>Network cost<ul>
+<li><strong>Free</strong> for cross-<strong>AZ</strong> replication</li>
+<li><strong>Charged</strong> for cross-<strong>region</strong> replication</li>
+</ul>
+</li>
+</ul>
+<h2 id="Enforce-SSL"><a href="#Enforce-SSL" class="headerlink" title="Enforce SSL"></a>Enforce SSL</h2><ul>
+<li>PostgreSQL: Set <code>rds.force_ssl=1</code> in RDS Parameter Groups</li>
+<li>MySQL: Run <code>GRANT USAGE ON *.* TO &#39;mysqluser&#39;@&#39;%&#39; REQUIRE SSL;</code> SQL</li>
+</ul>
+<h1 id="Aurora"><a href="#Aurora" class="headerlink" title="Aurora"></a>Aurora</h1><ul>
+<li>Storage automatically grows in increments of 10 GB, up to 64 TB</li>
+<li>Writer Endpoint &amp; Reader Endpoint</li>
+<li>Up to 15 Read Replicas with auto-scaling feature</li>
+</ul>
+<h1 id="Route-53"><a href="#Route-53" class="headerlink" title="Route 53"></a>Route 53</h1><ul>
+<li>Authoritative DNS Service &amp; Domain Registrar<ul>
+<li>Authoritative: customers can update the DNS records</li>
+</ul>
+</li>
+</ul>
+<h2 id="CNAME-amp-Alias"><a href="#CNAME-amp-Alias" class="headerlink" title="CNAME &amp; Alias"></a>CNAME &amp; Alias</h2><ul>
+<li>CNAME<ul>
+<li>hostname -&gt; hostname</li>
+<li>Can not be used for root domain (Zone Apex)</li>
+</ul>
+</li>
+<li>Alias<ul>
+<li>hostname -&gt; AWS resource hostname (amazonaws.com)</li>
+<li>free</li>
+<li>Native health check</li>
+<li>Records Targets: ELB, CloudFront Distributions, API Gateway, Elastic Beanstalk environments, S3 Websites, VPC Interface Endpoints, Global Accelerator accelerators, Route 53 records in the same hosted zone<ul>
+<li><strong>Not include EC2 DNS name</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Health-Checks"><a href="#Health-Checks" class="headerlink" title="Health Checks"></a>Health Checks</h2><ul>
+<li>Health Checks are only for public resources<ul>
+<li>Public endpoint</li>
+<li>Other health checks (calculated health checks)</li>
+<li>CloudWatch Alarms</li>
+</ul>
+</li>
+</ul>
+<h2 id="Traffic-Flow"><a href="#Traffic-Flow" class="headerlink" title="Traffic Flow"></a>Traffic Flow</h2><ul>
+<li>A visual tool to create complex route policies</li>
+<li>Use this tool to create Geoproximity Policy<ul>
+<li>Set bias</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-CLI-amp-SDK"><a href="#AWS-CLI-amp-SDK" class="headerlink" title="AWS CLI &amp; SDK"></a>AWS CLI &amp; SDK</h1><ul>
+<li>Simulate API calls<ul>
+<li>Use Policy Simulator</li>
+<li>Run CLI commends with <code>--dry-run</code></li>
+</ul>
+</li>
+<li>Decode authorization message when your API call failed<ul>
+<li>Run <code>sts decode-authorization-message</code> in CLI</li>
+</ul>
+</li>
+<li>EC2 instance metadata<ul>
+<li>Request <code>http://169.254.169.254/latest/meta-data</code></li>
+<li>Ex. IAM Role name (cannot retrieve IAM Policies)</li>
+<li>Ex. IAM security credentials</li>
+</ul>
+</li>
+<li>CLI &amp; SDK with MFA<ul>
+<li>Call <code>STS GetSessionToken</code> API</li>
+</ul>
+</li>
+<li>SDK<ul>
+<li>CLI uses the Python SDK (boto3)</li>
+<li>Default region is <code>us-east-1</code> if you do not specify one</li>
+</ul>
+</li>
+<li>Exponential Backoff<ul>
+<li>Implement Exponential Backoff in your API calls to retry 5xx http errors</li>
+<li>Better than Linear Backoff</li>
+<li>SDK has already implemented this</li>
+</ul>
+</li>
+<li>Credentials Provider Chain<ul>
+<li>CLI<ul>
+<li>Command line options</li>
+<li>Environment variables</li>
+<li>Credentials file (~/.aws/credentials)</li>
+<li>Configuration file (~/.aws/config)</li>
+<li>Container credentials (for ECS tasks)</li>
+<li>Instance profile credentials (for EC2 instances)</li>
+</ul>
+</li>
+<li>SDK<ul>
+<li>Java JVM properties</li>
+<li>Environment variables</li>
+<li>The default credentials profile (in ~/.aws/credentials)</li>
+<li>Container credentials (for ECS tasks)</li>
+<li>Instance profile credentials (for EC2 instances)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Signature v4 Signing<ul>
+<li>AWS use SigV4 to sign your credentials in your API calls</li>
+<li>In header option or http query parameters</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

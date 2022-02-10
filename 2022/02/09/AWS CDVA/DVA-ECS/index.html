@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DVA - ECS - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ECS"><span class="toc-text">ECS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Roles"><span class="toc-text">Roles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Task-Placement"><span class="toc-text">Task Placement</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Task-Placement-Process"><span class="toc-text">Task Placement Process</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Task-placement-constraints"><span class="toc-text">Task placement constraints</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Task-Placement-Strategies"><span class="toc-text">Task Placement Strategies</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Capacity-Provider"><span class="toc-text">Capacity Provider</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Volumes"><span class="toc-text">Volumes</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ECR"><span class="toc-text">ECR</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DVA - ECS
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-02-09 16:28:43</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Developer" title="AWS - Developer">AWS - Developer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h1><h2 id="Roles"><a href="#Roles" class="headerlink" title="Roles"></a>Roles</h2><ul>
+<li>ecsInstanceRole<ul>
+<li>Assigned to EC2 instances running ECS services</li>
+<li>Included actions:<ul>
+<li>Make API calls to ECS service</li>
+<li>Send logs to CloudWatch Logs</li>
+<li>Pull Docker image from ECR</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ecsTaskExecutionRole<ul>
+<li>Assigned to ECS tasks</li>
+<li>Define permissions the tasks need</li>
+<li>You have to enable <code>ECS_ENABLE_TASK_IAM_ROLE</code> option in <code>ecs.config</code> file</li>
+</ul>
+</li>
+<li>Other roles: ecsServiceRole, AWSServiceRoleForECS</li>
+</ul>
+<h2 id="Task-Placement"><a href="#Task-Placement" class="headerlink" title="Task Placement"></a>Task Placement</h2><ul>
+<li>Task Placement will be evaluate when you or ASG add or delete a task</li>
+</ul>
+<h3 id="Task-Placement-Process"><a href="#Task-Placement-Process" class="headerlink" title="Task Placement Process"></a>Task Placement Process</h3><ol>
+<li>Satisfy the CPU, memory and port requirements in the task definition</li>
+<li>Satisfy the task placement constraints</li>
+<li>Satisfy the task placement strategies (best effort)</li>
+</ol>
+<h3 id="Task-placement-constraints"><a href="#Task-placement-constraints" class="headerlink" title="Task placement constraints"></a>Task placement constraints</h3><ul>
+<li>distinctInstance<ul>
+<li>Place tasks on different container instances</li>
+</ul>
+</li>
+<li>memberOf<ul>
+<li>Define custom constraints use Cluster Query Language</li>
+</ul>
+</li>
+</ul>
+<h3 id="Task-Placement-Strategies"><a href="#Task-Placement-Strategies" class="headerlink" title="Task Placement Strategies"></a>Task Placement Strategies</h3><ul>
+<li>Binpack<ul>
+<li>Place tasks based on the least available amount of <em>CPU</em> or <em>memory</em> to minimize the number of instances</li>
+<li><em>field</em> can be:<ul>
+<li><em>CPU</em></li>
+<li><em>memory</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Random</li>
+<li>Spread<ul>
+<li>Place the tasks evenly based on the <em>field</em> you specify</li>
+<li><em>field</em> can be:<ul>
+<li><em>instanceId</em></li>
+<li><em>attribute:esc.availability-zone</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>You can mix three strategies</li>
+</ul>
+<h2 id="Capacity-Provider"><a href="#Capacity-Provider" class="headerlink" title="Capacity Provider"></a>Capacity Provider</h2><ul>
+<li>ECS service auto scaling can only scale at task level not instance level</li>
+<li>Service auto scaling action will be failed if EC2 instances are insufficient</li>
+<li>You can use Fargate or Capacity Provider</li>
+<li>Use Capacity Provider<ul>
+<li>Create a ECS capacity provider associated to an ASG</li>
+<li>Create a service to use the provider</li>
+</ul>
+</li>
+</ul>
+<h2 id="Volumes"><a href="#Volumes" class="headerlink" title="Volumes"></a>Volumes</h2><ul>
+<li>Bind Mount<ul>
+<li>Mount the instance storage (EC2 mode) or 4 GB storage (Fargate) to the task</li>
+<li>Useful for sidecar pattern</li>
+</ul>
+</li>
+<li>Docker<ul>
+<li>Mount the EBS volume (mounted to the EC2 instance) to the task </li>
+<li>Scope can be task (destroyed after stop) or shared (retained after stop)</li>
+</ul>
+</li>
+<li>EFS</li>
+</ul>
+<h1 id="ECR"><a href="#ECR" class="headerlink" title="ECR"></a>ECR</h1><ul>
+<li>Push a Docker image to ECR<ul>
+<li>docker login<ul>
+<li>CLI v1: Run the output of <code>aws ecr get-login --no-include-email --region your-region</code></li>
+<li>CLI v2: Run <code>aws ecr get-login-password --region your-region | docker login --username AWS --password-stdin your-ecr-resource-url</code></li>
+</ul>
+</li>
+<li><code>docker build -t your-image .</code></li>
+<li><code>docker tag your-image:latest your-ecr-resource-url/your-repo:latest</code></li>
+<li><code>docker push your-ecr-resource-url/your-repo:latest</code></li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

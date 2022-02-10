@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DVA - CloudFormation - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Templates"><span class="toc-text">Templates</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Resources"><span class="toc-text">Resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parameters"><span class="toc-text">Parameters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mappings"><span class="toc-text">Mappings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Outputs"><span class="toc-text">Outputs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conditions"><span class="toc-text">Conditions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intrinsic-Functions"><span class="toc-text">Intrinsic Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fn-Ref"><span class="toc-text">Fn::Ref</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fn-GetAtt"><span class="toc-text">Fn::GetAtt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fn-FindInMap"><span class="toc-text">Fn::FindInMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fn-ImportValue"><span class="toc-text">Fn::ImportValue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fn-Join"><span class="toc-text">Fn::Join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fn-Sub"><span class="toc-text">Fn::Sub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Condition-Functions"><span class="toc-text">Condition Functions</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Others"><span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Rollback"><span class="toc-text">Rollback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Drift"><span class="toc-text">Drift</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DVA - CloudFormation
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-02-09 16:22:55</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Developer" title="AWS - Developer">AWS - Developer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Templates"><a href="#Templates" class="headerlink" title="Templates"></a>Templates</h1><h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyEC2Instance:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::EC2::Instance</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      ImageId:</span> <span class="string">ami-a4c7edb2</span></span><br><span class="line"><span class="attr">      InstanceType:</span> <span class="string">t2.micro</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Parameters:</span></span><br><span class="line"><span class="attr">  MyInstanceType:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="string">String</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyEC2Instance:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::EC2::Instance</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      ImageId:</span> <span class="string">ami-a4c7edb2</span></span><br><span class="line"><span class="attr">      InstanceType:</span> <span class="type">!Ref</span> <span class="string">MyInstanceType</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Pseudo Parameters<ul>
+<li>AWS::AccountId</li>
+<li>AWS::NotificationARNs</li>
+<li>AWS::NoValue</li>
+<li>AWS::Region</li>
+<li>AWS::StackId</li>
+<li>AWS::StackName</li>
+</ul>
+</li>
+</ul>
+<h2 id="Mappings"><a href="#Mappings" class="headerlink" title="Mappings"></a>Mappings</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Mappings:</span></span><br><span class="line"><span class="attr">  MyRegionImageId:</span></span><br><span class="line"><span class="attr">    us-east-1:</span></span><br><span class="line">      <span class="string">'32'</span><span class="string">:</span> <span class="string">ami-6411e20d</span></span><br><span class="line">      <span class="string">'64'</span><span class="string">:</span> <span class="string">ami-7a11e213</span></span><br><span class="line"><span class="attr">    us-west-1:</span></span><br><span class="line">      <span class="string">'32'</span><span class="string">:</span> <span class="string">ami-c9c7978c</span></span><br><span class="line">      <span class="string">'64'</span><span class="string">:</span> <span class="string">ami-cfc7978a</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyEC2Instance:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::EC2::Instance</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      ImageId:</span> <span class="type">!FindInMap</span> </span><br><span class="line"><span class="bullet">        -</span> <span class="string">MyRegionImageId</span></span><br><span class="line"><span class="bullet">        -</span> <span class="type">!Ref</span> <span class="attr">AWS::Region</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">'32'</span></span><br><span class="line"><span class="attr">      InstanceType:</span> <span class="string">t2.micro</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Outputs"><a href="#Outputs" class="headerlink" title="Outputs"></a>Outputs</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Stack 1</span></span><br><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyEC2Instance:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::EC2::Instance</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      ImageId:</span> <span class="string">ami-a4c7edb2</span></span><br><span class="line"><span class="attr">      InstanceType:</span> <span class="string">t2.micro</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Outputs:</span></span><br><span class="line"><span class="attr">  Value:</span> <span class="type">!Ref</span> <span class="string">MyEC2Instance</span></span><br><span class="line"><span class="attr">  Export:</span></span><br><span class="line"><span class="attr">    Name:</span> <span class="string">MyEC2InstanceOutput</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Stack 2</span></span><br><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  Type:</span> <span class="attr">AWS::EC2::EIP</span></span><br><span class="line"><span class="attr">  Properties:</span></span><br><span class="line"><span class="attr">    InstanceId:</span> <span class="type">!ImportValue</span> <span class="string">MyEC2InstanceOutput</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Conditions"><a href="#Conditions" class="headerlink" title="Conditions"></a>Conditions</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Conditions:</span></span><br><span class="line"><span class="attr">  CreateEC2Instance:</span> <span class="type">!Equals</span></span><br><span class="line"><span class="bullet">    -</span> <span class="type">!Ref</span> <span class="attr">AWS::Region</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">us-east-1</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyEC2Instance:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::EC2::Instance</span></span><br><span class="line"><span class="attr">    Condition:</span> <span class="string">CreateEC2Instance</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      ImageId:</span> <span class="string">ami-a4c7edb2</span></span><br><span class="line"><span class="attr">      InstanceType:</span> <span class="string">t2.micro</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Intrinsic-Functions"><a href="#Intrinsic-Functions" class="headerlink" title="Intrinsic Functions"></a>Intrinsic Functions</h2><h3 id="Fn-Ref"><a href="#Fn-Ref" class="headerlink" title="Fn::Ref"></a>Fn::Ref</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ref the resource id</span></span><br><span class="line"><span class="type">!Ref</span> <span class="string">MyEC2Instance</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Fn-GetAtt"><a href="#Fn-GetAtt" class="headerlink" title="Fn::GetAtt"></a>Fn::GetAtt</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Get an attribute of a resource</span></span><br><span class="line"><span class="type">!GetAtt</span> <span class="string">MyEC2Instance.AvailabilityZone</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Fn-FindInMap"><a href="#Fn-FindInMap" class="headerlink" title="Fn::FindInMap"></a>Fn::FindInMap</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Find a value from a mapping</span></span><br><span class="line"><span class="type">!FindInMap</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">MyRegionImageId</span></span><br><span class="line"><span class="bullet">  -</span> <span class="type">!Ref</span> <span class="attr">AWS::Region</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">'32'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Fn-ImportValue"><a href="#Fn-ImportValue" class="headerlink" title="Fn::ImportValue"></a>Fn::ImportValue</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Get a exported value from other templates</span></span><br><span class="line"><span class="type">!ImportValue</span> <span class="string">MyEC2InstanceOutput</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Fn-Join"><a href="#Fn-Join" class="headerlink" title="Fn::Join"></a>Fn::Join</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Join values into a string</span></span><br><span class="line"><span class="type">!Join</span> </span><br><span class="line"><span class="bullet">  -</span> <span class="string">::</span></span><br><span class="line"><span class="bullet">  -</span> <span class="bullet">-</span> <span class="string">AWS</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">Region</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Fn-Sub"><a href="#Fn-Sub" class="headerlink" title="Fn::Sub"></a>Fn::Sub</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># substitute</span></span><br><span class="line"><span class="type">!Sub</span> </span><br><span class="line"><span class="bullet">  -</span> <span class="string">$&#123;hostname&#125;.$&#123;domain&#125;</span></span><br><span class="line"><span class="attr">  - hostname:</span> <span class="string">aws</span></span><br><span class="line"><span class="attr">    domain:</span> <span class="string">amazon.com</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Condition-Functions"><a href="#Condition-Functions" class="headerlink" title="Condition Functions"></a>Condition Functions</h3><ul>
+<li>Fn::And</li>
+<li>Fn::Equals</li>
+<li>Fn::If</li>
+<li>Fn::Not</li>
+<li>Fn::Or</li>
+</ul>
+<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><h2 id="Rollback"><a href="#Rollback" class="headerlink" title="Rollback"></a>Rollback</h2><ul>
+<li>If stack creation failed, it will rollback to the previous version automatically<ul>
+<li>Can be disabled</li>
+<li>If no previous, it will be deleted</li>
+</ul>
+</li>
+</ul>
+<h2 id="Drift"><a href="#Drift" class="headerlink" title="Drift"></a>Drift</h2><ul>
+<li>Detect if the resources created by CloudFormation is modified (configured different from the CloudFormation template)</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

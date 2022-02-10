@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DVA - CloudFront - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Geo-Restriction"><span class="toc-text">Geo Restriction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Caching"><span class="toc-text">Caching</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security"><span class="toc-text">Security</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Signed-URL-Cookie"><span class="toc-text">Signed URL / Cookie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Price-Classes"><span class="toc-text">Price Classes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Multi-Origin"><span class="toc-text">Multi-Origin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Origin-Groups"><span class="toc-text">Origin Groups</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Field-Level-Encryption"><span class="toc-text">Field Level Encryption</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DVA - CloudFront
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-02-09 16:29:28</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Developer" title="AWS - Developer">AWS - Developer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Geo-Restriction"><a href="#Geo-Restriction" class="headerlink" title="Geo Restriction"></a>Geo Restriction</h1><ul>
+<li>CloudFront can set geo restriction without using WAF<ul>
+<li>You can use WAF as well but it is unnecessary</li>
+</ul>
+</li>
+</ul>
+<h1 id="Caching"><a href="#Caching" class="headerlink" title="Caching"></a>Caching</h1><ul>
+<li>Cache based on<ul>
+<li>Headers</li>
+<li>Session Cookies</li>
+<li>Query String Parameters</li>
+</ul>
+</li>
+<li>You can set TTL for a cache as well as invalidate it manually<ul>
+<li>Call <code>CreateInvalidation</code> API</li>
+</ul>
+</li>
+<li>Maximize cache hits by separating static and dynamic distributions</li>
+</ul>
+<h1 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h1><ul>
+<li>View Protocol Policy<ul>
+<li>Redirect HTTP to HTTPS</li>
+<li>HTTPS only</li>
+</ul>
+</li>
+<li>Origin Protocol Policy<ul>
+<li>HTTPS only</li>
+<li>Match Viewer (use the same protocol as viewer)</li>
+</ul>
+</li>
+<li>S3 Website dose not support HTTPS, so use CloudFront to force HTTPS will be an option</li>
+</ul>
+<h1 id="Signed-URL-Cookie"><a href="#Signed-URL-Cookie" class="headerlink" title="Signed URL / Cookie"></a>Signed URL / Cookie</h1><ul>
+<li>Signed URL / Cookie policy includes<ul>
+<li>Expiration</li>
+<li>User IP ranges</li>
+<li>Trusted signers (which AWS accounts can sign)</li>
+</ul>
+</li>
+<li>Create Signed URLs / Cookies<ul>
+<li>Create a key pair</li>
+<li>Upload the public key to CloudFront</li>
+<li>Add the public key to a key group</li>
+<li>Use the private key in your application to create Signed URLs / Cookies</li>
+</ul>
+</li>
+</ul>
+<h1 id="Price-Classes"><a href="#Price-Classes" class="headerlink" title="Price Classes"></a>Price Classes</h1><ul>
+<li>Price Class All: all regions - best performance</li>
+<li>Price Class 200: excludes the most expensive regions</li>
+<li>Price Class 100: only the least expensive regions</li>
+</ul>
+<h1 id="Multi-Origin"><a href="#Multi-Origin" class="headerlink" title="Multi-Origin"></a>Multi-Origin</h1><ul>
+<li>You can set Cache Behaviors to redirect request to different origins</li>
+</ul>
+<h1 id="Origin-Groups"><a href="#Origin-Groups" class="headerlink" title="Origin Groups"></a>Origin Groups</h1><ul>
+<li>You can set a origin group as your distribution origin<ul>
+<li>Includes a primary and a secondary origin (as fail-over)</li>
+<li>You can combine Origin Group with S3 Replication to build HA architecture</li>
+</ul>
+</li>
+</ul>
+<h1 id="Field-Level-Encryption"><a href="#Field-Level-Encryption" class="headerlink" title="Field Level Encryption"></a>Field Level Encryption</h1><ul>
+<li>Specify set of fields in POST requests that you want to be encrypted (up to 10 fields)</li>
+<li>Specify the public key to encrypt them</li>
+<li>The fields will be encrypted at Edge Location, and your applications can use the private key to decrypted them</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
