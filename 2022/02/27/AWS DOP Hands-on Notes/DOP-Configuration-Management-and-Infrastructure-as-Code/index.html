@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DOP - Configuration Management and Infrastructure as Code - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudFormation"><span class="toc-text">CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Every-topics-in-“DVA-CloudFormation”"><span class="toc-text">Every topics in “DVA - CloudFormation”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Data"><span class="toc-text">User Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-init"><span class="toc-text">cfn-init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-signal-amp-WaitConditions"><span class="toc-text">cfn-signal &amp; WaitConditions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Troubleshoot-when-signal-was-not-received"><span class="toc-text">Troubleshoot when signal was not received</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-init-amp-cfn-signal-sample"><span class="toc-text">cfn-init &amp; cfn-signal sample</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rollbacks"><span class="toc-text">Rollbacks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested-stack"><span class="toc-text">Nested stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deletion-policies-sample"><span class="toc-text">Deletion policies sample</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Termination-protection"><span class="toc-text">Termination protection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Referent-parameters-from-SSM-parameter-store"><span class="toc-text">Referent parameters from SSM parameter store</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DependsOn"><span class="toc-text">DependsOn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Define-Lambda-Function-in-CloudFormation"><span class="toc-text">Define Lambda Function in CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Inline"><span class="toc-text">Inline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Resources-Lambda"><span class="toc-text">Custom Resources (Lambda)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-Status-Code-UPDATE-ROLLBACK-FAILED"><span class="toc-text">Stack Status Code UPDATE_ROLLBACK_FAILED</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InsufficientCapabilitiesException"><span class="toc-text">InsufficientCapabilitiesException</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-hup"><span class="toc-text">cfn-hup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-policies"><span class="toc-text">Stack policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-known-features"><span class="toc-text">Other known features</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DOP - Configuration Management and Infrastructure as Code
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-02-27 23:23:35</span></span>
+        
+        
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="CloudFormation"><a href="#CloudFormation" class="headerlink" title="CloudFormation"></a>CloudFormation</h1><h2 id="Every-topics-in-“DVA-CloudFormation”"><a href="#Every-topics-in-“DVA-CloudFormation”" class="headerlink" title="Every topics in “DVA - CloudFormation”"></a>Every topics in “DVA - CloudFormation”</h2><h2 id="User-Data"><a href="#User-Data" class="headerlink" title="User Data"></a>User Data</h2><ul>
+<li>Use Fn::Base64 to pass the user data</li>
+<li>User data is logged in /var/log/cloud-init-output.log file</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyEC2Instance:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::EC2::Instance</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      ImageId:</span> <span class="string">ami-a4c7edb2</span></span><br><span class="line"><span class="attr">      InstanceType:</span> <span class="string">t2.micro</span></span><br><span class="line"><span class="attr">      UserData:</span></span><br><span class="line"><span class="attr">        Fn:</span><span class="string">:Base64:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          #!/bin/bash -xe</span></span><br><span class="line"><span class="string">          yum update -y</span></span><br><span class="line"><span class="string">          yum install -y httpd</span></span><br><span class="line"><span class="string">          ...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="cfn-init"><a href="#cfn-init" class="headerlink" title="cfn-init"></a>cfn-init</h2><ul>
+<li>Use AWS::CloudFormation::Init block in Metadata to create a initialization script</li>
+<li>Run the script in user data</li>
+</ul>
+<h2 id="cfn-signal-amp-WaitConditions"><a href="#cfn-signal-amp-WaitConditions" class="headerlink" title="cfn-signal &amp; WaitConditions"></a>cfn-signal &amp; WaitConditions</h2><ul>
+<li>Use cfn-signal to send failed/succeeded signal back to CloudFormation</li>
+<li>Define WaitCondition to block the processing until it receives a signal from cfn-signal</li>
+</ul>
+<h3 id="Troubleshoot-when-signal-was-not-received"><a href="#Troubleshoot-when-signal-was-not-received" class="headerlink" title="Troubleshoot when signal was not received"></a>Troubleshoot when signal was not received</h3><ul>
+<li>Ensure that the AMI has CloudFormation helper scripts installed</li>
+<li>Verify cfn-init &amp; cfn-signal by checking cloud-init.log &amp; cfn-init.log files<ul>
+<li>Must disable rollback on failure to access to the instances</li>
+</ul>
+</li>
+<li>The instances must have access to the Internet (to communicate with CloudFormation)<ul>
+<li>Either in public subnet or in private subnet using NAT gateway / NAT instance</li>
+</ul>
+</li>
+</ul>
+<h2 id="cfn-init-amp-cfn-signal-sample"><a href="#cfn-init-amp-cfn-signal-sample" class="headerlink" title="cfn-init &amp; cfn-signal sample"></a>cfn-init &amp; cfn-signal sample</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyEC2Instance:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::EC2::Instance</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      ImageId:</span> <span class="string">ami-a4c7edb2</span></span><br><span class="line"><span class="attr">      InstanceType:</span> <span class="string">t2.micro</span></span><br><span class="line"><span class="attr">      UserData:</span></span><br><span class="line"><span class="attr">        Fn:</span><span class="string">:Base64:</span> <span class="type">!Sub</span> <span class="string">|</span></span><br><span class="line"><span class="string">          #!/bin/bash -xe</span></span><br><span class="line"><span class="string">          yum update -y aws-cfn-bootstrap</span></span><br><span class="line"><span class="string">          /opt/aws/bin/cfn-init -s $&#123;AWS::StackId&#125; -r MyEC2Instance --region $&#123;AWS::Region&#125; || error_exit 'Failed in cf-init'</span></span><br><span class="line"><span class="string">          /opt/aws/bin/cfn-signal -e $? --stack $&#123;AWS::StackId&#125; --resource MyWaitCondition --region $&#123;AWS::Region&#125;</span></span><br><span class="line"><span class="string"></span><span class="attr">    Metadata:</span></span><br><span class="line"><span class="attr">      AWS:</span><span class="string">:CloudFormation::Init:</span></span><br><span class="line"><span class="attr">        config:</span></span><br><span class="line"><span class="attr">          packages:</span></span><br><span class="line"><span class="attr">            yum:</span></span><br><span class="line"><span class="attr">              httpd:</span> <span class="string">[]</span></span><br><span class="line"><span class="attr">          files:</span></span><br><span class="line">            <span class="string">"/var/www/html/index.html"</span><span class="string">:</span></span><br><span class="line"><span class="attr">              content:</span> <span class="string">|</span></span><br><span class="line"><span class="string">                &lt;h1&gt;Hello, cf-init&lt;/h1&gt;</span></span><br><span class="line"><span class="string"></span><span class="attr">              mode:</span> <span class="number">000644</span></span><br><span class="line"><span class="attr">          commands:</span></span><br><span class="line"><span class="attr">            echo:</span></span><br><span class="line"><span class="attr">              command:</span> <span class="string">|</span></span><br><span class="line"><span class="string">                echo "Hello, cf-init"</span></span><br><span class="line"><span class="string"></span><span class="attr">          services:</span></span><br><span class="line"><span class="attr">            sysvinit:</span></span><br><span class="line"><span class="attr">              https:</span></span><br><span class="line"><span class="attr">                enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">                ensureRunning:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  MyWaitCondition:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::CloudFormation::WaitCondition</span></span><br><span class="line"><span class="attr">    CreationPolicy:</span></span><br><span class="line"><span class="attr">      ResourceSignal:</span></span><br><span class="line"><span class="attr">        Timeout:</span> <span class="string">PT1M</span></span><br><span class="line"><span class="attr">        Count:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Rollbacks"><a href="#Rollbacks" class="headerlink" title="Rollbacks"></a>Rollbacks</h2><ul>
+<li>OnFailure=ROLLBACK (default)</li>
+<li>OnFailure=DO_NOTHING</li>
+<li>OnFailure=DELETE</li>
+</ul>
+<h2 id="Nested-stack"><a href="#Nested-stack" class="headerlink" title="Nested stack"></a>Nested stack</h2><ul>
+<li>Need CAPABILITY_AUTO_EXPAND capability to create nested stacks</li>
+<li>Best practice: never update / delete nested stacks, do actions on the parent stack</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyNestedStack:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::CloudFormation::Stack</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      TemplateURL:</span> <span class="attr">https://s3.amazonaws.com/.../myNestedStack.template</span></span><br><span class="line"><span class="attr">      Parameters:</span></span><br><span class="line"><span class="attr">        param_1:</span> <span class="string">value_1</span></span><br><span class="line"><span class="attr">        param_2:</span> <span class="string">value_2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Deletion-policies-sample"><a href="#Deletion-policies-sample" class="headerlink" title="Deletion policies sample"></a>Deletion policies sample</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyEC2Instance:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::EC2::Instance</span></span><br><span class="line"><span class="attr">    DeletionPolicy:</span> <span class="string">Retain</span> <span class="comment"># here</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      ImageId:</span> <span class="string">ami-a4c7edb2</span></span><br><span class="line"><span class="attr">      InstanceType:</span> <span class="string">t2.micro</span></span><br><span class="line"><span class="attr">  MyEBSVolume:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::EC2::Volume</span></span><br><span class="line"><span class="attr">    DeletionPolicy:</span> <span class="string">Snapshot</span> <span class="comment"># here</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      Size:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">      VolumeType:</span> <span class="string">gp2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Termination-protection"><a href="#Termination-protection" class="headerlink" title="Termination protection"></a>Termination protection</h2><ul>
+<li>Enable termination protection to protect the stack to be deleted</li>
+</ul>
+<h2 id="Referent-parameters-from-SSM-parameter-store"><a href="#Referent-parameters-from-SSM-parameter-store" class="headerlink" title="Referent parameters from SSM parameter store"></a>Referent parameters from SSM parameter store</h2><ul>
+<li>You can also use the public parameters from SMM Parameter Store such as AMI IDs</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Parameters:</span></span><br><span class="line"><span class="attr">  InstanceType:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::SSM::Parameter::Value&lt;String&gt;</span> <span class="comment"># here</span></span><br><span class="line"><span class="attr">    Default:</span> <span class="string">/EC2/InstanceType</span></span><br><span class="line"><span class="attr">  ImageId:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::SSM::Parameter::Value&lt;AWS::EC2::Image::Id&gt;</span> <span class="comment"># here</span></span><br><span class="line"><span class="attr">    Default:</span> <span class="string">/EC2/ImageId</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="DependsOn"><a href="#DependsOn" class="headerlink" title="DependsOn"></a>DependsOn</h2><ul>
+<li>Define resources creation orders</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyEC2Instance:</span> <span class="comment"># created after MyRDSInstance</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::EC2::Instance</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line">      <span class="string">...</span></span><br><span class="line"><span class="attr">    DependsOn:</span> <span class="string">MyRDSInstance</span></span><br><span class="line"><span class="attr">  MyRDSInstance:</span> <span class="comment"># created first</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::RDS::DBInstance</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line">      <span class="string">...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Define-Lambda-Function-in-CloudFormation"><a href="#Define-Lambda-Function-in-CloudFormation" class="headerlink" title="Define Lambda Function in CloudFormation"></a>Define Lambda Function in CloudFormation</h2><h3 id="Inline"><a href="#Inline" class="headerlink" title="Inline"></a>Inline</h3><ul>
+<li>No dependency</li>
+<li>Codes are up tp 4000 characters</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  myLambdaFunction:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::Lambda::Function</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      Runtime:</span> <span class="string">python3.x</span></span><br><span class="line"><span class="attr">      Handler:</span> <span class="string">index.handler</span></span><br><span class="line"><span class="attr">      Code:</span></span><br><span class="line"><span class="attr">        ZipFile:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          def handler(event, context):</span></span><br><span class="line"><span class="string">            return 'OK!'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  myLambdaFunction:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::Lambda::Function</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      Runtime:</span> <span class="string">python3.x</span></span><br><span class="line"><span class="attr">      Handler:</span> <span class="string">index.handler</span></span><br><span class="line"><span class="attr">      Code:</span></span><br><span class="line"><span class="attr">        S3Bucket:</span> <span class="string">myBucket</span></span><br><span class="line"><span class="attr">        S3Key:</span> <span class="string">myLambdaFunction.zip</span></span><br><span class="line"><span class="attr">        S3ObjectVersion:</span> <span class="string">myVersionString</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Custom-Resources-Lambda"><a href="#Custom-Resources-Lambda" class="headerlink" title="Custom Resources (Lambda)"></a>Custom Resources (Lambda)</h2><ul>
+<li><p>Lambda function will be invoked only when the resource is created / updated / deleted</p>
+</li>
+<li><p>Invoke events</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"RequestType"</span>: <span class="string">"Create/Update/Delete"</span>,</span><br><span class="line">  <span class="attr">"ResponseURL"</span>: <span class="string">"https://a-per-signed-S3-URL"</span>,</span><br><span class="line">  <span class="attr">"StackId"</span>: <span class="string">"..."</span>,</span><br><span class="line">  <span class="attr">"RequestId"</span>: <span class="string">"..."</span>,</span><br><span class="line">  <span class="attr">"ResourceType"</span>: <span class="string">"Custom::MyCustomResource"</span>,</span><br><span class="line">  <span class="attr">"LogicalResourceId"</span>: <span class="string">"MyCustom"</span>,</span><br><span class="line">  <span class="attr">"ResourceProperties"</span>: &#123;</span><br><span class="line">    <span class="attr">"ServiceToken"</span>: <span class="string">"..."</span>,</span><br><span class="line">    <span class="attr">"BucketName"</span>: <span class="string">"..."</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Definition sample</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  MyS3Bucket:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::S3::Bucket</span></span><br><span class="line"><span class="attr">  MyCustom:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">Custom::MyCustomResource</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      ServiceToken:</span> <span class="string">"lambdaFunctionARN"</span></span><br><span class="line"><span class="attr">      BucketName:</span> <span class="type">!Ref</span> <span class="string">MyS3Bucket</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Stack-Status-Code-UPDATE-ROLLBACK-FAILED"><a href="#Stack-Status-Code-UPDATE-ROLLBACK-FAILED" class="headerlink" title="Stack Status Code UPDATE_ROLLBACK_FAILED"></a>Stack Status Code UPDATE_ROLLBACK_FAILED</h2><ul>
+<li>Errors<ul>
+<li>Failed to receive the required number of signals</li>
+<li>Changes to resource were made outside of CloudFormation</li>
+<li>Insufficient permissions</li>
+<li>Invalid security token</li>
+<li>Limitation error</li>
+<li>Resource did not stabilize</li>
+</ul>
+</li>
+<li>Solutions<ul>
+<li>Continue Update Rollback after resolving the problems</li>
+<li>Delete the stack</li>
+<li>Contact AWS Support</li>
+</ul>
+</li>
+</ul>
+<h2 id="InsufficientCapabilitiesException"><a href="#InsufficientCapabilitiesException" class="headerlink" title="InsufficientCapabilitiesException"></a>InsufficientCapabilitiesException</h2><ul>
+<li>You need provide CAPABILITY_IAM or CAPABILITY_NAMED_IAM</li>
+</ul>
+<h2 id="cfn-hup"><a href="#cfn-hup" class="headerlink" title="cfn-hup"></a>cfn-hup</h2><ul>
+<li><p>Using cfn-hup, hup daemon will periodically detect template changes and perform actions</p>
+</li>
+<li><p>In UserData block, execute</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/aws/bin/cfn-bup || error_exit <span class="string">'Failed in cf-hup'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>In UserData block or in AWS::CloudFormation::Init block (when using cf-init), create /etc/cfn/cfn-hup.conf file</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[main]</span></span><br><span class="line"><span class="attr">stack</span>=<span class="string">"stack ID"</span></span><br><span class="line"><span class="attr">region</span>=<span class="string">"region"</span></span><br><span class="line"><span class="attr">interval</span>=<span class="string">"interval in minutes"</span> <span class="comment"># default is 15</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>And create /etc/cfn/hooks.d/&lt;hooks&gt;.conf file</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[cfn-auto-reloader-hook]</span></span><br><span class="line"><span class="attr">triggers</span>=post.update</span><br><span class="line"><span class="attr">path</span>=Resources.MyResource.Metadata.AWS::CloudFormation::Init</span><br><span class="line"><span class="attr">action</span>=/opt/aws/bin/cfn-init -v --stack <span class="variable">$&#123;AWS::StackName&#125;</span> --resource MyResource --region <span class="variable">$&#123;AWS::Region&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Stack-policies"><a href="#Stack-policies" class="headerlink" title="Stack policies"></a>Stack policies</h2><ul>
+<li>Allow / deny actions on the stack</li>
+</ul>
+<h2 id="Other-known-features"><a href="#Other-known-features" class="headerlink" title="Other known features"></a>Other known features</h2><ul>
+<li>ChangeSets</li>
+<li>Drift detection</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

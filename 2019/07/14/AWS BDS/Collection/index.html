@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Collection - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kinesis"><span class="toc-text">Kinesis</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kinesis-Data-Streams"><span class="toc-text">Kinesis Data Streams</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-Concepts"><span class="toc-text">Key Concepts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Shards"><span class="toc-text">Shards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Records"><span class="toc-text">Records</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Limits"><span class="toc-text">Limits</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Producers"><span class="toc-text">Kinesis Producers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Producer-SDK"><span class="toc-text">Kinesis Producer SDK</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Solutions-for-ProvisionedThroughputExceeded-Exceptions"><span class="toc-text">Solutions for ProvisionedThroughputExceeded Exceptions</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Managed-AWS-Sources"><span class="toc-text">Managed AWS Sources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Producer-Library-KPL"><span class="toc-text">Kinesis Producer Library (KPL)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Agent"><span class="toc-text">Kinesis Agent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Consumers-Classic"><span class="toc-text">Kinesis Consumers Classic</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Consumer-SDK"><span class="toc-text">Kinesis Consumer SDK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Client-Library-KCL"><span class="toc-text">Kinesis Client Library (KCL)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Connector-Library"><span class="toc-text">Kinesis Connector Library</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Lambda-Sourcing-from-Kinesis"><span class="toc-text">AWS Lambda Sourcing from Kinesis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Enhanced-Fan-Out"><span class="toc-text">Kinesis Enhanced Fan-Out</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enhanced-Fan-Out-vs-Standard-Consumers"><span class="toc-text">Enhanced Fan-Out vs Standard Consumers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Scaling"><span class="toc-text">Kinesis Scaling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Shard-Splitting"><span class="toc-text">Shard Splitting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shard-Merging"><span class="toc-text">Shard Merging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#No-Native-Auto-Scaling"><span class="toc-text">No Native Auto Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Limitations"><span class="toc-text">Limitations</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Security"><span class="toc-text">Kinesis Security</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kinesis-Data-Firehose"><span class="toc-text">Kinesis Data Firehose</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Delivery-Features"><span class="toc-text">Delivery Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Buffer-Sizing"><span class="toc-text">Buffer Sizing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Data-Streams-vs-Firehose"><span class="toc-text">Kinesis Data Streams vs Firehose</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-SQS"><span class="toc-text">AWS SQS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQS-Standard-Queue"><span class="toc-text">SQS - Standard Queue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQS-FIFO-Queue"><span class="toc-text">SQS - FIFO Queue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Producing-Messages"><span class="toc-text">Producing Messages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consuming-Messages"><span class="toc-text">Consuming Messages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQS-Extended-Client"><span class="toc-text">SQS Extended Client</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Cases"><span class="toc-text">Use Cases</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pricing"><span class="toc-text">Pricing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security"><span class="toc-text">Security</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-IoT"><span class="toc-text">AWS IoT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Device-Gateway"><span class="toc-text">Device Gateway</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Message-Broker"><span class="toc-text">Message Broker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rules-Engine"><span class="toc-text">Rules Engine</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thing-Registry"><span class="toc-text">Thing Registry</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Authentication"><span class="toc-text">Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Authentication-Policies"><span class="toc-text">Authentication Policies</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Device-Shadow"><span class="toc-text">Device Shadow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Greengrass"><span class="toc-text">Greengrass</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Database-Migration-Service-DMS"><span class="toc-text">Database Migration Service (DMS)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sources-and-Targets"><span class="toc-text">Sources and Targets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Schema-Conversion-Tool-SCT"><span class="toc-text">Schema Conversion Tool (SCT)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Different-between-DMS-and-SCT"><span class="toc-text">Different between DMS and SCT</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Direct-Connect"><span class="toc-text">Direct Connect</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Snowball"><span class="toc-text">Snowball</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Snowball-Edge"><span class="toc-text">Snowball Edge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Snowmobile"><span class="toc-text">Snowmobile</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Collection
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-07-14 09:08:57</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Kinesis"><a href="#Kinesis" class="headerlink" title="Kinesis"></a>Kinesis</h1><ul>
+<li>Kinesis Data Streams<ul>
+<li>Low latency streaming ingest at scale</li>
+</ul>
+</li>
+<li>Kinesis Data Analytics<ul>
+<li>Perform real-time analytics on streams using SQL</li>
+</ul>
+</li>
+<li>Kinesis Data Firehose<ul>
+<li>Load streams into S3, redshift, ElasticSearch and Splunk</li>
+</ul>
+</li>
+</ul>
+<h1 id="Kinesis-Data-Streams"><a href="#Kinesis-Data-Streams" class="headerlink" title="Kinesis Data Streams"></a>Kinesis Data Streams</h1><ul>
+<li>Streams are divided in ordered Shards</li>
+<li>Ability to reprocess / replay data<ul>
+<li>Multiple applications can consume the same stream</li>
+</ul>
+</li>
+<li>Real-time processing with scale of throughput</li>
+<li>Once data is inserted in Kinesis, it can’t be deleted (data in Kinesis is immutability)</li>
+</ul>
+<h2 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts"></a>Key Concepts</h2><h3 id="Shards"><a href="#Shards" class="headerlink" title="Shards"></a>Shards</h3><ul>
+<li>The number of shards can evolve over time (reshard / merge)</li>
+<li>Records are only ordered per shard</li>
+<li>Billing is per shard provisioned</li>
+</ul>
+<h3 id="Records"><a href="#Records" class="headerlink" title="Records"></a>Records</h3><ul>
+<li>Data Blob<ul>
+<li>Data being sent, serialized as bytes</li>
+<li>Up to 1 MB</li>
+</ul>
+</li>
+<li>Record Key<ul>
+<li>Helps to group records in Shards (same key in same shard)</li>
+<li>Should use highly distributed key to avoid the <em>hot partition</em> problem</li>
+</ul>
+</li>
+<li>Sequence number<ul>
+<li>Unique ID for records put in shards</li>
+<li>Added by Kinesis after ingestion</li>
+</ul>
+</li>
+</ul>
+<h3 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h3><ul>
+<li>Producer<ul>
+<li>1MB/s or 1000 records/s at write per <strong>shard</strong></li>
+<li><em>ProvisionedThroughputException</em> otherwise</li>
+</ul>
+</li>
+<li>Consumer Classic<ul>
+<li>2MB/s at read per <strong>shard</strong> across <strong>all consumers</strong></li>
+<li>5 API calls/s per <strong>shard</strong> across <strong>all consumers</strong></li>
+</ul>
+</li>
+<li>Consumer Enhanced Fan-Out<ul>
+<li>2MB/s at read per <strong>shard</strong> per <strong>enhanced consumer</strong></li>
+<li>No API calls needed</li>
+</ul>
+</li>
+<li>Data Retention<ul>
+<li>24 hours by default</li>
+<li>Up to 7 days</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kinesis-Producers"><a href="#Kinesis-Producers" class="headerlink" title="Kinesis Producers"></a>Kinesis Producers</h2><ul>
+<li>Kinesis Producer SDK</li>
+<li>Managed AWS sources</li>
+<li>Kinesis Producer Library (KPL)</li>
+<li>Kinesis Agent</li>
+<li>3rd party libraries</li>
+</ul>
+<h3 id="Kinesis-Producer-SDK"><a href="#Kinesis-Producer-SDK" class="headerlink" title="Kinesis Producer SDK"></a>Kinesis Producer SDK</h3><ul>
+<li>PutRecord</li>
+<li>PutRecords<ul>
+<li>Use batching and increases throughput</li>
+</ul>
+</li>
+</ul>
+<h4 id="Solutions-for-ProvisionedThroughputExceeded-Exceptions"><a href="#Solutions-for-ProvisionedThroughputExceeded-Exceptions" class="headerlink" title="Solutions for ProvisionedThroughputExceeded Exceptions"></a>Solutions for <em>ProvisionedThroughputExceeded</em> Exceptions</h4><ul>
+<li>Retries with backoff</li>
+<li>Increase (scale up) shards</li>
+<li>Use highly distributed partition key</li>
+</ul>
+<h3 id="Managed-AWS-Sources"><a href="#Managed-AWS-Sources" class="headerlink" title="Managed AWS Sources"></a>Managed AWS Sources</h3><ul>
+<li>CloudWatch Logs</li>
+<li>AWS IoT</li>
+<li>Kinesis Data Analytics</li>
+</ul>
+<h3 id="Kinesis-Producer-Library-KPL"><a href="#Kinesis-Producer-Library-KPL" class="headerlink" title="Kinesis Producer Library (KPL)"></a>Kinesis Producer Library (KPL)</h3><ul>
+<li>C++ / Java library</li>
+<li>high performance, long-running producers</li>
+<li>Automated and configurable <strong>retry</strong> mechanism</li>
+<li>Sync or <strong>Async</strong> (better performance) API</li>
+<li>Submits metrics to CloudWatch</li>
+<li><strong>Batching</strong> (default) - increase throughput, decrease cost<ul>
+<li><strong>Collect</strong> records and write to multiple shards in the same PutRecords API call</li>
+<li><strong>Aggregate</strong> - but increase latency<ul>
+<li>Store multiple records in one record (go over 1000 records/s limit)</li>
+<li>Increase payload size and improve throughput (maximize 1MB/s limit)</li>
+</ul>
+</li>
+<li>Configured with <em>RecordMaxBufferedTime</em> (100ms by default)</li>
+</ul>
+</li>
+<li>Limitation<ul>
+<li>Do not support auto compression</li>
+<li>KPL Records can only be decoded with KCL or special helper library</li>
+</ul>
+</li>
+</ul>
+<h3 id="Kinesis-Agent"><a href="#Kinesis-Agent" class="headerlink" title="Kinesis Agent"></a>Kinesis Agent</h3><ul>
+<li>Monitor Log files and sends them to Kinesis Data Streams</li>
+<li>Only support Linux-based servers</li>
+<li>Can write form multiple directories and write to multiple streams</li>
+<li>Can route based on directory or log file</li>
+<li>Can pre-process data before sending to streams (single line, json, etc.)</li>
+<li>Handles file rotation, checkpointing and retry</li>
+<li>Can emit metrics to CloudWatch</li>
+</ul>
+<h2 id="Kinesis-Consumers-Classic"><a href="#Kinesis-Consumers-Classic" class="headerlink" title="Kinesis Consumers Classic"></a>Kinesis Consumers Classic</h2><ul>
+<li>Kinesis Consumer SDK</li>
+<li>Kinesis Client Library (KCL)</li>
+<li>Kinesis Connector Library</li>
+<li>3rd party libraries (Spark, etc.)</li>
+<li>Managed AWS sources<ul>
+<li>Kinesis Firehose</li>
+<li>AWS Lambda</li>
+</ul>
+</li>
+</ul>
+<h3 id="Kinesis-Consumer-SDK"><a href="#Kinesis-Consumer-SDK" class="headerlink" title="Kinesis Consumer SDK"></a>Kinesis Consumer SDK</h3><ul>
+<li>GetRecords<ul>
+<li>Returns up to 10MB of data (then throttle for 5s) or up to 10,000 records<ul>
+<li><strong>Maximum of 2MB/s at read per shard</strong></li>
+<li><strong>Maximum of 5 GetRecords API calls/s per shard (200ms latency)</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Kinesis-Client-Library-KCL"><a href="#Kinesis-Client-Library-KCL" class="headerlink" title="Kinesis Client Library (KCL)"></a>Kinesis Client Library (KCL)</h3><ul>
+<li>Support Java, etc.</li>
+<li>Read records from Kinesis produced with the KPL (de-aggregation)</li>
+<li><strong>Shard discovery</strong>: share multiple shards with multiple consumers in one group</li>
+<li><strong>Checkpointing</strong>: resume progress</li>
+<li><strong>Leverages DynamoDB for coordination and checkpointing</strong><ul>
+<li>Use provisioned DynamoDB with enough WCU and RCU</li>
+<li>Use On-Demand DynamoDB</li>
+<li>Otherwise DynamoDB may slow down KCL</li>
+</ul>
+</li>
+</ul>
+<h3 id="Kinesis-Connector-Library"><a href="#Kinesis-Connector-Library" class="headerlink" title="Kinesis Connector Library"></a>Kinesis Connector Library</h3><ul>
+<li>Have been deprecated</li>
+<li>Can only be running on EC2</li>
+<li>Write data to S3, DynamoDB, Redshift, ElasticSearch</li>
+<li>Can be replaced by Kinesis Firehose or Lambda</li>
+</ul>
+<h3 id="AWS-Lambda-Sourcing-from-Kinesis"><a href="#AWS-Lambda-Sourcing-from-Kinesis" class="headerlink" title="AWS Lambda Sourcing from Kinesis"></a>AWS Lambda Sourcing from Kinesis</h3><ul>
+<li>Lambda consumer has a library to de-aggregate record from the KPL</li>
+<li>Lambda can be used to rum lightweight ETL to anywhere you want</li>
+<li>Lambda can be used to trigger notifications or send emails in real time</li>
+<li>Lambda has a configurable batch size to regulate throughput</li>
+</ul>
+<h2 id="Kinesis-Enhanced-Fan-Out"><a href="#Kinesis-Enhanced-Fan-Out" class="headerlink" title="Kinesis Enhanced Fan-Out"></a>Kinesis Enhanced Fan-Out</h2><ul>
+<li>Kinesis <strong>pushes</strong> data to consumers over HTTP/2 </li>
+<li><strong>Each Consumer</strong> get 2 MB/s of providioned through per shard<ul>
+<li>No more 2MB/s limit by adding Consumers</li>
+<li>Reducy latency (~70ms)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Enhanced-Fan-Out-vs-Standard-Consumers"><a href="#Enhanced-Fan-Out-vs-Standard-Consumers" class="headerlink" title="Enhanced Fan-Out vs Standard Consumers"></a>Enhanced Fan-Out vs Standard Consumers</h3><table>
+<thead>
+<tr>
+<th>Enhanced Fan-Out</th>
+<th>Standard Consumers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Low number of consuming applications</td>
+<td>Multiple Consumer applications for the same Stream</td>
+</tr>
+<tr>
+<td>Can tolerate ~200 ms latency</td>
+<td>Low latency requirements ~70 ms</td>
+</tr>
+<tr>
+<td>Minimize cost</td>
+<td>Higher costs (Soft limit of 5 consumers using enhanced fan-out per data stream)</td>
+</tr>
+</tbody></table>
+<h2 id="Kinesis-Scaling"><a href="#Kinesis-Scaling" class="headerlink" title="Kinesis Scaling"></a>Kinesis Scaling</h2><h3 id="Shard-Splitting"><a href="#Shard-Splitting" class="headerlink" title="Shard Splitting"></a>Shard Splitting</h3><ul>
+<li>Can be used to increase the Stream capacity (1MB/s per shard)</li>
+<li>Can be used to divided a <em>hot shard</em></li>
+<li>The old shard is closed and deleted based on data expiration</li>
+</ul>
+<h3 id="Shard-Merging"><a href="#Shard-Merging" class="headerlink" title="Shard Merging"></a>Shard Merging</h3><ul>
+<li>Decrease the Stream capacity and save costs</li>
+<li>Group two shards with low traffic</li>
+<li>Old shards are closed and deleted based on data expiration</li>
+</ul>
+<h3 id="No-Native-Auto-Scaling"><a href="#No-Native-Auto-Scaling" class="headerlink" title="No Native Auto Scaling"></a>No Native Auto Scaling</h3><ul>
+<li>Can implement Auto Scaling with AWS Lambda</li>
+<li>The API call to change the number of shards is <em>UpdateShardCount</em></li>
+</ul>
+<h3 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h3><ul>
+<li>Resharding cannot be done in parallel (have to plan capacity in advance)</li>
+<li>Can only perform one resharding at a time and it takes a few seconds<ul>
+<li>Double 1000 shards takes about 8.3 hours</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kinesis-Security"><a href="#Kinesis-Security" class="headerlink" title="Kinesis Security"></a>Kinesis Security</h2><ul>
+<li>Control access / autorization using IAM policies</li>
+<li>Encryption in transit using HTTPS endpoints</li>
+<li>Encryption at rest using KMS</li>
+<li>Client side encryption can only be implemented manually</li>
+<li>VPC Endpoints is available for Kinesis</li>
+</ul>
+<h1 id="Kinesis-Data-Firehose"><a href="#Kinesis-Data-Firehose" class="headerlink" title="Kinesis Data Firehose"></a>Kinesis Data Firehose</h1><ul>
+<li>Near Real Time (60s latency minimum for non-full batches)</li>
+<li>Read data from<ul>
+<li>SDK or KPL</li>
+<li>Kinesis Agent</li>
+<li>Kinesis Data Streams</li>
+<li>CloudWatch Logs &amp; Events</li>
+<li>IoT rules actions</li>
+</ul>
+</li>
+<li>Load data into<ul>
+<li><strong>S3</strong></li>
+<li><strong>Redshift</strong></li>
+<li><strong>ElasticSearch</strong></li>
+<li><strong>Splunk</strong></li>
+</ul>
+</li>
+<li>Spark or KCL <strong>cannot</strong> read from Firehose</li>
+<li>Auto scaling</li>
+<li>Support Data Conversions<ul>
+<li>JSON to Parquet</li>
+<li>JSON to ORC (only for S3)</li>
+</ul>
+</li>
+<li>Support Data Transformation through AWS Lambda</li>
+<li>Support compression (only for S3)<ul>
+<li>GZIP, ZIP, Snappy</li>
+<li>Only GZIP when data is further loaded into Redshift</li>
+</ul>
+</li>
+<li>Only pay for the amount of data going through Firehose</li>
+</ul>
+<h2 id="Delivery-Features"><a href="#Delivery-Features" class="headerlink" title="Delivery Features"></a>Delivery Features</h2><ul>
+<li>Source Records</li>
+<li>Transformation Failures</li>
+<li>Delivery Failures</li>
+</ul>
+<p>can be stored directly into S3</p>
+<h2 id="Buffer-Sizing"><a href="#Buffer-Sizing" class="headerlink" title="Buffer Sizing"></a>Buffer Sizing</h2><ul>
+<li>When buffer is reached, it’s flushed<ul>
+<li>Buffer Size</li>
+<li>Buffer Time</li>
+</ul>
+</li>
+<li>Automatically increase the buffer size to increase throughput</li>
+<li>High throughput: more buffer size</li>
+<li>Low throughput: less buffer time</li>
+</ul>
+<h2 id="Kinesis-Data-Streams-vs-Firehose"><a href="#Kinesis-Data-Streams-vs-Firehose" class="headerlink" title="Kinesis Data Streams vs Firehose"></a>Kinesis Data Streams vs Firehose</h2><table>
+<thead>
+<tr>
+<th>Streams</th>
+<th>Firehose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Custom consumer code</td>
+<td>Fully managed, only send to S3, Redshift, ElasticSearch, Splunk</td>
+</tr>
+<tr>
+<td>Real time (~200ms for classic or ~70ms for enhanced fan-out)</td>
+<td>Near real time (1min~ buffer time)</td>
+</tr>
+<tr>
+<td>Manual Scaling (shard splitting / merging)</td>
+<td>Auto Scaling</td>
+</tr>
+<tr>
+<td>Data Storage for 1 to 7 days</td>
+<td>No data storage</td>
+</tr>
+</tbody></table>
+<h1 id="AWS-SQS"><a href="#AWS-SQS" class="headerlink" title="AWS SQS"></a>AWS SQS</h1><h2 id="SQS-Standard-Queue"><a href="#SQS-Standard-Queue" class="headerlink" title="SQS - Standard Queue"></a>SQS - Standard Queue</h2><ul>
+<li>Auto Scales without limit</li>
+<li>Retention of messages from 1 minute to 14 days, 4 days by default</li>
+<li>the number of messages in the queue has no limit</li>
+<li>Low latency (~10 ms on publish and receive)</li>
+<li>Consumers can be scaled horizontally</li>
+<li><strong>Can have duplicate messages</strong></li>
+<li><strong>Can have out of order messages</strong></li>
+<li><strong>Limitation of 256KB per message</strong></li>
+</ul>
+<h2 id="SQS-FIFO-Queue"><a href="#SQS-FIFO-Queue" class="headerlink" title="SQS - FIFO Queue"></a>SQS - FIFO Queue</h2><ul>
+<li>Name of the queue ends in .fifo</li>
+<li>Up to 3,000 messages/s with batching or 300 messages/s without (soft limit)</li>
+<li><strong>Messages are sent only once</strong></li>
+<li><strong>Messages are processed in order</strong></li>
+</ul>
+<h2 id="Producing-Messages"><a href="#Producing-Messages" class="headerlink" title="Producing Messages"></a>Producing Messages</h2><ul>
+<li>Message body<ul>
+<li>String</li>
+<li>Up to 256KB</li>
+</ul>
+</li>
+<li>Message attributes (metadata)<ul>
+<li>Key-value pair</li>
+</ul>
+</li>
+<li>Delivery delay</li>
+<li>Return<ul>
+<li>Message ID</li>
+<li>MD5 hash of the body</li>
+</ul>
+</li>
+</ul>
+<h2 id="Consuming-Messages"><a href="#Consuming-Messages" class="headerlink" title="Consuming Messages"></a>Consuming Messages</h2><ul>
+<li>Pull messages from SQS<ul>
+<li>Up to 10 messages at a time</li>
+</ul>
+</li>
+<li>Process the message within the visibility timeout</li>
+<li>Delete the message by message ID &amp; receipt handle</li>
+<li>Maximum of 120,000 messages being processed by consumers</li>
+</ul>
+<h2 id="SQS-Extended-Client"><a href="#SQS-Extended-Client" class="headerlink" title="SQS Extended Client"></a>SQS Extended Client</h2><ul>
+<li>Send messages larger than 256KB</li>
+<li>Not recommended</li>
+<li>Java Library<ul>
+<li>Send message to S3 first</li>
+<li>Only send metadata to SQS</li>
+</ul>
+</li>
+</ul>
+<h2 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h2><ul>
+<li>Decouple applications asynchronously</li>
+<li>Buffer writes</li>
+<li>Handle large loads of messages</li>
+</ul>
+<h2 id="Pricing"><a href="#Pricing" class="headerlink" title="Pricing"></a>Pricing</h2><ul>
+<li>Pay per API request</li>
+<li>Pay network usage</li>
+</ul>
+<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><ul>
+<li>HTTPS endpoints</li>
+<li>Server Side Encryption using KMS<ul>
+<li>Only encrypts the body</li>
+</ul>
+</li>
+<li>IAM</li>
+<li>SQS queue access policy</li>
+</ul>
+<h1 id="AWS-IoT"><a href="#AWS-IoT" class="headerlink" title="AWS IoT"></a>AWS IoT</h1><h2 id="Device-Gateway"><a href="#Device-Gateway" class="headerlink" title="Device Gateway"></a>Device Gateway</h2><ul>
+<li>The entry point for IoT devices connecting to AWS IoT</li>
+<li>Supports the MQTT, WebSockets, and HTTP 1.1 protocols</li>
+</ul>
+<h2 id="Message-Broker"><a href="#Message-Broker" class="headerlink" title="Message Broker"></a>Message Broker</h2><ul>
+<li>For devices to communicate with others</li>
+<li>Pub/sub messaging pattern with low latency</li>
+<li>Supports the MQTT, WebSockets, and HTTP 1.1 protocols</li>
+</ul>
+<h3 id="Rules-Engine"><a href="#Rules-Engine" class="headerlink" title="Rules Engine"></a>Rules Engine</h3><ul>
+<li>Rules are defined on the Broker topics</li>
+<li>Rule-action pairs</li>
+<li>Used to augment or filter data received from devices</li>
+<li>Rules need IAM Roles to perform the actions</li>
+</ul>
+<h2 id="Thing-Registry"><a href="#Thing-Registry" class="headerlink" title="Thing Registry"></a>Thing Registry</h2><ul>
+<li>Represent all connected devices<ul>
+<li>A unique ID</li>
+<li>Metadata</li>
+<li>X.509 certificate</li>
+<li>IoT Groups</li>
+</ul>
+</li>
+<li>Can organizes the resources associated with each device</li>
+</ul>
+<h3 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h3><ul>
+<li>Things<ul>
+<li>X.509 certificates</li>
+<li>AWS SigV4</li>
+<li>Custom tokens with custom authorizers</li>
+</ul>
+</li>
+<li>Mobile apps<ul>
+<li>Cognito</li>
+</ul>
+</li>
+<li>Web/Desktop/CLI<ul>
+<li>IAM</li>
+<li>Federated Identities</li>
+</ul>
+</li>
+</ul>
+<h3 id="Authentication-Policies"><a href="#Authentication-Policies" class="headerlink" title="Authentication Policies"></a>Authentication Policies</h3><ul>
+<li>IoT policies<ul>
+<li>Attached to X.509 certificates or Cognito Identities</li>
+<li>Can be attached to Groups in stead of Things</li>
+</ul>
+</li>
+<li>IAM policies<ul>
+<li>Used for controlling IoT AWS APIs</li>
+</ul>
+</li>
+</ul>
+<h2 id="Device-Shadow"><a href="#Device-Shadow" class="headerlink" title="Device Shadow"></a>Device Shadow</h2><ul>
+<li>Record the state of Things and synchronize the state when Things back up online</li>
+<li>JSON document</li>
+</ul>
+<h2 id="Greengrass"><a href="#Greengrass" class="headerlink" title="Greengrass"></a>Greengrass</h2><ul>
+<li>Brings the compute layer to the devices locally</li>
+<li>Execute AWS Lambda on the devices and operate offline</li>
+<li>Deploy functions from the cloud</li>
+</ul>
+<h1 id="Database-Migration-Service-DMS"><a href="#Database-Migration-Service-DMS" class="headerlink" title="Database Migration Service (DMS)"></a>Database Migration Service (DMS)</h1><ul>
+<li>Migrate databases to AWS</li>
+<li>The source database remains available during the migration</li>
+<li>Must run an EC2 instance to perform Continuous Data Replication task using Change Data Capture (CDC)</li>
+</ul>
+<h2 id="Sources-and-Targets"><a href="#Sources-and-Targets" class="headerlink" title="Sources and Targets"></a>Sources and Targets</h2><ul>
+<li>Sources<ul>
+<li>On-Premise or EC2 instances databases</li>
+<li>RDS</li>
+<li>S3</li>
+</ul>
+</li>
+<li>Targets<ul>
+<li>On-Premise or EC2 instances databases</li>
+<li>RDS, Redshift, DynamoDB</li>
+<li>S3</li>
+<li>ElasticSearch, Kinesis Data Streams, DocumentDB</li>
+</ul>
+</li>
+</ul>
+<h2 id="Schema-Conversion-Tool-SCT"><a href="#Schema-Conversion-Tool-SCT" class="headerlink" title="Schema Conversion Tool (SCT)"></a>Schema Conversion Tool (SCT)</h2><ul>
+<li>A tool to convert database schema from one to another</li>
+<li>Can use SCT to create DMS endpoints and tasks</li>
+</ul>
+<h2 id="Different-between-DMS-and-SCT"><a href="#Different-between-DMS-and-SCT" class="headerlink" title="Different between DMS and SCT"></a>Different between DMS and SCT</h2><table>
+<thead>
+<tr>
+<th>DMS</th>
+<th>SCT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Migrate smaller relational workloads (&lt; 10 TB) and MongoDB</td>
+<td>Migrate large data warehouse workloads</td>
+</tr>
+<tr>
+<td>Support ongoing replication to keep the target in sync</td>
+<td>Do not support</td>
+</tr>
+</tbody></table>
+<h1 id="Direct-Connect"><a href="#Direct-Connect" class="headerlink" title="Direct Connect"></a>Direct Connect</h1><ul>
+<li>Provides a dedicated private connection from a remote network to your public resources or VPCs<ul>
+<li>Need a Virtual Private Gateway on your VPC</li>
+</ul>
+</li>
+<li>Can setup multiple 1 Gbps or 10 Gbps connections</li>
+<li>Connect to Direct Connect endpoint in Direct Connect location</li>
+<li>Use Cases<ul>
+<li>Increase bandwidth throughput</li>
+<li>Real-time data feeds</li>
+<li>Hybrid Environment</li>
+<li>Enhanced security using private connection</li>
+</ul>
+</li>
+<li>Use two Direct Connect as a failover</li>
+<li>Use Direct Connect Gateway if you want to connect to VPCs in different regions</li>
+</ul>
+<h1 id="Snowball"><a href="#Snowball" class="headerlink" title="Snowball"></a>Snowball</h1><ul>
+<li>Physical device to move TBs to PBs of data in or out of AWS</li>
+<li>Secure by using KMS 256 bit encryption</li>
+<li>Use Snowball if it takes more than a week to transfer over the network</li>
+</ul>
+<h2 id="Snowball-Edge"><a href="#Snowball-Edge" class="headerlink" title="Snowball Edge"></a>Snowball Edge</h2><ul>
+<li>More capacity (100 TB) with computational capability<ul>
+<li>Storage optimized</li>
+<li>Compute optimized</li>
+</ul>
+</li>
+<li>Can pre-process the data while moving<ul>
+<li>Support EC2 AMI</li>
+<li>Support Lambda functions</li>
+</ul>
+</li>
+</ul>
+<h2 id="Snowmobile"><a href="#Snowmobile" class="headerlink" title="Snowmobile"></a>Snowmobile</h2><ul>
+<li>100 PB of capacity</li>
+<li>Batter than Snowball if more than 10 PB</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

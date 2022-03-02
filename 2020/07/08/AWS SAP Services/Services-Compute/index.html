@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Services: Compute - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EC2"><span class="toc-text">EC2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Instances-Types"><span class="toc-text">Instances Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Placement-Groups"><span class="toc-text">Placement Groups</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instances-Launch-Types"><span class="toc-text">Instances Launch Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spot-Instances"><span class="toc-text">Spot Instances</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metrics"><span class="toc-text">Metrics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instance-Recovery"><span class="toc-text">Instance Recovery</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Auto-Scaling"><span class="toc-text">Auto Scaling</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-Auto-Scaling"><span class="toc-text">About Auto Scaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scaling-Policies"><span class="toc-text">Scaling Policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scaling-Processes"><span class="toc-text">Scaling Processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Health-Checks"><span class="toc-text">Health Checks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Update-instances-in-ASG"><span class="toc-text">Architecture: Update instances in ASG</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ECS"><span class="toc-text">ECS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ECS-Concepts"><span class="toc-text">ECS Concepts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ALB-Port-Mapping"><span class="toc-text">ALB Port Mapping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECS-Security-amp-Networking"><span class="toc-text">ECS Security &amp; Networking</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECS-Auto-Scaling"><span class="toc-text">ECS Auto Scaling</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Lambda"><span class="toc-text">AWS Lambda</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-Runtime"><span class="toc-text">Lambda Runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-Limits"><span class="toc-text">Lambda Limits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-Security"><span class="toc-text">Lambda Security</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-in-VPC"><span class="toc-text">Lambda in VPC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-Logging"><span class="toc-text">Lambda Logging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-Invocation-Types"><span class="toc-text">Lambda Invocation Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-Destinations"><span class="toc-text">Lambda Destinations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda-Versions-amp-Aliases"><span class="toc-text">Lambda Versions &amp; Aliases</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ELB"><span class="toc-text">ELB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ELB-Types"><span class="toc-text">ELB Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Classic-Load-Balancers"><span class="toc-text">Classic Load Balancers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-Load-Balancers"><span class="toc-text">Application Load Balancers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Network-Load-Balancers"><span class="toc-text">Network Load Balancers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-zone-Load-Balancing"><span class="toc-text">Cross-zone Load Balancing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Load-Balancing-Stickiness"><span class="toc-text">Load Balancing Stickiness</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API-Gateway"><span class="toc-text">API Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment-Stages"><span class="toc-text">Deployment Stages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-API-Gateway-in-front-of-S3"><span class="toc-text">Architecture: API Gateway in front of S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Endpoint-Types"><span class="toc-text">Endpoint Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gateway-Cache"><span class="toc-text">Gateway Cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API-Gateway-HTTP-Error-Codes"><span class="toc-text">API Gateway HTTP Error Codes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API-Gateway-Security"><span class="toc-text">API Gateway Security</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API-Gateway-Authentication"><span class="toc-text">API Gateway Authentication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API-Gateway-Logging-amp-Monitoring"><span class="toc-text">API Gateway Logging &amp; Monitoring</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Route-53"><span class="toc-text">Route 53</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Route-53-Records"><span class="toc-text">Route 53 Records</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Routing-Policy"><span class="toc-text">Routing Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Simple-Routing-Policy"><span class="toc-text">Simple Routing Policy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Weight-Routing-Policy"><span class="toc-text">Weight Routing Policy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Failover-Routing-Policy"><span class="toc-text">Failover Routing Policy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Latency-Routing-Policy"><span class="toc-text">Latency Routing Policy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Geo-Location-Routing-Policy"><span class="toc-text">Geo Location Routing Policy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nested-Records"><span class="toc-text">Nested Records</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Private-DNS"><span class="toc-text">Private DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Route-53-DNSSEC"><span class="toc-text">Route 53 DNSSEC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Route-53-Health-Checks"><span class="toc-text">Route 53 Health Checks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Health-Check-with-Private-Subnet"><span class="toc-text">Architecture: Health Check with Private Subnet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-RDS-Multi-region-Failover"><span class="toc-text">Architecture: RDS Multi-region Failover</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Add-a-VPC-to-Private-Hosted-Zone"><span class="toc-text">Architecture: Add a VPC to Private Hosted Zone</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Services: Compute
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-07-08 00:09:23</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Services)" title="AWS - Solutions Architect (Services)">AWS - Solutions Architect (Services)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="EC2"><a href="#EC2" class="headerlink" title="EC2"></a>EC2</h1><h2 id="Instances-Types"><a href="#Instances-Types" class="headerlink" title="Instances Types"></a>Instances Types</h2><ul>
+<li>R (RAM): in-memory caches</li>
+<li>C (CPU): compute / databases</li>
+<li>M: general purpose / web app</li>
+<li>I (I/O): databases</li>
+<li>G (GPU): video rendering / machine learning</li>
+<li>T2 / T3 (burstable instances)</li>
+</ul>
+<h2 id="Placement-Groups"><a href="#Placement-Groups" class="headerlink" title="Placement Groups"></a>Placement Groups</h2><ul>
+<li>Control EC2 instance placement strategy</li>
+<li>Group strategies:<ul>
+<li>Cluster: clusters instances into a low-latency group in a single AZ</li>
+<li>Spread: spreads instances across underlying hardware (up to 7 instances per group per AZ)</li>
+<li>Partition: spreads instances across partitions (up to 7 partitions &amp; 100s of instances per group per AZ)</li>
+</ul>
+</li>
+<li>Move an instance into or out of a placement group<ul>
+<li>Stop the instance</li>
+<li>Modify the instance placement group</li>
+<li>Start the instance</li>
+</ul>
+</li>
+</ul>
+<h2 id="Instances-Launch-Types"><a href="#Instances-Launch-Types" class="headerlink" title="Instances Launch Types"></a>Instances Launch Types</h2><ul>
+<li>On Demand Instances</li>
+<li>Spot Instances</li>
+<li>Reserved Instances<ul>
+<li>Reserved Instances</li>
+<li>Convertible Reserved Instances</li>
+<li>Scheduled Reserved Instances</li>
+</ul>
+</li>
+<li>Dedicated Instances</li>
+<li>Dedicated Hosts<ul>
+<li>Book an entire physical server</li>
+<li>Can define host affinity so that instance reboots are kept on the same host</li>
+</ul>
+</li>
+</ul>
+<h3 id="Spot-Instances"><a href="#Spot-Instances" class="headerlink" title="Spot Instances"></a>Spot Instances</h3><ul>
+<li>Define max spot price, and you will get the instance while current spot instances price are less the the price</li>
+<li>You can also buy a Spot Block, that the instances will not be interrupted during a specified time frame (1 to 6 hours)</li>
+<li>Spot Fleets<ul>
+<li>Fleets of Spot Instances and optionally On-Demand Instances</li>
+<li>Can define max price for each Spot Instance</li>
+<li>Can have a mix of instance types</li>
+<li>Support for EC2, ASG, ECS with ASG, AWS Batch</li>
+</ul>
+</li>
+</ul>
+<h2 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h2><ul>
+<li>CPU Utilization</li>
+<li>Network In / Out</li>
+<li>Disk Read / Write for instance store</li>
+<li>Status Check<ul>
+<li>Instance status (VM)</li>
+<li>System status (underlying hardware)</li>
+</ul>
+</li>
+<li><strong>RAM is not a EC2 metric</strong>, need to push it to CloudWatch as a custom metric</li>
+</ul>
+<h2 id="Instance-Recovery"><a href="#Instance-Recovery" class="headerlink" title="Instance Recovery"></a>Instance Recovery</h2><ul>
+<li>CloudWatch Alarm can monitor EC2 instances status check</li>
+<li>If any check failed, it can auto recovery the instance</li>
+<li>Preserve same private / public / Elastic IP, metadata, placement group</li>
+</ul>
+<h1 id="Auto-Scaling"><a href="#Auto-Scaling" class="headerlink" title="Auto Scaling"></a>Auto Scaling</h1><h2 id="About-Auto-Scaling"><a href="#About-Auto-Scaling" class="headerlink" title="About Auto Scaling"></a>About Auto Scaling</h2><ul>
+<li>Spot Fleets support</li>
+<li>Update AMI<ul>
+<li>Update launch configuration / template</li>
+<li>Terminate instances manually</li>
+<li>You can use CloudFormation to automate the steps</li>
+</ul>
+</li>
+<li>Scheduled scaling actions<ul>
+<li>Increase or decrease instances in a schedule</li>
+</ul>
+</li>
+<li>Lifecycle Hooks<ul>
+<li>Perform actions before launch or terminate a instance</li>
+</ul>
+</li>
+</ul>
+<h2 id="Scaling-Policies"><a href="#Scaling-Policies" class="headerlink" title="Scaling Policies"></a>Scaling Policies</h2><ul>
+<li>Simple Scaling (Step Scaling): increase or decrease instances based on 2 CloudWatch alarms</li>
+<li>Target Tracking: smart adjust instances to close to a metric</li>
+</ul>
+<h2 id="Scaling-Processes"><a href="#Scaling-Processes" class="headerlink" title="Scaling Processes"></a>Scaling Processes</h2><ul>
+<li>Launch</li>
+<li>Terminate</li>
+<li>HealthCheck</li>
+<li>ReplaceUnhealthy</li>
+<li>AZRebalance</li>
+<li>AlarmNotification: when accept notification from CloudWatch</li>
+<li>ScheduledActions</li>
+<li>AddToLoadBalancer</li>
+<li>You can suspend above processes</li>
+</ul>
+<h2 id="Health-Checks"><a href="#Health-Checks" class="headerlink" title="Health Checks"></a>Health Checks</h2><ul>
+<li>Check types<ul>
+<li>EC2 Status Checks</li>
+<li>ELB Health Checks (HTTP)</li>
+</ul>
+</li>
+<li>ASG will launch a new instance to replace the unhealthy one</li>
+</ul>
+<h2 id="Architecture-Update-instances-in-ASG"><a href="#Architecture-Update-instances-in-ASG" class="headerlink" title="Architecture: Update instances in ASG"></a>Architecture: Update instances in ASG</h2><ul>
+<li>Solution 1: Create new instances with the new template in the same ASG, and terminate old instances later</li>
+<li>Solution 2: Create a new ASG connected to the same load balancer, and split traffic between ASGs</li>
+<li>Solution 3: Create a new load balancer, use Route 53 CNAME weight record to split traffic (has risks because it’s based on DNS)</li>
+</ul>
+<h1 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h1><ul>
+<li>Classic ECS: Running ECS on user-provisioned EC2 instances</li>
+<li>Fargate: Running ECS tasks on AWS managed compute (serverless)</li>
+<li>EKS: ECS for Kubernetes</li>
+<li>ECR: Docker Container Registry hosted by AWS</li>
+</ul>
+<h2 id="ECS-Concepts"><a href="#ECS-Concepts" class="headerlink" title="ECS Concepts"></a>ECS Concepts</h2><ul>
+<li>Cluster</li>
+<li>Service</li>
+<li>Tasks &amp; task definition: containers running to create the applications</li>
+</ul>
+<h2 id="ALB-Port-Mapping"><a href="#ALB-Port-Mapping" class="headerlink" title="ALB Port Mapping"></a>ALB Port Mapping</h2><ul>
+<li>Allows you to run multiple instances of the same application on the same EC2 instance</li>
+</ul>
+<h2 id="ECS-Security-amp-Networking"><a href="#ECS-Security-amp-Networking" class="headerlink" title="ECS Security &amp; Networking"></a>ECS Security &amp; Networking</h2><ul>
+<li>IAM security<ul>
+<li>EC2 Instance Role must have basic ECS permissions</li>
+<li>ECS Task level should have an IAM Task Role</li>
+</ul>
+</li>
+<li>Integration with SSM Parameter Store &amp; Secrets Manager</li>
+<li>Tasks networking<ul>
+<li>none: no network, no port mappings</li>
+<li>bridge: use Docker’s virtual network</li>
+<li>host: use the underlying host network interface</li>
+<li>awsvpc<ul>
+<li>A task has its own ENI and a private address</li>
+<li>Enhanced security with Security Groups, monitoring, and VPC flow logs</li>
+<li>Default mode for Fargate</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="ECS-Auto-Scaling"><a href="#ECS-Auto-Scaling" class="headerlink" title="ECS Auto Scaling"></a>ECS Auto Scaling</h2><ul>
+<li>CPU and <strong>RAM</strong> is tracked in CloudWatch at ECS service level</li>
+<li>ESC Service Auto Scaling cannot auto scale EC2 instances</li>
+<li>Fargate Auto Scaling is easier to use (serverless) </li>
+</ul>
+<h1 id="AWS-Lambda"><a href="#AWS-Lambda" class="headerlink" title="AWS Lambda"></a>AWS Lambda</h1><h2 id="Lambda-Runtime"><a href="#Lambda-Runtime" class="headerlink" title="Lambda Runtime"></a>Lambda Runtime</h2><ul>
+<li>Node.js</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>Java</li>
+<li>Golang</li>
+<li>C#</li>
+<li>Powershell</li>
+</ul>
+<h2 id="Lambda-Limits"><a href="#Lambda-Limits" class="headerlink" title="Lambda Limits"></a>Lambda Limits</h2><ul>
+<li>RAM: 128 MB to 3G</li>
+<li>Timeout: 15 minutes</li>
+<li>Storage: up to 512 MB</li>
+<li>Deployment package: up to 250 MB</li>
+<li>Concurrency: 1000 (soft limit)</li>
+<li>Latencies<ul>
+<li>Cold Invocation: ~100 ms</li>
+<li>Warm Invocation: ~ms</li>
+<li>Use Provisioned Concurrency to keep some functions warm</li>
+<li>Use X-Ray to trace end-to-end latency</li>
+</ul>
+</li>
+</ul>
+<h2 id="Lambda-Security"><a href="#Lambda-Security" class="headerlink" title="Lambda Security"></a>Lambda Security</h2><ul>
+<li>IAM Roles</li>
+<li>Lambda Resource-based Policies</li>
+</ul>
+<h2 id="Lambda-in-VPC"><a href="#Lambda-in-VPC" class="headerlink" title="Lambda in VPC"></a>Lambda in VPC</h2><ul>
+<li>Lambda can be deployed in VPC</li>
+<li>Connect internet from private subnet<ul>
+<li>Use NAT and IGW</li>
+<li>Use Endpoints</li>
+</ul>
+</li>
+<li>CloudWatch do not need NAT or Endpoint</li>
+</ul>
+<h2 id="Lambda-Logging"><a href="#Lambda-Logging" class="headerlink" title="Lambda Logging"></a>Lambda Logging</h2><ul>
+<li>CloudWatch<ul>
+<li>CloudWatch Logs</li>
+<li>CloudWatch Metrics display Lambda metrics</li>
+<li>Make sure Lambda has correct IAM role to write logs to CloudWatch Logs</li>
+</ul>
+</li>
+<li>X-Ray<ul>
+<li>Trace Lambda</li>
+<li>Need enable in Lambda configuration or use AWS SDK in Code</li>
+</ul>
+</li>
+</ul>
+<h2 id="Lambda-Invocation-Types"><a href="#Lambda-Invocation-Types" class="headerlink" title="Lambda Invocation Types"></a>Lambda Invocation Types</h2><ul>
+<li>Synchronous Invocations<ul>
+<li>Results is returned right away</li>
+<li>Client need handle the errors</li>
+</ul>
+</li>
+<li>Asynchronous Invocations<ul>
+<li>Will be used when triggered by S3 Events, SNS, CloudWatch Events</li>
+<li>Lambda attempts to retry on errors (up to 3 times)</li>
+<li>Make sure the processing is idempotent</li>
+<li>Can define a DLQ (to SNS or SQS) for failed processing</li>
+</ul>
+</li>
+<li>Event Source Mapping<ul>
+<li>Pull batches from stream sources<ul>
+<li>Kinesis Data Streams</li>
+<li>SQS</li>
+<li>DynamoDB Streams</li>
+</ul>
+</li>
+<li>If your function returns an error, the entire batch is reprocessed until success</li>
+</ul>
+</li>
+</ul>
+<h2 id="Lambda-Destinations"><a href="#Lambda-Destinations" class="headerlink" title="Lambda Destinations"></a>Lambda Destinations</h2><ul>
+<li>Can configure to send result to a destination</li>
+<li>In asynchronous invocations, can define destinations for successful and failed event to<ul>
+<li>SQS</li>
+<li>SNS</li>
+<li>Lambda</li>
+<li>EventBridge bus</li>
+</ul>
+</li>
+<li>In Event Source Mapping, can send discarded event batches to<ul>
+<li>SQS</li>
+<li>SNS</li>
+</ul>
+</li>
+<li>AWS recommends you use destinations instead of DLQ</li>
+</ul>
+<h2 id="Lambda-Versions-amp-Aliases"><a href="#Lambda-Versions-amp-Aliases" class="headerlink" title="Lambda Versions &amp; Aliases"></a>Lambda Versions &amp; Aliases</h2><ul>
+<li>Versions<ul>
+<li>Versions have increasing version numbers</li>
+<li>Versions are immutable, Any changes to a function will publish new versions</li>
+<li>Latest version is marked as $LATEST, which is default version</li>
+<li>Versions get their own ARN</li>
+</ul>
+</li>
+<li>Aliases<ul>
+<li>An alias point to a version</li>
+<li>Aliases are mutable and can be defined by user</li>
+<li>Use aliases to do Blue / Green deployment<ul>
+<li>CodeDeploy can help to automate traffic shift</li>
+<li>Linear: grow traffic every N minutes until 100%</li>
+<li>Canary: try at x% then jump to 100%</li>
+<li>AllAtOnce: immediate</li>
+</ul>
+</li>
+<li>Aliases get their own ARN</li>
+</ul>
+</li>
+</ul>
+<h1 id="ELB"><a href="#ELB" class="headerlink" title="ELB"></a>ELB</h1><h2 id="ELB-Types"><a href="#ELB-Types" class="headerlink" title="ELB Types"></a>ELB Types</h2><ul>
+<li>Classic Load Balancer (v1)<ul>
+<li>HTTP(S), TCP</li>
+</ul>
+</li>
+<li>Application Load Balancer (v2)<ul>
+<li>HTTP(S), WebSocket</li>
+</ul>
+</li>
+<li>Network Load Balancer (v2)<ul>
+<li>TCP(TLS), UDP</li>
+</ul>
+</li>
+<li>AWS recommends v2 as they provide more features</li>
+<li>ELB can be internal (with a private IP) or external (with a public IP)</li>
+</ul>
+<h2 id="Classic-Load-Balancers"><a href="#Classic-Load-Balancers" class="headerlink" title="Classic Load Balancers"></a>Classic Load Balancers</h2><ul>
+<li>CLB Listener can be <ul>
+<li>HTTP(s) (Layer 7)</li>
+<li>TCP(TLS) (Layer 4)</li>
+<li>Internal traffic must be at the same layer</li>
+</ul>
+</li>
+<li>CLB supports only one SSL certificate<ul>
+<li>You must edit SAN (Subject Alternate Name) in SSL certificate to support multiple host names</li>
+<li>Also, you can use multiple CLBs or use ALB with SNI (Server Name Indication)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Application-Load-Balancers"><a href="#Application-Load-Balancers" class="headerlink" title="Application Load Balancers"></a>Application Load Balancers</h2><ul>
+<li>ALB is layer 7</li>
+<li>ALB can balance traffic to<ul>
+<li>Target groups<ul>
+<li>EC2 instances</li>
+<li>ECS tasks</li>
+<li>Lambda functions</li>
+<li>Private IP address</li>
+</ul>
+</li>
+<li>Multiple applications using Dynamic Port Mapping</li>
+</ul>
+</li>
+<li>Support redirects from HTTP to HTTPS</li>
+<li>ALB supports routing HTTP requests based on URL</li>
+<li>ALB supports SNI</li>
+</ul>
+<h2 id="Network-Load-Balancers"><a href="#Network-Load-Balancers" class="headerlink" title="Network Load Balancers"></a>Network Load Balancers</h2><ul>
+<li>NLB is layer 4</li>
+<li>NLB has a static public IP per AZ and supports assigning Elastic IP</li>
+<li>NLB has less latency <del>100 ms (</del>400 ms for ALB)</li>
+<li>NLB target groups<ul>
+<li>EC2 instances</li>
+<li>ECS tasks</li>
+<li>Private IP addresses</li>
+</ul>
+</li>
+<li>Proxy Protocol<ul>
+<li>NLB can append a proxy protocol header to the TCP data</li>
+<li>So you can send additional connection information such as the source and destination</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cross-zone-Load-Balancing"><a href="#Cross-zone-Load-Balancing" class="headerlink" title="Cross-zone Load Balancing"></a>Cross-zone Load Balancing</h2><ul>
+<li>CLB<ul>
+<li>Disable by default</li>
+<li>No charges</li>
+</ul>
+</li>
+<li>ALB<ul>
+<li>Always enabled</li>
+<li>No charges</li>
+</ul>
+</li>
+<li>NLB<ul>
+<li>Disable by default</li>
+<li>Charged for cross-AZ data transfer if enabled</li>
+</ul>
+</li>
+</ul>
+<h2 id="Load-Balancing-Stickiness"><a href="#Load-Balancing-Stickiness" class="headerlink" title="Load Balancing Stickiness"></a>Load Balancing Stickiness</h2><ul>
+<li>CLB &amp; ALB support stickiness</li>
+<li>The same client is always redirected to the same instance</li>
+<li>Stickiness may cause imbalance</li>
+<li>Alternative is to cache session data in ElastiCache or DynamoDB</li>
+</ul>
+<h1 id="API-Gateway"><a href="#API-Gateway" class="headerlink" title="API Gateway"></a>API Gateway</h1><ul>
+<li>Helps expose Lambda, HTTP, AWS Services as REST APIs</li>
+<li>Limits<ul>
+<li>29 seconds timeout</li>
+<li>10 MB max payload size</li>
+</ul>
+</li>
+</ul>
+<h2 id="Deployment-Stages"><a href="#Deployment-Stages" class="headerlink" title="Deployment Stages"></a>Deployment Stages</h2><ul>
+<li>You can create many stages of API Gateway, and name them as you want<ul>
+<li>such as dev, test, prod</li>
+</ul>
+</li>
+<li>Stages can be rolled back</li>
+</ul>
+<h2 id="Architecture-API-Gateway-in-front-of-S3"><a href="#Architecture-API-Gateway-in-front-of-S3" class="headerlink" title="Architecture: API Gateway in front of S3"></a>Architecture: API Gateway in front of S3</h2><ul>
+<li>API Gateway has 10 MB payload size limit, so proxy S3 through API Gateway is not perfect</li>
+<li>Use API Gateway to invoke a Lambda function to generate a pre-signed URL from S3, and send the URL back to the client</li>
+</ul>
+<h2 id="Endpoint-Types"><a href="#Endpoint-Types" class="headerlink" title="Endpoint Types"></a>Endpoint Types</h2><ul>
+<li>Edge-Optimized (default)<ul>
+<li>Requests are routed through the CloudFront Edge locations</li>
+<li>The API Gateway still lives in one region</li>
+</ul>
+</li>
+<li>Regional<ul>
+<li>Lower latency if client is in the same region</li>
+<li>Can manually combine with CloudFront</li>
+</ul>
+</li>
+<li>Private<ul>
+<li>Can only be accessed from the VPC using VPC Endpoints</li>
+<li>Need use resource-based policies to define access</li>
+</ul>
+</li>
+</ul>
+<h2 id="Gateway-Cache"><a href="#Gateway-Cache" class="headerlink" title="Gateway Cache"></a>Gateway Cache</h2><ul>
+<li>Helps to reduce calls made to the backend</li>
+<li>Default TTL is 300 seconds (up to 3600s)</li>
+<li>Caches are defined per Stage</li>
+<li>You can overwrite cache settings of each methods</li>
+<li>Clients can control the cache TTL with header <em>Cache-Control: max-age=xxx</em><ul>
+<li>Need proper IAM role</li>
+</ul>
+</li>
+<li>You can flush the cache immediately</li>
+<li>You can encrypt cache optionally</li>
+<li>Cache capacity is between 521 MB to 237 GB</li>
+</ul>
+<h2 id="API-Gateway-HTTP-Error-Codes"><a href="#API-Gateway-HTTP-Error-Codes" class="headerlink" title="API Gateway HTTP Error Codes"></a>API Gateway HTTP Error Codes</h2><ul>
+<li>4xx</li>
+<li>5xx<ul>
+<li>29 seconds timeout will cause 504</li>
+</ul>
+</li>
+</ul>
+<h2 id="API-Gateway-Security"><a href="#API-Gateway-Security" class="headerlink" title="API Gateway Security"></a>API Gateway Security</h2><ul>
+<li>API Gateway can load certificates</li>
+<li>Resource-based policy</li>
+<li>IAM roles at the API level</li>
+<li>CORS<ul>
+<li>Control which domains can call your API</li>
+</ul>
+</li>
+</ul>
+<h2 id="API-Gateway-Authentication"><a href="#API-Gateway-Authentication" class="headerlink" title="API Gateway Authentication"></a>API Gateway Authentication</h2><ul>
+<li>IAM based access<ul>
+<li>Good for providing access within your own network</li>
+<li>Pass IAM credentials in headers through Sig V4</li>
+</ul>
+</li>
+<li>Custom Authorizer (normally use Lambda)<ul>
+<li>OAuth, SAML, etc.</li>
+</ul>
+</li>
+<li>Cognito User Pools<ul>
+<li>Client authenticates with Cognito</li>
+</ul>
+</li>
+</ul>
+<h2 id="API-Gateway-Logging-amp-Monitoring"><a href="#API-Gateway-Logging-amp-Monitoring" class="headerlink" title="API Gateway Logging &amp; Monitoring"></a>API Gateway Logging &amp; Monitoring</h2><ul>
+<li>CloudWatch Logs<ul>
+<li>Enable CloudWatch logging at the Stage level</li>
+<li>Can send custom logs</li>
+<li>Can send logs directly into Kinesis Data Firehose</li>
+</ul>
+</li>
+<li>CloudWatch Metric<ul>
+<li>Metrics are by stage<ul>
+<li>Latency and Cache Hits</li>
+</ul>
+</li>
+<li>Can enable detailed metrics</li>
+</ul>
+</li>
+<li>X-Ray<ul>
+<li>Tracing requests to get extra information</li>
+<li>You can get the full picture if you integrate API Gateway with Lambda</li>
+</ul>
+</li>
+</ul>
+<h1 id="Route-53"><a href="#Route-53" class="headerlink" title="Route 53"></a>Route 53</h1><h2 id="Route-53-Records"><a href="#Route-53-Records" class="headerlink" title="Route 53 Records"></a>Route 53 Records</h2><ul>
+<li>Types<ul>
+<li>A: hostname to IPv4</li>
+<li>AAAA: hostname to IPv6</li>
+<li>CNAME: hostname to hostname</li>
+<li>Alias: hostname to AWS resource<ul>
+<li>Can also be used for root apex record (omit www)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Records has TTL</li>
+</ul>
+<h2 id="Routing-Policy"><a href="#Routing-Policy" class="headerlink" title="Routing Policy"></a>Routing Policy</h2><h3 id="Simple-Routing-Policy"><a href="#Simple-Routing-Policy" class="headerlink" title="Simple Routing Policy"></a>Simple Routing Policy</h3><ul>
+<li>Maps a hostname to a single resource</li>
+<li>No health check</li>
+<li>Can return multiple resources, but client will choose one randomly<ul>
+<li>Called Multi-value Routing Policy</li>
+</ul>
+</li>
+</ul>
+<h3 id="Weight-Routing-Policy"><a href="#Weight-Routing-Policy" class="headerlink" title="Weight Routing Policy"></a>Weight Routing Policy</h3><ul>
+<li>Maps a hostname to multiple resources with weight</li>
+<li>Can do load balancing</li>
+<li>Can associate with health checks</li>
+</ul>
+<h3 id="Failover-Routing-Policy"><a href="#Failover-Routing-Policy" class="headerlink" title="Failover Routing Policy"></a>Failover Routing Policy</h3><ul>
+<li>If primary resource fails in health check, Route 53 will failover to the secondary one</li>
+</ul>
+<h3 id="Latency-Routing-Policy"><a href="#Latency-Routing-Policy" class="headerlink" title="Latency Routing Policy"></a>Latency Routing Policy</h3><ul>
+<li>Redirect to the resource that has the least latency close to the client</li>
+<li>Has a failover capability if enable health checks</li>
+</ul>
+<h3 id="Geo-Location-Routing-Policy"><a href="#Geo-Location-Routing-Policy" class="headerlink" title="Geo Location Routing Policy"></a>Geo Location Routing Policy</h3><ul>
+<li>Routing based on user location<ul>
+<li>Different from Latency Routing Policy</li>
+</ul>
+</li>
+<li>Should create a default policy in case of no matching</li>
+</ul>
+<h3 id="Nested-Records"><a href="#Nested-Records" class="headerlink" title="Nested Records"></a>Nested Records</h3><ul>
+<li>Use Alias Records (to a Route 53 record) to nest Routing policies</li>
+</ul>
+<h2 id="Private-DNS"><a href="#Private-DNS" class="headerlink" title="Private DNS"></a>Private DNS</h2><ul>
+<li>Can use Route 53 as internal private DNS in VPC(s)</li>
+<li>Must enable the VPC settings <em>enableDnsHostNames</em> and <em>enableDnsSupport</em></li>
+<li>The VPC(s) called Private Hosted Zone</li>
+</ul>
+<h2 id="Route-53-DNSSEC"><a href="#Route-53-DNSSEC" class="headerlink" title="Route 53 DNSSEC"></a>Route 53 DNSSEC</h2><ul>
+<li>Route 53 supports DNSSEC for domain registration</li>
+<li>Route 53 dose not provide DENSEC service<ul>
+<li>You need another DNS provider or custom DNS server on EC2</li>
+</ul>
+</li>
+</ul>
+<h2 id="Route-53-Health-Checks"><a href="#Route-53-Health-Checks" class="headerlink" title="Route 53 Health Checks"></a>Route 53 Health Checks</h2><ul>
+<li>Health Check Targets<ul>
+<li>End points</li>
+<li>CloudWatch Alarms</li>
+<li>Other Health Checks (calculated Health Check)</li>
+</ul>
+</li>
+<li>Health Check Metrics<ul>
+<li>Response (only 2xx and 3xx can pass health checks)</li>
+<li>Response body (first 5120 bytes)</li>
+<li>Other Health Checks results</li>
+</ul>
+</li>
+<li>Health Checks can trigger CloudWatch Alarms</li>
+</ul>
+<h2 id="Architecture-Health-Check-with-Private-Subnet"><a href="#Architecture-Health-Check-with-Private-Subnet" class="headerlink" title="Architecture: Health Check with Private Subnet"></a>Architecture: Health Check with Private Subnet</h2><ul>
+<li>Health Checks cannot access private end points</li>
+<li>Solution: <ul>
+<li>Create a CloudWatch Metric for the private end point</li>
+<li>Create a CloudWatch Alarm associated with the metric</li>
+<li>Create a Health Check checks the alarm</li>
+</ul>
+</li>
+</ul>
+<h2 id="Architecture-RDS-Multi-region-Failover"><a href="#Architecture-RDS-Multi-region-Failover" class="headerlink" title="Architecture: RDS Multi-region Failover"></a>Architecture: RDS Multi-region Failover</h2><ul>
+<li>A RDS DB with a RDS Read Replica in another region</li>
+<li>Solution:<ul>
+<li>Create a CloudWatch Alarm for the main DB</li>
+<li>Create a Health Check checks the alarm</li>
+<li>Trigger a CloudWatch Alarm if check fails</li>
+<li>Then trigger a CloudWatch Event or SNS topic</li>
+<li>Then trigger a Lambda function<ul>
+<li>Update Route 53 DNS records</li>
+<li>Promote Read Replica to be the main DB</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Architecture-Add-a-VPC-to-Private-Hosted-Zone"><a href="#Architecture-Add-a-VPC-to-Private-Hosted-Zone" class="headerlink" title="Architecture: Add a VPC to Private Hosted Zone"></a>Architecture: Add a VPC to Private Hosted Zone</h2><ul>
+<li>Set VPC peering between the new VPC and central VPC</li>
+<li>Associate the new VPC<ul>
+<li>If the VPCs are in different accounts, association can only be done through CLI</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Services: Security - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudTrail"><span class="toc-text">CloudTrail</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudTrail-Trail"><span class="toc-text">CloudTrail Trail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Delivery-to-S3"><span class="toc-text">Architecture: Delivery to S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Multi-Account-Multi-Region-Logging"><span class="toc-text">Architecture: Multi-Account, Multi-Region Logging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-Alert-for-API-calls"><span class="toc-text">Architecture: Alert for API calls</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Delivery-Time"><span class="toc-text">Delivery Time</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#KMS"><span class="toc-text">KMS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Types-of-CMK"><span class="toc-text">Types of CMK</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Systems-Manager-SSM-Parameter-Store"><span class="toc-text">AWS Systems Manager (SSM) Parameter Store</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Secrets-Manager"><span class="toc-text">AWS Secrets Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RDS-Security"><span class="toc-text">RDS Security</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSL"><span class="toc-text">SSL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-Name-Indication-SNI"><span class="toc-text">Server Name Indication (SNI)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Protection-for-Man-in-the-middle-Attacks"><span class="toc-text">Protection for Man-in-the-middle Attacks</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Certificate-Manager-ACM"><span class="toc-text">AWS Certificate Manager (ACM)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudHSM"><span class="toc-text">CloudHSM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudHSM-management"><span class="toc-text">CloudHSM management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-SSL-Offloading-using-CloudHSM"><span class="toc-text">Architecture: SSL Offloading using CloudHSM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#S3-Security"><span class="toc-text">S3 Security</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Encryption"><span class="toc-text">S3 Encryption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption-in-transit-SSL"><span class="toc-text">Encryption in transit (SSL)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Events-in-S3"><span class="toc-text">Events in S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Policies"><span class="toc-text">S3 Policies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#S3-Buckets-Policies"><span class="toc-text">S3 Buckets Policies</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pre-signed-URLs"><span class="toc-text">Pre-signed URLs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3-Object-Lock-amp-Glacier-Vault-Lock"><span class="toc-text">S3 Object Lock &amp; Glacier Vault Lock</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Network-Security"><span class="toc-text">Network Security</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#VPC-Security"><span class="toc-text">VPC Security</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-Groups"><span class="toc-text">Security Groups</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-ACLs"><span class="toc-text">Network ACLs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Shield"><span class="toc-text">AWS Shield</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Web-Application-Firewall-WAF"><span class="toc-text">AWS Web Application Firewall (WAF)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Firewall-Manager"><span class="toc-text">AWS Firewall Manager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DDoS-Protection"><span class="toc-text">DDoS Protection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Blocking-an-IP-Address"><span class="toc-text">Blocking an IP Address</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Inspector"><span class="toc-text">AWS Inspector</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Config"><span class="toc-text">AWS Config</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Config-Resource"><span class="toc-text">AWS Config Resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Config-Rules"><span class="toc-text">AWS Config Rules</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Managed-Logs"><span class="toc-text">AWS Managed Logs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-GuardDuty"><span class="toc-text">AWS GuardDuty</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Services: Security
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-05-29 15:19:28</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Services)" title="AWS - Solutions Architect (Services)">AWS - Solutions Architect (Services)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="CloudTrail"><a href="#CloudTrail" class="headerlink" title="CloudTrail"></a>CloudTrail</h1><ul>
+<li>Provides governance, compliance and audit for your AWS account</li>
+<li>CloudTrail is enabled by default</li>
+<li>Get a history of events / API calls made within your AWS account</li>
+<li>Can put logs from CloudTrail to CloudWatch Logs</li>
+<li>CloudTrail console only shows the past 90 days of activity</li>
+<li>The default UI only shows <em>Create</em>, <em>Modify</em>, and <em>Delete</em> events</li>
+</ul>
+<h2 id="CloudTrail-Trail"><a href="#CloudTrail-Trail" class="headerlink" title="CloudTrail Trail"></a>CloudTrail Trail</h2><ul>
+<li>Get a detailed list of all the events you choose</li>
+<li>Can include events happening at the object level in S3</li>
+<li>Ability to store these events in S3 for further analysis</li>
+<li>Can be region specific or be global</li>
+</ul>
+<h2 id="Architecture-Delivery-to-S3"><a href="#Architecture-Delivery-to-S3" class="headerlink" title="Architecture: Delivery to S3"></a>Architecture: Delivery to S3</h2><ul>
+<li>CloudTrail can send events to S3 every 5 minutes</li>
+<li>Use SSE-S3 encryption by default or SSE-KMS</li>
+<li>Notification<ul>
+<li>Use CloudTrail Delivery Notifications<ul>
+<li>Send notifications to SNS, can further send to SQS or Lambda</li>
+</ul>
+</li>
+<li>Use S3 Events<ul>
+<li>Send S3 events to SQS, SNS, or Lambda</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>All benefits of S3<ul>
+<li>Versioning</li>
+<li>MFA Delete protection</li>
+<li>Lifecycle Policy</li>
+<li>Object Lock</li>
+<li>Encryption (SSE-S3, SSE-KMS)</li>
+<li>SHA-256 for integrity validation</li>
+</ul>
+</li>
+</ul>
+<h2 id="Architecture-Multi-Account-Multi-Region-Logging"><a href="#Architecture-Multi-Account-Multi-Region-Logging" class="headerlink" title="Architecture: Multi-Account, Multi-Region Logging"></a>Architecture: Multi-Account, Multi-Region Logging</h2><ul>
+<li>Send CloudTrail events from different accounts to S3 bucket in one account</li>
+<li>S3 bucket policy is necessary for cross-account delivery</li>
+<li>Two options to access log files from other accounts<ol>
+<li>Assume cross-account role</li>
+<li>Edit bucket policy to allow cross-account access</li>
+</ol>
+</li>
+</ul>
+<h2 id="Architecture-Alert-for-API-calls"><a href="#Architecture-Alert-for-API-calls" class="headerlink" title="Architecture: Alert for API calls"></a>Architecture: Alert for API calls</h2><ul>
+<li>Stream CloudTrail events to CloudWatch Logs</li>
+<li>Create Metric Filters that trigger CloudWatch Alarm</li>
+<li>CloudWatch Alarm can send notifications to SNS</li>
+</ul>
+<h2 id="Delivery-Time"><a href="#Delivery-Time" class="headerlink" title="Delivery Time"></a>Delivery Time</h2><ul>
+<li>Overall<ul>
+<li>15 minutes</li>
+</ul>
+</li>
+<li>CloudWatch Events<ul>
+<li>Can be triggered for any API call in CloudTrail</li>
+<li>The fastest way</li>
+</ul>
+</li>
+<li>CloudTrail Delivery in CloudWatch Logs<ul>
+<li>Events are streamed</li>
+</ul>
+</li>
+<li>CloudTrail Delivery in S3<ul>
+<li>Events are delivery every 5 minutes</li>
+</ul>
+</li>
+</ul>
+<h1 id="KMS"><a href="#KMS" class="headerlink" title="KMS"></a>KMS</h1><ul>
+<li>Encryption for AWS Services<ul>
+<li>EBS: encrypt volumes</li>
+<li>S3: SSE-KMS</li>
+<li>Redshift</li>
+<li>RDS</li>
+<li>SSM: Parameter Store</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>Encrypt your own data<ul>
+<li>KMS APIs (Encrypt / Decrypt)</li>
+</ul>
+</li>
+<li>CMK can never be retrieved bu user</li>
+<li>CMK can be rotated for extra security</li>
+<li>KMS can only encrypt up to 4KB of data per call</li>
+<li>To access KMS<ul>
+<li>Make sure the KEY Policy allows the user</li>
+<li>Make sure the IAM Policy allows the API calls</li>
+</ul>
+</li>
+<li>CloudTrail tracks API calls made to KMS</li>
+</ul>
+<h2 id="Types-of-CMK"><a href="#Types-of-CMK" class="headerlink" title="Types of CMK"></a>Types of CMK</h2><ul>
+<li>Customer Managed CMK<ul>
+<li>Users can create, manage, use, or enable/disable the Keys</li>
+<li>Possibility of rotation policy<ul>
+<li>New key generated every year</li>
+<li>Old key will be preserved</li>
+</ul>
+</li>
+<li>Can add key policy</li>
+</ul>
+</li>
+<li>AWS Managed CMK<ul>
+<li>Used by AWS services (aws/s3, aws/ebs, aws/redshift, etc.)</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Systems-Manager-SSM-Parameter-Store"><a href="#AWS-Systems-Manager-SSM-Parameter-Store" class="headerlink" title="AWS Systems Manager (SSM) Parameter Store"></a>AWS Systems Manager (SSM) Parameter Store</h1><ul>
+<li>Secure storage for configuration and secrets</li>
+<li>Secrets can be encrypted by KMS</li>
+<li>Support version tracking</li>
+<li>Secrets are stored in path</li>
+<li>Notifications with CloudWatch Events</li>
+<li>Integration with CloudFormation</li>
+<li>Can retrieve secrets from Secrets Manager using the SSM Parameter Store API</li>
+</ul>
+<h1 id="AWS-Secrets-Manager"><a href="#AWS-Secrets-Manager" class="headerlink" title="AWS Secrets Manager"></a>AWS Secrets Manager</h1><ul>
+<li>A newer service for storing secrets</li>
+<li>Capability to force rotation of secrets every X days</li>
+<li>Can automatically generate secrets on rotation using Lambda</li>
+<li>Integration with <strong>RDS</strong> (MySQL, PostgreSQL, Aurora)</li>
+<li>Encrypted using KMS</li>
+</ul>
+<h1 id="RDS-Security"><a href="#RDS-Security" class="headerlink" title="RDS Security"></a>RDS Security</h1><ul>
+<li>KMS encryption at rest for underlying EBS volumes and snapshots</li>
+<li>Transparent Data Encryption (TDE) for Oracle and SQL Server</li>
+<li>SSL encryption for all kinds of DB</li>
+<li>IAM authentication for MySQL and postgreSQL<ul>
+<li>Authorization still happens within RDS</li>
+</ul>
+</li>
+<li>Can copy an un-encryption RDS snapshot into an encrypted one</li>
+<li>CloudTrail cannot be used to track queries made within RDS</li>
+</ul>
+<h1 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h1><h2 id="Server-Name-Indication-SNI"><a href="#Server-Name-Indication-SNI" class="headerlink" title="Server Name Indication (SNI)"></a>Server Name Indication (SNI)</h2><ul>
+<li>Use SNI to find the correct SSL certificate when you have multiple hostname pointed to one web server</li>
+<li>Only works for ALB, NLB and CloudFront</li>
+<li>Does not work for CLB</li>
+</ul>
+<h2 id="Protection-for-Man-in-the-middle-Attacks"><a href="#Protection-for-Man-in-the-middle-Attacks" class="headerlink" title="Protection for Man-in-the-middle Attacks"></a>Protection for Man-in-the-middle Attacks</h2><ul>
+<li>Always use HTTPS instead of HTTP</li>
+<li>Use DNSSEC<ul>
+<li>Route 53 support DNSSEC for domain registration</li>
+<li>Route 53 does not support DNSSEC for DNS service</li>
+<li>You must use another DNS service provider if you want to configure DNSSEC (ex. run a custom DNS server on EC2)</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Certificate-Manager-ACM"><a href="#AWS-Certificate-Manager-ACM" class="headerlink" title="AWS Certificate Manager (ACM)"></a>AWS Certificate Manager (ACM)</h1><ul>
+<li>Loads SSL certificate on the following integrations<ul>
+<li>ELB</li>
+<li>CloudFront</li>
+<li>API Gateways</li>
+</ul>
+</li>
+<li>ACM supports<ul>
+<li>Public certificates issued by a trusted certificate authority (CA)</li>
+<li>Private certificates</li>
+</ul>
+</li>
+<li>Certificate renewal<ul>
+<li>Automatically done if generated by ACM</li>
+<li>Need manually re-uploaded if certificate is user-uploaded</li>
+</ul>
+</li>
+<li>ACM is a regional service<ul>
+<li>To use with a global application, you need to issue an SSL certificate in each region</li>
+<li>You cannot copy certificates across regions</li>
+</ul>
+</li>
+</ul>
+<h1 id="CloudHSM"><a href="#CloudHSM" class="headerlink" title="CloudHSM"></a>CloudHSM</h1><ul>
+<li>HSM = Hardware Security Module (dedicated hardware)</li>
+<li>CloudHSM = AWS provisions HSM</li>
+<li>You manage your keys entirely</li>
+<li>Supports both symmetric and asymmetric encryption</li>
+<li>Must use the CloudHSM Client Software to manage CloudHSM</li>
+<li>Use cases<ul>
+<li>Redshift supports CloudHSM for database encryption</li>
+<li>Use CloudHSM to generate keys for SSE-C encryption</li>
+<li>SSL/TLS acceleration and Oracle TDE acceleration</li>
+</ul>
+</li>
+</ul>
+<h2 id="CloudHSM-management"><a href="#CloudHSM-management" class="headerlink" title="CloudHSM management"></a>CloudHSM management</h2><ul>
+<li>IAM<ul>
+<li>CRUD a CloudHSM Cluster</li>
+</ul>
+</li>
+<li>CloudHSM software<ul>
+<li>Manage the keys and users</li>
+</ul>
+</li>
+<li>CloudHSM is deployed and managed form a VPC<ul>
+<li>CloudHSM clusters are spread across multi-AZ</li>
+<li>Access to a CloudHSM cluster can be shared across VPCs using VPC peering</li>
+</ul>
+</li>
+</ul>
+<h2 id="Architecture-SSL-Offloading-using-CloudHSM"><a href="#Architecture-SSL-Offloading-using-CloudHSM" class="headerlink" title="Architecture: SSL Offloading using CloudHSM"></a>Architecture: SSL Offloading using CloudHSM</h2><ul>
+<li>You can offload SSL from your web servers to CloudHSM</li>
+<li>Many web servers (ex. NGINX, Apache Web Server) support SSL Offloading</li>
+<li>Extra security: SSL private keys never leaves the HSM device</li>
+<li>Must setup a cryptographic user on the CloudHSM device</li>
+</ul>
+<h1 id="S3-Security"><a href="#S3-Security" class="headerlink" title="S3 Security"></a>S3 Security</h1><h2 id="S3-Encryption"><a href="#S3-Encryption" class="headerlink" title="S3 Encryption"></a>S3 Encryption</h2><ul>
+<li>SSE-S3</li>
+<li>SSE-KMS</li>
+<li>SSE-C (keys can be provided by CloudHSM)</li>
+<li>CSE</li>
+</ul>
+<h2 id="Encryption-in-transit-SSL"><a href="#Encryption-in-transit-SSL" class="headerlink" title="Encryption in transit (SSL)"></a>Encryption in transit (SSL)</h2><ul>
+<li>HTTPS endpoints</li>
+<li>HTTPS is mandatory for SSE-C</li>
+</ul>
+<h2 id="Events-in-S3"><a href="#Events-in-S3" class="headerlink" title="Events in S3"></a>Events in S3</h2><ul>
+<li>S3 Access Logs<ul>
+<li>Records for the requests that are made to a bucket</li>
+<li>Might take hours to deliver</li>
+<li>Might be incomplete (best effort)</li>
+</ul>
+</li>
+<li>S3 Event Notifications<ul>
+<li>Emit notifications when certain events happen in your bucket</li>
+<li>Events can be send to SNS, SQS, Lambda</li>
+<li>Events are delivered in seconds, sometimes in minutes</li>
+<li>Events might only be delivered once if two same object write done simultaneously</li>
+</ul>
+</li>
+<li>Trusted Advisor<ul>
+<li>Check the bucket permission</li>
+</ul>
+</li>
+<li>CloudWatch Events<ul>
+<li>Enable CloudTrail object level logging on S3 first</li>
+<li>Target can be SNS, SQS, Lambda, etc.</li>
+</ul>
+</li>
+</ul>
+<h2 id="S3-Policies"><a href="#S3-Policies" class="headerlink" title="S3 Policies"></a>S3 Policies</h2><ul>
+<li>IAM Policies (user based)</li>
+<li>Bucket Policies (resource based)</li>
+</ul>
+<h3 id="S3-Buckets-Policies"><a href="#S3-Buckets-Policies" class="headerlink" title="S3 Buckets Policies"></a>S3 Buckets Policies</h3><ul>
+<li>Use cases<ul>
+<li>Grant public access to the bucket</li>
+<li>Force objects to be encrypted at upload</li>
+<li>Grant access to another account (cross account access)</li>
+</ul>
+</li>
+<li>Conditions can be<ul>
+<li>Public IP or Elastic IP (<strong>not private IP</strong>)</li>
+<li>Source VPC (AWS:SourceVpc) or Source VPC Endpoints (AWS:SourceVpce)</li>
+<li>CloudFront Origin Identity</li>
+<li>MFA</li>
+</ul>
+</li>
+</ul>
+<h2 id="Pre-signed-URLs"><a href="#Pre-signed-URLs" class="headerlink" title="Pre-signed URLs"></a>Pre-signed URLs</h2><ul>
+<li>Pre-signed URL has the same permissions as the IAM user who created it for only GET/PUT</li>
+<li>Valid for a default of 3600 seconds can change timeout with argument</li>
+<li>Use cases<ul>
+<li>Only allow particular users to download/upload objects on the S3 bucket</li>
+<li>Allow temporarily a user to download/upload objects on the S3 bucket</li>
+</ul>
+</li>
+</ul>
+<h2 id="S3-Object-Lock-amp-Glacier-Vault-Lock"><a href="#S3-Object-Lock-amp-Glacier-Vault-Lock" class="headerlink" title="S3 Object Lock &amp; Glacier Vault Lock"></a>S3 Object Lock &amp; Glacier Vault Lock</h2><ul>
+<li>S3 Object Lock<ul>
+<li>Block an object version deletion for a specified amount of time</li>
+</ul>
+</li>
+<li>Glacier Vault Lock<ul>
+<li>Lock the objects for future edits</li>
+</ul>
+</li>
+</ul>
+<h1 id="Network-Security"><a href="#Network-Security" class="headerlink" title="Network Security"></a>Network Security</h1><h2 id="VPC-Security"><a href="#VPC-Security" class="headerlink" title="VPC Security"></a>VPC Security</h2><h3 id="Security-Groups"><a href="#Security-Groups" class="headerlink" title="Security Groups"></a>Security Groups</h3><ul>
+<li>Attached to ENI, works for anything in VPC (like EC2, RDS, Lambda)</li>
+<li>Stateful (any traffic is allowed go in/out, can also go back out/in)</li>
+<li>The source can be CIDR or another security group ID<ul>
+<li>Can be security group in another VPC using VPC peering</li>
+</ul>
+</li>
+<li>Allowed rule only</li>
+<li>Default: no inbound rule, an all outbound allowed rule</li>
+</ul>
+<h3 id="Network-ACLs"><a href="#Network-ACLs" class="headerlink" title="Network ACLs"></a>Network ACLs</h3><ul>
+<li>Attached to subnet</li>
+<li>Stateless</li>
+<li>The source can be CIDR</li>
+<li>Default: allow all inbound, allow all outbound</li>
+<li>New ACL: deny all inbound, deny all outbound</li>
+</ul>
+<h2 id="AWS-Shield"><a href="#AWS-Shield" class="headerlink" title="AWS Shield"></a>AWS Shield</h2><ul>
+<li>AWS Shield Standard<ul>
+<li>Free</li>
+<li>Provides layer 3 / layer 4 DDoS attack protection</li>
+</ul>
+</li>
+<li>AWS Shield Advanced<ul>
+<li>$3000 per month per organization</li>
+<li>Provides protection against more sophisticated DDoS attacks</li>
+<li>7*24 access to AWS DDoS response team</li>
+<li>No extra fees during usage spikes due to DDoS</li>
+</ul>
+</li>
+</ul>
+<h2 id="AWS-Web-Application-Firewall-WAF"><a href="#AWS-Web-Application-Firewall-WAF" class="headerlink" title="AWS Web Application Firewall (WAF)"></a>AWS Web Application Firewall (WAF)</h2><ul>
+<li>Provides layer 7 attack protection</li>
+<li>Can only be deployed to ALB, API Gateway, CloudFront</li>
+<li>Need define Web ACL<ul>
+<li>Rule can be IP addresses, HTTP headers, HTTP body, or URI strings</li>
+<li>Protects from SQL injection and XSS</li>
+<li>Size constraints</li>
+<li>Geo match</li>
+<li>Rate-based rules</li>
+</ul>
+</li>
+</ul>
+<h2 id="AWS-Firewall-Manager"><a href="#AWS-Firewall-Manager" class="headerlink" title="AWS Firewall Manager"></a>AWS Firewall Manager</h2><ul>
+<li>Manage rules in all accounts of an AWS Organization<ul>
+<li>Security Groups</li>
+<li>AWS Shield Advanced</li>
+<li>WAF rules</li>
+</ul>
+</li>
+</ul>
+<h2 id="DDoS-Protection"><a href="#DDoS-Protection" class="headerlink" title="DDoS Protection"></a>DDoS Protection</h2><ul>
+<li>AWS Shield: protects against DDoS attack</li>
+<li>AWS WAF: filter specific requests based on rules</li>
+<li>CloudFront and Route 53: combined with AWS Shield</li>
+<li>Use Auto Scaling</li>
+<li>Separate static resources to S3 or CloudFront from dynamic ones (EC2 or ELB)</li>
+</ul>
+<h2 id="Blocking-an-IP-Address"><a href="#Blocking-an-IP-Address" class="headerlink" title="Blocking an IP Address"></a>Blocking an IP Address</h2><ul>
+<li>NACL</li>
+<li>WAF with ALB or CloudFront</li>
+<li>NACL will not work when using CloudFront (because access is from CloudFront)</li>
+</ul>
+<h1 id="AWS-Inspector"><a href="#AWS-Inspector" class="headerlink" title="AWS Inspector"></a>AWS Inspector</h1><ul>
+<li>Analyze <strong>running EC2 instances</strong> against known vulnerabilities and unintended network accessibility</li>
+<li>AWS Inspector Agent must be installed in EC2 instances</li>
+<li>Define template with AWS managed rules<ul>
+<li>no custom rules</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Config"><a href="#AWS-Config" class="headerlink" title="AWS Config"></a>AWS Config</h1><ul>
+<li>Records configurations and changes over time to audit and record compliance of your AWS resources</li>
+<li>You can receive SNS notifications for any changes</li>
+<li>Is a regional service</li>
+<li>Can be aggregated across regions and accounts</li>
+</ul>
+<h2 id="AWS-Config-Resource"><a href="#AWS-Config-Resource" class="headerlink" title="AWS Config Resource"></a>AWS Config Resource</h2><ul>
+<li>View compliance of a resource over time</li>
+<li>View configuration of a resource over time</li>
+<li>View CloudTrail API calls if enabled</li>
+</ul>
+<h2 id="AWS-Config-Rules"><a href="#AWS-Config-Rules" class="headerlink" title="AWS Config Rules"></a>AWS Config Rules</h2><ul>
+<li>Use AWS managed config rules</li>
+<li>Make custom config rules (defined in AWS Lambda)</li>
+<li>Rules will be evaluated<ul>
+<li>For each config change</li>
+<li>At regular time intervals</li>
+<li>Can trigger CloudWatch Events if the rule is non-compliant</li>
+</ul>
+</li>
+<li>Rules can have auto remediations<ul>
+<li>If a resource is not compliant, you can trigger an auto remediation</li>
+<li>Define the remediation through <strong>SSM Automations</strong></li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Managed-Logs"><a href="#AWS-Managed-Logs" class="headerlink" title="AWS Managed Logs"></a>AWS Managed Logs</h1><ul>
+<li>CloudTrail Logs -&gt; S3 and CloudWatch Logs</li>
+<li>VPC FLow Logs -&gt; S3 and CloudWatch Logs</li>
+<li>ELB Access Logs -&gt; S3</li>
+<li>Route 53 Access Logs -&gt; CloudWatch Logs</li>
+<li>S3 Access Logs -&gt; S3</li>
+<li>CloudFront Access Logs -&gt; S3</li>
+<li>AWS Config -&gt; S3</li>
+</ul>
+<h1 id="AWS-GuardDuty"><a href="#AWS-GuardDuty" class="headerlink" title="AWS GuardDuty"></a>AWS GuardDuty</h1><ul>
+<li>Intelligent Threat discovery to Protect AWS Account</li>
+<li>Input data<ul>
+<li>CloudTrail Logs</li>
+<li>VPC Flow Logs</li>
+<li>DNS Logs</li>
+</ul>
+</li>
+<li>Can setup CloudWatch Event rules to be notified</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

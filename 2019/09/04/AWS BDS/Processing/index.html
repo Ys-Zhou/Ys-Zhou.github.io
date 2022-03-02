@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Processing - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Lambda"><span class="toc-text">AWS Lambda</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis-Data-Streams-Lambda"><span class="toc-text">Kinesis Data Streams + Lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Anti-patterns"><span class="toc-text">Anti-patterns</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Glue"><span class="toc-text">AWS Glue</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Glue-Crawler"><span class="toc-text">Glue Crawler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glue-Data-Catalog"><span class="toc-text">Glue Data Catalog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glue-ETL"><span class="toc-text">Glue ETL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Anti-patterns-1"><span class="toc-text">Anti-patterns</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Amazon-EMR"><span class="toc-text">Amazon EMR</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Cluster"><span class="toc-text">EMR Cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Usage"><span class="toc-text">EMR Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Integration"><span class="toc-text">AWS Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Storage"><span class="toc-text">EMR Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Promises"><span class="toc-text">EMR Promises</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop"><span class="toc-text">Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spark"><span class="toc-text">Spark</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Spark-structure"><span class="toc-text">Spark structure</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spark-Components"><span class="toc-text">Spark Components</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spark-Structured-Streaming"><span class="toc-text">Spark Structured Streaming</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive"><span class="toc-text">Hive</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hive-Metastore"><span class="toc-text">Hive Metastore</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hive-AWS-Integration"><span class="toc-text">Hive - AWS Integration</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache-Pig"><span class="toc-text">Apache Pig</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pig-Latin"><span class="toc-text">Pig Latin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pig-AWS-Integration"><span class="toc-text">Pig - AWS Integration</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HBase"><span class="toc-text">HBase</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HBase-vs-DynamoDB"><span class="toc-text">HBase vs. DynamoDB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HBase-AWS-Integration"><span class="toc-text">HBase - AWS Integration</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Presto"><span class="toc-text">Presto</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Presto-Datasource"><span class="toc-text">Presto Datasource</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zeppelin"><span class="toc-text">Zeppelin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Zeppelin-with-Spark"><span class="toc-text">Zeppelin with Spark</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMR-Notebook"><span class="toc-text">EMR Notebook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hue"><span class="toc-text">Hue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Splunk"><span class="toc-text">Splunk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flume"><span class="toc-text">Flume</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MXNet"><span class="toc-text">MXNet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3DistCP"><span class="toc-text">S3DistCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Other-Hadoop-Tools"><span class="toc-text">Other Hadoop Tools</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR-Security"><span class="toc-text">EMR Security</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Choosing-EMR-Instance-Types-1"><span class="toc-text">Choosing EMR Instance Types - 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Choosing-EMR-Instance-Types-2"><span class="toc-text">Choosing EMR Instance Types - 2</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Amazon-ML"><span class="toc-text">Amazon ML</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Models-in-Amazon-ML"><span class="toc-text">Models in Amazon ML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Confusion-Matrix"><span class="toc-text">Confusion Matrix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hyperparameters-in-Amazon-ML"><span class="toc-text">Hyperparameters in Amazon ML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promises-amp-Limitations"><span class="toc-text">Promises &amp; Limitations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Anti-Patterns"><span class="toc-text">Anti-Patterns</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Amazon-SageMaker"><span class="toc-text">Amazon SageMaker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vs-Amazon-ML"><span class="toc-text">Vs. Amazon ML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SageMaker-Modules"><span class="toc-text">SageMaker Modules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SageMaker-Security"><span class="toc-text">SageMaker Security</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-Data-Pipeline"><span class="toc-text">AWS Data Pipeline</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Pipeline-Features"><span class="toc-text">Data Pipeline Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Pipeline-Activities"><span class="toc-text">Data Pipeline Activities</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Processing
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-09-04 20:10:00</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="AWS-Lambda"><a href="#AWS-Lambda" class="headerlink" title="AWS Lambda"></a>AWS Lambda</h1><ul>
+<li>Running little stateless code often used to glue different services<ul>
+<li>Real-time file / stream processing</li>
+<li>ETL</li>
+<li>Cron job (use time as trigger)</li>
+<li>Processing AWS events</li>
+</ul>
+</li>
+<li>Supported languages<ul>
+<li>Node.js</li>
+<li>Python</li>
+<li>Java</li>
+<li>C#</li>
+<li>Go</li>
+<li>Powershell</li>
+<li>Ruby</li>
+</ul>
+</li>
+<li>Many AWS services can trigger Lambda<ul>
+<li>S3</li>
+<li>Kinesis (Lambda is <strong>pulling</strong> the data from Kinesis in batches)</li>
+<li>DynamoDB</li>
+<li>SNS</li>
+<li>SQS</li>
+<li>IoT</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>Many AWS services can act as the destination<ul>
+<li>Elasticsearch</li>
+<li>Data Pipeline</li>
+<li>Redshift</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>Can use DynamoDB or S3 to store stateful data</li>
+<li>Unlimited scalability (soft limit of 1000 concurrent)</li>
+<li>Max timeout can be set is 900 seconds</li>
+</ul>
+<h2 id="Kinesis-Data-Streams-Lambda"><a href="#Kinesis-Data-Streams-Lambda" class="headerlink" title="Kinesis Data Streams + Lambda"></a>Kinesis Data Streams + Lambda</h2><ul>
+<li>Lambda can receive an event with a batch of stream records<ul>
+<li>Up to 10,000 records in a batch</li>
+<li>Up to 6 MB in a function call (will be split automatically)</li>
+</ul>
+</li>
+<li>Lambda has a 900 seconds timeout limit<ul>
+<li>Lambda will keep retrying until succeeds or data expires</li>
+<li>Retrying still uses shards<ul>
+<li>Avoid errors</li>
+<li>Smaller batch size or longer timeout</li>
+<li>Provision more shards</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Lambda processes shard data synchronously<ul>
+<li>Shards will not be released when data is being processed by Lambda</li>
+</ul>
+</li>
+</ul>
+<h2 id="Anti-patterns"><a href="#Anti-patterns" class="headerlink" title="Anti-patterns"></a>Anti-patterns</h2><ul>
+<li>Long-running applications<ul>
+<li>Max running time is 900s, use other services like Elastic Beanstalk</li>
+</ul>
+</li>
+<li>Dynamic websites<ul>
+<li>Too much queries, use servers like EC2 instead</li>
+</ul>
+</li>
+<li>Stateful applications<ul>
+<li>Lambda is stateless, use DynamoBD to store stateful data or use stateful services</li>
+</ul>
+</li>
+</ul>
+<h1 id="AWS-Glue"><a href="#AWS-Glue" class="headerlink" title="AWS Glue"></a>AWS Glue</h1><ul>
+<li>Discovery and definition of table definitions and schema form<ul>
+<li>Redshift</li>
+<li>S3</li>
+<li>RDS</li>
+<li>Other RDBs</li>
+</ul>
+</li>
+<li>ETL jobs by<ul>
+<li>Trigger-driven</li>
+<li>On a schedule</li>
+<li>On demand</li>
+</ul>
+</li>
+</ul>
+<h2 id="Glue-Crawler"><a href="#Glue-Crawler" class="headerlink" title="Glue Crawler"></a>Glue Crawler</h2><ul>
+<li>Scans data in S3 and populate Glue Data Catalog<ul>
+<li>Infer the schema automatically</li>
+</ul>
+</li>
+</ul>
+<h2 id="Glue-Data-Catalog"><a href="#Glue-Data-Catalog" class="headerlink" title="Glue Data Catalog"></a>Glue Data Catalog</h2><ul>
+<li>Central metadata repository<ul>
+<li>Just store the data definition and do not remove the data itself</li>
+<li>Can used by Athena, Redshift, EMR, QuickSight, ect.</li>
+</ul>
+</li>
+<li>S3 Partitions<ul>
+<li>Glue crawler will extract partitions based on how S3 data is organized</li>
+<li>Organize the data structure based on your query priority</li>
+</ul>
+</li>
+<li>EMR Hive<ul>
+<li>Glue Data Catalog can provide metadata information to Hive</li>
+<li>You can import a Hive metastore into Glue</li>
+</ul>
+</li>
+</ul>
+<h2 id="Glue-ETL"><a href="#Glue-ETL" class="headerlink" title="Glue ETL"></a>Glue ETL</h2><ul>
+<li>Automatic code generation<ul>
+<li>Scala or Python</li>
+</ul>
+</li>
+<li>Encryption at rest and in transit</li>
+<li>Can be event-driven</li>
+<li>Can provision additional Data Processing Units (DPU) to increase performance</li>
+<li>Monitor through CloudWatch</li>
+</ul>
+<h2 id="Anti-patterns-1"><a href="#Anti-patterns-1" class="headerlink" title="Anti-patterns"></a>Anti-patterns</h2><ul>
+<li>Streaming data<ul>
+<li>Glue is batch oriented, has minimum 5 minute intervals</li>
+<li>Use Kinesis and store data in S3 or Redshift in temporary</li>
+</ul>
+</li>
+<li>Using other ETL engines than Spark<ul>
+<li>Glue ETL is implemented in Spark</li>
+<li>Use Data Pipeline or EMR</li>
+</ul>
+</li>
+<li>NoSQL databases<ul>
+<li>Schema makes no sense for NoSQL databases</li>
+</ul>
+</li>
+</ul>
+<h1 id="Amazon-EMR"><a href="#Amazon-EMR" class="headerlink" title="Amazon EMR"></a>Amazon EMR</h1><ul>
+<li>Elastic MapReduce</li>
+<li>Managed Hadoop framework on EC2 instances</li>
+<li>Tools<ul>
+<li>Spark</li>
+<li>HBase</li>
+<li>Presto</li>
+<li>Flink</li>
+<li>Hive</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>EMR Notebooks<ul>
+<li>Query data interactively using Python</li>
+</ul>
+</li>
+<li>Integration with other AWS services</li>
+</ul>
+<h2 id="EMR-Cluster"><a href="#EMR-Cluster" class="headerlink" title="EMR Cluster"></a>EMR Cluster</h2><ul>
+<li>Master node (leader node)<ul>
+<li>One master node in a cluster</li>
+<li>Coordinate the distribution of data and tasks</li>
+</ul>
+</li>
+<li>Core node<ul>
+<li>Host HDFS data and run tasks</li>
+<li>Can be scaled up &amp; down, but may lose data<ul>
+<li>Because core nodes store data themselves</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Task node<ul>
+<li>run tasks but do not host data</li>
+<li>Good use of <strong>spot instances</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="EMR-Usage"><a href="#EMR-Usage" class="headerlink" title="EMR Usage"></a>EMR Usage</h2><ul>
+<li>Cluster types<ul>
+<li>Transient cluster</li>
+<li>Long-running cluster</li>
+</ul>
+</li>
+<li>Run jobs<ul>
+<li>Connect directly to master to run jobs</li>
+<li>Submit ordered steps via the console</li>
+</ul>
+</li>
+</ul>
+<h2 id="AWS-Integration"><a href="#AWS-Integration" class="headerlink" title="AWS Integration"></a>AWS Integration</h2><ul>
+<li>EC2 (different types)</li>
+<li>VPC</li>
+<li>S3</li>
+<li>CloudWatch</li>
+<li>IAM</li>
+<li>CloudTrail</li>
+<li>Data Pipeline (schedule and start clusters)</li>
+</ul>
+<h2 id="EMR-Storage"><a href="#EMR-Storage" class="headerlink" title="EMR Storage"></a>EMR Storage</h2><ul>
+<li>HDFS<ul>
+<li>EBS<ul>
+<li>Can only be added when launching</li>
+<li>Will be regarded as failure when detach an EBS volume at running</li>
+</ul>
+</li>
+<li>Ephemeral</li>
+<li>Resilient and durable (data are span multiple instances)</li>
+<li>Data block (chunk) size is 128 Mb</li>
+</ul>
+</li>
+<li>EMRFS<ul>
+<li>S3</li>
+<li>Store input and output data</li>
+<li>Consistency<ul>
+<li>EMRFS Consistent View</li>
+<li>Use DynamoDB to track consistency</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="EMR-Promises"><a href="#EMR-Promises" class="headerlink" title="EMR Promises"></a>EMR Promises</h2><ul>
+<li>Provisions new nodes if core nodes fail</li>
+<li>Can add and remove tasks nodes on the fly</li>
+<li>Can resize running core nodes</li>
+</ul>
+<h2 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h2><ul>
+<li>Zeppelin / EMR Notebook</li>
+<li>Hive / Pig (old) / Presto</li>
+<li>MapReduce (old) / Spark / Tez</li>
+<li>YARN</li>
+<li>HDFS -&gt; HBase</li>
+</ul>
+<h3 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h3><ul>
+<li>Distributed processing system</li>
+<li>Use in memory caching</li>
+<li>Use directed acyclic graphs to optimize query execution</li>
+<li>Example use cases<ul>
+<li>Stream processing through Spark Streaming (from Amazon Kinesis / Apache Kafka / etc.)</li>
+<li>Streaming analytics and write the results to HDFS or EMRFS (S3)</li>
+<li>Machine learning using MLLib</li>
+<li>Interactive SQL using Spark SQL</li>
+</ul>
+</li>
+<li>Can not do real time job like OLTP</li>
+</ul>
+<h4 id="Spark-structure"><a href="#Spark-structure" class="headerlink" title="Spark structure"></a>Spark structure</h4><ul>
+<li>Driver program / driver script<ul>
+<li>Spark Context</li>
+<li>Job code</li>
+</ul>
+</li>
+<li>Cluster Manager<ul>
+<li>Spark / YARN</li>
+<li>AWS EMR uses YARN</li>
+</ul>
+</li>
+<li>Executors<ul>
+<li>Cache</li>
+<li>Tasks</li>
+</ul>
+</li>
+</ul>
+<h4 id="Spark-Components"><a href="#Spark-Components" class="headerlink" title="Spark Components"></a>Spark Components</h4><ul>
+<li>Spark Streaming</li>
+<li>Spark SQL</li>
+<li>MLLib</li>
+<li>GraphX</li>
+</ul>
+<h4 id="Spark-Structured-Streaming"><a href="#Spark-Structured-Streaming" class="headerlink" title="Spark Structured Streaming"></a>Spark Structured Streaming</h4><ul>
+<li>Spark Streaming will add new streaming data to the tail of exist data</li>
+<li>Can use library built on Kinesis Client Library (KCL) to handle data from Kinesis Data Streams</li>
+<li>Can do huge ETL on Redshift using Spark</li>
+</ul>
+<h3 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h3><ul>
+<li>Run SQL code (HiveQL) on unstructured data that live in Hadoop, Yarn, or S3</li>
+<li>Easier and faster than writing MapReduce even Spark code for simple queries</li>
+<li>Highly optimized </li>
+<li>Highly extensible<ul>
+<li>External applications can communicate with hive using JDBC or ODBC</li>
+</ul>
+</li>
+</ul>
+<h4 id="Hive-Metastore"><a href="#Hive-Metastore" class="headerlink" title="Hive Metastore"></a>Hive Metastore</h4><ul>
+<li>Structure definition on the unstructured data that is stored on HDFS, EMRFS, etc.</li>
+<li>Metastore is stored in MySQL on the master node by default<ul>
+<li>Ephemeral</li>
+</ul>
+</li>
+<li>External Hive Metastore<ul>
+<li>AWS Glue Data Catalog<ul>
+<li>Can be used by Redshift, Athena, etc.</li>
+</ul>
+</li>
+<li>Amazon RDS</li>
+</ul>
+</li>
+</ul>
+<h4 id="Hive-AWS-Integration"><a href="#Hive-AWS-Integration" class="headerlink" title="Hive - AWS Integration"></a>Hive - AWS Integration</h4><ul>
+<li>Load data from S3 with table partitions</li>
+<li>Directly write data (tables) to S3</li>
+<li>Load scripts from S3</li>
+<li>Use DynamoDB as an external table</li>
+</ul>
+<h3 id="Apache-Pig"><a href="#Apache-Pig" class="headerlink" title="Apache Pig"></a>Apache Pig</h3><h4 id="Pig-Latin"><a href="#Pig-Latin" class="headerlink" title="Pig Latin"></a>Pig Latin</h4><ul>
+<li>A scripting language</li>
+<li>Use SQL-like syntax to define your map &amp; reduce steps</li>
+<li>Highly extensible with user-defined functions (UDF)</li>
+</ul>
+<h4 id="Pig-AWS-Integration"><a href="#Pig-AWS-Integration" class="headerlink" title="Pig - AWS Integration"></a>Pig - AWS Integration</h4><ul>
+<li>Query data in EMRFS (S3)</li>
+<li>Load JARs or scripts from S3</li>
+</ul>
+<h3 id="HBase"><a href="#HBase" class="headerlink" title="HBase"></a>HBase</h3><ul>
+<li>Non-relational, petabyte-scale database</li>
+<li>On the top of HDFS</li>
+<li>Operate largely in memory across the entire cluster</li>
+<li>Integration with Hive</li>
+</ul>
+<h4 id="HBase-vs-DynamoDB"><a href="#HBase-vs-DynamoDB" class="headerlink" title="HBase vs. DynamoDB"></a>HBase vs. DynamoDB</h4><ul>
+<li>HBase<ul>
+<li>Efficient with sparse data</li>
+<li>Appropriate for high consistent reads &amp; writes</li>
+<li>Higher write &amp; update throughput</li>
+<li>More integration with Hadoop</li>
+</ul>
+</li>
+<li>DynamoDB<ul>
+<li>Fully managed, auto-scaling</li>
+<li>More integration with other AWS services (like Glue)</li>
+</ul>
+</li>
+</ul>
+<h4 id="HBase-AWS-Integration"><a href="#HBase-AWS-Integration" class="headerlink" title="HBase - AWS Integration"></a>HBase - AWS Integration</h4><ul>
+<li>Can build on the top of EMRFS (S3)</li>
+<li>Can back up tp S3</li>
+</ul>
+<h3 id="Presto"><a href="#Presto" class="headerlink" title="Presto"></a>Presto</h3><ul>
+<li>Issue SQL style query</li>
+<li>Can connect to different <em>big data</em> databases / data stores at once</li>
+<li>Can issue interactive queries at petabyte scale</li>
+<li>Optimized for OLAP (also not for OLTP)</li>
+<li>Amazon Athena uses Presto under the hood</li>
+<li>Can be used through JDBC, CLI, Tableau interfaces</li>
+</ul>
+<h4 id="Presto-Datasource"><a href="#Presto-Datasource" class="headerlink" title="Presto Datasource"></a>Presto Datasource</h4><ul>
+<li>HDFS</li>
+<li>S3 / EMRFS</li>
+<li>Cassandra</li>
+<li>MongoDB</li>
+<li>HBase</li>
+<li>RDBs</li>
+<li>Redshift</li>
+<li>Teradata</li>
+</ul>
+<h3 id="Zeppelin"><a href="#Zeppelin" class="headerlink" title="Zeppelin"></a>Zeppelin</h3><ul>
+<li>Notebook<ul>
+<li>Can interactively run code against data</li>
+<li>Can interleave with nicely formatted notes</li>
+<li>Can share notebooks with others on the cluster</li>
+</ul>
+</li>
+<li>Integration<ul>
+<li>Spark</li>
+<li>Python</li>
+<li>JDBC</li>
+<li>HBase</li>
+<li>Elasticsearch</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Zeppelin-with-Spark"><a href="#Zeppelin-with-Spark" class="headerlink" title="Zeppelin with Spark"></a>Zeppelin with Spark</h4><ul>
+<li>Zeppelin can run Spark code interactively<ul>
+<li>Speed up your development cycle</li>
+<li>Easier experimentation and exploration of your big data</li>
+</ul>
+</li>
+<li>Can execute SQL queries using SparkSQL</li>
+<li>Query results can be visualized in charts and graphs</li>
+</ul>
+<h3 id="EMR-Notebook"><a href="#EMR-Notebook" class="headerlink" title="EMR Notebook"></a>EMR Notebook</h3><ul>
+<li>Notebook<ul>
+<li>More AWS integration than Zeppelin</li>
+</ul>
+</li>
+<li>Automatically back up to S3</li>
+<li>Can provision or shut down clusters directly from notebook</li>
+<li>Hosted inside a VPC and can be accessed via AWS console</li>
+</ul>
+<h3 id="Hue"><a href="#Hue" class="headerlink" title="Hue"></a>Hue</h3><ul>
+<li>Hadoop User Experience</li>
+<li>Graphical front-end for applications on your EMR cluster</li>
+<li>AWS integration<ul>
+<li>IAM: Hue users inherit IAM roles</li>
+<li>S3: can use Hue to browse &amp; move data between HDFS and S3</li>
+</ul>
+</li>
+</ul>
+<h3 id="Splunk"><a href="#Splunk" class="headerlink" title="Splunk"></a>Splunk</h3><ul>
+<li>Operational tool used to visualize EMR and S3 data using your EMR Hadoop cluster</li>
+</ul>
+<h3 id="Flume"><a href="#Flume" class="headerlink" title="Flume"></a>Flume</h3><ul>
+<li>A tool to stream data into your cluster</li>
+</ul>
+<h3 id="MXNet"><a href="#MXNet" class="headerlink" title="MXNet"></a>MXNet</h3><ul>
+<li>A framework for building and accelerating neural networks</li>
+</ul>
+<h3 id="S3DistCP"><a href="#S3DistCP" class="headerlink" title="S3DistCP"></a>S3DistCP</h3><ul>
+<li>Tool for copying large amounts of data between S3 and HDFS</li>
+<li>Copy in a distributed manner<ul>
+<li>Suitable for parallel copying of large numbers of objects</li>
+<li>Can copy across buckets, across accounts</li>
+</ul>
+</li>
+</ul>
+<h3 id="Other-Hadoop-Tools"><a href="#Other-Hadoop-Tools" class="headerlink" title="Other Hadoop Tools"></a>Other Hadoop Tools</h3><ul>
+<li>Ganglia (monitoring) <ul>
+<li>CouldWatch</li>
+</ul>
+</li>
+<li>Mahout (machine learning library)<ul>
+<li>MXNet, TensorFlow</li>
+</ul>
+</li>
+<li>Accumulo (NoSQL database)<ul>
+<li>HBase, DynamoDB</li>
+</ul>
+</li>
+<li>Sqoop (relational database connector)<ul>
+<li>Can parallelize the coping of data between an RDB and your cluster</li>
+</ul>
+</li>
+<li>HCatalog (table and storage management for Hive metastore)</li>
+<li>Kinesis Connector (access Kinesis streams in your scripts)</li>
+<li>Tachyon (accelerator for Spark)</li>
+<li>Derby (RDB)<ul>
+<li>Implemented in Java</li>
+</ul>
+</li>
+<li>Ranger (data security manager for Hadoop)</li>
+</ul>
+<h2 id="EMR-Security"><a href="#EMR-Security" class="headerlink" title="EMR Security"></a>EMR Security</h2><ul>
+<li>IAM</li>
+<li>Kerberos<ul>
+<li>Provide strong authentication through secret key cryptography</li>
+</ul>
+</li>
+<li>SSH</li>
+</ul>
+<h2 id="Choosing-EMR-Instance-Types-1"><a href="#Choosing-EMR-Instance-Types-1" class="headerlink" title="Choosing EMR Instance Types - 1"></a>Choosing EMR Instance Types - 1</h2><ul>
+<li>Master node:<ul>
+<li>m4.large if &lt; 50 nodes</li>
+<li>m4.xlarge if &gt; 50 nodes</li>
+</ul>
+</li>
+<li>Core &amp; task nodes:<ul>
+<li>m4.large is usually good</li>
+<li>t2.medium if external dependencies (too much idle time)</li>
+<li>m4.xlarge for better performance</li>
+<li>Other considerations<ul>
+<li>High CPU instances</li>
+<li>High memory instances</li>
+<li>Cluster computer instances</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Spot instances<ul>
+<li>Good for task nodes</li>
+</ul>
+</li>
+</ul>
+<h2 id="Choosing-EMR-Instance-Types-2"><a href="#Choosing-EMR-Instance-Types-2" class="headerlink" title="Choosing EMR Instance Types - 2"></a>Choosing EMR Instance Types - 2</h2><ul>
+<li>General Purpose: T2, T3, M4, M5</li>
+<li>Compute Optimized: C4, C5<ul>
+<li>Batch, Analytics, Machine Learning</li>
+</ul>
+</li>
+<li>Memory Optimized: R4, R5, X1, Z1d<ul>
+<li>In memory database, Real time analytics</li>
+</ul>
+</li>
+<li>Storage Optimized: H1, I3, D2<ul>
+<li>HDFS, NFS, Map Reduce, Apache Kafka, Redshift</li>
+</ul>
+</li>
+<li>Accelerated Computing: P2, P3, G3, F1<ul>
+<li>GPU instances: Deep Learning</li>
+</ul>
+</li>
+</ul>
+<h1 id="Amazon-ML"><a href="#Amazon-ML" class="headerlink" title="Amazon ML"></a>Amazon ML</h1><ul>
+<li>Amazon Machine Learning<ul>
+<li>Provides visualization tools &amp; wizards to make creating a model easy</li>
+<li>Can train data from S3, Redshift, or RDS</li>
+<li>Can use prediction models using batches or low-latency API</li>
+<li>Can evaluate your model</li>
+</ul>
+</li>
+</ul>
+<h2 id="Models-in-Amazon-ML"><a href="#Models-in-Amazon-ML" class="headerlink" title="Models in Amazon ML"></a>Models in Amazon ML</h2><ul>
+<li>Regression</li>
+<li>Classification<ul>
+<li>Multiclass</li>
+<li>Binary</li>
+</ul>
+</li>
+</ul>
+<h2 id="Confusion-Matrix"><a href="#Confusion-Matrix" class="headerlink" title="Confusion Matrix"></a>Confusion Matrix</h2><ul>
+<li>Visualize the accuracy of multiclass classification predictive models<ul>
+<li>True label - predicted label matrix</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hyperparameters-in-Amazon-ML"><a href="#Hyperparameters-in-Amazon-ML" class="headerlink" title="Hyperparameters in Amazon ML"></a>Hyperparameters in Amazon ML</h2><ul>
+<li>Learning rate</li>
+<li>Model size</li>
+<li>Number of passes</li>
+<li>Data shuffling</li>
+<li>Regularization</li>
+</ul>
+<h2 id="Promises-amp-Limitations"><a href="#Promises-amp-Limitations" class="headerlink" title="Promises &amp; Limitations"></a>Promises &amp; Limitations</h2><ul>
+<li>No downtime</li>
+<li>Soft limit up to 100 GB training data</li>
+<li>Soft limit up to 5 simultaneous jobs</li>
+</ul>
+<h2 id="Anti-Patterns"><a href="#Anti-Patterns" class="headerlink" title="Anti-Patterns"></a>Anti-Patterns</h2><ul>
+<li>Terabyte-scale data</li>
+<li>Unsupported learning tasks<ul>
+<li>Sequence prediction</li>
+<li>Unsupervised clustering</li>
+<li>Deep learning</li>
+</ul>
+</li>
+<li>Use EMR / Spark to build your own algorithms and models is an alternative</li>
+</ul>
+<h1 id="Amazon-SageMaker"><a href="#Amazon-SageMaker" class="headerlink" title="Amazon SageMaker"></a>Amazon SageMaker</h1><ul>
+<li>Use notebooks hosted on AWS to train large scale models and vent prediction<ul>
+<li>Jupyter notebooks using Python</li>
+</ul>
+</li>
+<li>Can do GPU accelerated deep learning</li>
+<li>Can scaling effectively unlimited</li>
+<li>Easily doing hyperparameter tuning jobs</li>
+</ul>
+<h2 id="Vs-Amazon-ML"><a href="#Vs-Amazon-ML" class="headerlink" title="Vs. Amazon ML"></a>Vs. Amazon ML</h2><ul>
+<li>Scales better</li>
+<li>More flexibility</li>
+<li>More advanced and modern algorithms</li>
+<li>But need to write code</li>
+</ul>
+<h2 id="SageMaker-Modules"><a href="#SageMaker-Modules" class="headerlink" title="SageMaker Modules"></a>SageMaker Modules</h2><ul>
+<li>Build</li>
+<li>Train<ul>
+<li>SageMaker Search: search training models</li>
+</ul>
+</li>
+<li>Deploy<ul>
+<li>SageMaker Neo: deploy trained modes to any edges</li>
+</ul>
+</li>
+</ul>
+<h2 id="SageMaker-Security"><a href="#SageMaker-Security" class="headerlink" title="SageMaker Security"></a>SageMaker Security</h2><ul>
+<li>Code stored in <em>ML storage volumes</em><ul>
+<li>Controlled by security groups</li>
+<li>Optionally encrypted at rest</li>
+</ul>
+</li>
+<li>Artifacts encrypted in transit and at rest</li>
+<li>API &amp; console secured by SSL</li>
+<li>IAM roles</li>
+<li>KMS integration for notebooks, training jobs, and endpoints</li>
+</ul>
+<h1 id="AWS-Data-Pipeline"><a href="#AWS-Data-Pipeline" class="headerlink" title="AWS Data Pipeline"></a>AWS Data Pipeline</h1><ul>
+<li>Task scheduling framework<ul>
+<li>Process and move data between different AWS resources</li>
+</ul>
+</li>
+</ul>
+<h2 id="Data-Pipeline-Features"><a href="#Data-Pipeline-Features" class="headerlink" title="Data Pipeline Features"></a>Data Pipeline Features</h2><ul>
+<li>Destinations<ul>
+<li>S3, RDS, DynamoDB, Redshift, EMR</li>
+</ul>
+</li>
+<li>Retries and notifies on failures<ul>
+<li>Retry 3 times by default, up to 10 times</li>
+</ul>
+</li>
+<li>Can run jobs cross-region</li>
+<li>Can do precondition checks</li>
+<li>On-premises sources can also use Data Pipeline<ul>
+<li>Install Task Runner</li>
+<li>You can run multiple Task Runner for a job for high availability</li>
+</ul>
+</li>
+</ul>
+<h2 id="Data-Pipeline-Activities"><a href="#Data-Pipeline-Activities" class="headerlink" title="Data Pipeline Activities"></a>Data Pipeline Activities</h2><ul>
+<li>EMR jobs</li>
+<li>Hive</li>
+<li>Copy</li>
+<li>SQL</li>
+<li>Scripts</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

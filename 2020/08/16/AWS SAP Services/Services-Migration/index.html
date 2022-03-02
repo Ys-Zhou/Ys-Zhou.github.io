@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Services: Migration - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#6R-of-Cloud-Migrations"><span class="toc-text">6R of Cloud Migrations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Rehosting"><span class="toc-text">Rehosting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Replatforming"><span class="toc-text">Replatforming</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Repurchase"><span class="toc-text">Repurchase</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Refactoring-Re-architecting"><span class="toc-text">Refactoring / Re-architecting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Retire"><span class="toc-text">Retire</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Retain"><span class="toc-text">Retain</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Storage-Gateway"><span class="toc-text">Storage Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#File-Gateway"><span class="toc-text">File Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#File-Gateway-Use-Cases"><span class="toc-text">File Gateway Use Cases</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Volume-Gateway"><span class="toc-text">Volume Gateway</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tape-Gateway"><span class="toc-text">Tape Gateway</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Snowball"><span class="toc-text">Snowball</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Snowball-Edge"><span class="toc-text">Snowball Edge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Snowmobile"><span class="toc-text">Snowmobile</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Database-Migration-Service-DMS"><span class="toc-text">Database Migration Service (DMS)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DMS-Sources-amp-Targets"><span class="toc-text">DMS Sources &amp; Targets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Schema-Conversion-Tool-SCT"><span class="toc-text">Schema Conversion Tool (SCT)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DMS-with-Oracle"><span class="toc-text">DMS with Oracle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DMS-Snowball"><span class="toc-text">DMS + Snowball</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Application-Discovery-Services"><span class="toc-text">Application Discovery Services</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Server-Migration-Services-SMS"><span class="toc-text">Server Migration Services (SMS)</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Services: Migration
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-08-16 20:10:52</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Services)" title="AWS - Solutions Architect (Services)">AWS - Solutions Architect (Services)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="6R-of-Cloud-Migrations"><a href="#6R-of-Cloud-Migrations" class="headerlink" title="6R of Cloud Migrations"></a>6R of Cloud Migrations</h1><h2 id="Rehosting"><a href="#Rehosting" class="headerlink" title="Rehosting"></a>Rehosting</h2><ul>
+<li>Lift and shift</li>
+<li>Simple migrations by re-hosting onto AWS<ul>
+<li>Ex. AWS VM Import/Export</li>
+<li>Ex. AWS Server Migration Service</li>
+</ul>
+</li>
+<li>No cloud optimizations being done, applications are migrated as they are</li>
+</ul>
+<h2 id="Replatforming"><a href="#Replatforming" class="headerlink" title="Replatforming"></a>Replatforming</h2><ul>
+<li>Migrate some individual components to cloud services<ul>
+<li>Ex. database to RDS</li>
+<li>Ex. application to Elastic Beanstalk</li>
+</ul>
+</li>
+<li>No core architecture or applications changing</li>
+</ul>
+<h2 id="Repurchase"><a href="#Repurchase" class="headerlink" title="Repurchase"></a>Repurchase</h2><ul>
+<li>Drop and shop</li>
+<li>Moving to a different service while moving to the cloud</li>
+</ul>
+<h2 id="Refactoring-Re-architecting"><a href="#Refactoring-Re-architecting" class="headerlink" title="Refactoring / Re-architecting"></a>Refactoring / Re-architecting</h2><ul>
+<li>Using more cloud-native services<ul>
+<li>Ex. serverless architecture</li>
+<li>Ex. S3</li>
+</ul>
+</li>
+<li>Get more features, better scalability &amp; performance, etc.</li>
+</ul>
+<h2 id="Retire"><a href="#Retire" class="headerlink" title="Retire"></a>Retire</h2><ul>
+<li>Turn off things that is not need anymore</li>
+<li>Better security, save cost</li>
+</ul>
+<h2 id="Retain"><a href="#Retain" class="headerlink" title="Retain"></a>Retain</h2><ul>
+<li>Remain some components in on-premise</li>
+</ul>
+<h1 id="Storage-Gateway"><a href="#Storage-Gateway" class="headerlink" title="Storage Gateway"></a>Storage Gateway</h1><ul>
+<li>Bridge between on-premise file system and S3</li>
+<li>3 types<ul>
+<li>File Gateway</li>
+<li>Volume Gateway</li>
+<li>Tape Gateway</li>
+</ul>
+</li>
+</ul>
+<h2 id="File-Gateway"><a href="#File-Gateway" class="headerlink" title="File Gateway"></a>File Gateway</h2><ul>
+<li>File Gateway Appliance is a virtual machine to bridge your NFS and S3</li>
+<li>Metadata and directory structure are preserved</li>
+<li>Can be mounted on many servers using NFS or SMB protocol</li>
+<li>Each File Gateway should have an IAM role to access S3</li>
+<li>Most recently used data is cached in the File Gateway</li>
+</ul>
+<h3 id="File-Gateway-Use-Cases"><a href="#File-Gateway-Use-Cases" class="headerlink" title="File Gateway Use Cases"></a>File Gateway Use Cases</h3><ul>
+<li>Read only replicas of file systems</li>
+<li>Backup file systems and set lifecycle policies</li>
+<li>Use S3 Versioning and Object Lock to protect files</li>
+</ul>
+<h2 id="Volume-Gateway"><a href="#Volume-Gateway" class="headerlink" title="Volume Gateway"></a>Volume Gateway</h2><ul>
+<li>Block storage using iSCSI protocol backed by S3</li>
+<li>2 types<ul>
+<li>Cached volumes: full data on S3, cached in Volume Gateway</li>
+<li>Stored volumes: full data is in on-premise, scheduled backups to S3</li>
+</ul>
+</li>
+<li>Can create EBS snapshots from the volumes, and restore as EBS</li>
+<li>Up to 32 volumes per Gateway<ul>
+<li>Each volume up to 32 TB in cached mode</li>
+<li>Each volume up to 16 TB in stored mode</li>
+</ul>
+</li>
+</ul>
+<h2 id="Tape-Gateway"><a href="#Tape-Gateway" class="headerlink" title="Tape Gateway"></a>Tape Gateway</h2><ul>
+<li>Use Virtual Tape Library to backup files to S3 or Glacier</li>
+<li>Back up data using existing tape-based processes with iSCSI interface</li>
+<li>Cannot access single file within tapes. Need to restore the tape entirely</li>
+</ul>
+<h1 id="Snowball"><a href="#Snowball" class="headerlink" title="Snowball"></a>Snowball</h1><ul>
+<li>Physical data transport solution</li>
+<li>Data will be loaded into S3</li>
+<li>Using KMS encryption</li>
+<li>Tracking using SNS and text messages</li>
+<li>Size: 50 TB and 80 TB</li>
+</ul>
+<h2 id="Snowball-Edge"><a href="#Snowball-Edge" class="headerlink" title="Snowball Edge"></a>Snowball Edge</h2><ul>
+<li>Devices have computational capability</li>
+<li>100 TB capacity</li>
+<li>Support process data while moving<ul>
+<li>EC2 AMI</li>
+<li>Lambda functions</li>
+</ul>
+</li>
+</ul>
+<h2 id="Snowmobile"><a href="#Snowmobile" class="headerlink" title="Snowmobile"></a>Snowmobile</h2><ul>
+<li>Transfer 1000 PB of data</li>
+<li>Better than Snowball if you transfer more than 10 PB</li>
+</ul>
+<h1 id="Database-Migration-Service-DMS"><a href="#Database-Migration-Service-DMS" class="headerlink" title="Database Migration Service (DMS)"></a>Database Migration Service (DMS)</h1><ul>
+<li>Migrate databases to AWS</li>
+<li>You must create a EC2 instance to run DMS</li>
+<li>Support heterogeneous migrations</li>
+<li>Support continuous data replication using CDC</li>
+<li>Works over VPC Peering, VPN, Direct Connect</li>
+</ul>
+<h2 id="DMS-Sources-amp-Targets"><a href="#DMS-Sources-amp-Targets" class="headerlink" title="DMS Sources &amp; Targets"></a>DMS Sources &amp; Targets</h2><ul>
+<li>Sources<ul>
+<li>SQL Databases in on-premise or EC2 instances</li>
+<li>RDS</li>
+<li>S3</li>
+</ul>
+</li>
+<li>Targets<ul>
+<li>SQL Databases in on-premise or EC2 instances</li>
+<li>RDS</li>
+<li>S3</li>
+<li>Redshift</li>
+<li>DynamoDB</li>
+<li>ElasticSearch</li>
+<li>Kinesis Data Streams</li>
+<li>DocumentDB</li>
+</ul>
+</li>
+</ul>
+<h2 id="Schema-Conversion-Tool-SCT"><a href="#Schema-Conversion-Tool-SCT" class="headerlink" title="Schema Conversion Tool (SCT)"></a>Schema Conversion Tool (SCT)</h2><ul>
+<li>Convert a database’s schema from one engine to another</li>
+<li>Support OLTP and OLAP databases</li>
+</ul>
+<h2 id="DMS-with-Oracle"><a href="#DMS-with-Oracle" class="headerlink" title="DMS with Oracle"></a>DMS with Oracle</h2><ul>
+<li>Support TDE for both source and target</li>
+<li>Support BLOBs in tables that have a primary key</li>
+</ul>
+<h2 id="DMS-Snowball"><a href="#DMS-Snowball" class="headerlink" title="DMS + Snowball"></a>DMS + Snowball</h2><ol>
+<li>Extract data into Snowball devices, use SCT if needed</li>
+<li>After AWS receives the devices, data will be loads into S3 buckets</li>
+<li>Use DMS to migrate the data from S3 to any target</li>
+<li>Use CDC to migrate new data coming in shipment if needed</li>
+</ol>
+<h1 id="Application-Discovery-Services"><a href="#Application-Discovery-Services" class="headerlink" title="Application Discovery Services"></a>Application Discovery Services</h1><ul>
+<li>Gathering information about on-premises data centers</li>
+<li>Agentless discovery <ul>
+<li>Use Application Discovery Agentless Connector deployed to VM host</li>
+<li>Gather: VM inventory, configuration, performance</li>
+<li>Works on any OS</li>
+</ul>
+</li>
+<li>Agent-based discovery<ul>
+<li>Use Application Discovery Agent</li>
+<li>Gather: configuration, performance, running processes, network connections between systems</li>
+<li>Support Microsoft Server and Linux</li>
+</ul>
+</li>
+<li>Results can be exported as CSV or viewed within AWS Migration Hub</li>
+</ul>
+<h1 id="Server-Migration-Services-SMS"><a href="#Server-Migration-Services-SMS" class="headerlink" title="Server Migration Services (SMS)"></a>Server Migration Services (SMS)</h1><ul>
+<li>Migrate entire VMs to AWS</li>
+<li>Rehosting</li>
+<li>SMS is an improvement over old VM Import/Export Service</li>
+<li>Works with vSphere, Hyper-V, Azure VM</li>
+<li>Every replication creates a EBS snapshot / AMI ready for deployment on EC2</li>
+<li>Replication is incremental</li>
+<li>You can create replication one time or every interval</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

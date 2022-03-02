@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Services: Deployment and Instance Management - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Elastic-Beanstalk"><span class="toc-text">Elastic Beanstalk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Elastic-Beanstalk-Architecture-Models"><span class="toc-text">Elastic Beanstalk Architecture Models</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Route-53-Blue-Green-Deployment-with-Elastic-Beanstalk"><span class="toc-text">Route 53 Blue / Green Deployment with Elastic Beanstalk</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OpsWorks"><span class="toc-text">OpsWorks</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CodeDeploy"><span class="toc-text">CodeDeploy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Deploy-to-EC2"><span class="toc-text">Deploy to EC2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deploy-to-ASG"><span class="toc-text">Deploy to ASG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deploy-to-Lambda"><span class="toc-text">Deploy to Lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deploy-to-ECS"><span class="toc-text">Deploy to ECS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudFormation"><span class="toc-text">CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudFormation-Policies"><span class="toc-text">CloudFormation Policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudFormation-with-IAM"><span class="toc-text">CloudFormation with IAM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudFormation-Custom-Resources"><span class="toc-text">CloudFormation Custom Resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudFormation-Cross-and-Nested-Stacks"><span class="toc-text">CloudFormation Cross and Nested Stacks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-Features-in-CloudFormation"><span class="toc-text">Other Features in CloudFormation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Service-Catalog"><span class="toc-text">Service Catalog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Serverless-Application-Model-SAM"><span class="toc-text">Serverless Application Model (SAM)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Systems-Manager-SSM"><span class="toc-text">Systems Manager (SSM)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSM-Features"><span class="toc-text">SSM Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSM-Run-Command"><span class="toc-text">SSM Run Command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSM-Patch-Manager"><span class="toc-text">SSM Patch Manager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSM-Parameter-Store"><span class="toc-text">SSM Parameter Store</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Services: Deployment and Instance Management
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-08-09 20:32:57</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Services)" title="AWS - Solutions Architect (Services)">AWS - Solutions Architect (Services)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Elastic-Beanstalk"><a href="#Elastic-Beanstalk" class="headerlink" title="Elastic Beanstalk"></a>Elastic Beanstalk</h1><ul>
+<li>Platform as a Service</li>
+<li>Components<ul>
+<li>EC2, Auto Scaling Group, ELB, RDS, etc.</li>
+<li>Users can configure the components</li>
+</ul>
+</li>
+<li>Beanstalk is free, you just pay for the underlying instances</li>
+<li>Supported platforms<ul>
+<li>Runtime<ul>
+<li>Go</li>
+<li>Java &amp; Java with Tomcat</li>
+<li>.NET with IIS</li>
+<li>Node.js</li>
+<li>PHP</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>Packer Builder</li>
+</ul>
+</li>
+<li>Docker<ul>
+<li>Single container Docker</li>
+<li>Multi-container Docker</li>
+<li>Pre-configured Docker</li>
+</ul>
+</li>
+<li>Custom platform</li>
+</ul>
+</li>
+</ul>
+<h2 id="Elastic-Beanstalk-Architecture-Models"><a href="#Elastic-Beanstalk-Architecture-Models" class="headerlink" title="Elastic Beanstalk Architecture Models"></a>Elastic Beanstalk Architecture Models</h2><ul>
+<li>Development model: single instance deployment</li>
+<li>Web application model: ELB+ASG with multi-AZ deployment</li>
+<li>Worker model: SQS+ASG with multi-AZ deployment<ul>
+<li>Can define periodic tasks using <em>cron.yaml</em> file</li>
+</ul>
+</li>
+</ul>
+<h2 id="Route-53-Blue-Green-Deployment-with-Elastic-Beanstalk"><a href="#Route-53-Blue-Green-Deployment-with-Elastic-Beanstalk" class="headerlink" title="Route 53 Blue / Green Deployment with Elastic Beanstalk"></a>Route 53 Blue / Green Deployment with Elastic Beanstalk</h2><ul>
+<li>Zero downtime and release facility</li>
+<li>Beanstalk is easy to create a new stage and delete the old stage</li>
+<li>Set traffic policies or swap URLs in Route 53</li>
+</ul>
+<h1 id="OpsWorks"><a href="#OpsWorks" class="headerlink" title="OpsWorks"></a>OpsWorks</h1><ul>
+<li>Managed Chef &amp; Puppet</li>
+<li>Work with EC2 and on-premise VM</li>
+<li>OpsWorks is good for Migrating Chef &amp; Puppet from on-premise VM<ul>
+<li>Or SSM is a more cloud-native choice</li>
+</ul>
+</li>
+</ul>
+<h1 id="CodeDeploy"><a href="#CodeDeploy" class="headerlink" title="CodeDeploy"></a>CodeDeploy</h1><ul>
+<li>Deploy application to <ul>
+<li>EC2</li>
+<li>ASG</li>
+<li>Lambda</li>
+<li>ECS</li>
+</ul>
+</li>
+</ul>
+<h2 id="Deploy-to-EC2"><a href="#Deploy-to-EC2" class="headerlink" title="Deploy to EC2"></a>Deploy to EC2</h2><ul>
+<li>In-place update EC2 instances (not create new instances)</li>
+<li>Can use hooks to verify after each deployment phase</li>
+</ul>
+<h2 id="Deploy-to-ASG"><a href="#Deploy-to-ASG" class="headerlink" title="Deploy to ASG"></a>Deploy to ASG</h2><ul>
+<li>In-place deployment<ul>
+<li>Update existing EC2 instances</li>
+<li>Newly created EC2 instances will also get automated deployments</li>
+</ul>
+</li>
+<li>Blue / green deployment<ul>
+<li>Must use ELB</li>
+<li>Create a new ASG</li>
+</ul>
+</li>
+</ul>
+<h2 id="Deploy-to-Lambda"><a href="#Deploy-to-Lambda" class="headerlink" title="Deploy to Lambda"></a>Deploy to Lambda</h2><ul>
+<li>Use Traffic Shifting feature (like the similar feature in Route 53 and ELB)</li>
+<li>Can use Pre and Post traffic hooks (Lambda functions) to validate deployment</li>
+<li>Can set CloudWatch Alarms to automatically rollback</li>
+</ul>
+<h2 id="Deploy-to-ECS"><a href="#Deploy-to-ECS" class="headerlink" title="Deploy to ECS"></a>Deploy to ECS</h2><ul>
+<li>Support Blue / Green deployments for ECS and Fargate</li>
+<li>Setup is in the ECS service definition</li>
+</ul>
+<h1 id="CloudFormation"><a href="#CloudFormation" class="headerlink" title="CloudFormation"></a>CloudFormation</h1><ul>
+<li>Infrastructure as Code in AWS</li>
+<li>CloudFormation is also used by<ul>
+<li>Elastic Beanstalk</li>
+<li>Service Catalog</li>
+<li>Serverless Application Model (SAM)</li>
+</ul>
+</li>
+</ul>
+<h2 id="CloudFormation-Policies"><a href="#CloudFormation-Policies" class="headerlink" title="CloudFormation Policies"></a>CloudFormation Policies</h2><ul>
+<li>CreationPolicy<ul>
+<li>Define actions to be done after creation (ex. create ASG -&gt; launch EC2 instances)</li>
+</ul>
+</li>
+<li>UpdatePolicy<ul>
+<li>Define actions to be done after update (ex. update ASG -&gt; update EC2 instances)</li>
+</ul>
+</li>
+<li>DeletionPolicy<ul>
+<li>DeletionPolicy=Retain<ul>
+<li>Keep resources</li>
+</ul>
+</li>
+<li>DeletionPolicy=Snapshot (RDS default)<ul>
+<li>Create a snapshot before deletion</li>
+<li>Only for services that support creating snapshots</li>
+</ul>
+</li>
+<li>DeletionPolicy=Delete (default except RDS)<ul>
+<li>Delete resources</li>
+<li>S3 buckets will not be deleted if they are not empty</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="CloudFormation-with-IAM"><a href="#CloudFormation-with-IAM" class="headerlink" title="CloudFormation with IAM"></a>CloudFormation with IAM</h2><ul>
+<li>Deploying CloudFormation stacks need IAM permission<ul>
+<li>Use user IAM principal</li>
+<li>Assign an IAM role to the stack</li>
+</ul>
+</li>
+<li>If you create IAM resources, you need explicitly set <em>CAPABILITY_IAM</em> or <em>CAPABILITY_NAMED_IAM</em> to CloudFormation</li>
+</ul>
+<h2 id="CloudFormation-Custom-Resources"><a href="#CloudFormation-Custom-Resources" class="headerlink" title="CloudFormation Custom Resources"></a>CloudFormation Custom Resources</h2><ul>
+<li>Define actions in Lambda functions</li>
+<li>CloudFormation will call the Lambda functions</li>
+</ul>
+<h2 id="CloudFormation-Cross-and-Nested-Stacks"><a href="#CloudFormation-Cross-and-Nested-Stacks" class="headerlink" title="CloudFormation Cross and Nested Stacks"></a>CloudFormation Cross and Nested Stacks</h2><ul>
+<li>Cross Stacks<ul>
+<li>Use Outputs Export in one stack and use Fn::ImportValue in another stack to pass values</li>
+</ul>
+</li>
+<li>Nested Stacks<ul>
+<li>Create a stack that includes multiple stacks</li>
+</ul>
+</li>
+</ul>
+<h2 id="Other-Features-in-CloudFormation"><a href="#Other-Features-in-CloudFormation" class="headerlink" title="Other Features in CloudFormation"></a>Other Features in CloudFormation</h2><ul>
+<li>CloudFormer<ul>
+<li>Create CloudFormation from existing resources</li>
+</ul>
+</li>
+<li>ChangeSets<ul>
+<li>Preview changes before applying</li>
+</ul>
+</li>
+<li>StackSets<ul>
+<li>Deploy a CloudFormation stack across multiple accounts and regions</li>
+</ul>
+</li>
+<li>Stack Policies<ul>
+<li>Prevent accidental updates or deletes to stack resources</li>
+</ul>
+</li>
+</ul>
+<h1 id="Service-Catalog"><a href="#Service-Catalog" class="headerlink" title="Service Catalog"></a>Service Catalog</h1><ul>
+<li>Admin user can create many Portfolios in Service Catalog<ul>
+<li>Portfolio is a collection of CloudFormation templates</li>
+</ul>
+</li>
+<li>Admin user can assign IAM Permissions to access Portfolios to users</li>
+<li>Users can use CloudFormation templates in Portfolios to create resources</li>
+<li>Service Catalog helps with <ul>
+<li>governance, compliance, consistency</li>
+<li>using AWS services without requiring deep AWS knowledge</li>
+</ul>
+</li>
+</ul>
+<h1 id="Serverless-Application-Model-SAM"><a href="#Serverless-Application-Model-SAM" class="headerlink" title="Serverless Application Model (SAM)"></a>Serverless Application Model (SAM)</h1><ul>
+<li>SAM is a framework for deploying serverless applications</li>
+<li>Configuration in SAM is YAML code<ul>
+<li>Lambda functions</li>
+<li>DynamoDB tables</li>
+<li>API Gateway</li>
+<li>Cognito User Pools</li>
+</ul>
+</li>
+<li>You can also use SAM to run Lambda, API Gateway, DynamoDB locally</li>
+<li>SAM can use CodeDeploy to deploy Lambda functions with traffic shifting</li>
+</ul>
+<h1 id="Systems-Manager-SSM"><a href="#Systems-Manager-SSM" class="headerlink" title="Systems Manager (SSM)"></a>Systems Manager (SSM)</h1><ul>
+<li>Manage EC2 and on-premise systems at scale</li>
+<li>Works for both Linux and Windows</li>
+<li>Need install SSM Agent onto systems<ul>
+<li>Install by default on Amazon Linux AMI and some Ubuntu AMI</li>
+<li>EC2 instances must have the proper IAM role to allow SSM actions</li>
+</ul>
+</li>
+<li>Integration<ul>
+<li>CloudWatch metrics / dashboards</li>
+<li>AWS Config</li>
+</ul>
+</li>
+<li>Free</li>
+</ul>
+<h2 id="SSM-Features"><a href="#SSM-Features" class="headerlink" title="SSM Features"></a>SSM Features</h2><ul>
+<li>Insights<ul>
+<li>Dashboard</li>
+<li>Inventory: audit the software installed</li>
+<li>Compliance</li>
+</ul>
+</li>
+<li>Parameter Store</li>
+<li>Action<ul>
+<li>Automation</li>
+<li>Run Command</li>
+<li>Session Manager</li>
+<li>Maintenance Windows</li>
+<li>State Manager</li>
+</ul>
+</li>
+</ul>
+<h2 id="SSM-Run-Command"><a href="#SSM-Run-Command" class="headerlink" title="SSM Run Command"></a>SSM Run Command</h2><ul>
+<li>Execute script or command on multiple instances (using resource groups)</li>
+<li>Can control the rate and error actions</li>
+<li>Integrated with IAM and CloudTrail</li>
+<li>Execute from SSM Agent (no need for SSH)</li>
+</ul>
+<h2 id="SSM-Patch-Manager"><a href="#SSM-Patch-Manager" class="headerlink" title="SSM Patch Manager"></a>SSM Patch Manager</h2><ul>
+<li>Patch Baselines<ul>
+<li>Linux Default<ul>
+<li>AWS-AmazonLinux2DefaultPatchBaseline</li>
+<li>AWS-CentOSDefaultPatchBaseline</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>Windows Default (patched are auto-approved 7 days after the release)<ul>
+<li>AWS-DefaultPatchBaseline = AWS-WindowsPredefinedPatchBaseline-OS<ul>
+<li>Critical updates &amp; Security updates</li>
+</ul>
+</li>
+<li>AWS-WindowsPredefinedPatchBaseline-Applications<ul>
+<li>Also includes Microsoft application updates</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>You can define custom patch baselines as well</li>
+</ul>
+</li>
+<li>Config Patch<ol>
+<li>Define a patch baseline to use</li>
+<li>Define patch groups</li>
+<li>Define Maintenance Windows (schedule, duration, patch groups, tasks)</li>
+<li>Add <em>AWS-RunPatchBaseline</em> Run Command as a registered task to the Maintenance Window</li>
+<li>Define Rate Control (concurrency &amp; error threshold) for the task</li>
+<li>Monitor patch compliance using SSM Inventory</li>
+</ol>
+</li>
+</ul>
+<h2 id="SSM-Parameter-Store"><a href="#SSM-Parameter-Store" class="headerlink" title="SSM Parameter Store"></a>SSM Parameter Store</h2><ul>
+<li>Secure storage for configuration and secrets</li>
+<li>Option encryption using KMS</li>
+<li>Versioning</li>
+<li>Notification using CloudWatch Events</li>
+<li>Integration with CloudFormation</li>
+<li>Secrets are stored in path hierarchically</li>
+<li>Can refer secrets from Secrets Manager</li>
+<li>Can retrieve latest AMI ID</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Services: Monitoring - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudWatch"><span class="toc-text">CloudWatch</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Metrics"><span class="toc-text">CloudWatch Metrics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Alarms"><span class="toc-text">CloudWatch Alarms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Events"><span class="toc-text">CloudWatch Events</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Logs"><span class="toc-text">CloudWatch Logs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Export-logs-to-S3"><span class="toc-text">Export logs to S3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch-Logs-Subscription-Filter"><span class="toc-text">CloudWatch Logs Subscription Filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch-Logs-Metric-Filter"><span class="toc-text">CloudWatch Logs Metric Filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch-Logs-Insights"><span class="toc-text">CloudWatch Logs Insights</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch-Logs-Agent-vs-Unified-Agent"><span class="toc-text">CloudWatch Logs Agent vs. Unified Agent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Dashboards"><span class="toc-text">CloudWatch Dashboards</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-X-Ray"><span class="toc-text">AWS X-Ray</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Services: Monitoring
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2020-08-08 21:07:36</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Solutions Architect (Services)" title="AWS - Solutions Architect (Services)">AWS - Solutions Architect (Services)</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="CloudWatch"><a href="#CloudWatch" class="headerlink" title="CloudWatch"></a>CloudWatch</h1><h2 id="CloudWatch-Metrics"><a href="#CloudWatch-Metrics" class="headerlink" title="CloudWatch Metrics"></a>CloudWatch Metrics</h2><ul>
+<li>For EC2<ul>
+<li>5 minutes or 1 minute bu using detailed monitoring</li>
+<li>RAM is not a built-in metric</li>
+<li>Custom metrics: 1 minute interval for standard resolution, 1 second interval for high resolution</li>
+</ul>
+</li>
+<li>Many other AWS services</li>
+</ul>
+<h2 id="CloudWatch-Alarms"><a href="#CloudWatch-Alarms" class="headerlink" title="CloudWatch Alarms"></a>CloudWatch Alarms</h2><ul>
+<li>Trigger actions<ul>
+<li>EC2 actions (reboot, stop, terminate, recover)</li>
+<li>Auto Scaling actions</li>
+<li>SNS</li>
+<li>CloudWatch Events</li>
+</ul>
+</li>
+</ul>
+<h2 id="CloudWatch-Events"><a href="#CloudWatch-Events" class="headerlink" title="CloudWatch Events"></a>CloudWatch Events</h2><ul>
+<li>Events from AWS services</li>
+<li>Can also be triggered by CloudWatch Alarms and CloudTrail</li>
+<li>Events targets<ul>
+<li>Compute: Lambda, Batch, ECS tasks</li>
+<li>Orchestration: Step Functions, CodePipeline, CodeBuild</li>
+<li>Integration: SQS, SNS, Kinesis Data Streams, Kinesis Data Firehose</li>
+<li>Maintenance: SSM, EC2 actions</li>
+</ul>
+</li>
+</ul>
+<h2 id="CloudWatch-Logs"><a href="#CloudWatch-Logs" class="headerlink" title="CloudWatch Logs"></a>CloudWatch Logs</h2><ul>
+<li>Sources<ul>
+<li>SDK, CloudWatch Logs Agent, CloudWatch Unified Agent</li>
+<li>Elastic Beanstalk</li>
+<li>ESC</li>
+<li>Lambda</li>
+<li>VPC Flow Logs</li>
+<li>API Gateway access logs</li>
+<li>CloudTrail Logs based on filter</li>
+<li>Route 53 DNS query logs</li>
+</ul>
+</li>
+<li>Logs can be organized by Log Groups or Log Streams</li>
+<li>Can define log expiration policies</li>
+<li>Optional KMS encryption</li>
+<li>CloudWatch Logs can send logs to<ul>
+<li>S3</li>
+<li>Kinesis Data Streams</li>
+<li>Kinesis Data Firehose</li>
+<li>Lambda</li>
+</ul>
+</li>
+</ul>
+<h3 id="Export-logs-to-S3"><a href="#Export-logs-to-S3" class="headerlink" title="Export logs to S3"></a>Export logs to S3</h3><ul>
+<li>S3 buckets must be encrypted by SSE-S3, not SSE-KMS</li>
+<li>Log data can take up to 12 hours to become available for export</li>
+<li>Have to call <em>CreateExportTask</em> API manually</li>
+<li>For automation, use CloudWatch Logs Subscription Filter instead</li>
+</ul>
+<h3 id="CloudWatch-Logs-Subscription-Filter"><a href="#CloudWatch-Logs-Subscription-Filter" class="headerlink" title="CloudWatch Logs Subscription Filter"></a>CloudWatch Logs Subscription Filter</h3><ul>
+<li>Destinations<ul>
+<li>Lambda</li>
+<li>Kinesis Data Firehose</li>
+<li>Kinesis Data Streams</li>
+</ul>
+</li>
+<li>Destinations can be Kinesis Data Streams in other accounts &amp; regions<ul>
+<li>Can be used to perform multi-account &amp; multi-region log aggregation</li>
+</ul>
+</li>
+</ul>
+<h3 id="CloudWatch-Logs-Metric-Filter"><a href="#CloudWatch-Logs-Metric-Filter" class="headerlink" title="CloudWatch Logs Metric Filter"></a>CloudWatch Logs Metric Filter</h3><ul>
+<li>CloudWatch Logs can use filter expressions<ul>
+<li>Metric filters can trigger CloudWatch Alarms</li>
+</ul>
+</li>
+</ul>
+<h3 id="CloudWatch-Logs-Insights"><a href="#CloudWatch-Logs-Insights" class="headerlink" title="CloudWatch Logs Insights"></a>CloudWatch Logs Insights</h3><ul>
+<li>Query logs and add queries to CloudWatch Dashboards</li>
+</ul>
+<h3 id="CloudWatch-Logs-Agent-vs-Unified-Agent"><a href="#CloudWatch-Logs-Agent-vs-Unified-Agent" class="headerlink" title="CloudWatch Logs Agent vs. Unified Agent"></a>CloudWatch Logs Agent vs. Unified Agent</h3><ul>
+<li>CloudWatch Logs Agent (old version)<ul>
+<li>Can only send log files</li>
+</ul>
+</li>
+<li>CloudWatch Unified Agent<ul>
+<li>Can send log files and system-level metrics as logs</li>
+<li>Centralized configuration using SSM Parameter Store</li>
+</ul>
+</li>
+<li>Both can send logs using batching<ul>
+<li>batch_count (10000 by default, 1 at min)</li>
+<li>batch_duration (default &amp; min: 5000ms)</li>
+<li>batch_size (default &amp; max: 1 MB)</li>
+</ul>
+</li>
+</ul>
+<h2 id="CloudWatch-Dashboards"><a href="#CloudWatch-Dashboards" class="headerlink" title="CloudWatch Dashboards"></a>CloudWatch Dashboards</h2><ul>
+<li>Display metrics and alarms</li>
+<li>Show metrics of multiple regions</li>
+</ul>
+<h1 id="AWS-X-Ray"><a href="#AWS-X-Ray" class="headerlink" title="AWS X-Ray"></a>AWS X-Ray</h1><ul>
+<li>Visual analysis of services</li>
+<li>Tracing requests across services</li>
+<li>Integrations<ul>
+<li>EC2 &amp; ECS: install X-Ray agent</li>
+<li>Lambda</li>
+<li>Elastic Beanstalk</li>
+<li>API Gateway</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

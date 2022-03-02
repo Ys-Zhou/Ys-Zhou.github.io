@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Security - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AWS-KMS-Key-Management-Service"><span class="toc-text">AWS KMS (Key Management Service)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-KMS"><span class="toc-text">About KMS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KMS-Detail"><span class="toc-text">KMS Detail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encryption-Using-KMS"><span class="toc-text">Encryption Using KMS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CouldHSM"><span class="toc-text">CouldHSM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#KSM-vs-CloudHSM"><span class="toc-text">KSM vs. CloudHSM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-in-AWS-Services"><span class="toc-text">Security in AWS Services</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kinesis"><span class="toc-text">Kinesis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQS"><span class="toc-text">SQS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IoT"><span class="toc-text">IoT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RDS"><span class="toc-text">RDS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda"><span class="toc-text">Lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Glue"><span class="toc-text">Glue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMR"><span class="toc-text">EMR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch"><span class="toc-text">ElasticSearch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redshift"><span class="toc-text">Redshift</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Athena"><span class="toc-text">Athena</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QuickSight"><span class="toc-text">QuickSight</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STS"><span class="toc-text">STS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-Cases"><span class="toc-text">Use Cases</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-Account-Access"><span class="toc-text">Cross Account Access</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Identity-Federation"><span class="toc-text">Identity Federation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SAML"><span class="toc-text">SAML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cognito"><span class="toc-text">Cognito</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudTrail"><span class="toc-text">CloudTrail</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VPC-Endpoints"><span class="toc-text">VPC Endpoints</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Security
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-11-11 09:33:00</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Big Data" title="AWS - Big Data">AWS - Big Data</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="AWS-KMS-Key-Management-Service"><a href="#AWS-KMS-Key-Management-Service" class="headerlink" title="AWS KMS (Key Management Service)"></a>AWS KMS (Key Management Service)</h1><ul>
+<li>Encryption for AWS services</li>
+<li>Fully integrated with IAM for authorization</li>
+<li>Integration into<ul>
+<li>EBS: encrypt volumes</li>
+<li>S3: SSE-KMS of objects</li>
+<li>Redshift / RDS: encrypt data</li>
+<li>Etc.</li>
+</ul>
+</li>
+<li>Can use KMS using CLI / SDK</li>
+</ul>
+<h2 id="About-KMS"><a href="#About-KMS" class="headerlink" title="About KMS"></a>About KMS</h2><ul>
+<li>Keys (CMK) in KMS can never be retrieved by users</li>
+<li>KMS can only encrypt up to 4KB of data per call<ul>
+<li>If data &gt; 4 KB, use client-side encryption</li>
+</ul>
+</li>
+<li>To give access to KSM to a user<ul>
+<li>Key Policy allows the user</li>
+<li>IAM Policy allows the API calls</li>
+</ul>
+</li>
+</ul>
+<h2 id="KMS-Detail"><a href="#KMS-Detail" class="headerlink" title="KMS Detail"></a>KMS Detail</h2><ul>
+<li>Able to fully manage the keys and policies<ul>
+<li>Create</li>
+<li>Rotation policies</li>
+<li>Disable</li>
+<li>Enable</li>
+</ul>
+</li>
+<li>Able to audit key usage using CloudTrail</li>
+<li>Three types of Customer Master Keys (CMK)<ul>
+<li>AWS Managed Service Default CMK: free</li>
+<li>User Keys created in KMS: $1 / month</li>
+<li>User Keys imported (256-bit symmetric): $1 / month</li>
+</ul>
+</li>
+<li>Each API call to KMS: $0.03 / 10000 calls<ul>
+<li>Encrypt API</li>
+<li>Decrypt API</li>
+</ul>
+</li>
+</ul>
+<h2 id="Encryption-Using-KMS"><a href="#Encryption-Using-KMS" class="headerlink" title="Encryption Using KMS"></a>Encryption Using KMS</h2><ul>
+<li>Requires migration (Snapshot / Backup)<ul>
+<li>EBS Volumes</li>
+<li>RDS databases</li>
+<li>ElastiCache</li>
+<li>EFS file system</li>
+</ul>
+</li>
+<li>In-place encryption<ul>
+<li>S3</li>
+</ul>
+</li>
+</ul>
+<h1 id="CouldHSM"><a href="#CouldHSM" class="headerlink" title="CouldHSM"></a>CouldHSM</h1><ul>
+<li>HSM = Hardware Security Module</li>
+<li>Dedicated encryption hardware</li>
+<li>Users manage their keys (not AWS)</li>
+<li>FIPS I40-2 Level 3 compliance</li>
+<li>CloudHSM clusters are spread across multi-AZ</li>
+<li>Support both symmetric and asymmetric encryption</li>
+<li>Must use the CloudHSM Client Software</li>
+</ul>
+<h2 id="KSM-vs-CloudHSM"><a href="#KSM-vs-CloudHSM" class="headerlink" title="KSM vs. CloudHSM"></a>KSM vs. CloudHSM</h2><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>KSM</th>
+<th>CloudHSM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tenancy</td>
+<td>Multi-tenant key storage</td>
+<td>Single dedicated tenant key storage</td>
+</tr>
+<tr>
+<td>Keys</td>
+<td>Keys managed by AWS</td>
+<td>Customer managed HSM</td>
+</tr>
+<tr>
+<td>Encryption</td>
+<td>Symmetric encryption only</td>
+<td>Symmetric and asymmetric encryption</td>
+</tr>
+<tr>
+<td>Cryptographic Acceleration</td>
+<td>None</td>
+<td>SSL/TLS Acceleration &amp; Oracle TDE Acceleration</td>
+</tr>
+<tr>
+<td>Key Storage and Management</td>
+<td>Accessible from multiple regions. Centralized management from IAM</td>
+<td>Deployed and managed form a customer VPC. Accessible and can be shared across VPCs using VPC peering</td>
+</tr>
+</tbody></table>
+<h1 id="Security-in-AWS-Services"><a href="#Security-in-AWS-Services" class="headerlink" title="Security in AWS Services"></a>Security in AWS Services</h1><h2 id="Kinesis"><a href="#Kinesis" class="headerlink" title="Kinesis"></a>Kinesis</h2><ul>
+<li>Kinesis Data Streams<ul>
+<li>SSL/TLS</li>
+<li>Server-side encryption using KMS</li>
+<li>Client-side encryption can only be implemented manually</li>
+<li>IAM<ul>
+<li><strong>DynamoDB table when using KCL</strong></li>
+</ul>
+</li>
+<li>VPC Endpoints (Interface Endpoints)</li>
+</ul>
+</li>
+<li>Kinesis Data Firehose<ul>
+<li>Can encrypt the delivery stream using KMS</li>
+<li>IAM<ul>
+<li>Deliver to S3, ES, Redshift, Splunk</li>
+</ul>
+</li>
+<li>VPC Endpoints (Interface Endpoints)</li>
+</ul>
+</li>
+<li>Kinesis Data Analytics<ul>
+<li>IAM<ul>
+<li>Sources and destination (Kinesis Data Streams, Kinesis Data Firehose)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="SQS"><a href="#SQS" class="headerlink" title="SQS"></a>SQS</h2><ul>
+<li>SSL/TLS</li>
+<li>Server-side encryption using KMS</li>
+<li>Client-side encryption can only be implemented manually</li>
+<li>IAM</li>
+<li><strong>SQS queue access policy</strong></li>
+<li>VPC Endpoints (Interface Endpoints)</li>
+</ul>
+<h2 id="IoT"><a href="#IoT" class="headerlink" title="IoT"></a>IoT</h2><ul>
+<li>IoT policies<ul>
+<li>Attached to X.509 or Cognito Identities</li>
+<li>Can be attached to groups as well as individual Things</li>
+</ul>
+</li>
+<li>IAM<ul>
+<li>Used for controlling IoT APIs</li>
+<li>Attach roles to Rules Engine to allow their actions</li>
+</ul>
+</li>
+</ul>
+<h2 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h2><ul>
+<li>SSL/TLS</li>
+<li>Server-side encryption<ul>
+<li>SSE-S3, SSE-KMS, SSE-C</li>
+</ul>
+</li>
+<li>Client-side encryption<ul>
+<li>Such as S3 Encryption Client</li>
+</ul>
+</li>
+<li>IAM</li>
+<li>S3 bucket policies</li>
+<li>ACLs</li>
+<li>Versioning + MFA when deleting</li>
+<li>VPC Endpoints (Gateway Endpoints)</li>
+<li>CORS for protecting websites hosted on S3</li>
+<li>Vault lock policies to prevent deletes for Glacier</li>
+</ul>
+<h2 id="DynamoDB"><a href="#DynamoDB" class="headerlink" title="DynamoDB"></a>DynamoDB</h2><ul>
+<li>SSL/TLS</li>
+<li>KMS encryption<ul>
+<li>Setting when creating the table</li>
+<li>To enable or disable encryption, create new table and copy the data</li>
+</ul>
+</li>
+<li>IAM<ul>
+<li>Access to API / DAX</li>
+</ul>
+</li>
+<li>VPC Endpoints (Gateway Endpoints)</li>
+</ul>
+<h2 id="RDS"><a href="#RDS" class="headerlink" title="RDS"></a>RDS</h2><ul>
+<li>VPC<ul>
+<li>Can use Security Groups</li>
+</ul>
+</li>
+<li>SSL/TLS</li>
+<li>KMS encryption</li>
+<li>IAM</li>
+<li>IAM authentication<ul>
+<li>Support Aurora, PostgreSQL and MySQL</li>
+<li>Manage user permissions within the database itself</li>
+</ul>
+</li>
+<li>Microsoft SQL Server and Oracle support TDE (Transparent Data Encryption)</li>
+</ul>
+<h2 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h2><ul>
+<li>KMS encryption for secrets<ul>
+<li>Can use AWS Systems Manager Parameter Store as well</li>
+</ul>
+</li>
+<li>IAM<ul>
+<li>Each function need roles</li>
+</ul>
+</li>
+<li>Can deploy function in VPC</li>
+</ul>
+<h2 id="Glue"><a href="#Glue" class="headerlink" title="Glue"></a>Glue</h2><ul>
+<li>IAM</li>
+<li>KMS encryption<ul>
+<li>Data Catalog, connection passwords</li>
+</ul>
+</li>
+<li>Encrypt data written by the job<ul>
+<li>To S3: SSE-S3, SSE-KMS</li>
+<li>To CloudWatch</li>
+<li>To Job bookmark</li>
+</ul>
+</li>
+<li>Can enforce SSL on JDBC</li>
+</ul>
+<h2 id="EMR"><a href="#EMR" class="headerlink" title="EMR"></a>EMR</h2><ul>
+<li>SSH using EC2 key pairs</li>
+<li>IAM</li>
+<li>EC2 Security Groups<ul>
+<li>One for master node</li>
+<li>Another for cluster nodes (core nodes and task nodes)</li>
+</ul>
+</li>
+<li>Encryption data at-rest<ul>
+<li>EMRFS in S3<ul>
+<li>SSE-S3, SSE-KMS</li>
+<li>CSE-KMS, CSE-C</li>
+<li>EMR dose not allow unencrypted data to be stored into S3</li>
+</ul>
+</li>
+<li>Local disk<ul>
+<li>Open-source HDFS encryption</li>
+<li>EBS volume encryption<ul>
+<li>EBS encryption</li>
+<li>LUKS encryption</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Encryption data in transit<ul>
+<li>SSL/TLS</li>
+</ul>
+</li>
+<li>Kerberos authentication from Active Directory</li>
+<li>Apache Ranger<ul>
+<li>Centralized Authorization</li>
+<li>Role Based Access Control</li>
+<li>Need to setup on external EC2</li>
+</ul>
+</li>
+</ul>
+<h2 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h2><ul>
+<li>VPC</li>
+<li>SSL/TLS</li>
+<li>KMS</li>
+<li>ElasticSearch policy</li>
+<li>IAM or Cognito based authentication<ul>
+<li>Cognito allow end-users to log-in to Kibna through enterprise identity providers such as Microsoft Active Directory using SAML </li>
+</ul>
+</li>
+</ul>
+<h2 id="Redshift"><a href="#Redshift" class="headerlink" title="Redshift"></a>Redshift</h2><ul>
+<li>VPC<ul>
+<li>Cluster security group</li>
+</ul>
+</li>
+<li>Encryption in flight using JDBC driver with SSL</li>
+<li>Encryption at reat using KMS or <strong>HSM</strong></li>
+<li>IAM</li>
+<li>COPY or UNLOAD command<ul>
+<li>IAM roles need to be referenced or use your own credits</li>
+<li>COPY from or UNLOAD to S3, support both SSE-S3 and SSE-KMS</li>
+</ul>
+</li>
+</ul>
+<h2 id="Athena"><a href="#Athena" class="headerlink" title="Athena"></a>Athena</h2><ul>
+<li>IAM</li>
+<li>SSL/TLS between Athena and S3 or JDBC</li>
+<li>Data in S3: Every security features in S3</li>
+<li>Can use Glue Catalog security to restrict access</li>
+</ul>
+<h2 id="QuickSight"><a href="#QuickSight" class="headerlink" title="QuickSight"></a>QuickSight</h2><ul>
+<li>Standard edition<ul>
+<li>IAM users</li>
+<li>Email based accounts</li>
+<li>Row Level Security Control</li>
+</ul>
+</li>
+<li>Enterprise edition<ul>
+<li>Active Directory</li>
+<li>Federated Login</li>
+<li>MFA</li>
+<li>Encryption at rest and in SPICE</li>
+</ul>
+</li>
+</ul>
+<h1 id="STS"><a href="#STS" class="headerlink" title="STS"></a>STS</h1><ul>
+<li>Security Token Service</li>
+<li>To grant limited and temporary access to AWS resources</li>
+<li>Token is valid for up to 1 hour</li>
+</ul>
+<h2 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases"></a>Use Cases</h2><ul>
+<li>Cross account access</li>
+<li>Federation<ul>
+<li>Active Directory</li>
+<li>SAML</li>
+<li>SSO (Single Sign On)</li>
+</ul>
+</li>
+<li>Federation with third party providers / Cognito<ul>
+<li>Web or mobile application login</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cross-Account-Access"><a href="#Cross-Account-Access" class="headerlink" title="Cross Account Access"></a>Cross Account Access</h2><ul>
+<li>Define an IAM Role for another account ro access</li>
+<li>Define accounts that can access the IAM Role</li>
+<li>Use STS to retrieve credentials and impersonate the IAM Role</li>
+<li>The temporary credentials can be valid between 15 minutes to 1 hour</li>
+</ul>
+<h2 id="Identity-Federation"><a href="#Identity-Federation" class="headerlink" title="Identity Federation"></a>Identity Federation</h2><ul>
+<li>Let users outside of AWS to assume temporary role for accessing AWS resources</li>
+<li>These users assume identity provided access role</li>
+<li>Federations<ul>
+<li>LDAP</li>
+<li>SAML</li>
+<li>Microsoft Active Directory (SAML)</li>
+<li>SSO</li>
+<li>Open ID</li>
+<li>Cognito</li>
+</ul>
+</li>
+</ul>
+<h3 id="SAML"><a href="#SAML" class="headerlink" title="SAML"></a>SAML</h3><ul>
+<li>To integrate Active Directory or any SAML 2.0</li>
+<li>Provides access to AWS resources without creating IAM user</li>
+<li>If identity provider is not compatible with SAML 2.0<ul>
+<li>Implement an identity broker</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cognito"><a href="#Cognito" class="headerlink" title="Cognito"></a>Cognito</h3><ul>
+<li>Federated identity pools for public applications</li>
+</ul>
+<h1 id="CloudTrail"><a href="#CloudTrail" class="headerlink" title="CloudTrail"></a>CloudTrail</h1><ul>
+<li>Provide governance, compliance and audit for your AWs Account</li>
+<li>Track every API call made to your account</li>
+<li>CloudTrail is enabled by default</li>
+<li>Can pjut logs form CloudTrail into CloudWatch Logs</li>
+<li>CloudTrail shows the past 90 days of activity</li>
+<li>The default UI only shows <em>Create</em>, <em>Modify</em>, and <em>Delete</em> events</li>
+<li>CloudTrail Trail<ul>
+<li>Can get a detailed list of all the events you choose</li>
+<li>Ability ot stroe these events in S3 for further analysis</li>
+<li>Can be region specific or global</li>
+</ul>
+</li>
+<li>CloudTrail Logs hava SS3-S3 encryption when placed into S3</li>
+</ul>
+<h1 id="VPC-Endpoints"><a href="#VPC-Endpoints" class="headerlink" title="VPC Endpoints"></a>VPC Endpoints</h1><ul>
+<li>Allow you to connect to AWS Services using private network</li>
+<li>No longer nedd IGW, NAT, etc.</li>
+<li>Gateway type<ul>
+<li>Provision a target and must be used in a route table</li>
+<li>Only S3 and DynamoDB</li>
+</ul>
+</li>
+<li>Interface type<ul>
+<li>Provision an ENI as an entry point (need security group)</li>
+<li>Also called VPC PrivateLink</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

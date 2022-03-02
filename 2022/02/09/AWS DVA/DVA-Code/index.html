@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DVA - Code* - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CodePipeline"><span class="toc-text">CodePipeline</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CodeBuild"><span class="toc-text">CodeBuild</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#buildspec-yml"><span class="toc-text">buildspec.yml</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CodeDeploy"><span class="toc-text">CodeDeploy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#appspec-yml"><span class="toc-text">appspec.yml</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CodeStar"><span class="toc-text">CodeStar</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CodeArtifact"><span class="toc-text">CodeArtifact</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CodeGuru"><span class="toc-text">CodeGuru</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DVA - Code*
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-02-09 16:24:46</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Developer" title="AWS - Developer">AWS - Developer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="CodePipeline"><a href="#CodePipeline" class="headerlink" title="CodePipeline"></a>CodePipeline</h1><ul>
+<li>Stages<ul>
+<li>Source (Git repo, ECR, S3)</li>
+<li>Build</li>
+<li>Deploy</li>
+</ul>
+</li>
+<li>Multiple action groups in a stage (action groups serial)</li>
+<li>Multiple actions in a action group (actions are parallel)</li>
+</ul>
+<h1 id="CodeBuild"><a href="#CodeBuild" class="headerlink" title="CodeBuild"></a>CodeBuild</h1><ul>
+<li>Source: Git repo, S3</li>
+<li>Build instructions: <code>buildspec.yml</code> file at the root</li>
+<li>Logs can output to S3 and CloudWatch Logs</li>
+<li>Integration with CloudWatch Metrics, Events, Alarms</li>
+<li>CodeBuild projects can be defined within CodePipeline</li>
+<li>Use S3 as cache and artifactory</li>
+<li>You can optionally run CodeBuild within your VPC</li>
+<li>You can leverage the CodeBuild Agent to run CodeBuild locally</li>
+</ul>
+<h2 id="buildspec-yml"><a href="#buildspec-yml" class="headerlink" title="buildspec.yml"></a>buildspec.yml</h2><ul>
+<li>env<ul>
+<li>variables</li>
+<li>parameter-store</li>
+<li>secrets-manager</li>
+</ul>
+</li>
+<li>phases<ul>
+<li>install</li>
+<li>pre_build</li>
+<li>build</li>
+<li>post_build</li>
+</ul>
+</li>
+<li>artifacts</li>
+<li>cache</li>
+</ul>
+<h1 id="CodeDeploy"><a href="#CodeDeploy" class="headerlink" title="CodeDeploy"></a>CodeDeploy</h1><ul>
+<li>IAM roles<ul>
+<li>ColdDeploy role</li>
+<li>EC2 role (permissions to pull artifacts from S3 or Github)</li>
+</ul>
+</li>
+<li>Targets<ul>
+<li>EC2/On-premises (Must running CodeDeploy Agent)</li>
+<li>ECS</li>
+<li>Lambda</li>
+</ul>
+</li>
+<li>Deployment Group<ul>
+<li>Tagged EC2/on-premise instances</li>
+<li>ASG</li>
+<li>Mix of tagged instances and ASG</li>
+<li>Customization in scripts with <code>DEPLOYMENT_GROUP_NAME</code> environment variables</li>
+</ul>
+</li>
+<li>Deploy type<ul>
+<li>In-place<ul>
+<li>One At A Time</li>
+<li>Half At A Time</li>
+<li>All At Once</li>
+<li>Custom</li>
+</ul>
+</li>
+<li>Blue/green</li>
+</ul>
+</li>
+<li>Failure Handling<ul>
+<li>Redeploy old deployment or enable automated rollback<ul>
+<li>CodeDeploy will deploy the last known succeeded revision as a new deployment</li>
+</ul>
+</li>
+<li>New deployments will first be deployed to failed instances</li>
+</ul>
+</li>
+<li>Deploy instructions: <code>appspec.yml</code> file at the root</li>
+</ul>
+<h2 id="appspec-yml"><a href="#appspec-yml" class="headerlink" title="appspec.yml"></a>appspec.yml</h2><ul>
+<li>files<ul>
+<li>source</li>
+<li>destination</li>
+</ul>
+</li>
+<li>hooks<ul>
+<li>ApplicationStop</li>
+<li>DownloadBundle</li>
+<li>BeforeInstall</li>
+<li>Install</li>
+<li>AfterInstall</li>
+<li>ApplicationStart</li>
+<li>ValidateService</li>
+</ul>
+</li>
+</ul>
+<h1 id="CodeStar"><a href="#CodeStar" class="headerlink" title="CodeStar"></a>CodeStar</h1><ul>
+<li>A unified view of projects &amp; quickly create CICD-ready projects</li>
+<li>Automatically create underline resources</li>
+<li>Issue tracking integration with JIRA / Github</li>
+<li>Ability to integrate with IDEs</li>
+<li>Service itself is free</li>
+</ul>
+<h1 id="CodeArtifact"><a href="#CodeArtifact" class="headerlink" title="CodeArtifact"></a>CodeArtifact</h1><ul>
+<li>AWS managed artifactory</li>
+</ul>
+<h1 id="CodeGuru"><a href="#CodeGuru" class="headerlink" title="CodeGuru"></a>CodeGuru</h1><ul>
+<li>ML-powered service for<ul>
+<li>automated code reviews (CodeGuru Reviewer)<ul>
+<li>critical issues</li>
+<li>vulnerabilities</li>
+<li>hard-to-find bugs</li>
+</ul>
+</li>
+<li>application performance recommendations (CodeGuru Profiler)</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

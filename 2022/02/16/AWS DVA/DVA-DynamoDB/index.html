@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DVA-DynamoDB - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WCU-amp-RCU"><span class="toc-text">WCU &amp; RCU</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#APIs"><span class="toc-text">APIs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Secondary-Indexes"><span class="toc-text">Secondary Indexes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Optimistic-Locking-Conditional-Writes"><span class="toc-text">Optimistic Locking (Conditional Writes)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DAX"><span class="toc-text">DAX</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Streams"><span class="toc-text">Streams</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Copy-Table"><span class="toc-text">Copy Table</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DVA-DynamoDB
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-02-16 15:17:30</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Developer" title="AWS - Developer">AWS - Developer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="WCU-amp-RCU"><a href="#WCU-amp-RCU" class="headerlink" title="WCU &amp; RCU"></a>WCU &amp; RCU</h1><ul>
+<li><p>Provision </p>
+<ul>
+<li>( <code>N</code> = number of items per second; <code>M</code> = item size in KB )</li>
+<li>WCU for Standard Write: <code>N * ceil(M)</code></li>
+<li>RCU for Eventually Consistent Read: <code>(N / 2) * ceil(M / 4)</code></li>
+<li>RCU for Strongly Consistent Read: <code>N * ceil(M / 4)</code></li>
+<li>Transactional Write / Read costs 2 * WCU / RCU</li>
+</ul>
+</li>
+<li><p>On-demand</p>
+</li>
+</ul>
+<h1 id="APIs"><a href="#APIs" class="headerlink" title="APIs"></a>APIs</h1><ul>
+<li><code>PutItem</code><ul>
+<li>Create a new Item or replace an old item</li>
+</ul>
+</li>
+<li><code>UpdateItem</code><ul>
+<li>Update attributes of an existing item or add a new item</li>
+<li>Can be used for Atomic Counters</li>
+</ul>
+</li>
+<li><code>GetItem</code><ul>
+<li>Read based on primary key (partition key or partition key + sort key)</li>
+<li><code>ProjectionExpression</code> can be specified to retrieve only certain attributes</li>
+</ul>
+</li>
+<li><code>Query</code><ul>
+<li><code>KeyConditionExpression</code><ul>
+<li>Partition key value (only <code>=</code> expression)</li>
+<li>Sort key expression</li>
+</ul>
+</li>
+<li><code>FilterExpression</code><ul>
+<li>Used on non-key attributes</li>
+</ul>
+</li>
+<li><code>Limit</code><ul>
+<li>Limit number of retrieved items</li>
+</ul>
+</li>
+<li>Up to 1 MB of data each query. Use pagination to recursively retrieve data</li>
+</ul>
+</li>
+<li><code>Scan</code><ul>
+<li>Scan the entire table and then filter out data</li>
+<li>Up to 1 MB of data each page</li>
+<li>Can use <code>Limit</code>, <code>ProjectionExpression</code>, and <code>FilterExpression</code> </li>
+</ul>
+</li>
+<li><code>ParallelScan</code></li>
+<li><code>DeleteItem</code><ul>
+<li>Ability to perform a conditional delete</li>
+</ul>
+</li>
+<li><code>DeleteTable</code></li>
+<li>Batch Operations<ul>
+<li><code>BatchWriteItem</code><ul>
+<li>Up to 25 <code>PutItem</code> &amp; <code>DeleteItem</code> in one call</li>
+</ul>
+</li>
+<li><code>BatchGetItem</code><ul>
+<li>Return items from one or more tables</li>
+<li>Up to 100 items and 16 MB of data</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Secondary-Indexes"><a href="#Secondary-Indexes" class="headerlink" title="Secondary Indexes"></a>Secondary Indexes</h1><ul>
+<li>LSI<ul>
+<li>Alternative Sort Key</li>
+<li>Up to 5 LSI per table</li>
+<li>Must be defined at table creation time</li>
+<li>Attribute projections (attributes included in the LSI)<ul>
+<li>KEYS_ONLY</li>
+<li>INCLUDE</li>
+<li>ALL</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GSI<ul>
+<li>Alternative Primary Key</li>
+<li>Can be added or modified after table creation</li>
+<li>Must provision RCU and WCU for GSI</li>
+<li>Attribute projections</li>
+<li><strong>Write to a table will consumed WCUs of the table and all GSIs of the table</strong></li>
+</ul>
+</li>
+</ul>
+<h1 id="Optimistic-Locking-Conditional-Writes"><a href="#Optimistic-Locking-Conditional-Writes" class="headerlink" title="Optimistic Locking (Conditional Writes)"></a>Optimistic Locking (Conditional Writes)</h1><ul>
+<li>Perform a write/update/delete only if conditions are met<ul>
+<li>In case that multiple uses update one table at the same time</li>
+</ul>
+</li>
+</ul>
+<h1 id="DAX"><a href="#DAX" class="headerlink" title="DAX"></a>DAX</h1><ul>
+<li>Cache cluster in VPC</li>
+<li>Up to 10 nodes</li>
+<li>Multi-AZ</li>
+</ul>
+<h1 id="Streams"><a href="#Streams" class="headerlink" title="Streams"></a>Streams</h1><ul>
+<li>Triggers<ul>
+<li>Kinesis Data Streams</li>
+<li>Lambda</li>
+<li>KCL applications</li>
+</ul>
+</li>
+<li>Data retention can be up to 24 hours</li>
+<li>Information in streams<ul>
+<li>KEY_ONLY</li>
+<li>NEW_IMAGE</li>
+<li>OLD_IMAGE</li>
+<li>NEW_AND_OLD_IMAGE</li>
+</ul>
+</li>
+</ul>
+<h1 id="Copy-Table"><a href="#Copy-Table" class="headerlink" title="Copy Table"></a>Copy Table</h1><ul>
+<li>Use Data Pipeline<ul>
+<li>Copy the data to S3 through a EMR cluster</li>
+<li>Load the data from S3 through a EMR cluster</li>
+</ul>
+</li>
+<li>Backup to / restore from S3 on yourself</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
