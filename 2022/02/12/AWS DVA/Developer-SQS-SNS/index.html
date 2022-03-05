@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Developer: SQS &amp; SNS - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQS"><span class="toc-text">SQS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Access-Policy"><span class="toc-text">Access Policy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Settings"><span class="toc-text">Settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Extended-Client"><span class="toc-text">Extended Client</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Important-APIs"><span class="toc-text">Important APIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FIFO-De-duplication"><span class="toc-text">FIFO De-duplication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FIFO-Message-Grouping"><span class="toc-text">FIFO Message Grouping</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SNS"><span class="toc-text">SNS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Message-Filtering"><span class="toc-text">Message Filtering</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Developer: SQS &amp; SNS
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-02-12 19:58:27</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Developer" title="AWS - Developer">AWS - Developer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="SQS"><a href="#SQS" class="headerlink" title="SQS"></a>SQS</h1><h2 id="Access-Policy"><a href="#Access-Policy" class="headerlink" title="Access Policy"></a>Access Policy</h2><ul>
+<li>Cross-account access</li>
+<li>Allow S3 Events to send message<ul>
+<li>Neither has service-linked roles</li>
+<li>Both have resource-based policies (access policies)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h2><ul>
+<li>Message Visibility Timeout: The invisibility time to other consumers after the message is polled by any consumer<ul>
+<li>The consumer can call <code>ChangeMessageVisibility</code> API to change the visibility timeout for a specific message</li>
+</ul>
+</li>
+<li>Dead Letter Queue</li>
+<li>Delay Queue<ul>
+<li>Queue level delay</li>
+<li>Message level delay: set <code>DelaySeconds</code> parameter</li>
+</ul>
+</li>
+<li>Polling Wait Time<ul>
+<li>1 ~ 20 second</li>
+<li>Long polling is better than short polling (reduce API calls, better latency)</li>
+<li>Queue level or API call level (use <code>ReceiveMessageWaitTimeSeconds</code> parameter)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Extended-Client"><a href="#Extended-Client" class="headerlink" title="Extended Client"></a>Extended Client</h2><ul>
+<li>A pre-build SDK for application to send message larger than 256KB</li>
+<li>Use S3 under the hood</li>
+</ul>
+<h2 id="Important-APIs"><a href="#Important-APIs" class="headerlink" title="Important APIs"></a>Important APIs</h2><ul>
+<li>CreateQueue</li>
+<li>DeleteQueue</li>
+<li>PurgeQueue: delete all the messages in the queue</li>
+<li>SendMessage (has Batch API)</li>
+<li>ReceiveMessage (<code>MaxNumberOfMessages</code> &amp; <code>ReceiveMessageWaitTimeSeconds</code> parameters)</li>
+<li>DeleteMessage (has Batch API)</li>
+<li>ChangeMessageVisibility (has Batch API)</li>
+</ul>
+<h2 id="FIFO-De-duplication"><a href="#FIFO-De-duplication" class="headerlink" title="FIFO De-duplication"></a>FIFO De-duplication</h2><ul>
+<li>De-duplication interval is 5 minutes</li>
+<li>De-duplication methods<ul>
+<li>Compare messages by SHA-256 hash</li>
+<li>Using Message De-duplication ID</li>
+</ul>
+</li>
+</ul>
+<h2 id="FIFO-Message-Grouping"><a href="#FIFO-Message-Grouping" class="headerlink" title="FIFO Message Grouping"></a>FIFO Message Grouping</h2><ul>
+<li>Default FIFO queue only has one message group</li>
+<li>Messages in a message group are in order and only consumed by one consumer</li>
+<li>You can add message groups to consume message in parallel</li>
+<li>The message order between message groups is not guaranteed</li>
+</ul>
+<h1 id="SNS"><a href="#SNS" class="headerlink" title="SNS"></a>SNS</h1><h2 id="Message-Filtering"><a href="#Message-Filtering" class="headerlink" title="Message Filtering"></a>Message Filtering</h2><ul>
+<li>Filter messages on different subscribers</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

@@ -11,7 +11,7 @@
 
     <title>
         
-        DOP - Configuration Management and Infrastructure as Code - Hiko Amane&#39;s Blog
+        DevOps: Configuration Management and Infrastructure as Code - Hiko Amane&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudFormation"><span class="toc-text">CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Every-topics-in-“DVA-CloudFormation”"><span class="toc-text">Every topics in “DVA - CloudFormation”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Data"><span class="toc-text">User Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-init"><span class="toc-text">cfn-init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-signal-amp-WaitConditions"><span class="toc-text">cfn-signal &amp; WaitConditions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Troubleshoot-when-signal-was-not-received"><span class="toc-text">Troubleshoot when signal was not received</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-init-amp-cfn-signal-sample"><span class="toc-text">cfn-init &amp; cfn-signal sample</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rollbacks"><span class="toc-text">Rollbacks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested-stack"><span class="toc-text">Nested stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deletion-policies-sample"><span class="toc-text">Deletion policies sample</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Termination-protection"><span class="toc-text">Termination protection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Referent-parameters-from-SSM-parameter-store"><span class="toc-text">Referent parameters from SSM parameter store</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DependsOn"><span class="toc-text">DependsOn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Define-Lambda-Function-in-CloudFormation"><span class="toc-text">Define Lambda Function in CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Inline"><span class="toc-text">Inline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Resources-Lambda"><span class="toc-text">Custom Resources (Lambda)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-Status-Code-UPDATE-ROLLBACK-FAILED"><span class="toc-text">Stack Status Code UPDATE_ROLLBACK_FAILED</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InsufficientCapabilitiesException"><span class="toc-text">InsufficientCapabilitiesException</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-hup"><span class="toc-text">cfn-hup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-policies"><span class="toc-text">Stack policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-known-features"><span class="toc-text">Other known features</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudFormation"><span class="toc-text">CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Data"><span class="toc-text">User Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-init"><span class="toc-text">cfn-init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-signal-amp-WaitConditions"><span class="toc-text">cfn-signal &amp; WaitConditions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Troubleshoot-when-signal-was-not-received"><span class="toc-text">Troubleshoot when signal was not received</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-init-amp-cfn-signal-sample"><span class="toc-text">cfn-init &amp; cfn-signal sample</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rollbacks"><span class="toc-text">Rollbacks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested-stack"><span class="toc-text">Nested stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deletion-policies-sample"><span class="toc-text">Deletion policies sample</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Termination-protection"><span class="toc-text">Termination protection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Referent-parameters-from-SSM-parameter-store"><span class="toc-text">Referent parameters from SSM parameter store</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DependsOn"><span class="toc-text">DependsOn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Define-Lambda-Function-in-CloudFormation"><span class="toc-text">Define Lambda Function in CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Inline"><span class="toc-text">Inline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Resources-Lambda"><span class="toc-text">Custom Resources (Lambda)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-Status-Code-UPDATE-ROLLBACK-FAILED"><span class="toc-text">Stack Status Code UPDATE_ROLLBACK_FAILED</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InsufficientCapabilitiesException"><span class="toc-text">InsufficientCapabilitiesException</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-hup"><span class="toc-text">cfn-hup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-policies"><span class="toc-text">Stack policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-known-features"><span class="toc-text">Other known features</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Elastic-Beanstalk"><span class="toc-text">Elastic Beanstalk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CLIs"><span class="toc-text">CLIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Saved-Configurations"><span class="toc-text">Saved Configurations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ebextensions-for-configurations"><span class="toc-text">.ebextensions for configurations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration-precedences"><span class="toc-text">Configuration precedences</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ebextensions-for-resources"><span class="toc-text">.ebextensions for resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ebextensions-for-commands"><span class="toc-text">.ebextensions for commands</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-version-lifecycle"><span class="toc-text">Application version lifecycle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Managed-Updates"><span class="toc-text">Managed Updates</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment-Strategies"><span class="toc-text">Deployment Strategies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Worker-Environment"><span class="toc-text">Worker Environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multi-container-Docker"><span class="toc-text">Multi-container Docker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lambda"><span class="toc-text">Lambda</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Secrets"><span class="toc-text">Secrets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAM"><span class="toc-text">SAM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAM-Deploy-Preferences"><span class="toc-text">SAM Deploy Preferences</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API-Gateway"><span class="toc-text">API Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Endpoint-Type"><span class="toc-text">Endpoint Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integration-Type"><span class="toc-text">Integration Type</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -120,19 +120,25 @@
 
 <div class="post-container">
     <div class="post-title">
-        DOP - Configuration Management and Infrastructure as Code
+        DevOps: Configuration Management and Infrastructure as Code
     </div>
 
     <div class="post-meta">
         <span class="attr">Post：<span>2022-02-27 23:23:35</span></span>
         
+        <span class="attr">Tags：/
         
+        <a class="tag" href="/tags/#AWS - DevOps Engineer" title="AWS - DevOps Engineer">AWS - DevOps Engineer</a>
+        <span>/</span>
+        
+        
+        </span>
         <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 
     </div>
     <div class="post-content no-indent">
-        <h1 id="CloudFormation"><a href="#CloudFormation" class="headerlink" title="CloudFormation"></a>CloudFormation</h1><h2 id="Every-topics-in-“DVA-CloudFormation”"><a href="#Every-topics-in-“DVA-CloudFormation”" class="headerlink" title="Every topics in “DVA - CloudFormation”"></a>Every topics in “DVA - CloudFormation”</h2><h2 id="User-Data"><a href="#User-Data" class="headerlink" title="User Data"></a>User Data</h2><ul>
+        <h1 id="CloudFormation"><a href="#CloudFormation" class="headerlink" title="CloudFormation"></a>CloudFormation</h1><h2 id="User-Data"><a href="#User-Data" class="headerlink" title="User Data"></a>User Data</h2><ul>
 <li>Use Fn::Base64 to pass the user data</li>
 <li>User data is logged in /var/log/cloud-init-output.log file</li>
 </ul>
@@ -242,8 +248,91 @@
 <li>Allow / deny actions on the stack</li>
 </ul>
 <h2 id="Other-known-features"><a href="#Other-known-features" class="headerlink" title="Other known features"></a>Other known features</h2><ul>
+<li>CloudFormation templates</li>
 <li>ChangeSets</li>
 <li>Drift detection</li>
+</ul>
+<h1 id="Elastic-Beanstalk"><a href="#Elastic-Beanstalk" class="headerlink" title="Elastic Beanstalk"></a>Elastic Beanstalk</h1><h2 id="CLIs"><a href="#CLIs" class="headerlink" title="CLIs"></a>CLIs</h2><ul>
+<li>eb init: initialize local configuration files</li>
+<li>eb create “eb-env”: upload zip file into S3 &amp; create a new environment</li>
+<li>eb open: access the environment (open the home page in your browser if the environment is Web application)</li>
+<li>eb status</li>
+<li>eb health [–refresh]</li>
+<li>eb logs</li>
+<li>eb deploy</li>
+<li>eb terminate</li>
+</ul>
+<h2 id="Saved-Configurations"><a href="#Saved-Configurations" class="headerlink" title="Saved Configurations"></a>Saved Configurations</h2><ul>
+<li>Elastic Beanstalk native IaaC</li>
+<li>eb config commands (can be done through console as well)</li>
+<li>A good way to recreate the environment into another region<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a saved configuration from the current environment configuration</span></span><br><span class="line">eb config save <span class="string">"eb-env"</span> --cfg <span class="string">"cfg-name"</span></span><br><span class="line"><span class="comment"># Upload current local configuration file to Saved Configurations</span></span><br><span class="line">eb config put <span class="string">"cfg-name"</span></span><br><span class="line"><span class="comment"># Use saved configuration to update environment</span></span><br><span class="line">eb config <span class="string">"eb-env"</span> --cfg <span class="string">"cfg-name"</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="ebextensions-for-configurations"><a href="#ebextensions-for-configurations" class="headerlink" title=".ebextensions for configurations"></a>.ebextensions for configurations</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">option_settings:</span></span><br><span class="line"><span class="attr">  aws:</span><span class="attr">autoscaling:asg:</span></span><br><span class="line"><span class="attr">    MinSize:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">    MaxSize:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">    Cooldown:</span> <span class="number">300</span></span><br><span class="line"><span class="attr">  aws:</span><span class="attr">autoscaling:launchconfiguration:</span></span><br><span class="line"><span class="attr">    InstanceType:</span> <span class="string">t3.micro</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Configuration-precedences"><a href="#Configuration-precedences" class="headerlink" title="Configuration precedences"></a>Configuration precedences</h2><ul>
+<li>Settings applied directly to the environment</li>
+<li>Saved Configurations</li>
+<li>Configuration files in .ebextensions</li>
+<li>Default values</li>
+</ul>
+<h2 id="ebextensions-for-resources"><a href="#ebextensions-for-resources" class="headerlink" title=".ebextensions for resources"></a>.ebextensions for resources</h2><ul>
+<li>Same as CloudFormation resources</li>
+</ul>
+<h2 id="ebextensions-for-commands"><a href="#ebextensions-for-commands" class="headerlink" title=".ebextensions for commands"></a>.ebextensions for commands</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Before the web server has been set up &amp; before the application code has been unpacked</span></span><br><span class="line"><span class="attr">commands:</span></span><br><span class="line"><span class="attr">  run_commands:</span></span><br><span class="line"><span class="attr">    command:</span> <span class="string">echo</span> <span class="string">"this is a command"</span></span><br><span class="line"><span class="attr">    cwd:</span> <span class="string">/home/ec2-user</span></span><br><span class="line"><span class="comment"># Before the application has finished its deployment</span></span><br><span class="line"><span class="attr">container_commands:</span></span><br><span class="line"><span class="attr">  run_container_commands:</span></span><br><span class="line"><span class="attr">    command:</span> <span class="string">echo</span> <span class="string">"this is a container command"</span></span><br><span class="line"><span class="attr">  run_container_commands_once:</span></span><br><span class="line"><span class="attr">    command:</span> <span class="string">echo</span> <span class="string">"this container command is executed only once"</span></span><br><span class="line"><span class="attr">    leader_only:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Application-version-lifecycle"><a href="#Application-version-lifecycle" class="headerlink" title="Application version lifecycle"></a>Application version lifecycle</h2><ul>
+<li>Default max number of application versions is 1000</li>
+<li>You can set lifecycle to delete older versions automatically<ul>
+<li>by total count</li>
+<li>by age</li>
+</ul>
+</li>
+<li>You can retain or delete the bundle in S3</li>
+<li>You need provide a service role to perform the actions </li>
+</ul>
+<h2 id="Managed-Updates"><a href="#Managed-Updates" class="headerlink" title="Managed Updates"></a>Managed Updates</h2><ul>
+<li>Define a update window, patches will be automatically to the instances</li>
+</ul>
+<h2 id="Deployment-Strategies"><a href="#Deployment-Strategies" class="headerlink" title="Deployment Strategies"></a>Deployment Strategies</h2><ul>
+<li>All at once</li>
+<li>Rolling</li>
+<li>Rolling with additional batches</li>
+<li>Immutable</li>
+<li>Blue/green (not Elastic Beanstalk native)<ul>
+<li>Use Route 53 / Swap URL feature</li>
+</ul>
+</li>
+</ul>
+<h2 id="Worker-Environment"><a href="#Worker-Environment" class="headerlink" title="Worker Environment"></a>Worker Environment</h2><ul>
+<li>Pool messages from SQS</li>
+<li>Use cron.yaml file to run scheduled works</li>
+</ul>
+<h2 id="Multi-container-Docker"><a href="#Multi-container-Docker" class="headerlink" title="Multi-container Docker"></a>Multi-container Docker</h2><ul>
+<li>Use ECS</li>
+<li>Define containers in Dockerrun.aws.json file</li>
+</ul>
+<h1 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h1><h2 id="Secrets"><a href="#Secrets" class="headerlink" title="Secrets"></a>Secrets</h2><ul>
+<li>Encrypted environment variables (using KMS)</li>
+<li>SMM Parameter Store secret string</li>
+<li>Secrets Manager</li>
+</ul>
+<h2 id="SAM"><a href="#SAM" class="headerlink" title="SAM"></a>SAM</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create SAM project locally</span></span><br><span class="line">sam init --runtime python3.8</span><br><span class="line"><span class="comment"># Resolve dependencies and copy sources into .aws-sam directory</span></span><br><span class="line">sam build</span><br><span class="line"><span class="comment"># Test function and api locally</span></span><br><span class="line">sam <span class="built_in">local</span> invoke myFunction -e events/event.json</span><br><span class="line">sam <span class="built_in">local</span> start-api</span><br><span class="line"><span class="comment"># Package files and upload to S3 bucket</span></span><br><span class="line">sam package --output-template my-template.yaml --s3-bucket my-s3-bucket</span><br><span class="line"><span class="comment"># Deploy</span></span><br><span class="line">sam deploy --template-file my-template.yaml --stack-name my-sam-stack --capabilities CAPABILITY_IAM</span><br></pre></td></tr></table></figure>
+
+<h2 id="SAM-Deploy-Preferences"><a href="#SAM-Deploy-Preferences" class="headerlink" title="SAM Deploy Preferences"></a>SAM Deploy Preferences</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">AutoPublishAlias:</span> <span class="string">live</span></span><br><span class="line"><span class="attr">DeploymentPreference:</span></span><br><span class="line"><span class="attr">  Type:</span> <span class="string">Canary10Percent10Minutes</span></span><br><span class="line"><span class="attr">  Alarms:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="type">!Ref</span> <span class="string">...</span></span><br><span class="line"><span class="attr">  Hooks:</span></span><br><span class="line"><span class="attr">    PreTraffic:</span> <span class="type">!Ref</span> <span class="string">...</span></span><br><span class="line"><span class="attr">    PostTraffic:</span> <span class="type">!Ref</span> <span class="string">...</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="API-Gateway"><a href="#API-Gateway" class="headerlink" title="API Gateway"></a>API Gateway</h1><h2 id="Endpoint-Type"><a href="#Endpoint-Type" class="headerlink" title="Endpoint Type"></a>Endpoint Type</h2><ul>
+<li>Regional</li>
+<li>Edge optimized</li>
+<li>Private</li>
+</ul>
+<h2 id="Integration-Type"><a href="#Integration-Type" class="headerlink" title="Integration Type"></a>Integration Type</h2><ul>
+<li>Lambda Function</li>
+<li>HTTP</li>
+<li>Mock</li>
+<li>AWS Service</li>
+<li>VPC Link</li>
 </ul>
 
         

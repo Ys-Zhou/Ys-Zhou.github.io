@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Developer: Lambda - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ALB-Multi-Value-Headers"><span class="toc-text">ALB Multi-Value Headers</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Invocation-Types"><span class="toc-text">Invocation Types</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Event-Source-Mapping"><span class="toc-text">Event Source Mapping</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#For-Kinesis-amp-DynamoDB"><span class="toc-text">For Kinesis &amp; DynamoDB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#For-SQS"><span class="toc-text">For SQS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Handling"><span class="toc-text">Error Handling</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Destinations"><span class="toc-text">Destinations</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tracing-with-X-Ray"><span class="toc-text">Tracing with X-Ray</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lambda-in-VPC"><span class="toc-text">Lambda in VPC</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Performance"><span class="toc-text">Performance</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Put-you-common-initial-codes-outside-handler"><span class="toc-text">Put you common initial codes outside handler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-tmp-directory-as-temporary-directory"><span class="toc-text">Use /tmp directory as temporary directory</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Define-Lambda-Function-in-CloudFormation"><span class="toc-text">Define Lambda Function in CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Inline"><span class="toc-text">Inline</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Layers"><span class="toc-text">Layers</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Developer: Lambda
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-02-14 14:47:16</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Developer" title="AWS - Developer">AWS - Developer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="ALB-Multi-Value-Headers"><a href="#ALB-Multi-Value-Headers" class="headerlink" title="ALB Multi-Value Headers"></a>ALB Multi-Value Headers</h1><ul>
+<li>By enabling multi-value headers, values share the same key in HTTP headers and query parameters will be send as an array in AWS Lambda event</li>
+</ul>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://<span class="built_in">example</span>.com?<span class="built_in">key</span>=value1&amp;<span class="built_in">key</span>=value2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"multiValueQueryStringParameters": &#123;"key": ["value1", "value2"]&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Invocation-Types"><a href="#Invocation-Types" class="headerlink" title="Invocation Types"></a>Invocation Types</h1><ul>
+<li>Synchronous invocation<ul>
+<li>API Gateway, ALB</li>
+</ul>
+</li>
+<li>Asynchronous invocation<ul>
+<li>S3, SNS, EventBridge</li>
+</ul>
+</li>
+</ul>
+<h1 id="Event-Source-Mapping"><a href="#Event-Source-Mapping" class="headerlink" title="Event Source Mapping"></a>Event Source Mapping</h1><ul>
+<li>When triggered from sources that records need to be polled<ul>
+<li>SQS &amp; SQS FIFO queue</li>
+<li>Kinesis Data Streams</li>
+<li>DynamoDB Streams</li>
+</ul>
+</li>
+<li>Synchronous invocation</li>
+</ul>
+<h2 id="For-Kinesis-amp-DynamoDB"><a href="#For-Kinesis-amp-DynamoDB" class="headerlink" title="For Kinesis &amp; DynamoDB"></a>For Kinesis &amp; DynamoDB</h2><ul>
+<li>Use batch windows to accumulate records before processing</li>
+<li>You can process multiple batches in parallel<ul>
+<li>Up to 10 batches per shard</li>
+<li>One partition key per batch</li>
+<li>Processions within a batch are in-order</li>
+</ul>
+</li>
+</ul>
+<h2 id="For-SQS"><a href="#For-SQS" class="headerlink" title="For SQS"></a>For SQS</h2><ul>
+<li>Lambda uses long polling to retrieve records</li>
+<li>Number of batches is up to 10</li>
+<li>For SQS FIFO, concurrency is up to the number of active message groups to keep processing in order</li>
+<li>It is recommended that set the visibility time out to 6x the function timeout</li>
+<li>Set DLQ on the SQS side (Event Source Mapping uses synchronous invocation)</li>
+<li>Or you can use lambda destination for failures</li>
+</ul>
+<h2 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h2><ul>
+<li>Default<ul>
+<li>Lambda will keep retrying the entire batch until the items expire</li>
+<li>Then the precessing for the affected shard will be paused</li>
+</ul>
+</li>
+<li>Configuration<ul>
+<li>Discard old events</li>
+<li>Restrict retry times</li>
+<li>Split the batch on error (used for resolving timeout)</li>
+</ul>
+</li>
+<li>You can set Destination for discarded events</li>
+</ul>
+<h1 id="Destinations"><a href="#Destinations" class="headerlink" title="Destinations"></a>Destinations</h1><ul>
+<li>Asynchronous invocations<ul>
+<li>Set destinations for successful and failed events to<ul>
+<li>SQS, SNS, Lambda, EventBridge</li>
+</ul>
+</li>
+<li>It is recommended to use destinations in stead of DLQ of Lambda</li>
+</ul>
+</li>
+<li>Event source mapping<ul>
+<li>Set destinations for discarded event batch to<ul>
+<li>SQS, SNS</li>
+</ul>
+</li>
+<li>You can use DLQ of SQS instead</li>
+</ul>
+</li>
+</ul>
+<h1 id="Tracing-with-X-Ray"><a href="#Tracing-with-X-Ray" class="headerlink" title="Tracing with X-Ray"></a>Tracing with X-Ray</h1><ul>
+<li>Usage<ul>
+<li>Enable in Lambda configuration</li>
+<li>Use X-Ray SDK in code</li>
+<li>Attach <code>AWSXRayDaemonWriteAccess</code> policy to execution role</li>
+</ul>
+</li>
+<li>Environment variables<ul>
+<li><code>_X_AMZN_TRACE_ID</code>: tracing header</li>
+<li><code>AWS_XRAY_CONTEXT_MISSING</code>: LOG_ERROR by default</li>
+<li><code>AWS_XRAY_CONTEXT_ADDRESS</code>: X-Ray daemon IP address and port</li>
+</ul>
+</li>
+</ul>
+<h1 id="Lambda-in-VPC"><a href="#Lambda-in-VPC" class="headerlink" title="Lambda in VPC"></a>Lambda in VPC</h1><ul>
+<li>Lambda functions have no access to Internet if you place them in a public subnet</li>
+<li>You should place Lambda functions in a private subnet and attach a NAT Gateway / Instance</li>
+</ul>
+<h1 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h1><h2 id="Put-you-common-initial-codes-outside-handler"><a href="#Put-you-common-initial-codes-outside-handler" class="headerlink" title="Put you common initial codes outside handler"></a>Put you common initial codes outside handler</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lambda_handler</span><span class="params">(event, context)</span>:</span></span><br><span class="line">  connect_db()</span><br><span class="line">  do_something()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># good</span></span><br><span class="line">connect_db()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lambda_handler</span><span class="params">(event, context)</span>:</span></span><br><span class="line">  do_something()</span><br></pre></td></tr></table></figure>
+
+<h2 id="Use-tmp-directory-as-temporary-directory"><a href="#Use-tmp-directory-as-temporary-directory" class="headerlink" title="Use /tmp directory as temporary directory"></a>Use /tmp directory as temporary directory</h2><ul>
+<li>Max size is 512 MB</li>
+<li>The directory remains when the execution context is frozen, providing transient cache that can be used for multiple invocations</li>
+</ul>
+<h1 id="Define-Lambda-Function-in-CloudFormation"><a href="#Define-Lambda-Function-in-CloudFormation" class="headerlink" title="Define Lambda Function in CloudFormation"></a>Define Lambda Function in CloudFormation</h1><h2 id="Inline"><a href="#Inline" class="headerlink" title="Inline"></a>Inline</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  myLambdaFunction:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::Lambda::Function</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      Runtime:</span> <span class="string">python3.x</span></span><br><span class="line"><span class="attr">      Handler:</span> <span class="string">index.handler</span></span><br><span class="line"><span class="attr">      Code:</span></span><br><span class="line"><span class="attr">        ZipFile:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          def handler(event, context):</span></span><br><span class="line"><span class="string">            return 'OK!'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line"><span class="attr">  myLambdaFunction:</span></span><br><span class="line"><span class="attr">    Type:</span> <span class="attr">AWS::Lambda::Function</span></span><br><span class="line"><span class="attr">    Properties:</span></span><br><span class="line"><span class="attr">      Runtime:</span> <span class="string">python3.x</span></span><br><span class="line"><span class="attr">      Handler:</span> <span class="string">index.handler</span></span><br><span class="line"><span class="attr">      Code:</span></span><br><span class="line"><span class="attr">        S3Bucket:</span> <span class="string">myBucket</span></span><br><span class="line"><span class="attr">        S3Key:</span> <span class="string">myLambdaFunction.zip</span></span><br><span class="line"><span class="attr">        S3ObjectVersion:</span> <span class="string">myVersionString</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Layers"><a href="#Layers" class="headerlink" title="Layers"></a>Layers</h1><ul>
+<li>Custom Runtime</li>
+<li>Externalize Dependencies</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

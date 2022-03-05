@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Developer: Step Function - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Task-States"><span class="toc-text">Task States</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#States"><span class="toc-text">States</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Error-handling"><span class="toc-text">Error handling</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Workflow-Types"><span class="toc-text">Workflow Types</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Developer: Step Function
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-02-19 19:51:56</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - Developer" title="AWS - Developer">AWS - Developer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Task-States"><a href="#Task-States" class="headerlink" title="Task States"></a>Task States</h1><ul>
+<li>Invoke a service<ul>
+<li>Invoke a Lambda function</li>
+<li>Run a AWS Batch job</li>
+<li>Run a ECS task</li>
+<li>Insert an item to DynamoDB</li>
+<li>Publish a message to SNS or SQS</li>
+<li>Launch another Step Function workflow</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>Run an activity running in<ul>
+<li>EC2</li>
+<li>ECS</li>
+<li>On-premises</li>
+</ul>
+</li>
+</ul>
+<h1 id="States"><a href="#States" class="headerlink" title="States"></a>States</h1><ul>
+<li>Choice State</li>
+<li>Fail / Succeed State</li>
+<li>Pass State</li>
+<li>Wait State</li>
+<li>Map State</li>
+<li>Parallel State</li>
+</ul>
+<h1 id="Error-handling"><a href="#Error-handling" class="headerlink" title="Error handling"></a>Error handling</h1><ul>
+<li>Retry<ul>
+<li>ErrorEquals</li>
+<li>IntervalSeconds</li>
+<li>BackoffRate</li>
+<li>maxAttempts</li>
+</ul>
+</li>
+<li>Catch (if all retries fails)<ul>
+<li>ErrorEquals</li>
+<li>Next</li>
+<li>ResultPath: the path that error put</li>
+</ul>
+</li>
+<li>Predefined error codes<ul>
+<li>States.ALL</li>
+<li>States.Timeout</li>
+<li>States.taskFailed</li>
+<li>States.Permissions</li>
+</ul>
+</li>
+</ul>
+<h1 id="Workflow-Types"><a href="#Workflow-Types" class="headerlink" title="Workflow Types"></a>Workflow Types</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>Standard</th>
+<th>Express</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Maximum duration</td>
+<td>1 year</td>
+<td>5 minutes</td>
+</tr>
+<tr>
+<td>Start rate</td>
+<td>Over 2000 per second</td>
+<td>Over 100000 per second</td>
+</tr>
+<tr>
+<td>State transition rate</td>
+<td>Over 4000 per second</td>
+<td>Nearly unlimited</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>More expensive (different pricing mode)</td>
+<td>Cheaper (different pricing mode)</td>
+</tr>
+</tbody></table>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
