@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudFormation"><span class="toc-text">CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Data"><span class="toc-text">User Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-init"><span class="toc-text">cfn-init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-signal-amp-WaitConditions"><span class="toc-text">cfn-signal &amp; WaitConditions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Troubleshoot-when-signal-was-not-received"><span class="toc-text">Troubleshoot when signal was not received</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-init-amp-cfn-signal-sample"><span class="toc-text">cfn-init &amp; cfn-signal sample</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rollbacks"><span class="toc-text">Rollbacks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested-stack"><span class="toc-text">Nested stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deletion-policies-sample"><span class="toc-text">Deletion policies sample</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Termination-protection"><span class="toc-text">Termination protection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Referent-parameters-from-SSM-parameter-store"><span class="toc-text">Referent parameters from SSM parameter store</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DependsOn"><span class="toc-text">DependsOn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Define-Lambda-Function-in-CloudFormation"><span class="toc-text">Define Lambda Function in CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Inline"><span class="toc-text">Inline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Resources-Lambda"><span class="toc-text">Custom Resources (Lambda)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-Status-Code-UPDATE-ROLLBACK-FAILED"><span class="toc-text">Stack Status Code UPDATE_ROLLBACK_FAILED</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InsufficientCapabilitiesException"><span class="toc-text">InsufficientCapabilitiesException</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-hup"><span class="toc-text">cfn-hup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-policies"><span class="toc-text">Stack policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-known-features"><span class="toc-text">Other known features</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Elastic-Beanstalk"><span class="toc-text">Elastic Beanstalk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CLIs"><span class="toc-text">CLIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Saved-Configurations"><span class="toc-text">Saved Configurations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ebextensions-for-configurations"><span class="toc-text">.ebextensions for configurations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration-precedences"><span class="toc-text">Configuration precedences</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ebextensions-for-resources"><span class="toc-text">.ebextensions for resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ebextensions-for-commands"><span class="toc-text">.ebextensions for commands</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-version-lifecycle"><span class="toc-text">Application version lifecycle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Managed-Updates"><span class="toc-text">Managed Updates</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment-Strategies"><span class="toc-text">Deployment Strategies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Worker-Environment"><span class="toc-text">Worker Environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multi-container-Docker"><span class="toc-text">Multi-container Docker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lambda"><span class="toc-text">Lambda</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Secrets"><span class="toc-text">Secrets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAM"><span class="toc-text">SAM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAM-Deploy-Preferences"><span class="toc-text">SAM Deploy Preferences</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API-Gateway"><span class="toc-text">API Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Endpoint-Type"><span class="toc-text">Endpoint Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integration-Type"><span class="toc-text">Integration Type</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Important-Contents"><span class="toc-text">Important Contents</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudFormation"><span class="toc-text">CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#User-Data"><span class="toc-text">User Data</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-init"><span class="toc-text">cfn-init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-signal-amp-WaitConditions"><span class="toc-text">cfn-signal &amp; WaitConditions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Troubleshoot-when-signal-was-not-received"><span class="toc-text">Troubleshoot when signal was not received</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-init-amp-cfn-signal-sample"><span class="toc-text">cfn-init &amp; cfn-signal sample</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rollbacks"><span class="toc-text">Rollbacks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested-stack"><span class="toc-text">Nested stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deletion-policies-sample"><span class="toc-text">Deletion policies sample</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Termination-protection"><span class="toc-text">Termination protection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Referent-parameters-from-SSM-parameter-store"><span class="toc-text">Referent parameters from SSM parameter store</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DependsOn"><span class="toc-text">DependsOn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Define-Lambda-Function-in-CloudFormation"><span class="toc-text">Define Lambda Function in CloudFormation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Inline"><span class="toc-text">Inline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S3"><span class="toc-text">S3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Resources-Lambda"><span class="toc-text">Custom Resources (Lambda)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-Status-Code-UPDATE-ROLLBACK-FAILED"><span class="toc-text">Stack Status Code UPDATE_ROLLBACK_FAILED</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InsufficientCapabilitiesException"><span class="toc-text">InsufficientCapabilitiesException</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cfn-hup"><span class="toc-text">cfn-hup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-policies"><span class="toc-text">Stack policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-known-features"><span class="toc-text">Other known features</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Elastic-Beanstalk"><span class="toc-text">Elastic Beanstalk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CLIs"><span class="toc-text">CLIs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Saved-Configurations"><span class="toc-text">Saved Configurations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ebextensions-for-configurations"><span class="toc-text">.ebextensions for configurations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration-precedences"><span class="toc-text">Configuration precedences</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ebextensions-for-resources"><span class="toc-text">.ebextensions for resources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ebextensions-for-commands"><span class="toc-text">.ebextensions for commands</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-version-lifecycle"><span class="toc-text">Application version lifecycle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Managed-Updates"><span class="toc-text">Managed Updates</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment-Strategies"><span class="toc-text">Deployment Strategies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Worker-Environment"><span class="toc-text">Worker Environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multi-container-Docker"><span class="toc-text">Multi-container Docker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lambda"><span class="toc-text">Lambda</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Secrets"><span class="toc-text">Secrets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAM"><span class="toc-text">SAM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SAM-Deploy-Preferences"><span class="toc-text">SAM Deploy Preferences</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API-Gateway"><span class="toc-text">API Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Endpoint-Type"><span class="toc-text">Endpoint Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integration-Type"><span class="toc-text">Integration Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Canary-Deployment"><span class="toc-text">Canary Deployment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Known-features"><span class="toc-text">Known features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fronting-Step-Function"><span class="toc-text">Fronting Step Function</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ECS"><span class="toc-text">ECS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Logs-Integration"><span class="toc-text">CloudWatch Logs Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Metrics-Integration"><span class="toc-text">CloudWatch Metrics Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Events-Integration"><span class="toc-text">CloudWatch Events Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Identify-ECR-images"><span class="toc-text">Identify ECR images</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OpsWorks-Stacks"><span class="toc-text">OpsWorks Stacks</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#For-a-3-tier-web-application"><span class="toc-text">For a 3-tier web application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chef-cookbooks-sources"><span class="toc-text">Chef cookbooks sources</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Auto-Healing"><span class="toc-text">Auto Healing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scaling-Type"><span class="toc-text">Scaling Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lifecycle-Events"><span class="toc-text">Lifecycle Events</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-Attributes"><span class="toc-text">Configure Attributes</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -138,7 +138,11 @@
 
     </div>
     <div class="post-content no-indent">
-        <h1 id="CloudFormation"><a href="#CloudFormation" class="headerlink" title="CloudFormation"></a>CloudFormation</h1><h2 id="User-Data"><a href="#User-Data" class="headerlink" title="User Data"></a>User Data</h2><ul>
+        <h1 id="Important-Contents"><a href="#Important-Contents" class="headerlink" title="Important Contents"></a>Important Contents</h1><ul>
+<li>Developer: CloudFormation</li>
+<li>Developer: ECS</li>
+</ul>
+<h1 id="CloudFormation"><a href="#CloudFormation" class="headerlink" title="CloudFormation"></a>CloudFormation</h1><h2 id="User-Data"><a href="#User-Data" class="headerlink" title="User Data"></a>User Data</h2><ul>
 <li>Use Fn::Base64 to pass the user data</li>
 <li>User data is logged in /var/log/cloud-init-output.log file</li>
 </ul>
@@ -333,6 +337,99 @@
 <li>Mock</li>
 <li>AWS Service</li>
 <li>VPC Link</li>
+</ul>
+<h2 id="Canary-Deployment"><a href="#Canary-Deployment" class="headerlink" title="Canary Deployment"></a>Canary Deployment</h2><ul>
+<li>Create Canary on the stage</li>
+<li>Deploying API on the stage will use canary deployment</li>
+<li>You can change distribution or promote Canary</li>
+<li>If your backends are Lambda functions, you can use canary deployment on function alias as well</li>
+</ul>
+<h2 id="Known-features"><a href="#Known-features" class="headerlink" title="Known features"></a>Known features</h2><ul>
+<li>Stages and Stage Variables</li>
+<li>Usage Plans</li>
+</ul>
+<h2 id="Fronting-Step-Function"><a href="#Fronting-Step-Function" class="headerlink" title="Fronting Step Function"></a>Fronting Step Function</h2><ul>
+<li>Choose AWS Service as the integration type</li>
+<li>Need correct permissions to invoke Step Function state machines</li>
+<li>The output of state machines will not return to API Gateway. Only ARN and start date are in the response body</li>
+</ul>
+<h1 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h1><h2 id="CloudWatch-Logs-Integration"><a href="#CloudWatch-Logs-Integration" class="headerlink" title="CloudWatch Logs Integration"></a>CloudWatch Logs Integration</h2><ul>
+<li>You can configuration logs in task definition<ul>
+<li>Log driver: awslogs / splunk</li>
+<li>Execution role needs necessary CloudWatch permissions</li>
+</ul>
+</li>
+<li>You can install CloudWatch agent to send OS-level logs</li>
+</ul>
+<h2 id="CloudWatch-Metrics-Integration"><a href="#CloudWatch-Metrics-Integration" class="headerlink" title="CloudWatch Metrics Integration"></a>CloudWatch Metrics Integration</h2><ul>
+<li>Cluster level</li>
+<li>Cluster + Service level</li>
+<li>You can enable CloudWatch Container Insights to send metrics in each instances (need to pay)</li>
+</ul>
+<h2 id="CloudWatch-Events-Integration"><a href="#CloudWatch-Events-Integration" class="headerlink" title="CloudWatch Events Integration"></a>CloudWatch Events Integration</h2><ul>
+<li>ECS State Change can be Event Source<ul>
+<li>Container Instance, Task, etc.</li>
+</ul>
+</li>
+<li>Use schedule rule to start ESC tasks</li>
+</ul>
+<h2 id="Identify-ECR-images"><a href="#Identify-ECR-images" class="headerlink" title="Identify ECR images"></a>Identify ECR images</h2><ul>
+<li>Push images using different tags</li>
+<li>Using sha256 digests</li>
+</ul>
+<h1 id="OpsWorks-Stacks"><a href="#OpsWorks-Stacks" class="headerlink" title="OpsWorks Stacks"></a>OpsWorks Stacks</h1><h2 id="For-a-3-tier-web-application"><a href="#For-a-3-tier-web-application" class="headerlink" title="For a 3-tier web application"></a>For a 3-tier web application</h2><ul>
+<li>Stack<ul>
+<li>ELB Layer</li>
+<li>Application Layer (using Cookbook &amp; App Repository)</li>
+<li>RDS Layer (using Cookbook Repository)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Chef-cookbooks-sources"><a href="#Chef-cookbooks-sources" class="headerlink" title="Chef cookbooks sources"></a>Chef cookbooks sources</h2><ul>
+<li>Git</li>
+<li>HTTP</li>
+<li>S3</li>
+</ul>
+<h2 id="Auto-Healing"><a href="#Auto-Healing" class="headerlink" title="Auto Healing"></a>Auto Healing</h2><ul>
+<li>Re-provision the instance if it’s unhealthy</li>
+</ul>
+<h2 id="Scaling-Type"><a href="#Scaling-Type" class="headerlink" title="Scaling Type"></a>Scaling Type</h2><ul>
+<li>24/7</li>
+<li>Time-based</li>
+<li>Load-based</li>
+<li>Scaling type is defined at instance level (start &amp; stop), unlike ASG, it can not scale up &amp; down</li>
+</ul>
+<h2 id="Lifecycle-Events"><a href="#Lifecycle-Events" class="headerlink" title="Lifecycle Events"></a>Lifecycle Events</h2><ul>
+<li>Setup<ul>
+<li>After the instance has finished booting</li>
+</ul>
+</li>
+<li>Configure: will be triggered on all instances if one of the instances<ul>
+<li>enters / leaves the online state</li>
+<li>associate / disassociate an EIP</li>
+<li>attach / detach an ELB to / from a layer</li>
+</ul>
+</li>
+<li>Deploy<ul>
+<li>Run a Deploy command</li>
+<li>Setup includes Deploy</li>
+</ul>
+</li>
+<li>Undeploy<ul>
+<li>Run a Undeploy command</li>
+<li>Delete an app</li>
+</ul>
+</li>
+<li>Shutdown<ul>
+<li>Before the instance is terminated</li>
+</ul>
+</li>
+</ul>
+<h2 id="Configure-Attributes"><a href="#Configure-Attributes" class="headerlink" title="Configure Attributes"></a>Configure Attributes</h2><ul>
+<li>Information of all layers and all instances<ul>
+<li>IP, AZ, etc.</li>
+</ul>
+</li>
 </ul>
 
         
