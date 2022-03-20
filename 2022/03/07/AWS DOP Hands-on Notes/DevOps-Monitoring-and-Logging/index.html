@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DevOps: Monitoring and Logging - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudTrail"><span class="toc-text">CloudTrail</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudTrail-Trails"><span class="toc-text">CloudTrail Trails</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Log-File-Integrity-Validation"><span class="toc-text">Log File Integrity Validation</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CloudWatch"><span class="toc-text">CloudWatch</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Metrics"><span class="toc-text">CloudWatch Metrics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metrics-Retention"><span class="toc-text">Metrics Retention</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Metrics"><span class="toc-text">Custom Metrics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Export-Metrics"><span class="toc-text">Export Metrics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Alarms"><span class="toc-text">CloudWatch Alarms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Billing-Metrics-amp-Alarms"><span class="toc-text">Billing Metrics &amp; Alarms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unified-CloudWatch-Agent"><span class="toc-text">Unified CloudWatch Agent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-Logs-Integrated-with-CloudWatch-Logs"><span class="toc-text">Application Logs Integrated with CloudWatch Logs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Events-API-Call-via-CloudTrail"><span class="toc-text">CloudWatch Events - API Call via CloudTrail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Events-for-S3-vs-S3-Events"><span class="toc-text">CloudWatch Events for S3 vs. S3 Events</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudWatch-Dashboards"><span class="toc-text">CloudWatch Dashboards</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-Features"><span class="toc-text">Other Features</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#X-Ray"><span class="toc-text">X-Ray</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-CloudWatch-Events-to-send-events-when-X-Ray-Detects-Latency-amp-Errors"><span class="toc-text">Use CloudWatch Events to send events when X-Ray Detects Latency &amp; Errors</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DevOps: Monitoring and Logging
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-03-07 22:47:33</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - DevOps Engineer" title="AWS - DevOps Engineer">AWS - DevOps Engineer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="CloudTrail"><a href="#CloudTrail" class="headerlink" title="CloudTrail"></a>CloudTrail</h1><h2 id="CloudTrail-Trails"><a href="#CloudTrail-Trails" class="headerlink" title="CloudTrail Trails"></a>CloudTrail Trails</h2><ul>
+<li>Can be applied to specific region or all regions</li>
+<li>Event types: All, Read-only, Write-only, None</li>
+<li>Available data events: S3 object-level APIs, Lambda invoke function APIs</li>
+<li>Storage <ul>
+<li>S3 bucket (required) <ul>
+<li>SSE-S3 encryption by default, SSE-KMS alternatively</li>
+<li>Can be in another account (need correct bucket policy)</li>
+</ul>
+</li>
+<li>CloudWatch Logs (optional) </li>
+</ul>
+</li>
+<li>Send message to SNS topic when log file has been delivered</li>
+<li>Not real-time delivery (about 15 minutes delay)</li>
+</ul>
+<h2 id="Log-File-Integrity-Validation"><a href="#Log-File-Integrity-Validation" class="headerlink" title="Log File Integrity Validation"></a>Log File Integrity Validation</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cloudtrail validate-logs</span><br></pre></td></tr></table></figure>
+
+<h1 id="CloudWatch"><a href="#CloudWatch" class="headerlink" title="CloudWatch"></a>CloudWatch</h1><h2 id="CloudWatch-Metrics"><a href="#CloudWatch-Metrics" class="headerlink" title="CloudWatch Metrics"></a>CloudWatch Metrics</h2><ul>
+<li>EC2: CPU Utilization, Disk Reads/Writes (Instance store), Network In/Out, Status Check, CPU Credit</li>
+<li>EBS: Read/Write - Bandwidth, Throughput, Average Size, Average Latency; Average Queue Length, Time Spent Idle, Burst Balance<ul>
+<li>Not exist: Space used/left</li>
+</ul>
+</li>
+<li>ASG: Configurations, Instance number in each status<ul>
+<li>You can enable Group Metrics Collection to aggregate EC2 instance metrics in the ASG</li>
+</ul>
+</li>
+<li>ELB: Target Response Time, Requests, Target/HTTP Error Counts, Active/New Connection Count</li>
+<li>RDS: Exist - Free storage, RAM Usage, etc.</li>
+</ul>
+<h2 id="Metrics-Retention"><a href="#Metrics-Retention" class="headerlink" title="Metrics Retention"></a>Metrics Retention</h2><ul>
+<li>Less than 1 minute: 3 hours</li>
+<li>1 minute: 15 days</li>
+<li>5 minutes: 63 days</li>
+<li>1 hour: 15 months</li>
+</ul>
+<h2 id="Custom-Metrics"><a href="#Custom-Metrics" class="headerlink" title="Custom Metrics"></a>Custom Metrics</h2><ul>
+<li>You can upload a single metric or a metric set</li>
+</ul>
+<h2 id="Export-Metrics"><a href="#Export-Metrics" class="headerlink" title="Export Metrics"></a>Export Metrics</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cloudwatch get-metric-statistics</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>You can use Lambda function to perform scheduled export</li>
+</ul>
+<h2 id="CloudWatch-Alarms"><a href="#CloudWatch-Alarms" class="headerlink" title="CloudWatch Alarms"></a>CloudWatch Alarms</h2><ul>
+<li>Threshold type: Static / Anomaly detection</li>
+<li>Actions: SNS, Auto Scaling action, EC2 action</li>
+<li>CloudWatch Alarms is not a event source of CloudWatch Events</li>
+</ul>
+<h2 id="Billing-Metrics-amp-Alarms"><a href="#Billing-Metrics-amp-Alarms" class="headerlink" title="Billing Metrics &amp; Alarms"></a>Billing Metrics &amp; Alarms</h2><ul>
+<li>Only available in us-east-1 region</li>
+</ul>
+<h2 id="Unified-CloudWatch-Agent"><a href="#Unified-CloudWatch-Agent" class="headerlink" title="Unified CloudWatch Agent"></a>Unified CloudWatch Agent</h2><ul>
+<li>Send logs from log files to CloudWatch Logs</li>
+<li>Send custom metrics to CloudWatch Metrics</li>
+<li>Agent configuration can be stored into SSM Parameter Store</li>
+</ul>
+<h2 id="Application-Logs-Integrated-with-CloudWatch-Logs"><a href="#Application-Logs-Integrated-with-CloudWatch-Logs" class="headerlink" title="Application Logs Integrated with CloudWatch Logs"></a>Application Logs Integrated with CloudWatch Logs</h2><ul>
+<li>Lambda</li>
+<li>ECS</li>
+<li>Elastic Beanstalk</li>
+</ul>
+<h2 id="CloudWatch-Events-API-Call-via-CloudTrail"><a href="#CloudWatch-Events-API-Call-via-CloudTrail" class="headerlink" title="CloudWatch Events - API Call via CloudTrail"></a>CloudWatch Events - API Call via CloudTrail</h2><ul>
+<li>Use API calls as event sources<ul>
+<li>Except for read-only APIs such as List, Get, Describe</li>
+</ul>
+</li>
+</ul>
+<h2 id="CloudWatch-Events-for-S3-vs-S3-Events"><a href="#CloudWatch-Events-for-S3-vs-S3-Events" class="headerlink" title="CloudWatch Events for S3 vs. S3 Events"></a>CloudWatch Events for S3 vs. S3 Events</h2><ul>
+<li>CloudWatch Events for S3<ul>
+<li>Bucket Level Operations</li>
+<li>Object Level Operations: must enable object-level API tracking in CloudTrail for the target S3 buckets</li>
+</ul>
+</li>
+<li>S3 Events<ul>
+<li>Object Level Operations only</li>
+</ul>
+</li>
+</ul>
+<h2 id="CloudWatch-Dashboards"><a href="#CloudWatch-Dashboards" class="headerlink" title="CloudWatch Dashboards"></a>CloudWatch Dashboards</h2><ul>
+<li>Correlate multiple metrics in one view</li>
+</ul>
+<h2 id="Other-Features"><a href="#Other-Features" class="headerlink" title="Other Features"></a>Other Features</h2><ul>
+<li>CloudWatch Logs - Metric Filters</li>
+<li>CloudWatch Logs - Subscriptions</li>
+</ul>
+<h1 id="X-Ray"><a href="#X-Ray" class="headerlink" title="X-Ray"></a>X-Ray</h1><h2 id="Use-CloudWatch-Events-to-send-events-when-X-Ray-Detects-Latency-amp-Errors"><a href="#Use-CloudWatch-Events-to-send-events-when-X-Ray-Detects-Latency-amp-Errors" class="headerlink" title="Use CloudWatch Events to send events when X-Ray Detects Latency &amp; Errors"></a>Use CloudWatch Events to send events when X-Ray Detects Latency &amp; Errors</h2><ul>
+<li>Create a schedule CloudWatch Events rule to trigger a Lambda function</li>
+<li>Calls GetServiceGraph API in the Lambda function</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
