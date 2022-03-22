@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DevOps: Policies and Standards Automation - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SSM"><span class="toc-text">SSM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Setup-SSM-on-Instances"><span class="toc-text">Setup SSM on Instances</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resource-Groups"><span class="toc-text">Resource Groups</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Run-Command"><span class="toc-text">Run Command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parameter-Store"><span class="toc-text">Parameter Store</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Patch-Manager"><span class="toc-text">Patch Manager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Inventory"><span class="toc-text">Inventory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Automations"><span class="toc-text">Automations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session-Manager"><span class="toc-text">Session Manager</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Config"><span class="toc-text">Config</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration"><span class="toc-text">Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rules"><span class="toc-text">Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Automations-1"><span class="toc-text">Automations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Aggregator"><span class="toc-text">Aggregator</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Inspector"><span class="toc-text">Inspector</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Health"><span class="toc-text">Health</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Trusted-Advisor"><span class="toc-text">Trusted Advisor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GuardDuty"><span class="toc-text">GuardDuty</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Macie"><span class="toc-text">Macie</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Secrets-Manager"><span class="toc-text">Secrets Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#License-Manager"><span class="toc-text">License Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cost-Allocation-Tags"><span class="toc-text">Cost Allocation Tags</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DevOps: Policies and Standards Automation
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-03-21 12:08:08</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - DevOps Engineer" title="AWS - DevOps Engineer">AWS - DevOps Engineer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="SSM"><a href="#SSM" class="headerlink" title="SSM"></a>SSM</h1><h2 id="Setup-SSM-on-Instances"><a href="#Setup-SSM-on-Instances" class="headerlink" title="Setup SSM on Instances"></a>Setup SSM on Instances</h2><ul>
+<li>EC2<ul>
+<li>Attach a role with necessary permissions to communicate with SSM</li>
+<li>Install SSM agent if it was not installed by default</li>
+</ul>
+</li>
+<li>On-Premise (Hybrid Activations)<ul>
+<li>Install SSM agent</li>
+<li>Create an activation<ul>
+<li>Create a role used by on-premise instances</li>
+<li>Get the <code>Activation Code</code> and <code>Activation ID</code></li>
+</ul>
+</li>
+<li>Register the activation with the SSM agent using code and ID</li>
+<li>The instance will be registered with an instance ID with the prefix “mi-“</li>
+<li>Start SSM agent</li>
+</ul>
+</li>
+</ul>
+<h2 id="Resource-Groups"><a href="#Resource-Groups" class="headerlink" title="Resource Groups"></a>Resource Groups</h2><ul>
+<li>Group Type<ul>
+<li>Tag based</li>
+<li>CloudFormation stack based</li>
+</ul>
+</li>
+</ul>
+<h2 id="Run-Command"><a href="#Run-Command" class="headerlink" title="Run Command"></a>Run Command</h2><ul>
+<li>Run Command Documents<ul>
+<li>Use the documents in type of <code>Command</code></li>
+<li>Ex. AWS-UpdateSMMAgent, AWS-RunShellScript</li>
+</ul>
+</li>
+<li>Targets<ul>
+<li>Specify instance tags</li>
+<li>Choose instances manually</li>
+<li>Choose a resource group</li>
+</ul>
+</li>
+<li>Rate Control<ul>
+<li>Concurrency</li>
+<li>Error threshold</li>
+</ul>
+</li>
+<li>Output<ul>
+<li>Write commend output to a S3 bucket</li>
+</ul>
+</li>
+</ul>
+<h2 id="Parameter-Store"><a href="#Parameter-Store" class="headerlink" title="Parameter Store"></a>Parameter Store</h2><ul>
+<li>Nothing new</li>
+</ul>
+<h2 id="Patch-Manager"><a href="#Patch-Manager" class="headerlink" title="Patch Manager"></a>Patch Manager</h2><ul>
+<li>Patch baseline<ul>
+<li>Approval rules</li>
+<li>Patch exceptions<ul>
+<li>Packages, CVEs, etc.</li>
+</ul>
+</li>
+<li>Patch sources</li>
+</ul>
+</li>
+<li>Maintenance windows<ul>
+<li>Create a maintenance window</li>
+<li>Register target</li>
+<li>Register Run Command task (AWS-RunPatchBaseline document)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Inventory"><a href="#Inventory" class="headerlink" title="Inventory"></a>Inventory</h2><ul>
+<li>Get information from SSM managed instances</li>
+</ul>
+<h2 id="Automations"><a href="#Automations" class="headerlink" title="Automations"></a>Automations</h2><ul>
+<li>Use cases<ul>
+<li>Perform common IT tasks</li>
+<li>Safely perform disruptive tasks in bulk</li>
+<li>Simplify complex tasks<ul>
+<li>Ex. creating a AMI after patching a previous AMI</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Session-Manager"><a href="#Session-Manager" class="headerlink" title="Session Manager"></a>Session Manager</h2><ul>
+<li>Nothing new</li>
+</ul>
+<h1 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h1><h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><ul>
+<li>Configuration / Compliance timeline</li>
+<li>Configuration Details</li>
+<li>Relationships</li>
+<li>Changes</li>
+<li>CloudTrail Events</li>
+</ul>
+<h2 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h2><ul>
+<li>Rules<ul>
+<li>AWS managed rules</li>
+<li>Custom rules: use Lambda functions</li>
+</ul>
+</li>
+<li>Trigger<ul>
+<li>Configuration changes</li>
+<li>Periodic</li>
+</ul>
+</li>
+<li>Remediation action</li>
+</ul>
+<h2 id="Automations-1"><a href="#Automations-1" class="headerlink" title="Automations"></a>Automations</h2><ul>
+<li>SNS</li>
+<li>CloudWatch Events</li>
+<li>Remediation actions (using SSM Automations)</li>
+</ul>
+<h2 id="Aggregator"><a href="#Aggregator" class="headerlink" title="Aggregator"></a>Aggregator</h2><ul>
+<li>Multi-account &amp; multi-region</li>
+<li>Create a aggregator in the aggregator account</li>
+<li>Create a authorization in the member account</li>
+</ul>
+<h1 id="Inspector"><a href="#Inspector" class="headerlink" title="Inspector"></a>Inspector</h1><ul>
+<li>Install the Inspector agent on EC2 instances<ul>
+<li>If you install agent from inspector console, it will use SSM Run Command to run <code>AmazonInspector-ManageAWSAgent</code> document</li>
+</ul>
+</li>
+<li>Run assessments for the target<ul>
+<li>Network assessments (Inspector agent is not required)<ul>
+<li>Ports reachability</li>
+</ul>
+</li>
+<li>Host assessments<ul>
+<li>CVE</li>
+<li>CIS benchmarks</li>
+<li>Security best practices</li>
+</ul>
+</li>
+<li>Duration: 1 hour by default</li>
+<li>Schedule: CloudWatch Events will be used</li>
+</ul>
+</li>
+<li>Review findings and remediate security issues<ul>
+<li>Send messages to a SNS topic (further invoke Lambda functions to remediate the issues)</li>
+</ul>
+</li>
+</ul>
+<h1 id="Health"><a href="#Health" class="headerlink" title="Health"></a>Health</h1><ul>
+<li>Global Health</li>
+<li>Personal Health<ul>
+<li>You can use CloudWatch Events to perform automation</li>
+<li>Use case: AWS_RISK_CREDENTIALS_EXPOSED</li>
+</ul>
+</li>
+</ul>
+<h1 id="Trusted-Advisor"><a href="#Trusted-Advisor" class="headerlink" title="Trusted Advisor"></a>Trusted Advisor</h1><ul>
+<li>Weekly Email Notification<ul>
+<li>Billing Contact</li>
+<li>Operations Contact</li>
+<li>Security Contact</li>
+</ul>
+</li>
+<li>Automations<ul>
+<li>CloudWatch Events (Trusted Advisor is a global service, so you have to set region to us-east-1)</li>
+<li>Trusted Advisor Tools (An application, you can deploy it to a Lambda function)<ul>
+<li>You can use Trusted Advisor to detect and remediate exposed keys as well</li>
+</ul>
+</li>
+<li>Trusted Advisor Metrics (only available for business and enterprise support)</li>
+</ul>
+</li>
+<li>Refresh<ul>
+<li>Limitation: once every 5 minutes</li>
+<li>APIs<ul>
+<li>refresh-trusted-advisor-checks</li>
+<li>describe-trusted-advisor-checks-*</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="GuardDuty"><a href="#GuardDuty" class="headerlink" title="GuardDuty"></a>GuardDuty</h1><ul>
+<li>Intelligent Threat detection</li>
+<li>Logs used<ul>
+<li>CloudTrail Logs</li>
+<li>VPC Flow Logs</li>
+<li>DNS query logs</li>
+</ul>
+</li>
+</ul>
+<h1 id="Macie"><a href="#Macie" class="headerlink" title="Macie"></a>Macie</h1><ul>
+<li>Sensitive data detection in S3</li>
+<li>Support multi-accounts</li>
+</ul>
+<h1 id="Secrets-Manager"><a href="#Secrets-Manager" class="headerlink" title="Secrets Manager"></a>Secrets Manager</h1><ul>
+<li>Vs. SSM Parameter Store<ul>
+<li>Rotation feature including automatic rotation</li>
+<li>Credentials for RDS, Redshift, DocumentDB</li>
+</ul>
+</li>
+</ul>
+<h1 id="License-Manager"><a href="#License-Manager" class="headerlink" title="License Manager"></a>License Manager</h1><ul>
+<li>Types<ul>
+<li>vCPU</li>
+<li>Cores</li>
+<li>Sockets</li>
+<li>Instances</li>
+</ul>
+</li>
+<li>Associate to<ul>
+<li>Resources</li>
+<li>AMIs</li>
+</ul>
+</li>
+</ul>
+<h1 id="Cost-Allocation-Tags"><a href="#Cost-Allocation-Tags" class="headerlink" title="Cost Allocation Tags"></a>Cost Allocation Tags</h1><ul>
+<li>AWS managed tags<ul>
+<li>You can activate them</li>
+<li>Not shown in Tag Editor</li>
+</ul>
+</li>
+<li>Custom tags<ul>
+<li>Select tag keys</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
