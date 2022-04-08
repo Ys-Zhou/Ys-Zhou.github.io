@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DevOps: HA, Fault Tolerance, and DR - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ASG"><span class="toc-text">ASG</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-ASG-from-Launch-Configuration"><span class="toc-text">Create ASG from Launch Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-ASG-from-Launch-Template"><span class="toc-text">Create ASG from Launch Template</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scheduled-Action"><span class="toc-text">Scheduled Action</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scaling-policies"><span class="toc-text">Scaling policies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Target-Tracking-Scaling"><span class="toc-text">Target Tracking Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Simple-Scaling"><span class="toc-text">Simple Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scaling-with-Steps"><span class="toc-text">Scaling with Steps</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ELB-Integration"><span class="toc-text">ELB Integration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Slow-start-duration-of-target-group"><span class="toc-text">Slow start duration of target group</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Suspended-Processes"><span class="toc-text">Suspended Processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instance-Actions"><span class="toc-text">Instance Actions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Detach-Instances"><span class="toc-text">Detach Instances</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-Instances-to-Standby"><span class="toc-text">Set Instances to Standby</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scale-In-Protection"><span class="toc-text">Scale In Protection</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lifecycle-Hooks"><span class="toc-text">Lifecycle Hooks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Termination-Policies"><span class="toc-text">Termination Policies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudFormation-Integration"><span class="toc-text">CloudFormation Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CodeDeploy-Integration"><span class="toc-text">CodeDeploy Integration</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DynamoDB"><span class="toc-text">DynamoDB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EBS"><span class="toc-text">EBS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Route-53"><span class="toc-text">Route 53</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Backups"><span class="toc-text">Backups</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DevOps: HA, Fault Tolerance, and DR
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-03-23 23:15:30</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - DevOps Engineer" title="AWS - DevOps Engineer">AWS - DevOps Engineer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="ASG"><a href="#ASG" class="headerlink" title="ASG"></a>ASG</h1><h2 id="Create-ASG-from-Launch-Configuration"><a href="#Create-ASG-from-Launch-Configuration" class="headerlink" title="Create ASG from Launch Configuration"></a>Create ASG from Launch Configuration</h2><ul>
+<li>Old way</li>
+<li>Create Launch Configuration<ul>
+<li>Choose AMI, instance type, and other EC2 instance configure details</li>
+<li>Add Storage (EBS)</li>
+<li>Configure SGs</li>
+</ul>
+</li>
+<li>Create ASG<ul>
+<li>Configure group size, VPC, subnets</li>
+<li>Configure scaling policies</li>
+<li>Configure notifications</li>
+<li>Configure tags (optional to apply to instances)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Create-ASG-from-Launch-Template"><a href="#Create-ASG-from-Launch-Template" class="headerlink" title="Create ASG from Launch Template"></a>Create ASG from Launch Template</h2><ul>
+<li>New, recommended way: allow to create a combination of instance types and purchase options</li>
+<li>Create Launch Template<ul>
+<li>Choose to create a template or a template version</li>
+<li>Able to create from a source template</li>
+<li>Configure template contents<ul>
+<li>AMI</li>
+<li>Instance types: allow multiple values or not specify</li>
+<li>Key pair name: allow not to specify</li>
+<li>SGs</li>
+</ul>
+</li>
+<li>Other configurations<ul>
+<li>ENI, EBS, tags, and etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Create ASG<ul>
+<li>You can create a EC2 instance or Spot Fleet from Launch Template as well</li>
+<li>Choose template version</li>
+<li>Able to create an ASG that combine purchase options and instances</li>
+<li>The rests are same as Launch Configuration</li>
+</ul>
+</li>
+</ul>
+<h2 id="Scheduled-Action"><a href="#Scheduled-Action" class="headerlink" title="Scheduled Action"></a>Scheduled Action</h2><ul>
+<li>Configure min, max and desired capacity for an ASG at a schedule (such as corn)</li>
+</ul>
+<h2 id="Scaling-policies"><a href="#Scaling-policies" class="headerlink" title="Scaling policies"></a>Scaling policies</h2><ul>
+<li>Cooldown: seconds to next scaling action</li>
+<li>If you want to use SQS message depth as a metric, you have to push the metric as a custom metric to CloudWatch Metrics</li>
+</ul>
+<h3 id="Target-Tracking-Scaling"><a href="#Target-Tracking-Scaling" class="headerlink" title="Target Tracking Scaling"></a>Target Tracking Scaling</h3><ul>
+<li>Metric types<ul>
+<li>ALB request count per target</li>
+<li>Avg. CPU utilization</li>
+<li>Avg. network in</li>
+<li>Avg. network out</li>
+</ul>
+</li>
+<li>Warm up: seconds to count instance metric after scaled in</li>
+<li>Able to disable scale-in</li>
+</ul>
+<h3 id="Simple-Scaling"><a href="#Simple-Scaling" class="headerlink" title="Simple Scaling"></a>Simple Scaling</h3><ul>
+<li>Set a CloudWatch Alarm</li>
+<li>Configure an action when the metric is in alarm<ul>
+<li>Add n instances</li>
+<li>Remove n instances</li>
+<li>Set to n instances</li>
+</ul>
+</li>
+</ul>
+<h3 id="Scaling-with-Steps"><a href="#Scaling-with-Steps" class="headerlink" title="Scaling with Steps"></a>Scaling with Steps</h3><ul>
+<li>Configure actions when the metric is in different condition</li>
+</ul>
+<h2 id="ELB-Integration"><a href="#ELB-Integration" class="headerlink" title="ELB Integration"></a>ELB Integration</h2><ul>
+<li>Configure health check &amp; target group in ELB</li>
+<li>Set the target group to ASG</li>
+<li>Configure health check of ASG from EC2 to ELB</li>
+</ul>
+<h3 id="Slow-start-duration-of-target-group"><a href="#Slow-start-duration-of-target-group" class="headerlink" title="Slow start duration of target group"></a>Slow start duration of target group</h3><ul>
+<li>Seconds to receive connection in full capacity</li>
+</ul>
+<h2 id="Suspended-Processes"><a href="#Suspended-Processes" class="headerlink" title="Suspended Processes"></a>Suspended Processes</h2><ul>
+<li>Suspend some ASG actions for some purpose like troubleshooting<ul>
+<li>Launch, Terminate, HealthCheck, ReplaceUnhealthy, AZRebalance, AlarmNotification, ScheduledActions, AddToLoadBalancer</li>
+</ul>
+</li>
+<li>If you remove actions from Suspend Processes, the actions will not be redone automatically</li>
+</ul>
+<h2 id="Instance-Actions"><a href="#Instance-Actions" class="headerlink" title="Instance Actions"></a>Instance Actions</h2><h3 id="Detach-Instances"><a href="#Detach-Instances" class="headerlink" title="Detach Instances"></a>Detach Instances</h3><ul>
+<li>Instances will be removed from ASG as well as ELBs</li>
+<li>New instances will be launched into the ASG and associated to the ELBs</li>
+</ul>
+<h3 id="Set-Instances-to-Standby"><a href="#Set-Instances-to-Standby" class="headerlink" title="Set Instances to Standby"></a>Set Instances to Standby</h3><ul>
+<li>Instances will be removed from associated ELBs only</li>
+<li>You can set the instances back to InService</li>
+</ul>
+<h3 id="Scale-In-Protection"><a href="#Scale-In-Protection" class="headerlink" title="Scale In Protection"></a>Scale In Protection</h3><ul>
+<li>The instances will never be terminated</li>
+<li>You can dynamically call the API from instances to protect<br>instances to be terminated when they are in processing</li>
+</ul>
+<h2 id="Lifecycle-Hooks"><a href="#Lifecycle-Hooks" class="headerlink" title="Lifecycle Hooks"></a>Lifecycle Hooks</h2><ul>
+<li>Hooks<ul>
+<li>Pending:Wait -&gt; Pending:Proceed</li>
+<li>Terminating:Wait -&gt; Terminating:Proceed</li>
+</ul>
+</li>
+<li>Actions<ul>
+<li>Lambda using CloudWatch Events</li>
+<li>SNS</li>
+<li>SQS</li>
+</ul>
+</li>
+</ul>
+<h2 id="Termination-Policies"><a href="#Termination-Policies" class="headerlink" title="Termination Policies"></a>Termination Policies</h2><ul>
+<li>Default<ul>
+<li>Balance AZ</li>
+<li>AllocationStrategy</li>
+<li>OldestLaunchTemplate / OldestLaunchConfiguration</li>
+<li>ClosestToNextInstanceHour</li>
+<li>Random</li>
+</ul>
+</li>
+<li>OldestInstance</li>
+<li>NewestInstance</li>
+<li>OldestLaunchConfiguration</li>
+<li>OldestLaunchTemplate</li>
+<li>ClosestToNextInstanceHour</li>
+<li>AllocationStrategy</li>
+</ul>
+<h2 id="CloudFormation-Integration"><a href="#CloudFormation-Integration" class="headerlink" title="CloudFormation Integration"></a>CloudFormation Integration</h2><ul>
+<li>Use CreatePolicy &amp; cfn-signal to make sure that the instances of the ASG is launched</li>
+<li>Update ASG configuration in CloudFormation will not update instances, use UpdatePolicy<ul>
+<li>AutoScalingReplacingUpdate / AutoScalingRollingUpdate</li>
+<li>AutoScalingScheduledAction (temporarily configuration)</li>
+</ul>
+</li>
+</ul>
+<h2 id="CodeDeploy-Integration"><a href="#CodeDeploy-Integration" class="headerlink" title="CodeDeploy Integration"></a>CodeDeploy Integration</h2><ul>
+<li>ASG scale-out action will trigger associated CodeDeploy deployments</li>
+<li>A new ASG will also be created on blue/green deployment as well as a new target group</li>
+<li>When a scale-out action happens during deployment, the new instance will trigger the old deployment<ul>
+<li>It is recommended to suspend actions during CodeDeploy deployment</li>
+</ul>
+</li>
+</ul>
+<h1 id="DynamoDB"><a href="#DynamoDB" class="headerlink" title="DynamoDB"></a>DynamoDB</h1><ul>
+<li>More than 2 Lambda function read from a DynamoDB stream may cause throttling<ul>
+<li>Use Lambda &amp; SNS to perform fan-out</li>
+</ul>
+</li>
+</ul>
+<h1 id="EBS"><a href="#EBS" class="headerlink" title="EBS"></a>EBS</h1><ul>
+<li>You can use backup hooked to Terminate Hook to create snapshot into another AZ automatically</li>
+<li>For PIOPS volumns, read the entire volume once (pre-warming blocks) to get max performance after snapshot</li>
+</ul>
+<h1 id="Route-53"><a href="#Route-53" class="headerlink" title="Route 53"></a>Route 53</h1><ul>
+<li>Route 53 health check is integrated with CloudWatch Alarms &amp; Metrics</li>
+</ul>
+<h1 id="Backups"><a href="#Backups" class="headerlink" title="Backups"></a>Backups</h1><ul>
+<li>EFS<ul>
+<li>AWS Backup with EFS</li>
+<li>Through EC2 (same region)</li>
+<li>Through S3 CRR &amp; EC2 (cross regions)</li>
+</ul>
+</li>
+<li>Route 53<ul>
+<li>Use ListResourceRecordSets API for exports</li>
+</ul>
+</li>
+<li>Elastic Beanstalk<ul>
+<li>Saved configuration</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

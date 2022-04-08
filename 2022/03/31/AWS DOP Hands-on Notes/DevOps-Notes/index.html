@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        DevOps: Notes - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        DevOps: Notes
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-03-31 13:41:15</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#AWS - DevOps Engineer" title="AWS - DevOps Engineer">AWS - DevOps Engineer</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <p><strong>This article is just a review note for myself which dose not cover all of the topics. Please check my other articles in the DevOps category.</strong></p>
+<ul>
+<li>OpsWorks<ul>
+<li>Has auto-healing &amp; auto-scaling features</li>
+<li>Life cycle event - configure<ul>
+<li>Will be called on all instances</li>
+<li>If one instance enters / leaves the online state</li>
+</ul>
+</li>
+<li>Instance Scaling Type (not Auto Scaling)<ul>
+<li>24/7, time-based, load-based</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CodeBuild<ul>
+<li>Can run test without any integrations</li>
+<li>Can reference environment variables in <code>buildspec.yml</code></li>
+<li>Source information is included in <code>CODEBUILD_SOURCE_VERSION</code><ul>
+<li>S3: version ID</li>
+<li>CodeCommit: commit ID or branch name</li>
+</ul>
+</li>
+<li>Jenkins<ul>
+<li>CodeBuild plugin: let CodeBuild to provision, configure, manage build nodes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CodePipeline<ul>
+<li>Three CloudWatch Events source types: pipeline state change, stage state change, action state change</li>
+<li>Cross-region actions<ul>
+<li>Automatically copy the input artifacts</li>
+<li>Not support for source actions, 3rd-party actions, custom actions</li>
+</ul>
+</li>
+<li>Can provide parameters to CloudFormation templates such as environment variables</li>
+<li>Custom actions: Lambda function &amp; custom job worker</li>
+</ul>
+</li>
+<li>CodeDeploy<ul>
+<li>Deployment<ul>
+<li>EC2: in-place (rolling), blue/green</li>
+<li>On-premises: in-place (rolling)</li>
+<li>Lambda / ECS: canary, linear, all-at-once</li>
+</ul>
+</li>
+<li>Lambda revision cannot be stored in Github repositories</li>
+<li>Only Before* and After* hooks can be customized</li>
+<li>ECS hooks: *Install -&gt; AfterAllowTestTraffic -&gt; *AllowTraffic</li>
+<li>Custom scripts: return 0 = succeeded; return non-zero = failed</li>
+<li>Options for files which is not deployed by CodeDeploy<ul>
+<li>File the deployment</li>
+<li>Overwrite the content</li>
+<li>Retain the content</li>
+</ul>
+</li>
+<li>Can use both IAM user and role to register on-premises instances using <code>register-on-premises-instance</code></li>
+</ul>
+</li>
+<li>Config<ul>
+<li>Can only send configuration changes to SNS, not specific alerts. Use CloudWatch Events instead.</li>
+<li>Aggregator &amp; aggregator view</li>
+</ul>
+</li>
+<li>S3<ul>
+<li>Bucket policy condition <code>&quot;aws:SecureTransport&quot;: &quot;true/false&quot;</code> represents for HTTP / HTTPS</li>
+</ul>
+</li>
+<li>ASG<ul>
+<li>Auto Scaling Hooks have a one-hour default timeout (pending / terminating : wait / proceed)</li>
+<li>EC2 termination protection does not prevent ASG to terminate instances (only from users)</li>
+<li>Scheduled scaling action: time with minimum, maximum, desired size</li>
+</ul>
+</li>
+<li>ELB<ul>
+<li>Access logging</li>
+</ul>
+</li>
+<li>AMI<ul>
+<li>Users can share AMIs to specific accounts without setting the AMIs to public</li>
+</ul>
+</li>
+<li>CloudWatch Events<ul>
+<li>Many services such as DynamoDB provide event type <code>AWS API Call via CloudTrail</code><ul>
+<li>API call -&gt; trigger a CloudWatch Events event</li>
+<li>Within the region where the API call happens</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CloudWatch Logs<ul>
+<li>Cross-account log sharing: subscripting -(cross-account)-&gt; destination -&gt; KDS/KDF</li>
+<li>ECS tasks can use the awslogs log driver for sending logs to CloudWatch Logs. Need correct EC2 instance role (not ECS task role)</li>
+</ul>
+</li>
+<li>CloudWatch Metrics<ul>
+<li>CloudWatch Metrics stream: send metrics to KDF or 3rd party providers as stream</li>
+</ul>
+</li>
+<li>CloudTrail<ul>
+<li>Enable log file validation option</li>
+<li>Data events: S3 object-level API, Lambda Invoke API</li>
+</ul>
+</li>
+<li>CloudFormation<ul>
+<li>Cannot “force” delete a S3 bucket - use a custom resource backed by a Lambda function to empty the bucket first</li>
+<li>Use custom resources to dynamically generate parameters such as AMI ID</li>
+<li>UpdatePolicy for ASG: <code>AutoScalingRollingUpdate</code> / <code>AutoScalingReplacingUpdate</code><ul>
+<li><code>WillReplace</code> for <code>AutoScalingReplacingUpdate</code>: true for replacing whole ELB &amp; ASG</li>
+<li><code>WaitOnResourceSignals</code> and <code>MinSuccessfulInstancesPercent</code>: successful deployment conditions</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SSM<ul>
+<li>SSM Inventory: collect metadata from managed instances including EC2 and on-premise instances<ul>
+<li>Provide a dashboard view as well</li>
+</ul>
+</li>
+<li>Register on-premises instances<ul>
+<li>Create an IAM Service Role</li>
+<li>Register instances using activation code and activation ID</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Kinesis<ul>
+<li>KCL - <code>MillisBehindLatest</code> metric: The difference in time between the latest record and the current time</li>
+</ul>
+</li>
+<li>Elastic Beanstalk<ul>
+<li>CNAME swap for environments can be used in blue/green deployment<ul>
+<li>Not integrated with CodeBuild or CloudFormation, need create a Lambda function to call the API</li>
+</ul>
+</li>
+<li><code>cron.yaml</code> in worker environment</li>
+<li>Automatically rollback to old version if deployment failed or health check failed</li>
+<li>Decouple RDS: need delete the security group first</li>
+</ul>
+</li>
+<li>API Gateway<ul>
+<li>Able to trigger many AWS services such as Step Function without using Lambda function (integration type - AWS)</li>
+<li>Canary deployment is available at stage level. Another available option is to use Lambda canary deployment</li>
+</ul>
+</li>
+<li>ECS<ul>
+<li>Add sha256 to ImageID to point to a specific image</li>
+<li>Use <code>force-new-deployment</code> option to re-deploy tasks without service definition changes</li>
+</ul>
+</li>
+<li>Health<ul>
+<li>Create AWS_RISK_CREDENTIALS_EXPOSED event</li>
+<li>Include AWS-scheduled maintenance activities</li>
+</ul>
+</li>
+<li>RDS<ul>
+<li>Engine version is defined in property <code>EngineVersion</code></li>
+</ul>
+</li>
+<li>Route 53<ul>
+<li>Health check<ul>
+<li>You have to create health checks manually for non-alias records</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>VM Import/Export<ul>
+<li>You cannot download AWS-managed AMI directly such Amazon Linux 2. Use this service to export AMI to S3 and then download it.</li>
+</ul>
+</li>
+<li>SES<ul>
+<li>Cannot be used for sending notification emails (not a CloudWatch Events target)</li>
+</ul>
+</li>
+<li>Trust Advisor<ul>
+<li>Only send weekly notification email (use CloudWatch Events and SNS to send notification more frequently)</li>
+</ul>
+</li>
+<li>DynamoDB<ul>
+<li>Use Kinesis Adapter in KCL is the recommended method to handle DynamoDB Streams</li>
+</ul>
+</li>
+<li>EC2<ul>
+<li>EC2 Rescue Tool (has SSM Automations integration)</li>
+</ul>
+</li>
+<li>Lambda<ul>
+<li>Alias has Traffic Shift feature</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
