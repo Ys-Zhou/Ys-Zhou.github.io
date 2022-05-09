@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        K8S - Core Concepts - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ETCD"><span class="toc-text">ETCD</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ETCD-in-Kubernetes"><span class="toc-text">ETCD in Kubernetes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kube-Apiserver"><span class="toc-text">Kube-Apiserver</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kube-Controller-Manager"><span class="toc-text">Kube-Controller-Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kube-Scheduler"><span class="toc-text">Kube-Scheduler</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kublet"><span class="toc-text">Kublet</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kube-Proxy"><span class="toc-text">Kube-Proxy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Recap"><span class="toc-text">Recap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pods-po"><span class="toc-text">Pods (po)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReplicaSets-rs"><span class="toc-text">ReplicaSets (rs)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployments-deploy"><span class="toc-text">Deployments (deploy)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Services-svc"><span class="toc-text">Services (svc)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Namespaces-ns-n"><span class="toc-text">Namespaces (ns / -n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ResourceQuotas-quota"><span class="toc-text">ResourceQuotas (quota)</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        K8S - Core Concepts
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-04-29 12:09:23</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#K8S" title="K8S">K8S</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="ETCD"><a href="#ETCD" class="headerlink" title="ETCD"></a>ETCD</h1><ul>
+<li>A distributed key-value store</li>
+<li>Is a service that listens on 2379 by default</li>
+</ul>
+<h1 id="ETCD-in-Kubernetes"><a href="#ETCD-in-Kubernetes" class="headerlink" title="ETCD in Kubernetes"></a>ETCD in Kubernetes</h1><ul>
+<li><p>Kubernetes stores information in the ETCD server</p>
+<ul>
+<li>Update information in the ETCD server is the last action when you make any update</li>
+</ul>
+</li>
+<li><p>Deployed from <strong>Scratch</strong></p>
+<ul>
+<li>ETCD will be a independent service on the host</li>
+</ul>
+</li>
+<li><p>Deploy from <strong>Kubeadm</strong> tool</p>
+<ul>
+<li>ETCD will be a pod called <code>etcd-master</code> under the <code>kube-system</code> namespace<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Get pod's shell</span></span><br><span class="line">kubectl <span class="built_in">exec</span> etcd-master -n kube-system</span><br><span class="line"><span class="comment"># Get all keys</span></span><br><span class="line">etdectl get / --prefix -key</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>ETCD in HA Environment</p>
+<ul>
+<li>set <code>controller-{i}=https://{CONTROLLER_IP}:2380</code> to <code>initial-cluster</code> parameter</li>
+</ul>
+</li>
+</ul>
+<h1 id="Kube-Apiserver"><a href="#Kube-Apiserver" class="headerlink" title="Kube-Apiserver"></a>Kube-Apiserver</h1><ul>
+<li>Authenticating and validating requests, retrieving and updating data in ETCD</li>
+<li>The other components such as the scheduler, kube-controller-manager, kubelet use kube-apiserver to perform updates in the cluster in their respective areas</li>
+<li>Configurations<ul>
+<li><strong>Kubeadm</strong> pod: kube-apiserver-master</li>
+<li><strong>Kubeadm</strong> config: <em>/etc/kubernetes/manifests/kube-apiserver.yaml</em></li>
+<li>Check config: ps -aux | grep kube-apiserver</li>
+</ul>
+</li>
+</ul>
+<h1 id="Kube-Controller-Manager"><a href="#Kube-Controller-Manager" class="headerlink" title="Kube-Controller-Manager"></a>Kube-Controller-Manager</h1><ul>
+<li>Controller-Manager<ul>
+<li>A service contains all of the necessary controllers</li>
+</ul>
+</li>
+<li>Node-Controller<ul>
+<li>Continually checks the status of nodes. When a node becomes unreachable, node-controller will eventually recreate the pods onto healthy nodes</li>
+</ul>
+</li>
+<li>Replication-Controller<ul>
+<li>Continually monitors the replica sets, and ensures that the desired number of pods are available</li>
+</ul>
+</li>
+<li>Configurations<ul>
+<li><strong>Kubeadm</strong> pod: kube-controller-manager-master</li>
+<li><strong>Kubeadm</strong> config: /etc/kubernetes/manifests/kube-apiserver.yaml</li>
+<li><strong>Scratch</strong> config: /etc/systemd/system/kube-controller-manager.service</li>
+<li>Check config: ps -aux | grep kube-controller-manager</li>
+</ul>
+</li>
+</ul>
+<h1 id="Kube-Scheduler"><a href="#Kube-Scheduler" class="headerlink" title="Kube-Scheduler"></a>Kube-Scheduler</h1><ul>
+<li>Assign the best node to create a pod to satisfy the requirement (CPU, memory , etc.)</li>
+<li>Judgement processing<ul>
+<li>Filter nodes</li>
+<li>Rank nodes</li>
+</ul>
+</li>
+<li>Configurations<ul>
+<li><strong>Kubeadm</strong> pod: kube-scheduler</li>
+<li><strong>Kubeadm</strong> config: /etc/kubernetes/manifests/kube-scheduler.yaml</li>
+<li>Check config: ps -aux | grep kube-scheduler</li>
+</ul>
+</li>
+</ul>
+<h1 id="Kublet"><a href="#Kublet" class="headerlink" title="Kublet"></a>Kublet</h1><ul>
+<li>At worker nodes<ul>
+<li>Register node</li>
+<li>Create pods</li>
+<li>Monitor node &amp; pods</li>
+</ul>
+</li>
+<li>Configurations<ul>
+<li>You must manually install it onto worker nodes</li>
+<li>Check config: ps -aux | grep kublet</li>
+</ul>
+</li>
+</ul>
+<h1 id="Kube-Proxy"><a href="#Kube-Proxy" class="headerlink" title="Kube-Proxy"></a>Kube-Proxy</h1><ul>
+<li>A process that runs on each node</li>
+<li>When a new service is created, kube-proxy will create the appropriate rules to forward traffic to those services to the backend pod</li>
+<li>Configurations<ul>
+<li><strong>Kubeadm</strong> pods: kube-proxy-xxxxx (as daemonset)</li>
+</ul>
+</li>
+</ul>
+<h1 id="Recap"><a href="#Recap" class="headerlink" title="Recap"></a>Recap</h1><h2 id="Pods-po"><a href="#Pods-po" class="headerlink" title="Pods (po)"></a>Pods (po)</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Generate yaml from command</span></span><br><span class="line">kubectl run nginx --image=nginx --dry-run=client -o yaml</span><br><span class="line"><span class="comment"># Get yaml from existing one</span></span><br><span class="line">kubectl get po nginx -o yaml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-pod</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">my-app</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="attr">    - containerPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ReplicaSets-rs"><a href="#ReplicaSets-rs" class="headerlink" title="ReplicaSets (rs)"></a>ReplicaSets (rs)</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ReplicaSet</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-replica-set</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">my-app-rs</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">my-pod</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">my-app</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">        image:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">        ports:</span></span><br><span class="line"><span class="attr">        - containerPost:</span> <span class="number">80</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">2</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    matchLabels:</span></span><br><span class="line"><span class="attr">      app:</span> <span class="string">my-app</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Deployments-deploy"><a href="#Deployments-deploy" class="headerlink" title="Deployments (deploy)"></a>Deployments (deploy)</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Generate yaml from command</span></span><br><span class="line">kubectl create deploy nginx --image=nginx --replicas=4 --dry-run=client -o yaml</span><br><span class="line"><span class="comment"># Get yaml from existing one</span></span><br><span class="line">kubectl get deploy nginx -o yaml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Similar with ReplicaSet</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span> <span class="comment"># &lt;- ReplicaSet</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Services-svc"><a href="#Services-svc" class="headerlink" title="Services (svc)"></a>Services (svc)</h2><ul>
+<li>NodePort, ClusterIP, LoadBalancer</li>
+<li>Service is Cross-node<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># NodePort</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-service</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">NodePort</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">  - targetPort:</span> <span class="number">80</span></span><br><span class="line"><span class="attr">    port:</span> <span class="number">80</span></span><br><span class="line"><span class="attr">    nodePort:</span> <span class="number">30080</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">my-app</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ClusterIP</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-service</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">ClusterIP</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">  - targetPort:</span> <span class="number">80</span></span><br><span class="line"><span class="attr">    port:</span> <span class="number">80</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">my-app</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Namespaces-ns-n"><a href="#Namespaces-ns-n" class="headerlink" title="Namespaces (ns / -n)"></a>Namespaces (ns / -n)</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Namespace</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">dev</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use namespace</span></span><br><span class="line">-n=dev</span><br><span class="line">--namespace=dev</span><br><span class="line"><span class="comment"># In all namespaces</span></span><br><span class="line">--all-namespaces</span><br><span class="line"><span class="comment"># Set current namespace</span></span><br><span class="line">kubectl config <span class="built_in">set</span>-context $(kubectl config current-context) --namespace=dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Access a service in a different namespace: <strong>{service}.{namespace}.svc.cluster.local</strong></li>
+</ul>
+<h2 id="ResourceQuotas-quota"><a href="#ResourceQuotas-quota" class="headerlink" title="ResourceQuotas (quota)"></a>ResourceQuotas (quota)</h2><ul>
+<li>Set quota for a namespace<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ResourceQuota</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">dev-quota</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">dev</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  hard:</span></span><br><span class="line"><span class="attr">    pods:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">    requests:</span></span><br><span class="line"><span class="attr">      memory:</span> <span class="number">2</span><span class="string">Gi</span></span><br><span class="line"><span class="attr">      cpu:</span> <span class="number">4</span></span><br><span class="line"><span class="attr">    limits:</span></span><br><span class="line"><span class="attr">      memory:</span> <span class="number">4</span><span class="string">Gi</span></span><br><span class="line"><span class="attr">      cpu:</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

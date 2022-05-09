@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        K8S - Application Lifecycle Management - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Strategy"><span class="toc-text">Strategy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rollout"><span class="toc-text">Rollout</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Command-amp-Arguments"><span class="toc-text">Command &amp; Arguments</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Environment-Variables"><span class="toc-text">Environment Variables</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ConfigMaps"><span class="toc-text">ConfigMaps</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Secret"><span class="toc-text">Secret</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Init-Containers"><span class="toc-text">Init Containers</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        K8S - Application Lifecycle Management
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-05-01 19:31:52</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#K8S" title="K8S">K8S</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Strategy"><a href="#Strategy" class="headerlink" title="Strategy"></a>Strategy</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  strategy:</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">Recreate/RollingUpdate</span></span><br><span class="line">    <span class="comment"># type=RollingUpdate</span></span><br><span class="line"><span class="attr">    rollingUpdate:</span></span><br><span class="line"><span class="attr">      maxUnavailable:</span> <span class="number">25</span><span class="string">%</span></span><br><span class="line"><span class="attr">      maxSurge:</span> <span class="number">25</span><span class="string">%</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Rollout"><a href="#Rollout" class="headerlink" title="Rollout"></a>Rollout</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Current status</span></span><br><span class="line">kubectl rollout status deploy/my-deploy</span><br><span class="line"><span class="comment"># History</span></span><br><span class="line">kubectl rollout <span class="built_in">history</span> ...</span><br><span class="line"><span class="comment"># Rollback</span></span><br><span class="line">kubectl rollout undo ...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Easily set image</span></span><br><span class="line">kubectl <span class="built_in">set</span> image deploy/my-deploy nginx=nginx:1.9.1</span><br></pre></td></tr></table></figure>
+
+<h1 id="Command-amp-Arguments"><a href="#Command-amp-Arguments" class="headerlink" title="Command &amp; Arguments"></a>Command &amp; Arguments</h1><ul>
+<li><p>Ex. the sleeper image</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> Ubuntu</span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [ <span class="string">"sleep"</span> ]</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">"5"</span> ]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pass arguments</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For docker command</span></span><br><span class="line">docker run --name sleeper sleeper 10</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For kubernetes</span></span><br><span class="line"><span class="comment"># Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - args:</span> <span class="string">[</span> <span class="string">"10"</span> <span class="string">]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Overwrite entrypoint<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For docker command</span></span><br><span class="line">docker run --name sleeper sleeper --entrypoint sleep 10</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For kubernetes</span></span><br><span class="line"><span class="comment"># Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - command:</span> <span class="string">[</span> <span class="string">"sleep"</span> <span class="string">]</span></span><br><span class="line"><span class="attr">    args:</span> <span class="string">[</span> <span class="string">"10"</span> <span class="string">]</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Environment-Variables"><a href="#Environment-Variables" class="headerlink" title="Environment Variables"></a>Environment Variables</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - env:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">name</span></span><br><span class="line"><span class="attr">      value:</span> <span class="string">value</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="ConfigMaps"><a href="#ConfigMaps" class="headerlink" title="ConfigMaps"></a>ConfigMaps</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create</span></span><br><span class="line">kubectl create configMap my-cm --from-literal=key=value</span><br><span class="line">kubectl create configMap my-cm --from-file=path</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-config-map</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line"><span class="attr">  key1:</span> <span class="string">value1</span></span><br><span class="line"><span class="attr">  key2:</span> <span class="string">value2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Usage: Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - env:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">key1</span></span><br><span class="line"><span class="attr">      valueFrom:</span></span><br><span class="line"><span class="attr">        configMapKeyRef:</span></span><br><span class="line"><span class="attr">          name:</span> <span class="string">my-config-map</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">key1</span></span><br><span class="line">    <span class="comment"># Or</span></span><br><span class="line"><span class="attr">    envFrom:</span></span><br><span class="line"><span class="attr">    - configMapRef:</span></span><br><span class="line"><span class="attr">        name:</span> <span class="string">my-config-map</span></span><br><span class="line">  <span class="comment"># Or</span></span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">my-volume</span></span><br><span class="line"><span class="attr">    configMap:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">my-config-map</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Secret"><a href="#Secret" class="headerlink" title="Secret"></a>Secret</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create</span></span><br><span class="line">kubectl create secret generic my-secret --from-literal=key=value</span><br><span class="line">kubectl create secret generic my-secret --from-file=path</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Secret</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-secret</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line"><span class="attr">  key1:</span> <span class="string">base64-value1</span></span><br><span class="line"><span class="attr">  key2:</span> <span class="string">base64-value2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Usage: Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - env:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">key1</span></span><br><span class="line"><span class="attr">      valueFrom:</span></span><br><span class="line"><span class="attr">        secretKeyRef:</span></span><br><span class="line"><span class="attr">          name:</span> <span class="string">my-secret</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">key1</span></span><br><span class="line">    <span class="comment"># Or</span></span><br><span class="line"><span class="attr">    envFrom:</span></span><br><span class="line"><span class="attr">    - secretRef:</span></span><br><span class="line"><span class="attr">        name:</span> <span class="string">my-secret</span></span><br><span class="line">  <span class="comment"># Or</span></span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">my-volume</span></span><br><span class="line"><span class="attr">    secret:</span></span><br><span class="line"><span class="attr">      secretName:</span> <span class="string">my-config-map</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Init-Containers"><a href="#Init-Containers" class="headerlink" title="Init Containers"></a>Init Containers</h1><ul>
+<li>Containers that only run at init phase<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  initContainers:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">xxx</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

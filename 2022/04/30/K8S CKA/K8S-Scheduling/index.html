@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        K8S - Scheduling - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Manual-Scheduling"><span class="toc-text">Manual Scheduling</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Label-Selector"><span class="toc-text">Label Selector</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Taints-and-Tolerations"><span class="toc-text">Taints and Tolerations</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-Selectors"><span class="toc-text">Node Selectors</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-Affinity"><span class="toc-text">Node Affinity</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Resource-Requirements-and-Limits"><span class="toc-text">Resource Requirements and Limits</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Daemon-Sets"><span class="toc-text">Daemon Sets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Static-Pods"><span class="toc-text">Static Pods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Multiple-Schedulers"><span class="toc-text">Multiple Schedulers</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        K8S - Scheduling
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-04-30 15:27:08</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#K8S" title="K8S">K8S</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Manual-Scheduling"><a href="#Manual-Scheduling" class="headerlink" title="Manual Scheduling"></a>Manual Scheduling</h1><ul>
+<li><p>Set node (modify nodeName will not work)</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  nodeName:</span> <span class="string">node01</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Create a Binding object instead, add pass the binding to api in <code>data</code> parameter</p>
+</li>
+</ul>
+<h1 id="Label-Selector"><a href="#Label-Selector" class="headerlink" title="Label Selector"></a>Label Selector</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">kubectl</span> <span class="string">get</span> <span class="string">pods</span> <span class="bullet">--selector</span> <span class="string">app=my-app</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Use annotations to store non-selector metadata</li>
+</ul>
+<h1 id="Taints-and-Tolerations"><a href="#Taints-and-Tolerations" class="headerlink" title="Taints and Tolerations"></a>Taints and Tolerations</h1><ul>
+<li><p>Taints mark nodes</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add</span></span><br><span class="line">kubectl taint nodes node-name key=value:taint-effect</span><br><span class="line"><span class="comment"># remove</span></span><br><span class="line">kubectl taint nodes node-name key=value:taint-effect-</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>taint-effect: NoSchedule, PreferNoSchedule, NoExecute</p>
+</li>
+<li><p>Tolerations mark pods</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  tolerations:</span></span><br><span class="line"><span class="attr">  - key:</span> <span class="string">key</span></span><br><span class="line"><span class="attr">    operator:</span> <span class="string">Equal</span></span><br><span class="line"><span class="attr">    value:</span> <span class="string">value</span></span><br><span class="line"><span class="attr">    effect:</span> <span class="string">taint-effect</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="Node-Selectors"><a href="#Node-Selectors" class="headerlink" title="Node Selectors"></a>Node Selectors</h1><ul>
+<li><p>Label nodes</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl label nodes node-name key=value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Configure node selector</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  nodeSelector:</span></span><br><span class="line"><span class="attr">    key:</span> <span class="string">value</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="Node-Affinity"><a href="#Node-Affinity" class="headerlink" title="Node Affinity"></a>Node Affinity</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ex. pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  affinity:</span></span><br><span class="line"><span class="attr">    nodeAffinity:</span></span><br><span class="line">      <span class="string">&lt;type&gt;:</span></span><br><span class="line"><span class="attr">        nodeSelectorTerms:</span></span><br><span class="line"><span class="attr">        - matchExpressions:</span></span><br><span class="line"><span class="attr">          - key:</span> <span class="string">key</span></span><br><span class="line"><span class="attr">            operator:</span> <span class="string">In/NotIn/Exists/etc.</span></span><br><span class="line"><span class="attr">            values:</span> <span class="string">values</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Types<ul>
+<li>requireDuringSchedulingIgnoreDuringExecution</li>
+<li>preferredDuringSchedulingIgnoredDuringExecution</li>
+<li>requiredDuringSchedulingRequiredDuringExecution</li>
+</ul>
+</li>
+</ul>
+<h1 id="Resource-Requirements-and-Limits"><a href="#Resource-Requirements-and-Limits" class="headerlink" title="Resource Requirements and Limits"></a>Resource Requirements and Limits</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">    resources:</span></span><br><span class="line"><span class="attr">      requests:</span></span><br><span class="line"><span class="attr">        memory:</span> <span class="number">256</span><span class="string">Mi</span></span><br><span class="line"><span class="attr">        cpu:</span> <span class="number">0.5</span></span><br><span class="line"><span class="attr">      limits:</span></span><br><span class="line"><span class="attr">        memory:</span> <span class="number">512</span><span class="string">Mi</span></span><br><span class="line"><span class="attr">        cpu:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Can create <code>LimitRange</code> object to overwrite default requests and limits<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">LimitRange</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">new-limit-range</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  limits:</span></span><br><span class="line"><span class="attr">  - default:</span></span><br><span class="line"><span class="attr">      memory:</span> <span class="number">1</span><span class="string">Gi</span></span><br><span class="line"><span class="attr">      cpu:</span> <span class="number">2</span></span><br><span class="line"><span class="attr">    defaultRequest:</span></span><br><span class="line"><span class="attr">      memory:</span> <span class="number">512</span><span class="string">Gi</span></span><br><span class="line"><span class="attr">      cpu:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">Container</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="Daemon-Sets"><a href="#Daemon-Sets" class="headerlink" title="Daemon Sets"></a>Daemon Sets</h1><ul>
+<li>Make sure that a specify pod always runs on each node<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">DaemonSet</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-daemon-set</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    matchLabels:</span></span><br><span class="line"><span class="attr">      app:</span> <span class="string">my-daemon</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">my-daemon</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">      - name:</span> <span class="string">daemon-name</span></span><br><span class="line"><span class="attr">        image:</span> <span class="string">daemon-image</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="Static-Pods"><a href="#Static-Pods" class="headerlink" title="Static Pods"></a>Static Pods</h1><ul>
+<li>Without master node, worker node can also create pods based on pod definition in the manifest directory</li>
+<li>manifest directory path can be configured in kubelet.service<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ExecStart= ... \\</span><br><span class="line">  --pod-manifest-path=/etc/Kubernetes/manifests \\</span><br><span class="line">  <span class="comment"># or</span></span><br><span class="line">  --config=kubeconfig.yaml \\</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kubeconfig.yaml</span></span><br><span class="line"><span class="attr">staticPodPath:</span> <span class="string">/etc/Kubernetes/manifests</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Use <code>docker ps</code> command to confirm pods if there is not kube-api-server</li>
+<li>Or use <code>kubectl get pods</code> to get both pods and static pods. But you cannot use kubectl to modify static pods</li>
+</ul>
+<h1 id="Multiple-Schedulers"><a href="#Multiple-Schedulers" class="headerlink" title="Multiple Schedulers"></a>Multiple Schedulers</h1><ul>
+<li><p>Set default scheduler</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kube-scheduler.service</span></span><br><span class="line">ExecStart= ... \\</span><br><span class="line">  --scheduler-name=custom-scheduler \\</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Create a new scheduler</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Copy from kube-scheduler</span></span><br><span class="line"><span class="comment"># add</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - command:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="bullet">--scheduler-name=custom-scheduler</span></span><br><span class="line"><span class="bullet">    -</span> <span class="bullet">--lock-object-name=custom-scheduler</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use scheduler</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ex. Pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  containers:</span></span><br><span class="line"><span class="attr">  - schedulerName:</span> <span class="string">customer-scheduler</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

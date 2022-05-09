@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        K8S - Security - Hiko Amane&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Hiko Amane&#39;s Blog </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>Yan Zhou</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Authentication"><span class="toc-text">Authentication</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Auth-Mechanisms"><span class="toc-text">Auth Mechanisms</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Static-Password-File"><span class="toc-text">Static Password File</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Static-Token-File"><span class="toc-text">Static Token File</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TLS-in-Kubernetes"><span class="toc-text">TLS in Kubernetes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Certificate-API"><span class="toc-text">Certificate API</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#KubeConfig"><span class="toc-text">KubeConfig</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Authorization"><span class="toc-text">Authorization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RBAC"><span class="toc-text">RBAC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-Access"><span class="toc-text">Check Access</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cluster-Roles"><span class="toc-text">Cluster Roles</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Hiko Amane&#39;s Blog </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        K8S - Security
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-05-04 16:18:17</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#K8S" title="K8S">K8S</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h1><ul>
+<li>Accounts<ul>
+<li>User</li>
+<li>Service Accounts</li>
+</ul>
+</li>
+</ul>
+<h1 id="Auth-Mechanisms"><a href="#Auth-Mechanisms" class="headerlink" title="Auth Mechanisms"></a>Auth Mechanisms</h1><h2 id="Static-Password-File"><a href="#Static-Password-File" class="headerlink" title="Static Password File"></a>Static Password File</h2><p>user.csv</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">password1,userName1,userID1,group1</span><br><span class="line">password2,userName2,userID2,group2</span><br></pre></td></tr></table></figure>
+
+<p>kube-apiserver.service</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--basic-auth-file=user.csv</span><br></pre></td></tr></table></figure>
+
+<p>Authenticate</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v -k https://master-ip:6443/api/v1/pods -u <span class="string">"userName:password"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Static-Token-File"><a href="#Static-Token-File" class="headerlink" title="Static Token File"></a>Static Token File</h2><p>user-token.csv</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">token1,userName1,userID1,group1</span><br><span class="line">token2,userName2,userID2,group2</span><br></pre></td></tr></table></figure>
+
+<p>kube-apiserver.service</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--token-auth-file=user-token.csv</span><br></pre></td></tr></table></figure>
+
+<p>Authenticate</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v -k https://master-ip:6443/api/v1/pods --header <span class="string">"Authorization: Bearer token1"</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="TLS-in-Kubernetes"><a href="#TLS-in-Kubernetes" class="headerlink" title="TLS in Kubernetes"></a>TLS in Kubernetes</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Look into certificate</span></span><br><span class="line">openssl x509 -<span class="keyword">in</span> xxx.crt -text -noout</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Get logs without kube-apiserver</span></span><br><span class="line">docker ps -a</span><br><span class="line">docker logs container-id</span><br></pre></td></tr></table></figure>
+
+<h1 id="Certificate-API"><a href="#Certificate-API" class="headerlink" title="Certificate API"></a>Certificate API</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Generate user certificate</span></span><br><span class="line">openssl genrsa -out me.key 2048</span><br><span class="line">openssl req -new -key me.key -subj <span class="string">"/CN=me"</span> -out me.crt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create certificate object</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">certificates.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CertificateSigningRequest</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">me</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  usages:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">digital</span> <span class="string">signature</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">key</span> <span class="string">encipherment</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">server</span> <span class="string">auth</span></span><br><span class="line"><span class="attr">  signerName:</span> <span class="string">example.com/me</span></span><br><span class="line"><span class="attr">  request:</span> <span class="string">|</span></span><br><span class="line"><span class="string">    $&#123;me.crt | base64&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Get &amp; approve</span></span><br><span class="line">kubectl get csr</span><br><span class="line">kubectl certificate approve me</span><br></pre></td></tr></table></figure>
+
+<h1 id="KubeConfig"><a href="#KubeConfig" class="headerlink" title="KubeConfig"></a>KubeConfig</h1><ul>
+<li>Default file is ~/.kube/config<ul>
+<li>Clusters</li>
+<li>Contexts</li>
+<li>Users<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Config</span></span><br><span class="line"></span><br><span class="line"><span class="attr">current-context:</span> <span class="string">me@my-cluster</span></span><br><span class="line"><span class="attr">clusters:</span></span><br><span class="line"><span class="attr">- name:</span> <span class="string">my-cluster</span></span><br><span class="line"><span class="attr">  cluster:</span></span><br><span class="line"><span class="attr">    certificate-authority:</span> <span class="string">ca.crt</span></span><br><span class="line"><span class="attr">    server:</span> <span class="attr">https://localhost:6443</span></span><br><span class="line"><span class="attr">contexts:</span></span><br><span class="line"><span class="attr">- name:</span> <span class="string">me@my-cluster</span></span><br><span class="line"><span class="attr">  context:</span></span><br><span class="line"><span class="attr">    cluster:</span> <span class="string">my-cluster</span></span><br><span class="line"><span class="attr">    user:</span> <span class="string">me</span></span><br><span class="line"><span class="attr">    namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">users:</span></span><br><span class="line"><span class="attr">- name:</span> <span class="string">me</span></span><br><span class="line"><span class="attr">  user:</span></span><br><span class="line"><span class="attr">    client-certificate:</span> <span class="string">me.crt</span></span><br><span class="line"><span class="attr">    client-key:</span> <span class="string">me.key</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Usage</span></span><br><span class="line">kubectl config view --kubeconfig=my-config</span><br><span class="line">kubectl config use-context me@my-cluster</span><br></pre></td></tr></table></figure>
+
+<h1 id="Authorization"><a href="#Authorization" class="headerlink" title="Authorization"></a>Authorization</h1><ul>
+<li>Mechanisms (mode)<ul>
+<li>Node</li>
+<li>ABAC (user/group based)</li>
+<li>RBAC (role based)</li>
+<li>Webhook</li>
+<li>AlwaysAllow</li>
+<li>AlwaysDeny</li>
+</ul>
+</li>
+</ul>
+<h2 id="RBAC"><a href="#RBAC" class="headerlink" title="RBAC"></a>RBAC</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Role</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-role</span></span><br><span class="line"><span class="attr">rules:</span></span><br><span class="line"><span class="attr">- apiGroups:</span> <span class="string">[""]</span></span><br><span class="line"><span class="attr">  resources:</span> <span class="string">["pods"]</span></span><br><span class="line"><span class="attr">  verbs:</span> <span class="string">["list",</span> <span class="string">"get"</span><span class="string">,</span> <span class="string">"create"</span><span class="string">,</span> <span class="string">"update"</span><span class="string">,</span> <span class="string">"delete"</span><span class="string">]</span></span><br><span class="line"><span class="attr">  resourceNames:</span> <span class="string">["name1",</span> <span class="string">"name2"</span><span class="string">]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">RoleBinding</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-role-binding</span></span><br><span class="line"><span class="attr">subjects:</span></span><br><span class="line"><span class="attr">- kind:</span> <span class="string">User</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">me</span></span><br><span class="line"><span class="attr">  apiGroup:</span> <span class="string">rbac.authorization.k8s.io</span></span><br><span class="line"><span class="attr">roleRef:</span></span><br><span class="line"><span class="attr">  kind:</span> <span class="string">Role</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">my-role</span></span><br><span class="line"><span class="attr">  apiGroup:</span> <span class="string">rbac.authorization.k8s.io</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Check-Access"><a href="#Check-Access" class="headerlink" title="Check Access"></a>Check Access</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kubectl auth can-i command -- as user</span></span><br><span class="line">kubectl auth can-i create pod --as me</span><br><span class="line">kubectl auth can-i delete pod --as me</span><br></pre></td></tr></table></figure>
+
+<h2 id="Cluster-Roles"><a href="#Cluster-Roles" class="headerlink" title="Cluster Roles"></a>Cluster Roles</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Similar with Role</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRole</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Similar with RoleBinding</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRoleBinding</span></span><br></pre></td></tr></table></figure>
+
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://github.com/Ys-Zhou">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-github"></i> -->
+                                <img src="/img/github-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+        
+        <li style="background-color: white">
+            <a target="_blank" href="https://www.linkedin.com/in/yan-zhou-65358117b">
+                            <!-- <span class="fa-stack fa-lg"> -->
+                                <!-- <i class="iconfont icon-linkedin"></i> -->
+                                <img src="/img/l-brands.svg">
+                            <!-- </span> -->
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
